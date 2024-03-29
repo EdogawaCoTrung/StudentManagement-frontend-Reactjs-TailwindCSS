@@ -7,7 +7,7 @@ import SignIn from './components/Layout/SignIn/SignIn.jsx'
 function App() {
   return (
     <>
-    {/* <BrowserRouter>
+    <BrowserRouter>
       <div id="App">
         <Routes>
           {publicRoutes.map((route, index) => {
@@ -34,7 +34,7 @@ function App() {
           })}
         </Routes>
       </div>
-    </BrowserRouter> */}
+    </BrowserRouter>
     <SignIn/>
     </>
   )
