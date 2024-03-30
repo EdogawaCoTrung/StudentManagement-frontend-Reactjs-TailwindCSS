@@ -1,6 +1,6 @@
 import ButtonUsage from "../../share/MyButton";
 
-export default function LogIn({ children }) {
+export default function LogIn() {
     return (
         <div className="w-full h-full p-20 bg-gradient-to-b from-sky-300 to-sky-100">
         <div className="w-full h-full bg-white rounded-xl shadow-lg"> 
@@ -51,8 +51,9 @@ export default function LogIn({ children }) {
                         />
                         </div>
                         <div>
-                        <a href="#"
-					    class="text-xs text-gray-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Quên mật khẩu?</a>
+                            <a href="#" className="text-xs text-gray-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                Quên mật khẩu?
+                            </a>
                         </div>
                     </div>
 

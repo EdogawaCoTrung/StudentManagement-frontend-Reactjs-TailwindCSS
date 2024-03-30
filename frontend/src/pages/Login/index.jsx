@@ -1,18 +1,4 @@
-
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
+import LogIn from "../../components/Layout/LoginLayout"
 export default function LogInPage() {
     return (
         <LogIn/>
