@@ -34,7 +34,7 @@ export default function LogIn({ children }) {
                     <div>
                         <div className="flex items-center justify-between">
                             <label htmlFor="password" 
-                                    className="block text-sm font-medium leading-6 text-gray-900 pt-2 pt-0">
+                                    className="block text-sm font-medium leading-6 text-gray-900">
                                 MẬT KHẨU
                             </label>
                         </div>
