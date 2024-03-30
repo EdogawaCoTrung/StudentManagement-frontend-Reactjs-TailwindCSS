@@ -52,7 +52,7 @@ export default function LogIn({ children }) {
                         </div>
                         <div>
                         <a href="#"
-					    class="text-xs text-gray-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Forgot Password?</a>
+					    class="text-xs text-gray-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Quên mật khẩu?</a>
                         </div>
                     </div>
 
@@ -65,6 +65,7 @@ export default function LogIn({ children }) {
                             text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             />
                     </div>
+
                 </form>
             </div>
         </div>
