@@ -12,8 +12,6 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import {MainTheme} from '../../../assets/Theme'
 import {ThemeProvider} from '@mui/material/styles'
 
-// TODO remove, this demo shouldn't need to reset the theme.
-
 const defaultTheme = MainTheme;
 
 export default function LogIn() {
