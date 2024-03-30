@@ -5,6 +5,7 @@ import { DefaultLayout } from "./components/Layout"
 
 function App() {
   return (
+    <>
     <BrowserRouter>
       <div id="App">
         <Routes>
@@ -33,6 +34,7 @@ function App() {
         </Routes>
       </div>
     </BrowserRouter>
+    </>
   )
 }
 
