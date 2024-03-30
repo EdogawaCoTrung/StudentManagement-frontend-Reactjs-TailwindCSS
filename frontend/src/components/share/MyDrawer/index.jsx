@@ -33,19 +33,26 @@ export default function MyDrawer() {
     return (
         <div>
             <ThemeProvider theme={defaultTheme}>
-                <Button onClick={toggleDrawer(true)}>
-                    <MenuIcon/>
+                <Button
+                        onClick={toggleDrawer(true)}>
+                    <MenuIcon sx={{
+                        height: 40,
+                        width: 40,
+                    }}/>
                 </Button>
                 <Drawer
                     anchor="left" // Position: 'left', 'right', 'top', 'bottom' 
                     open={isDrawerOpen}
                     onClose={toggleDrawer(false)}
                 >
-                    <List>
+                    <List >
                     {pages.map((text, index) => (
                         <ListItemButton 
                             onClick = {() => handleListItemClick(text, index)}
                             sx={{
+                                width: 220,
+                                paddingLeft: 3,
+                                alignContent: 'center',
                                 color: selectedIndex === index ? 'white' : 'dark-gray', 
                                 backgroundColor: selectedIndex === index ? 'primary.main' : undefined,
                                 '&:hover': {
