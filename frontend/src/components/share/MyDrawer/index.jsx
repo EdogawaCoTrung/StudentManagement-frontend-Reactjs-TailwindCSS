@@ -1,12 +1,17 @@
-import { Drawer } from '@mui/material';
-import Button from '@mui/material/Button';
-import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
+// import { Drawer } from '@mui/material';
+// import Button from '@mui/material/Button';
+// import List from '@mui/material/List';
+// import ListItemButton from '@mui/material/ListItemButton';
+// import ListItemText from '@mui/material/ListItemText';
 import { useState } from 'react'; // For managing drawer state
 import {MainTheme} from '../../../assets/Theme'
 import {ThemeProvider} from '@mui/material/styles'
-import MenuIcon from '@mui/icons-material/Menu';
+// import MenuIcon from '@mui/icons-material/Menu';
+// import { ListItemIcon} from '@mui/material';
+// import GroupsIcon from '@mui/icons-material/Groups';
+import Tabs from '@mui/material/Tabs';
+import LinkTab from '@mui/material/Tab';
+
 
 const defaultTheme = MainTheme;
 
@@ -20,34 +25,15 @@ export default function MyDrawer() {
     const handleListItemClick = (text, index) => {
         setSelectedIndex(index); 
     };
-    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
-    const toggleDrawer = (open) => (event) => {
-        // Prevent bubbling if triggered from within the drawer
-        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-            return;
-        }
-        setIsDrawerOpen(open);
-    };
 
     return (
         <div>
             <ThemeProvider theme={defaultTheme}>
-                <Button
-                        onClick={toggleDrawer(true)}>
-                    <MenuIcon sx={{
-                        height: 40,
-                        width: 40,
-                    }}/>
-                </Button>
-                <Drawer
-                    anchor="left" // Position: 'left', 'right', 'top', 'bottom' 
-                    open={isDrawerOpen}
-                    onClose={toggleDrawer(false)}
+                <Tabs orientation="vertical"
                 >
-                    <List >
                     {pages.map((text, index) => (
-                        <ListItemButton 
+                        <LinkTab
+                            key={index}
                             onClick = {() => handleListItemClick(text, index)}
                             sx={{
                                 width: 220,
@@ -59,12 +45,9 @@ export default function MyDrawer() {
                                     backgroundColor: 'secondary.main'
                                 }
                             }} 
-                            key={text}>
-                            <ListItemText primary={text} />
-                        </ListItemButton>
+                            label={text} href= {`/${text}`}/>
                     ))}
-                    </List>
-                </Drawer>
+                </Tabs>
             </ThemeProvider>
         </div>
     );
