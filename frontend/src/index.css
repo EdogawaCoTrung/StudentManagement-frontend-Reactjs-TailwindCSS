@@ -20,21 +20,9 @@
   width: 100vw;
 }
 
-@media (max-width: 768px) {
-  #App {
-    height: auto;
-  }
-}
-
-@media (min-width: 768px) {
-  #App {
-    height: 100vh;
-  }
-}
-
 #root {
   width: 100vw;
-  height: 100vh;
+  height: 1000vh;
   overflow: auto
 }
 
