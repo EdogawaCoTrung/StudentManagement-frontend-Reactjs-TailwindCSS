@@ -1,37 +1,37 @@
-// import { Drawer } from '@mui/material';
-// import Button from '@mui/material/Button';
-// import List from '@mui/material/List';
-// import ListItemButton from '@mui/material/ListItemButton';
-// import ListItemText from '@mui/material/ListItemText';
 import { useState } from 'react'; // For managing drawer state
 import {MainTheme} from '../../../assets/Theme'
 import {ThemeProvider} from '@mui/material/styles'
-// import MenuIcon from '@mui/icons-material/Menu';
-// import { ListItemIcon} from '@mui/material';
-// import GroupsIcon from '@mui/icons-material/Groups';
 import Tabs from '@mui/material/Tabs';
 import LinkTab from '@mui/material/Tab';
+import { pagesName} from '../../../assets/PagesName/index'
+import { publicRoutes } from '../../../routes';
 
 
 const defaultTheme = MainTheme;
 
 
-const pages = ['Thống kê', 'Lớp', 'Học Sinh', 'Giáo Viên', 'Phong Trào', 'Kế Hoạch & Nhiệm Vụ', 'Doanh Thu', 'Đăng Xuất']
-
 export default function MyDrawer() {
 
     const [selectedIndex, setSelectedIndex] = useState(null); 
 
-    const handleListItemClick = (text, index) => {
+    const handleListItemClick = (index) => {
         setSelectedIndex(index); 
     };
 
     return (
         <div>
             <ThemeProvider theme={defaultTheme}>
-                <Tabs orientation="vertical"
+                <Tabs
+                    value = {selectedIndex}
+                    orientation="vertical"
+                    textColor="secondary"
+                    indicatorColor="secondary"
+                    aria-label="secondary tabs example"
+                    style ={{
+                        position: "fixed",
+                    }}
                 >
-                    {pages.map((text, index) => (
+                    {pagesName.map((text, index) => (
                         <LinkTab
                             key={index}
                             onClick = {() => handleListItemClick(text, index)}
@@ -45,7 +45,7 @@ export default function MyDrawer() {
                                     backgroundColor: 'secondary.main'
                                 }
                             }} 
-                            label={text} href= {`/${text}`}/>
+                            label={text} href= {publicRoutes[index+2].path}/>
                     ))}
                 </Tabs>
             </ThemeProvider>
