@@ -5,7 +5,6 @@ import Tabs from '@mui/material/Tabs';
 import LinkTab from '@mui/material/Tab';
 import { pagesName} from '../../../assets/PagesName/index'
 import { publicRoutes } from '../../../routes';
-import Logo from '../../../assets/Logo.png'; // Import your logo file
 import Typography from '@mui/material/Typography';
 
 const defaultTheme = MainTheme;
@@ -30,7 +29,7 @@ export default function Sidebar() {
         <div>
             <ThemeProvider theme={defaultTheme}>
                 <div style={{ display: 'flex', alignItems: 'center', padding: '10px' }}>
-                <img src={Logo} alt="Logo" style={{ width: '100px', height: '100px', padding: '10px' }} />
+                <img src="Logo.png" alt="Logo" style={{ width: '100px', height: '100px', padding: '10px' }} />
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1, marginLeft: '10px', fontWeight: 'bold', color: 'gray' }}>
                     Nhóm 11
                 </Typography>
