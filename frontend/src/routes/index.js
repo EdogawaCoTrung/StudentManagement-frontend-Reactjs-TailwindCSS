@@ -1,6 +1,14 @@
 import Home from "../pages/Home"
+import LogInPage from "../pages/Login/index.jsx"
+import LogIn from "../components/Layout/LoginLayout/index.jsx"
+import { generateURL } from "./generateURL.js"
 
-import config from "../config"
 
-const publicRoutes = [{ path: config.route.Home, component: Home }]
+const publicRoutes = [
+    { path: '/login', component: LogInPage, layout: LogIn},
+    { path: '/', component: Home},
+]
+
+generateURL(publicRoutes);
+
 export { publicRoutes }
