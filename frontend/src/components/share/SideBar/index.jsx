@@ -26,10 +26,10 @@ export default function Sidebar() {
     }
 
     return (
-        <div>
+        <div style={{position: 'fixed'}}>
             <ThemeProvider theme={defaultTheme}>
                 <div style={{ display: 'flex', alignItems: 'center', padding: '10px' }}>
-                <img src="Logo.png" alt="Logo" style={{ width: '100px', height: '100px', padding: '10px' }} />
+                <img src="Logo.png" alt="Logo" style={{ width: 'auto', height: '100px', padding: '10px' }} />
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1, marginLeft: '10px', fontWeight: 'bold', color: 'gray' }}>
                     Nhóm 11
                 </Typography>
