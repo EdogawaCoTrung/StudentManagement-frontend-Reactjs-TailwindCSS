@@ -16,7 +16,7 @@ import { MainTheme } from '../../../assets/Theme';
 
 const defaultTheme = MainTheme;
 
-export default function SignIn() {
+export default function LogIn() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
