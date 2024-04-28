@@ -3,7 +3,12 @@ import Button from "@mui/material/Button"
 // import RemoveIcon from "@mui/icons-material/Remove"
 // import IconButton from "@mui/material/IconButton"
 
-function CardClass({ nameclass }) {
+function CardClass({ nameclass, openModal, checkId, setCheckId }) {
+  let handleOnClick = () => {
+    console.log("THIS MODAL CLICK!!!!")
+    openModal()
+    setCheckId(checkId)
+  }
   return (
     // <
     //   style={{
@@ -13,8 +18,9 @@ function CardClass({ nameclass }) {
     //     top: 0,
     //   }}
     // >
-    <div className="mx-9 my-3 h-20 w-28">
+    <div className="h-20 w-28 mx-9 my-3">
       <Button
+        onClick={handleOnClick}
         variant="contained"
         className=" h-20 w-28"
         style={{
@@ -50,12 +56,13 @@ function CardClass({ nameclass }) {
 
 CardClass.propTypes = {
   nameclass: PropTypes.string,
-  teacherName: PropTypes.string,
+  openModal: PropTypes.any,
+  checkId: PropTypes.any,
+  setCheckId: PropTypes.any,
 }
 
 CardClass.defaultProps = {
   nameclass: "Default Class",
-  teacherName: "Default Teacher",
 }
 
 export default CardClass

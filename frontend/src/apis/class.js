@@ -4,6 +4,10 @@ class ClassApi {
     const res = await httpClient.get(`/class/get-grade/${gradename}/${year}`)
     return res
   }
+  async getAllStudentByClassId(id) {
+    const res = await httpClient.get(`/class/get-student/${id}`)
+    return res
+  }
   //   async getAllUnapprovedGroup() {
   //     const res = await httpClient.get("/groups/unapproved")
   //     return res
