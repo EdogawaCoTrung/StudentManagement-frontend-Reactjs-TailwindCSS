@@ -1,42 +1,46 @@
-import * as React from "react"
 import PropTypes from "prop-types"
 import Button from "@mui/material/Button"
-import RemoveIcon from "@mui/icons-material/Remove"
-import IconButton from "@mui/material/IconButton"
+// import RemoveIcon from "@mui/icons-material/Remove"
+// import IconButton from "@mui/material/IconButton"
 
-function CardClass({ className, teacherName }) {
+function CardClass({ nameclass, openModal, checkId, setCheckId }) {
+  let handleOnClick = () => {
+    console.log("THIS MODAL CLICK!!!!")
+    openModal()
+    setCheckId(checkId)
+  }
   return (
-    <div
-      style={{
-        position: "absolute",
-        display: "flex",
-        flexDirection: "column",
-        top: 0,
-        alignItems: "center",
-      }}
-    >
+    // <
+    //   style={{
+    //     position: "relative",
+    //     display: "flex",
+    //     flexDirection: "column",
+    //     top: 0,
+    //   }}
+    // >
+    <div className="h-20 w-28 mx-9 my-3">
       <Button
+        onClick={handleOnClick}
         variant="contained"
         className=" h-20 w-28"
         style={{
           backgroundColor: "#F1F8FF",
           borderRadius: "20%",
           color: "black",
+          zIndex: 0,
         }}
         sx={{
           position: "relative",
-          top: 20, 
-          right: 0, 
-          fontWeight: 'bold',
+          top: 0,
+          right: 0,
+          fontWeight: "bold",
         }}
       >
-        {className}
+        {nameclass}
       </Button>
-      <IconButton
+      {/* <IconButton
         sx={{
           position: "relative",
-          top: -60,
-          right: -50,
         }}
         style={{
           zIndex: "1",
@@ -44,22 +48,21 @@ function CardClass({ className, teacherName }) {
         }}
         color="white"
       >
-        <RemoveIcon style={{ color:"white", height: "14px", width: "14px" }} />
-      </IconButton>
-
-      <span className=" font-bold">{teacherName}</span>
+        <RemoveIcon style={{ color: "white", height: "14px", width: "14px" }} />
+      </IconButton> */}
     </div>
   )
 }
 
 CardClass.propTypes = {
-  className: PropTypes.string,
-  teacherName: PropTypes.string,
+  nameclass: PropTypes.string,
+  openModal: PropTypes.any,
+  checkId: PropTypes.any,
+  setCheckId: PropTypes.any,
 }
 
 CardClass.defaultProps = {
-  className: "Default Class",
-  teacherName: "Default Teacher",
+  nameclass: "Default Class",
 }
 
 export default CardClass
