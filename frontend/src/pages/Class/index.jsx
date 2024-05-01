@@ -10,6 +10,8 @@ import { useEffect, useState } from "react"
 import { grades } from "../../components/share/Dropdown/data"
 import { classApi } from "../../apis"
 import DialogView from "../../components/share/Modal"
+import AddClassModal from "../../components/share/AddClassModal"
+import { toast } from "react-toastify"
 // eslint-disable-next-line
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -21,9 +23,20 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function Class() {
   let [checkId, setCheckId] = useState()
+  let [checkGrade, setCheckGrade] = useState()
+  let [checkReRender, setCheckReRender] = useState(false)
   let [isOpen, setIsOpen] = useState(false)
   let [isOpen2, setIsOpen2] = useState(false)
   let [isOpen3, setIsOpen3] = useState(false)
+  let [isOpenAddClassModal, setOpenAddClassModal] = useState(false)
+  function closeAddClassModal() {
+    setOpenAddClassModal(false)
+  }
+  function openAddClassModal(gradename) {
+    console.log("gradename: ", gradename)
+    setOpenAddClassModal(true)
+    setCheckGrade(gradename)
+  }
   function closeModal() {
     setIsOpen(false)
   }
@@ -71,13 +84,19 @@ export default function Class() {
     let getData = await classApi.getAllClassByGradeAndYear(12, selectYear)
     setDataClassGrade12(getData.DT)
   }
+  // eslint-disable-next-line
   useEffect(() => {
     console.log("Chay useEffect")
     console.log("Doi selectyear: " + selectYear)
-    fetchAllClassByGrade10AndYear()
-    fetchAllClassByGrade11AndYear()
-    fetchAllClassByGrade12AndYear()
-  }, [selectYear])
+    try {
+      fetchAllClassByGrade10AndYear()
+      fetchAllClassByGrade11AndYear()
+      fetchAllClassByGrade12AndYear()
+      toast.success("Lấy danh sách lớp thành công!!!")
+    } catch (error) {
+      toast.error(error)
+    }
+  }, [selectYear, checkReRender])
   console.log(dataClassGrade10)
   console.log(dataClassGrade11)
   console.log(dataClassGrade12)
@@ -88,9 +107,19 @@ export default function Class() {
           <div className="flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md">
             <p className="text-center text-2xl font-semibold text-gradeTitle">Khối 10</p>
           </div>
-          <IconButton size="large">
+          <IconButton onClick={() => openAddClassModal(10)} size="large">
             <AddCircleRoundedIcon className="text-backgroundplus" fontSize="large" />
           </IconButton>
+          {isOpenAddClassModal && checkGrade === 10 && (
+            <AddClassModal
+              isOpenAddClassModal={isOpenAddClassModal}
+              closeAddClassModal={closeAddClassModal}
+              year={selectYear}
+              gradename={10}
+              setCheckReRender={setCheckReRender}
+              checkReRender={checkReRender}
+            ></AddClassModal>
+          )}
         </div>
         <Dropdown selectYear={selectYear} setSelectYear={setSelectYear}></Dropdown>
       </div>
@@ -121,9 +150,19 @@ export default function Class() {
         <div className="flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md">
           <p className="text-center text-2xl font-semibold text-gradeTitle">Khối 11</p>
         </div>
-        <IconButton size="large">
+        <IconButton onClick={() => openAddClassModal(11)} size="large">
           <AddCircleRoundedIcon className="text-backgroundplus" fontSize="large" />
         </IconButton>
+        {isOpenAddClassModal && checkGrade === 11 && (
+          <AddClassModal
+            isOpenAddClassModal={isOpenAddClassModal}
+            closeAddClassModal={closeAddClassModal}
+            year={selectYear}
+            gradename={11}
+            setCheckReRender={setCheckReRender}
+            checkReRender={checkReRender}
+          ></AddClassModal>
+        )}
       </div>
       <div className="flex flex-row flex-wrap">
         {dataClassGrade11 &&
@@ -152,9 +191,19 @@ export default function Class() {
         <div className="flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md">
           <p className="text-center text-2xl font-semibold text-gradeTitle">Khối 12</p>
         </div>
-        <IconButton size="large">
+        <IconButton onClick={() => openAddClassModal(12)} size="large">
           <AddCircleRoundedIcon className="text-backgroundplus" fontSize="large" />
         </IconButton>
+        {isOpenAddClassModal && checkGrade === 12 && (
+          <AddClassModal
+            isOpenAddClassModal={isOpenAddClassModal}
+            closeAddClassModal={closeAddClassModal}
+            year={selectYear}
+            gradename={12}
+            setCheckReRender={setCheckReRender}
+            checkReRender={checkReRender}
+          ></AddClassModal>
+        )}
       </div>
       <div className="flex flex-row flex-wrap">
         {dataClassGrade12 &&

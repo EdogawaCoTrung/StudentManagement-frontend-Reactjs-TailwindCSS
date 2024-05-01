@@ -3,15 +3,28 @@ import { Fragment, useEffect, useState } from "react"
 import StudentTable from "../StudentTable"
 import PropTypes from "prop-types"
 import { classApi } from "../../../apis"
+// import { Input } from "@mui/material"
 export default function DialogView({ isOpen, closeModal, nameclass, classId }) {
   console.log("classId: ", classId)
   console.log("nameclass: ", nameclass)
+  // const [columnFilters, setColumnFilters] = useState([])
+  // const searchInput = columnFilters.find((f) => f.id === "student.studentname")?.value || ""
+  // const onFilterChange = (id, value) =>
+  //   setColumnFilters((prev) =>
+  //     prev
+  //       .filter((f) => f.id !== id)
+  //       .concat({
+  //         id,
+  //         value,
+  //       }),
+  //   )
   let [data, setData] = useState("")
   const fetchAllStudentByClassId = async () => {
     let getData = await classApi.getAllStudentByClassId(classId)
     setData(getData.DT)
   }
   useEffect(() => {
+    console.log("CHAY VAO USEEFFECT")
     fetchAllStudentByClassId()
   }, [])
   return (
@@ -44,7 +57,12 @@ export default function DialogView({ isOpen, closeModal, nameclass, classId }) {
                 <div className="mb-4 flex flex-row justify-between bg-white">
                   <p className="font-Poppins text-2xl font-normal">Lớp {nameclass}</p>
                   <div className="flex flex-row">
-                    <button className="h-fit w-fit mr-7 rounded-full bg-gradeTitle px-2 font-bold text-white">
+                    {/* <Input
+                      placeholder="Search..."
+                      value={searchInput}
+                      onChange={(e) => onFilterChange("student.studentname", e.target.value)}
+                    /> */}
+                    <button className="mr-7 h-fit w-fit rounded-full bg-gradeTitle px-2 font-bold text-white">
                       Bảng điểm
                     </button>
                     <button className="h-fit w-fit rounded-full bg-backgroundplus px-2 font-bold text-white">
@@ -52,13 +70,13 @@ export default function DialogView({ isOpen, closeModal, nameclass, classId }) {
                     </button>
                   </div>
                 </div>
-                <div className="w-full h-full overflow-y-auto">
+                <div className="h-full w-full overflow-y-auto">
                   <StudentTable data={data}></StudentTable>
                 </div>
                 <div className="mt-4">
                   <button
                     type="button"
-                    className="border-transparent bg-blue-100 text-blue-900 hover:bg-blue-200 focus-visible:ring-blue-500 inline-flex justify-center rounded-md border px-4 py-2 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+                    className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                     onClick={closeModal}
                   >
                     close

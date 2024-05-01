@@ -7,7 +7,6 @@ import Statistics from "../pages/Statistics"
 import Logout from "../pages/Logout"
 import Plan from "../pages/Plan"
 import Revenue from "../pages/Revenue"
-import StudentTable from "../components/share/StudentTable"
 import { pages } from "../assets/PagesName"
 function generateURL(Routes) {
   for (const page of pages) {
@@ -16,7 +15,7 @@ function generateURL(Routes) {
     let component
     switch (componentName) {
       case "Student":
-        component = StudentTable
+        component = Student
         break
       case "Class":
         component = Class

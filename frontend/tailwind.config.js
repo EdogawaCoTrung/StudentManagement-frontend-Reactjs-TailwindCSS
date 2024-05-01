@@ -5,6 +5,7 @@ export default {
     extend: {
       width: {
         modal: "1097px",
+        addClassModal: "875px",
       },
       height: {
         modal: "550px",
@@ -18,6 +19,9 @@ export default {
         black: "#000000",
         gradeTitle: "#3497f9",
         backgroundplus: "#8fdc88",
+        addBtn: "#8FDC88",
+        cancelBtn: "#DC8888",
+        blurblue: "#F1F8FFF1",
       },
       shadow: {
         grade: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
