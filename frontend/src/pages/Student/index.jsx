@@ -16,46 +16,80 @@ import React, { useEffect, useMemo, useState } from "react"
 import PropTypes from "prop-types"
 import { Input } from "@mui/material"
 import { studentApi } from "../../apis"
+import { gradeApi } from "../../apis"
 import Dropdown from "../../components/share/Dropdown"
-import { grades } from "../../components/share/Dropdown/data"
+import { toast } from "react-toastify"
 const Student = () => {
   const [classCount, setClassCount] = useState("")
   const [studentCount, setStudentCount] = useState("")
   const [data, setData] = useState("")
-  function maxGradeYear() {
+  function maxGradeYear(year) {
     console.log("goi maxGradeYear")
-    let maxYear = grades[0].year
-    for (let i = 0; i < grades.length; i++) {
-      if (grades[i].year > maxYear) maxYear = grades[i].year
+    let maxYear = year[0].year
+    for (let i = 0; i < year.length; i++) {
+      if (year[i].year > maxYear) maxYear = year[i].year
     }
     return maxYear
   }
-  let maxYear = maxGradeYear()
-  let [selectYear, setSelectYear] = useState(maxYear)
+  let [selectYear, setSelectYear] = useState("")
   let fetchAllStudent = async () => {
     let uniqueStudent = new Set()
     let uniqueClass = new Set()
     let res = await studentApi.getAllStudent()
-    console.log("FETCHALLSTUDENT: ", res.DT)
     res.DT.map((student) => {
       uniqueStudent.add(student.studentId)
       uniqueClass.add(student.classId)
     })
     setClassCount(uniqueClass.size)
     setStudentCount(uniqueStudent.size)
+    if (res.EC == 1) {
+      toast.error(res.EM)
+    }
     setData(res.DT)
   }
+  const fetchAllYear = async () => {
+    let year = await gradeApi.getAllYear()
+    if (year.DT) {
+      let maxYear = maxGradeYear(year.DT)
+      setSelectYear(maxYear)
+    }
+  }
   useEffect(() => {
-    console.log("FETCH!")
+    if (selectYear != "") {
+      console.log("VaoYear")
+      setColumnFilters((prev) => {
+        const yearSelect = prev.find((filter) => filter.id === "year")?.value
+        if (!yearSelect) {
+          return prev.concat({
+            id: "year",
+            value: [selectYear],
+          })
+        }
+        return prev.map((f) =>
+          f.id === "year"
+            ? {
+                ...f,
+                value: isActive4 ? yearSelect.filter((s) => s !== 12) : yearSelect.concat(selectYear),
+              }
+            : f,
+        )
+      })
+    }
+  }, [selectYear])
+  useEffect(() => {
     fetchAllStudent()
+    fetchAllYear()
   }, [])
   const [columnFilters, setColumnFilters] = useState([])
   const searchInput = columnFilters.find((f) => f.id === "studentname")?.value || ""
   const filterGrade = columnFilters.find((f) => f.id === "gradename")?.value || []
+  const filterYear = columnFilters.find((f) => f.id === "year")?.value || []
   console.log("FILTERGARA", filterGrade)
   const isActive = filterGrade.includes(10)
   const isActive2 = filterGrade.includes(11)
   const isActive3 = filterGrade.includes(12)
+  console.log("ISACTIVE", filterYear)
+  const isActive4 = filterYear.includes(selectYear)
   const onFilterChange = (id, value) =>
     setColumnFilters((prev) =>
       prev
@@ -102,6 +136,19 @@ const Student = () => {
         id: "gender",
         header: "Gioi tinh",
         cell: (info) => <div>{info.getValue() === "1" ? <span>Nam</span> : <span>Nữ</span>}</div>,
+      }),
+      columnHelper.accessor((row) => `${row.class.grade.year}`, {
+        id: "year",
+        header: "Năm",
+        enableColumnFilter: true,
+        filterFn: (row, columnId, filterYear) => {
+          const year = row.getValue(columnId)
+          const yearNumber = parseInt(year, 10)
+          console.log("GIATRIROW", year)
+          console.log("YEARID: ", filterYear[0])
+          console.log("filterYear", filterYear.includes(yearNumber))
+          return filterYear.includes(yearNumber)
+        },
       }),
       columnHelper.accessor("id", {
         id: "action",
@@ -226,9 +273,7 @@ const Student = () => {
           <button
             onClick={() =>
               setColumnFilters((prev) => {
-                console.log("ONCLICK!!!!")
                 const gradeSelect = prev.find((filter) => filter.id === "gradename")?.value
-                console.log("gradeSelect", gradeSelect)
                 if (!gradeSelect) {
                   return prev.concat({
                     id: "gradename",
@@ -252,9 +297,7 @@ const Student = () => {
           <button
             onClick={() =>
               setColumnFilters((prev) => {
-                console.log("ONCLICK!!!!")
                 const gradeSelect = prev.find((filter) => filter.id === "gradename")?.value
-                console.log("gradeSelect", gradeSelect)
                 if (!gradeSelect) {
                   return prev.concat({
                     id: "gradename",
@@ -278,9 +321,7 @@ const Student = () => {
           <button
             onClick={() =>
               setColumnFilters((prev) => {
-                console.log("ONCLICK!!!!")
                 const gradeSelect = prev.find((filter) => filter.id === "gradename")?.value
-                console.log("gradeSelect", gradeSelect)
                 if (!gradeSelect) {
                   return prev.concat({
                     id: "gradename",
