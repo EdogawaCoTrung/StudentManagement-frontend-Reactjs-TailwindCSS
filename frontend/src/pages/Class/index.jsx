@@ -7,8 +7,8 @@ import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded"
 import IconButton from "@mui/material/IconButton"
 import Dropdown from "../../components/share/Dropdown"
 import { useEffect, useState } from "react"
-import { grades } from "../../components/share/Dropdown/data"
 import { classApi } from "../../apis"
+import { gradeApi } from "../../apis"
 import DialogView from "../../components/share/Modal"
 import AddClassModal from "../../components/share/AddClassModal"
 import { toast } from "react-toastify"
@@ -33,7 +33,6 @@ export default function Class() {
     setOpenAddClassModal(false)
   }
   function openAddClassModal(gradename) {
-    console.log("gradename: ", gradename)
     setOpenAddClassModal(true)
     setCheckGrade(gradename)
   }
@@ -59,20 +58,19 @@ export default function Class() {
     setIsOpen3(true)
   }
 
-  function maxGradeYear() {
-    console.log("goi maxGradeYear")
-    let maxYear = grades[0].year
-    for (let i = 0; i < grades.length; i++) {
-      if (grades[i].year > maxYear) maxYear = grades[i].year
+  function maxGradeYear(year) {
+    let maxYear = year[0].year
+    for (let i = 0; i < year.length; i++) {
+      if (year[i].year > maxYear) maxYear = year[i].year
     }
     return maxYear
   }
-  let maxYear = maxGradeYear()
-  let [selectYear, setSelectYear] = useState(maxYear)
+  let [selectYear, setSelectYear] = useState("")
   let [dataClassGrade10, setDataClassGrade10] = useState("")
   let [dataClassGrade11, setDataClassGrade11] = useState("")
   let [dataClassGrade12, setDataClassGrade12] = useState("")
   const fetchAllClassByGrade10AndYear = async () => {
+    console.log("NAMFETCHAPI", selectYear)
     let getData = await classApi.getAllClassByGradeAndYear(10, selectYear)
     setDataClassGrade10(getData.DT)
   }
@@ -84,15 +82,28 @@ export default function Class() {
     let getData = await classApi.getAllClassByGradeAndYear(12, selectYear)
     setDataClassGrade12(getData.DT)
   }
+  const fetchAllYear = async () => {
+    let year = await gradeApi.getAllYear()
+    if (year.DT) {
+      let maxYear = maxGradeYear(year.DT)
+      setSelectYear(maxYear)
+    }
+  }
+  // eslint-disable-next-line
+  useEffect(() => {
+    fetchAllYear()
+  }, [])
   // eslint-disable-next-line
   useEffect(() => {
     console.log("Chay useEffect")
     console.log("Doi selectyear: " + selectYear)
     try {
-      fetchAllClassByGrade10AndYear()
-      fetchAllClassByGrade11AndYear()
-      fetchAllClassByGrade12AndYear()
-      toast.success("Lấy danh sách lớp thành công!!!")
+      if (selectYear != "") {
+        fetchAllClassByGrade10AndYear()
+        fetchAllClassByGrade11AndYear()
+        fetchAllClassByGrade12AndYear()
+        toast.success("Lấy danh sách lớp thành công!!!")
+      }
     } catch (error) {
       toast.error(error)
     }

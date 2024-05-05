@@ -3,17 +3,28 @@ import { Fragment, useEffect, useState } from "react"
 import { Listbox, Transition } from "@headlessui/react"
 import { FaAngleDown } from "react-icons/fa6"
 import { FaAngleUp } from "react-icons/fa6"
-import { grades } from "./data"
+import { gradeApi } from "../../../apis"
 // eslint-disable-next-line
 export default function Dropdown({ selectYear, setSelectYear }) {
   // eslint-disable-next-line
-  const [data, setData] = useState(grades)
+  const [data, setData] = useState("")
   let [yearArr, setYearArr] = useState([])
   function destructYear(data) {
     console.log("chay vao ham")
-    let arr = data.map((grade) => grade.year)
-    return arr
+    if (data) {
+      let arr = data.map((grade) => grade.year)
+      return arr
+    }
+    return null
   }
+  let fetchAllYear = async () => {
+    let year = await gradeApi.getAllYear()
+    console.log("GETYEAR", year.DT)
+    setData(year.DT)
+  }
+  useEffect(() => {
+    fetchAllYear()
+  }, [])
   useEffect(() => {
     let arr = destructYear(data)
     let reductArr = [...new Set(arr)]
