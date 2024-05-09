@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react" // For managing drawer state
 import { MainTheme } from "../../../assets/Theme"
 import { ThemeProvider } from "@mui/material/styles"
-import Tabs from "@mui/material/Tabs"
-import LinkTab from "@mui/material/Tab"
 import { pagesName } from "../../../assets/PagesName/index"
 import { publicRoutes } from "../../../routes"
 import Typography from "@mui/material/Typography"
@@ -21,17 +19,12 @@ const defaultTheme = MainTheme
 
 export default function Sidebar() {
   const [selectedIndex, setSelectedIndex] = useState(() => parseInt(localStorage.getItem("selectedIndex")) || 0)
-  const [currentTab, setCurrentTab] = useState(selectedIndex)
   useEffect(() => {
     localStorage.setItem("selectedIndex", selectedIndex)
   }, [selectedIndex])
 
   const handleListItemClick = (index) => {
     setSelectedIndex(index)
-  }
-
-  const handleTabSelection = () => {
-    setCurrentTab(selectedIndex)
   }
 
   return (
@@ -51,20 +44,21 @@ export default function Sidebar() {
               backgroundClip: "text",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
+              fontFamily: "Manrope",
             }}
           >
             Student<br></br>Management
           </Typography>
         </div>
-        <div className="flex h-screen w-[220] flex-col content-center border-r-2 bg-white p-3 align-middle shadow">
+        <div className=" flex h-screen w-[220] flex-col content-center border-r-2 bg-white p-3 align-middle shadow">
           {pagesName.map((text, index) => (
             <NavLink
               key={index}
               onClick={() => handleListItemClick(index)}
               className={
                 selectedIndex == index
-                  ? "bg-PrimaryColor content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 p-3 font-sans text-xl font-bold text-white transition-all"
-                  : "content-center space-x-3 rounded-md p-3 font-sans text-xl font-bold text-gray-500 transition-all hover:ml-4"
+                  ? "font-Manrope f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 text-xl font-semibold text-white transition-all"
+                  : "font-Manrope content-center space-x-3 rounded-md p-3 text-xl font-semibold text-gray-500 transition-all hover:ml-4"
               }
               // sx={{
               //   width: 220,
@@ -100,12 +94,12 @@ export default function Sidebar() {
           ))}
           <div className=" mx-auto my-2 h-2 w-11/12 border-t-2 border-gray-400 "></div>
           <div className="flex flex-col">
-            <p className="mb-2 font-sans text-base font-semibold text-gray-500">Profile</p>
+            <p className="font-Manrope mb-2  text-base font-semibold text-gray-500">Profile</p>
             <div className="flex items-center">
               <FaCircleUser className="mr-2 text-3xl" />
-              <div className="flex flex-col">
-                <p className="font-sans text-base font-semibold text-black">Helloword1</p>
-                <p className="overflow-ellipsis font-sans text-xs text-neutral-400">Helloword1@gmail.com</p>
+              <div className="font-Manrope flex flex-col">
+                <p className=" text-base font-semibold text-black">Helloword1</p>
+                <p className="overflow-ellipsis  text-xs text-neutral-400">Helloword1@gmail.com</p>
               </div>
             </div>
           </div>

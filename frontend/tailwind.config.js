@@ -13,6 +13,8 @@ export default {
       },
       fontFamily: {
         Poppins: ["Poppins"],
+        Montserrat: ["Montserrat"],
+        Manrope: ["Manrope"],
       },
       colors: {
         PrimaryColor: "#61B4D1",

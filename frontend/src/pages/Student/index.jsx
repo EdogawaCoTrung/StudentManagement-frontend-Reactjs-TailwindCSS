@@ -292,7 +292,9 @@ const Student = () => {
             }
             className=" group mr-8 flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md transition-all focus:bg-gradeTitle enabled:focus:bg-gradeTitle"
           >
-            <p className="text-center text-xl font-semibold text-gradeTitle group-focus:text-white">Khối 10</p>
+            <p className="font-Manrope text-center text-xl font-semibold text-gradeTitle group-focus:text-white">
+              Khối 10
+            </p>
           </button>
           <button
             onClick={() =>
@@ -316,7 +318,9 @@ const Student = () => {
             }
             className="group mr-8 flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md transition-all focus:bg-gradeTitle active:bg-gradeTitle"
           >
-            <p className="text-center text-xl font-semibold text-gradeTitle group-focus:text-white">Khối 11</p>
+            <p className="font-Manrope text-center text-xl font-semibold text-gradeTitle group-focus:text-white">
+              Khối 11
+            </p>
           </button>
           <button
             onClick={() =>
@@ -340,7 +344,9 @@ const Student = () => {
             }
             className="group flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md transition-all focus:bg-gradeTitle focus:bg-gradeTitle"
           >
-            <p className="text-center text-xl font-semibold text-gradeTitle group-focus:text-white">Khối 12</p>
+            <p className="font-Manrope text-center text-xl font-semibold text-gradeTitle group-focus:text-white">
+              Khối 12
+            </p>
           </button>
         </div>
         <div className="">
@@ -357,21 +363,21 @@ const Student = () => {
       <div className="mb-11 flex flex-row items-center justify-between align-middle">
         <div className="flex">
           <div className="mr-8 flex h-16 items-center justify-center rounded-lg bg-blurblue px-5 py-1 text-center align-middle shadow-md">
-            <p className="text-center text-xl font-medium text-black">Số học sinh: {studentCount}</p>
+            <p className="font-Manrope text-center text-xl font-medium text-black">Số học sinh: {studentCount}</p>
           </div>
           <div className="flex h-16 items-center justify-center rounded-lg bg-blurblue px-5 py-1 text-center align-middle shadow-md">
-            <p className="text-center text-xl font-medium text-black">Số lớp: {classCount}</p>
+            <p className="font-Manrope text-center text-xl font-medium text-black">Số lớp: {classCount}</p>
           </div>
         </div>
         <div className="flex">
           <Dropdown selectYear={selectYear} setSelectYear={setSelectYear}></Dropdown>
           <button className=" ml-8 flex items-center justify-center rounded-full bg-backgroundplus px-2 py-1 text-center align-middle shadow-md">
-            <p className="text-center text-xl font-semibold text-white">Thêm học sinh</p>
+            <p className="font-Manrope text-center text-xl font-semibold text-white">Thêm học sinh</p>
           </button>
         </div>
       </div>
       <div className="h-96 overflow-auto">
-        <table className="z-0 w-full border-collapse font-Poppins">
+        <table className="font-Manrope z-0 w-full border-collapse">
           <thead className="w-full">
             {tableInstance.getHeaderGroups().map((header) => {
               return (

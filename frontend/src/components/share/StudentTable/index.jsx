@@ -178,7 +178,7 @@ const StudentTable = ({ data }) => {
         value={searchInput}
         onChange={(e) => onFilterChange("studentname", e.target.value)}
       />
-      <table className="h-full w-full border-collapse font-Poppins">
+      <table className="font-Manrope h-full w-full border-collapse">
         <thead>
           {tableInstance.getHeaderGroups().map((header) => {
             return (
