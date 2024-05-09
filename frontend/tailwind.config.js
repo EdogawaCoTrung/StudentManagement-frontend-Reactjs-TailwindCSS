@@ -15,6 +15,7 @@ export default {
         Poppins: ["Poppins"],
       },
       colors: {
+        PrimaryColor: "#61B4D1",
         white: "#ffffff",
         black: "#000000",
         gradeTitle: "#3497f9",

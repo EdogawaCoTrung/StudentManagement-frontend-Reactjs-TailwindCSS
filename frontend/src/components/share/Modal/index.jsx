@@ -3,8 +3,10 @@ import { Fragment, useEffect, useState } from "react"
 import StudentTable from "../StudentTable"
 import PropTypes from "prop-types"
 import { classApi } from "../../../apis"
+import { useNavigate } from "react-router"
 // import { Input } from "@mui/material"
 export default function DialogView({ isOpen, closeModal, nameclass, classId }) {
+  const navigate = useNavigate()
   console.log("classId: ", classId)
   console.log("nameclass: ", nameclass)
   // const [columnFilters, setColumnFilters] = useState([])
@@ -27,6 +29,9 @@ export default function DialogView({ isOpen, closeModal, nameclass, classId }) {
     console.log("CHAY VAO USEEFFECT")
     fetchAllStudentByClassId()
   }, [])
+  const HandleSummariesClick = () => {
+    navigate("/List-summaries")
+  }
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -62,7 +67,10 @@ export default function DialogView({ isOpen, closeModal, nameclass, classId }) {
                       value={searchInput}
                       onChange={(e) => onFilterChange("student.studentname", e.target.value)}
                     /> */}
-                    <button className="mr-7 h-fit w-fit rounded-full bg-gradeTitle px-2 font-bold text-white">
+                    <button
+                      onClick={HandleSummariesClick}
+                      className="mr-7 h-fit w-fit rounded-full bg-gradeTitle px-2 font-bold text-white"
+                    >
                       Bảng điểm
                     </button>
                     <button className="h-fit w-fit rounded-full bg-backgroundplus px-2 font-bold text-white">

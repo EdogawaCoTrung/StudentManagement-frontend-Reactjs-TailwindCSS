@@ -7,11 +7,13 @@ import Statistics from "../pages/Statistics"
 import Logout from "../pages/Logout"
 import Plan from "../pages/Plan"
 import Revenue from "../pages/Revenue"
+import Summaries from "../pages/Class/summaries"
 import { pages } from "../assets/PagesName"
 function generateURL(Routes) {
   for (const page of pages) {
     let encodedPage = "/" + page
     let componentName = page.charAt(0).toUpperCase() + page.slice(1)
+    console.log("COMPONENTNAME: ", componentName)
     let component
     switch (componentName) {
       case "Student":
@@ -37,6 +39,9 @@ function generateURL(Routes) {
         break
       case "Revenue":
         component = Revenue
+        break
+      case "List-summaries":
+        component = Summaries
         break
       default:
         component = null
