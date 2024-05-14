@@ -1,25 +1,17 @@
 import { httpClient } from "../services"
-class ClassApi {
-  async getAllClassByGradeAndYear(gradename, year) {
-    const res = await httpClient.get(`/class/get-grade/${gradename}/${year}`)
+class SummaryApi {
+  async createSummaries(id, data) {
+    const res = await httpClient.post(`/summaries/add-student/${id}`, data)
     return res
   }
-  async getAllClass() {
-    const res = await httpClient.get("/class")
-    return res
-  }
-  async createClass(data) {
-    const res = await httpClient.post("/class/create-class", data)
-    return res
-  }
-  async getAllStudentByClassId(id) {
-    const res = await httpClient.get(`/class/get-student/${id}`)
-    return res
-  }
-  async getAllSummariesByClassId(id) {
-    const res = await httpClient.get(`/class/summaries/${id}`)
-    return res
-  }
+  //   async createClass(data) {
+  //     const res = await httpClient.post("/class/create-class", data)
+  //     return res
+  //   }
+  //   async getAllStudentByClassId(id) {
+  //     const res = await httpClient.get(`/class/get-student/${id}`)
+  //     return res
+  //   }
   //   async getAllUnapprovedGroup() {
   //     const res = await httpClient.get("/groups/unapproved")
   //     return res
@@ -71,5 +63,5 @@ class ClassApi {
   //     }
   //   }
 }
-const classApi = new ClassApi()
-export default classApi
+const summaryApi = new SummaryApi()
+export default summaryApi

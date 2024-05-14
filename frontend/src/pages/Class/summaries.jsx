@@ -5,18 +5,39 @@ import {
   getFilteredRowModel,
   getSortedRowModel,
 } from "@tanstack/react-table"
+import { toast } from "react-toastify"
 import { createColumnHelper } from "@tanstack/react-table"
+import { useParams } from "react-router"
 import SwapVertIcon from "@mui/icons-material/SwapVert"
 import { IconButton } from "@mui/material"
 import { GrLinkPrevious } from "react-icons/gr"
-import React, { useMemo } from "react"
-import { students } from "../../components/share/StudentTable/data"
+import React, { useEffect, useMemo, useState } from "react"
 import { useNavigate } from "react-router"
+import { classApi } from "../../apis"
 export default function Summaries() {
+  const [data, setData] = useState("")
+  const [classname, setClassName] = useState("")
   const navigate = useNavigate()
   const HandlePrevious = () => {
     navigate("/Class")
   }
+  const { classId } = useParams()
+  const fetchAllSummariesByClassId = async () => {
+    console.log("ChayvaoFetch")
+    console.log("CLASSID", classId)
+    let res = await classApi.getAllSummariesByClassId(classId)
+    if (res.EC == 1) {
+      toast.error(res.EM)
+    } else if (res.EC == 0) {
+      toast.success("Lấy danh sách thành công!!!")
+    }
+    console.log("CLASSNAME", res.DT[0].class.classname)
+    setData(res.DT)
+    setClassName(res.DT[0].class.classname)
+  }
+  useEffect(() => {
+    fetchAllSummariesByClassId()
+  }, [])
   const columnHelper = createColumnHelper()
   const columnDef = useMemo(
     () => [
@@ -26,11 +47,11 @@ export default function Summaries() {
         header: "STT",
       }),
       //<span>{info.cell.getValue().studentname}</span>
-      columnHelper.accessor((row) => `${row.studentname}`, {
+      columnHelper.accessor((row) => `${row.student.studentname}`, {
         id: "studentname",
         header: "Ho va Ten",
       }),
-      columnHelper.accessor((row) => `${row.classname}`, {
+      columnHelper.accessor((row) => `${row.class.classname}`, {
         id: "classname",
         header: "Lop",
       }),
@@ -46,14 +67,14 @@ export default function Summaries() {
         id: "title",
         header: "title",
       }),
-      columnHelper.accessor((row) => `${row.GPA}`, {
+      columnHelper.accessor((row) => `${row.gpa}`, {
         id: "GPA",
         header: "GPA",
       }),
     ],
     [],
   )
-  const finalData = React.useMemo(() => students, [students])
+  const finalData = React.useMemo(() => data, [data])
   const tableInstance = useReactTable({
     columns: columnDef,
     data: finalData,
@@ -71,14 +92,14 @@ export default function Summaries() {
         >
           <GrLinkPrevious className="text-2xl text-white" />
         </button>
-        <p className="font-Manrope ml-6 text-2xl font-bold text-gradeTitle">Điểm số</p>
+        <p className="ml-6 font-Manrope text-2xl font-bold text-gradeTitle">Điểm số</p>
       </div>
       <div className="mt-10 flex items-center">
-        <p className="font-Manrope ml-6 text-2xl font-semibold ">Lớp: 10A1</p>
-        <p className="font-Manrope ml-6 text-2xl font-semibold ">Học bạ</p>
+        <p className="ml-6 font-Manrope text-2xl font-semibold ">Lớp: {classname}</p>
+        <p className="ml-6 font-Manrope text-2xl font-semibold ">Học bạ</p>
       </div>
       <div className="mt-10 h-96 overflow-auto">
-        <table className="font-Manrope z-0 w-full border-collapse">
+        <table className="z-0 w-full border-collapse font-Manrope">
           <thead className="w-full">
             {tableInstance.getHeaderGroups().map((header) => {
               return (

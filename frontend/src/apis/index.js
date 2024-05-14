@@ -1,3 +1,5 @@
 export { default as classApi } from "./class"
 export { default as gradeApi } from "./grade"
 export { default as studentApi } from "./student"
+export { default as tuitionApi } from "./tuitions"
+export { default as summaryApi } from "./summaries"

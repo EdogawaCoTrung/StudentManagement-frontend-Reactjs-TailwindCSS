@@ -25,6 +25,12 @@ export default {
         addBtn: "#8FDC88",
         cancelBtn: "#DC8888",
         blurblue: "#F1F8FFF1",
+        paidBg: "var(--Success-Green-50, #ECFDF5)",
+        paidFontColor: "var(--Success-Green-900, #064E3B)",
+        unpaidBg: "var(--Error-Red-50, #FEF2F2)",
+        unpaidFontColor: "var(--Error-Red-800, #991B1B)",
+        bgSearch: "var(--Neutral-50, #F7F8F9)",
+        bgPay: "var(--Success-Green-700, #047857)",
       },
       shadow: {
         grade: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",

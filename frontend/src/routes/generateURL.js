@@ -40,7 +40,7 @@ function generateURL(Routes) {
       case "Revenue":
         component = Revenue
         break
-      case "List-summaries":
+      case "List-summaries/:classId":
         component = Summaries
         break
       default:

@@ -152,6 +152,7 @@ export default function Class() {
                   isOpen={isOpen}
                   closeModal={closeModal}
                   nameclass={classname}
+                  openModal={openModal}
                 ></DialogView>
               )}
             </div>
@@ -193,6 +194,7 @@ export default function Class() {
                   isOpen={isOpen2}
                   closeModal={closeModal2}
                   nameclass={classname}
+                  openModal={openModal2}
                 ></DialogView>
               )}
             </div>
@@ -234,6 +236,7 @@ export default function Class() {
                   isOpen={isOpen3}
                   closeModal={closeModal3}
                   nameclass={classname}
+                  openModal={openModal3}
                 ></DialogView>
               )}
             </div>
