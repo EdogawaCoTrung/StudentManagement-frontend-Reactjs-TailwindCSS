@@ -14,7 +14,9 @@ import FormatListBulletedRoundedIcon from "@mui/icons-material/FormatListBullete
 import InfoRoundedIcon from "@mui/icons-material/InfoRounded"
 import React, { useMemo, useState } from "react"
 import PropTypes from "prop-types"
-import { Input } from "@mui/material"
+import Paper from "@mui/material/Paper"
+import InputBase from "@mui/material/InputBase"
+import SearchIcon from "@mui/icons-material/Search"
 const StudentTable = ({ data }) => {
   const [columnFilters, setColumnFilters] = useState([])
   const searchInput = columnFilters.find((f) => f.id === "studentname")?.value || ""
@@ -169,16 +171,42 @@ const StudentTable = ({ data }) => {
   })
   return (
     <div className="flex flex-col">
-      <Input
+      <Paper
+        component="form"
         sx={{
-          marginBottom: "20px",
-          width: "100px",
+          p: "2px 4px",
+          display: "flex",
+          alignItems: "center",
+          width: 400,
+          marginBottom: "8px",
         }}
-        placeholder="Search..."
-        value={searchInput}
-        onChange={(e) => onFilterChange("studentname", e.target.value)}
-      />
-      <table className="font-Manrope h-full w-full border-collapse">
+      >
+        <IconButton sx={{ p: "10px" }} aria-label="menu">
+          <SearchIcon />
+        </IconButton>
+        <InputBase
+          sx={{
+            ml: 1,
+            flex: 1,
+            borderWidth: 0,
+            border: "none",
+            borderRadius: 0,
+            ":active": {
+              border: "none",
+              borderWidth: 0,
+            },
+            ":focus": {
+              border: "none",
+              borderWidth: 0,
+            },
+            appearance: "none",
+          }}
+          value={searchInput}
+          onChange={(e) => onFilterChange("studentname", e.target.value)}
+          placeholder="Search..."
+        />
+      </Paper>
+      <table className="h-full w-full border-collapse font-Manrope">
         <thead>
           {tableInstance.getHeaderGroups().map((header) => {
             return (

@@ -11,7 +11,9 @@ import { Checkbox, IconButton } from "@mui/material"
 import InfoRoundedIcon from "@mui/icons-material/InfoRounded"
 import React, { useMemo, useState } from "react"
 import PropTypes from "prop-types"
-import { Input } from "@mui/material"
+import Paper from "@mui/material/Paper"
+import InputBase from "@mui/material/InputBase"
+import SearchIcon from "@mui/icons-material/Search"
 const AddStudentTable = ({ HandleSetCheckValue, data }) => {
   const [columnFilters, setColumnFilters] = useState([])
   const searchInput = columnFilters.find((f) => f.id === "studentname")?.value || ""
@@ -96,15 +98,35 @@ const AddStudentTable = ({ HandleSetCheckValue, data }) => {
   })
   return (
     <div className="flex flex-col">
-      <Input
-        sx={{
-          marginBottom: "20px",
-          width: "100px",
-        }}
-        placeholder="Search..."
-        value={searchInput}
-        onChange={(e) => onFilterChange("studentname", e.target.value)}
-      />
+      <Paper
+        component="form"
+        sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: 400, marginBottom: "8px" }}
+      >
+        <IconButton sx={{ p: "10px" }} aria-label="menu">
+          <SearchIcon />
+        </IconButton>
+        <InputBase
+          sx={{
+            ml: 1,
+            flex: 1,
+            borderWidth: 0,
+            border: "none",
+            borderRadius: 0,
+            ":active": {
+              border: "none",
+              borderWidth: 0,
+            },
+            ":focus": {
+              border: "none",
+              borderWidth: 0,
+            },
+            appearance: "none",
+          }}
+          value={searchInput}
+          onChange={(e) => onFilterChange("studentname", e.target.value)}
+          placeholder="Search..."
+        />
+      </Paper>
       <table className="h-full w-full border-collapse font-Manrope">
         <thead>
           {tableInstance.getHeaderGroups().map((header) => {

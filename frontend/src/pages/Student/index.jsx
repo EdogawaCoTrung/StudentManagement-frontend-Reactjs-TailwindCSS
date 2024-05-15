@@ -59,17 +59,23 @@ const Student = () => {
       console.log("VaoYear")
       setColumnFilters((prev) => {
         const yearSelect = prev.find((filter) => filter.id === "year")?.value
+        console.log("yearSelect", yearSelect)
+        console.log("PREV", prev)
+        let check = prev.filter((f) => f.id !== "year")
+
+        console.log("CHECK", prev[0]?.id)
         if (!yearSelect) {
+          console.log("VAOIF")
           return prev.concat({
             id: "year",
-            value: [selectYear],
+            value: selectYear,
           })
         }
         return prev.map((f) =>
           f.id === "year"
             ? {
                 ...f,
-                value: isActive4 ? yearSelect.filter((s) => s !== 12) : yearSelect.concat(selectYear),
+                value: selectYear,
               }
             : f,
         )
@@ -89,7 +95,6 @@ const Student = () => {
   const isActive2 = filterGrade.includes(11)
   const isActive3 = filterGrade.includes(12)
   console.log("ISACTIVE", filterYear)
-  const isActive4 = filterYear.includes(selectYear)
   const onFilterChange = (id, value) =>
     setColumnFilters((prev) =>
       prev
@@ -123,7 +128,7 @@ const Student = () => {
           const grade = row.getValue(columnId)
           const gradeNumber = parseInt(grade, 10)
           console.log("GRADEID: ", typeof gradeNumber)
-          console.log("filterGrades", typeof filterGrades[0])
+          console.log("filterGrades", filterGrades)
           console.log("filterGradesInClude", filterGrades.includes(gradeNumber))
           return filterGrades.includes(gradeNumber)
         },
@@ -144,10 +149,11 @@ const Student = () => {
         filterFn: (row, columnId, filterYear) => {
           const year = row.getValue(columnId)
           const yearNumber = parseInt(year, 10)
+          console.log("filterYear", filterYear)
           console.log("GIATRIROW", year)
           console.log("YEARID: ", filterYear[0])
-          console.log("filterYear", filterYear.includes(yearNumber))
-          return filterYear.includes(yearNumber)
+          // console.log("filterYear", filterYear.includes(yearNumber))
+          return filterYear == yearNumber
         },
       }),
       columnHelper.accessor("id", {
@@ -290,9 +296,11 @@ const Student = () => {
                 )
               })
             }
-            className=" group mr-8 flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md transition-all focus:bg-gradeTitle enabled:focus:bg-gradeTitle"
+            className={`  ${isActive ? "bg-gradeTitle" : "bg-white"}  group mr-8 flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md transition-all  `}
           >
-            <p className="font-Manrope text-center text-xl font-semibold text-gradeTitle group-focus:text-white">
+            <p
+              className={`text-center font-Manrope text-xl font-semibold text-gradeTitle ${isActive ? "text-white" : "text-gradeTitle"} `}
+            >
               Khối 10
             </p>
           </button>
@@ -316,9 +324,11 @@ const Student = () => {
                 )
               })
             }
-            className="group mr-8 flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md transition-all focus:bg-gradeTitle active:bg-gradeTitle"
+            className={`  ${isActive2 ? "bg-gradeTitle" : "bg-white"}  group mr-8 flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md transition-all `}
           >
-            <p className="font-Manrope text-center text-xl font-semibold text-gradeTitle group-focus:text-white">
+            <p
+              className={`text-center font-Manrope text-xl font-semibold text-gradeTitle ${isActive2 ? "text-white" : "text-gradeTitle"} `}
+            >
               Khối 11
             </p>
           </button>
@@ -342,9 +352,11 @@ const Student = () => {
                 )
               })
             }
-            className="group flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md transition-all focus:bg-gradeTitle focus:bg-gradeTitle"
+            className={`  ${isActive3 ? "bg-gradeTitle" : "bg-white"}  group mr-8 flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md transition-all `}
           >
-            <p className="font-Manrope text-center text-xl font-semibold text-gradeTitle group-focus:text-white">
+            <p
+              className={`text-center font-Manrope text-xl font-semibold text-gradeTitle ${isActive3 ? "text-white" : "text-gradeTitle"} `}
+            >
               Khối 12
             </p>
           </button>
@@ -363,21 +375,21 @@ const Student = () => {
       <div className="mb-11 flex flex-row items-center justify-between align-middle">
         <div className="flex">
           <div className="mr-8 flex h-16 items-center justify-center rounded-lg bg-blurblue px-5 py-1 text-center align-middle shadow-md">
-            <p className="font-Manrope text-center text-xl font-medium text-black">Số học sinh: {studentCount}</p>
+            <p className="text-center font-Manrope text-xl font-medium text-black">Số học sinh: {studentCount}</p>
           </div>
           <div className="flex h-16 items-center justify-center rounded-lg bg-blurblue px-5 py-1 text-center align-middle shadow-md">
-            <p className="font-Manrope text-center text-xl font-medium text-black">Số lớp: {classCount}</p>
+            <p className="text-center font-Manrope text-xl font-medium text-black">Số lớp: {classCount}</p>
           </div>
         </div>
         <div className="flex">
           <Dropdown selectYear={selectYear} setSelectYear={setSelectYear}></Dropdown>
           <button className=" ml-8 flex items-center justify-center rounded-full bg-backgroundplus px-2 py-1 text-center align-middle shadow-md">
-            <p className="font-Manrope text-center text-xl font-semibold text-white">Thêm học sinh</p>
+            <p className="text-center font-Manrope text-xl font-semibold text-white">Thêm học sinh</p>
           </button>
         </div>
       </div>
       <div className="h-96 overflow-auto">
-        <table className="font-Manrope z-0 w-full border-collapse">
+        <table className="z-0 w-full border-collapse font-Manrope">
           <thead className="w-full">
             {tableInstance.getHeaderGroups().map((header) => {
               return (

@@ -21,6 +21,7 @@ export default function AddTuitionModal({ isOpenAddTuitionModal, closeAddTuition
     year: selectYear,
     closingdate: value,
   })
+  console.log("TUITIONINFO", tuitionInfo)
   function maxGradeYear(year) {
     let maxYear = year[0].year
     for (let i = 0; i < year.length; i++) {
@@ -69,7 +70,7 @@ export default function AddTuitionModal({ isOpenAddTuitionModal, closeAddTuition
         price: "",
         month: "",
         year: selectYear,
-        closingdate: "",
+        closingdate: value,
       })
     } catch (error) {
       console.log(error)
