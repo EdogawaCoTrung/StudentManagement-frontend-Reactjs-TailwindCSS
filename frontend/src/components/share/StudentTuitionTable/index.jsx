@@ -7,16 +7,26 @@ import {
 } from "@tanstack/react-table"
 import { createColumnHelper } from "@tanstack/react-table"
 import SwapVertIcon from "@mui/icons-material/SwapVert"
-import { Button, IconButton } from "@mui/material"
+import { IconButton } from "@mui/material"
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
+import { DatePicker } from "@mui/x-date-pickers/DatePicker"
 import React, { useMemo, useState } from "react"
 import PropTypes from "prop-types"
-import { Checkbox } from "@mui/material"
 import Paper from "@mui/material/Paper"
 import InputBase from "@mui/material/InputBase"
 import SearchIcon from "@mui/icons-material/Search"
-import { info } from "autoprefixer"
+import DateCell from "./BillingDate"
+import dayjs from "dayjs"
 const StudentTuitionTable = ({ data }) => {
+  const [valueMonth, setValueMonth] = useState(dayjs())
   const [columnFilters, setColumnFilters] = useState([])
+  function convertMonth(dateString) {
+    const date = new Date(dateString)
+    const month = String(date.getMonth() + 1).padStart(2, "0")
+    return month
+  }
+  console.log("COLUMNFILTER", columnFilters)
   const searchInput = columnFilters.find((f) => f.id === "studentname")?.value || ""
   const onFilterChange = (id, value) =>
     setColumnFilters((prev) =>
@@ -30,23 +40,53 @@ const StudentTuitionTable = ({ data }) => {
   const columnHelper = createColumnHelper()
   const columnDef1 = useMemo(
     () => [
-      columnHelper.accessor("id", {
-        id: "S.No",
-        cell: (info) => <Checkbox value={info.getValue()}></Checkbox>,
-        header: <Checkbox></Checkbox>,
-      }),
+      // columnHelper.accessor("id", {
+      //   id: "S.No",
+      //   cell: (info) => <Checkbox value={info.getValue()}></Checkbox>,
+      //   header: <Checkbox></Checkbox>,
+      // }),
       //<span>{info.cell.getValue().studentname}</span>
-      columnHelper.accessor((row) => `${row.studentname}`, {
+      columnHelper.accessor((row) => `${row.student.studentname}`, {
         id: "studentname",
         header: "Ho va Ten",
+        enableColumnFilter: true,
+        filterFn: "includesString",
       }),
-      columnHelper.accessor((row) => `${row.classname}`, {
+      columnHelper.accessor((row) => `${row.student.summaries[0].class.classname}`, {
         id: "classname",
         header: "Lop",
       }),
-      columnHelper.accessor((row) => `${row.date}`, {
+      columnHelper.accessor((row) => `${row.month}`, {
+        id: "month",
+        header: "Tháng",
+        enableColumnFilter: true,
+        filterFn: (row, columnId, filterDate) => {
+          const date = row.getValue(columnId)
+          const month = convertMonth(filterDate)
+          console.log("filterDateType", typeof month)
+          console.log("filterDate", month)
+          console.log("ROWDATE", typeof date)
+          console.log("filterGradesInClude", date == month)
+          return date == month
+        },
+      }),
+      columnHelper.accessor((row) => `${row.year}`, {
+        id: "year",
+        header: "Năm",
+        enableColumnFilter: true,
+        filterFn: (row, columnId, filterDate) => {
+          const date = row.getValue(columnId)
+          console.log("filterDateType", typeof filterDate)
+          console.log("filterDate", filterDate)
+          console.log("ROWDATE", date)
+          // console.log("filterGradesInClude", filterGrades.includes(gradeNumber))
+          return true
+        },
+      }),
+      columnHelper.accessor((row) => `${row.closingdate}`, {
         id: "BillingDate",
         header: "BillingDate",
+        cell: DateCell,
       }),
       columnHelper.accessor((row) => `${row.status}`, {
         id: "status",
@@ -58,25 +98,26 @@ const StudentTuitionTable = ({ data }) => {
                 Paid
               </div>
             ) : (
-              <div className="bg-unpaidBg text-unpaidFontColor gap-2 rounded-lg px-2 py-1 font-Manrope font-semibold">
+              <div className="gap-2 rounded-lg bg-unpaidBg px-2 py-1 font-Manrope font-semibold text-unpaidFontColor">
                 UnPaid
               </div>
             )}
           </div>
         ),
       }),
-      columnHelper.accessor((row) => `${row.total}`, {
+      columnHelper.accessor((row) => `${row.price}`, {
         id: "total",
         header: "Tổng tiền",
       }),
       columnHelper.accessor((row) => `${row}`, {
-        id: "status",
+        id: "studentId",
+        header: "",
         cell: (info) => (
           <div className="flex w-fit flex-col">
             {info.row.original.status == 0 ? (
               <button
-                onClick={() => console.log("GOPAY", info.getValue())}
-                className="bg-bgPay gap-2 rounded-lg px-2 py-1 font-Manrope font-normal text-white"
+                onClick={() => console.log("GOPAY", info.row.original)}
+                className="gap-2 rounded-lg bg-bgPay px-2 py-1 font-Manrope font-normal text-white"
               >
                 Pay
               </button>
@@ -108,7 +149,7 @@ const StudentTuitionTable = ({ data }) => {
   })
   return (
     <div className="relative z-10 mt-10 flex flex-col">
-      <div className="bg-bgSearch p-3">
+      <div className="flex justify-between bg-bgSearch p-3">
         <Paper component="form" sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: 400 }}>
           <IconButton sx={{ p: "10px" }} aria-label="menu">
             <SearchIcon />
@@ -135,6 +176,38 @@ const StudentTuitionTable = ({ data }) => {
             placeholder="Search..."
           />
         </Paper>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DatePicker
+            name="month"
+            value={valueMonth}
+            onChange={(newValue) => {
+              setValueMonth(newValue)
+              console.log("NEWVALUE", newValue)
+              setColumnFilters((prev) => {
+                const dateSelect = prev.find((filter) => filter.id === "month")?.value
+                console.log("DATESELECT", dateSelect)
+                if (!dateSelect) {
+                  console.log("VAOIF")
+                  return prev.concat({
+                    id: "month",
+                    value: newValue.format(),
+                  })
+                }
+                return prev.map((f) =>
+                  f.id === "month"
+                    ? {
+                        ...f,
+                        value: newValue.format(),
+                      }
+                    : f,
+                )
+              })
+            }}
+            sx={{ background: "white" }}
+            label={'"month"'}
+            views={["month"]}
+          />
+        </LocalizationProvider>
       </div>
       <div className="relative z-10 h-96 overflow-auto bg-white">
         <table className="z-0 w-full border-collapse font-Manrope">
@@ -150,7 +223,7 @@ const StudentTuitionTable = ({ data }) => {
                         colSpan={column.colSpan}
                       >
                         {flexRender(column.column.columnDef.header, column.getContext())}
-                        {column.column.getCanSort() && (
+                        {column.id != "studentId" && column.column.getCanSort() && (
                           <IconButton
                             sx={{ marginLeft: "5px", borderWidth: "0px" }}
                             onClick={column.column.getToggleSortingHandler()}

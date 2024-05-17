@@ -11,7 +11,12 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
 import { tuitionApi } from "../../../apis"
 import ClassComboBox from "../ClassComboBox"
-export default function AddTuitionModal({ isOpenAddTuitionModal, closeAddTuitionModal }) {
+export default function AddTuitionModal({
+  isOpenAddTuitionModal,
+  closeAddTuitionModal,
+  checkReLoading,
+  setCheckReLoading,
+}) {
   const [value, setValue] = useState(dayjs("2024-05-17"))
   let [selectYear, setSelectYear] = useState("")
   const [tuitionInfo, setTuitionInfo] = useState({
@@ -47,9 +52,19 @@ export default function AddTuitionModal({ isOpenAddTuitionModal, closeAddTuition
       [name]: value,
     }))
   }
-  console.log("DATA", tuitionInfo)
+  function convertDate(dateString) {
+    const date = new Date(dateString)
+    const year = date.getFullYear()
+    const month = String(date.getMonth() + 1).padStart(2, "0")
+    const day = String(date.getDate()).padStart(2, "0")
+    const formattedDate = `${day}/${month}/${year}`
+    return formattedDate
+  }
+  console.log("DATA", typeof tuitionInfo.closingdate.format())
   const handleSubmit = async (e) => {
     let res
+    let resDate = convertDate(tuitionInfo.closingdate.format())
+    console.log("resDate", resDate)
     try {
       e.preventDefault() // Xóa sau
       const data = {
@@ -62,6 +77,7 @@ export default function AddTuitionModal({ isOpenAddTuitionModal, closeAddTuition
       res = await tuitionApi.createTuition(data)
       if (res.EC != 1) {
         toast.success("Tạo học phí thành công!!!")
+        setCheckReLoading(!checkReLoading)
       } else if (res.EC == 1) {
         toast.error(res.EM)
       }
@@ -194,4 +210,6 @@ export default function AddTuitionModal({ isOpenAddTuitionModal, closeAddTuition
 AddTuitionModal.propTypes = {
   isOpenAddTuitionModal: PropTypes.any,
   closeAddTuitionModal: PropTypes.any,
+  checkReLoading: PropTypes.any,
+  setCheckReLoading: PropTypes.any,
 }

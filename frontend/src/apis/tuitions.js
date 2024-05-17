@@ -4,6 +4,10 @@ class TuitionApi {
     const res = await httpClient.post("/tuitions/add-tuitions", data)
     return res
   }
+  async getAllTuitionByYear(year) {
+    const res = await httpClient.get(`/tuitions/in-year/${year}`)
+    return res
+  }
   //   async createClass(data) {
   //     const res = await httpClient.post("/class/create-class", data)
   //     return res

@@ -5,12 +5,14 @@ import { classApi } from "../../../apis"
 import { toast } from "react-toastify"
 import PropTypes from "prop-types"
 export default function ClassComboBox({ handleChange }) {
+  let checkString = "10A1 - 1"
   const [selected, setSelected] = useState("")
   const handleChangeInput = (e) => {
     setSelected(e)
     handleChange("classId", e.id)
   }
   const [query, setQuery] = useState("")
+  const [cloneQuery, setCloneQuery] = useState("")
   const [classes, setClasses] = useState("")
   const fetchAllClass = async () => {
     let res = await classApi.getAllClass()
@@ -27,13 +29,22 @@ export default function ClassComboBox({ handleChange }) {
   useEffect(() => {
     setSelected(classes[0])
   }, [classes])
+  console.log("CHECKSTRING", cloneQuery.split("-")[1])
+  console.log("STRING", checkString.toLowerCase().replace(/\s+|-/g, " ").includes("1"))
+  // query.toLowerCase().replace(/\s+|-/g, "").includes(classDT.classname.toLowerCase().replace(/\s+/g, ""))
   const filteredClasses =
     query === ""
       ? classes
       : classes.filter(
           (classDT) =>
-            classDT.classname.toLowerCase().replace(/\s+/g, "").includes(query.toLowerCase().replace(/\s+/g, "")) ||
-            classDT.id,
+            classDT.classname.toLowerCase().replace(/\s+/g, "").includes(query.toLowerCase().replace(/\s+|-/g, "")) ||
+            (query.includes("-")
+              ? cloneQuery.split("-")[1].includes(classDT.id.toString()) &&
+                query.toLowerCase().replace(/\s+|-/g, "").includes(classDT.classname.toLowerCase().replace(/\s+/g, ""))
+              : query
+                  .toLowerCase()
+                  .replace(/\s+|-/g, "")
+                  .includes(classDT.classname.toLowerCase().replace(/\s+/g, ""))),
         )
   console.log("Filter", filteredClasses.length === 0, typeof filteredClasses, typeof classes)
   return (
@@ -46,6 +57,7 @@ export default function ClassComboBox({ handleChange }) {
               displayValue={(classes) => classes.classname + " - " + classes.id}
               onChange={(event) => {
                 setQuery(event.target.value)
+                setCloneQuery(event.target.value)
                 handleChange("classId", event.target.value)
               }}
             />

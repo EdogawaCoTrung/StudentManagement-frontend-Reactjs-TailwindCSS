@@ -1,5 +1,4 @@
 import { Tab } from "@headlessui/react"
-import { tuitions } from "./data"
 import React, { useEffect, useMemo, useState } from "react"
 import { PiStudentBold } from "react-icons/pi"
 import { SiGoogleclassroom } from "react-icons/si"
@@ -7,14 +6,54 @@ import StudentTuitionTable from "../../components/share/StudentTuitionTable"
 import { Button } from "@mui/material"
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded"
 import AddTuitionModal from "../../components/share/AddTuitionModal"
+import { gradeApi } from "../../apis"
+import { tuitionApi } from "../../apis"
+import { toast } from "react-toastify"
 export default function Plan() {
+  let [selectYear, setSelectYear] = useState("")
+  let [data, setData] = useState("")
+  let [checkReLoading, setCheckReLoading] = useState(false)
   let [isOpenAddTuitionModal, setIsOpenAddTuitionModal] = useState(false)
+  console.log("CHECKRELOAD", checkReLoading)
   function closeAddTuitionModal() {
     setIsOpenAddTuitionModal(false)
   }
   function openAddTuitionModal() {
     setIsOpenAddTuitionModal(true)
   }
+  function maxGradeYear(year) {
+    console.log("goi maxGradeYear")
+    let maxYear = year[0].year
+    for (let i = 0; i < year.length; i++) {
+      if (year[i].year > maxYear) maxYear = year[i].year
+    }
+    return maxYear
+  }
+  const fetchAllYear = async () => {
+    let year = await gradeApi.getAllYear()
+    if (year.DT) {
+      let maxYear = maxGradeYear(year.DT)
+      setSelectYear(maxYear)
+    }
+  }
+  useEffect(() => {
+    fetchAllYear()
+  }, [])
+  const fetchAllTuitionByYear = async () => {
+    let tuitions = await tuitionApi.getAllTuitionByYear(selectYear)
+    if (tuitions.EC == 1) {
+      toast.error(tuitions.EM)
+    } else if (tuitions.EC != 1) {
+      setData(tuitions.DT)
+    }
+  }
+  useEffect(() => {
+    console.log("VAOFETCHNGOAIIF")
+    if (selectYear != "") {
+      console.log("VAOFETCH")
+      fetchAllTuitionByYear()
+    }
+  }, [selectYear, checkReLoading])
   return (
     <div className="mx-14 mb-0 flex h-screen flex-col overflow-hidden p-0">
       <div className="mt-10 flex items-center justify-between">
@@ -30,6 +69,8 @@ export default function Plan() {
         <AddTuitionModal
           isOpenAddTuitionModal={isOpenAddTuitionModal}
           closeAddTuitionModal={closeAddTuitionModal}
+          checkReLoading={checkReLoading}
+          setCheckReLoading={setCheckReLoading}
         ></AddTuitionModal>
       </div>
       <div className="relative mt-10">
@@ -55,7 +96,7 @@ export default function Plan() {
           </Tab.List>
           <Tab.Panels>
             <Tab.Panel>
-              <StudentTuitionTable data={tuitions}></StudentTuitionTable>
+              <StudentTuitionTable data={data}></StudentTuitionTable>
             </Tab.Panel>
             <Tab.Panel>Content 2</Tab.Panel>
           </Tab.Panels>
