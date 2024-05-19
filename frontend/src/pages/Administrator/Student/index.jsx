@@ -15,9 +15,9 @@ import InfoRoundedIcon from "@mui/icons-material/InfoRounded"
 import React, { useEffect, useMemo, useState } from "react"
 import PropTypes from "prop-types"
 import { Input } from "@mui/material"
-import { studentApi } from "../../apis"
-import { gradeApi } from "../../apis"
-import Dropdown from "../../components/share/Dropdown"
+import { studentApi } from "../../../apis"
+import { gradeApi } from "../../../apis"
+import Dropdown from "../../../components/share/Dropdown"
 import { toast } from "react-toastify"
 const Student = () => {
   const [classCount, setClassCount] = useState("")
@@ -59,13 +59,7 @@ const Student = () => {
       console.log("VaoYear")
       setColumnFilters((prev) => {
         const yearSelect = prev.find((filter) => filter.id === "year")?.value
-        console.log("yearSelect", yearSelect)
-        console.log("PREV", prev)
-        let check = prev.filter((f) => f.id !== "year")
-
-        console.log("CHECK", prev[0]?.id)
         if (!yearSelect) {
-          console.log("VAOIF")
           return prev.concat({
             id: "year",
             value: selectYear,

@@ -6,14 +6,9 @@ import LOGO from "../../../assets/Logo/Black and White Collection 15.svg"
 import { Link, NavLink } from "react-router-dom"
 import { MdOutlineDashboard } from "react-icons/md"
 import { MdOutlineClass } from "react-icons/md"
-import { PiStudent } from "react-icons/pi"
-import { LiaChalkboardTeacherSolid } from "react-icons/lia"
-import { CiMoneyCheck1 } from "react-icons/ci"
-import { MdOutlineRuleFolder } from "react-icons/md"
 import { FaCircleUser } from "react-icons/fa6"
 import { routes } from "../../../config"
 import { jwtDecode } from "jwt-decode"
-import { RiProfileLine } from "react-icons/ri"
 import { Button } from "@mui/material"
 import LogoutIcon from "@mui/icons-material/Logout"
 import { useAuth } from "../../../hooks"
@@ -65,11 +60,11 @@ export default function Sidebar() {
                 ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-white transition-all"
                 : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-gray-500 transition-all hover:ml-4"
             }
-            to={routes.Dashboard}
+            to={routes.OfficerTuition}
           >
             <div className="flex items-center">
               <MdOutlineDashboard />
-              <span className="ml-3">Dashboard</span>
+              <span className="ml-3">Tuition</span>
             </div>
           </NavLink>
           <NavLink
@@ -80,85 +75,10 @@ export default function Sidebar() {
                 ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-white transition-all"
                 : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-gray-500 transition-all hover:ml-4"
             }
-            to={routes.Class}
+            to={routes.OfficerProfile}
           >
             <div className="flex items-center">
               <MdOutlineClass />
-              <span className="ml-3">Class</span>
-            </div>
-          </NavLink>
-          <NavLink
-            key={2}
-            onClick={() => handleListItemClick(2)}
-            className={
-              selectedIndex == 2
-                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-white transition-all"
-                : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-gray-500 transition-all hover:ml-4"
-            }
-            to={routes.Student}
-          >
-            <div className="flex items-center">
-              <PiStudent />
-              <span className="ml-3">Student</span>
-            </div>
-          </NavLink>
-          <NavLink
-            key={3}
-            onClick={() => handleListItemClick(3)}
-            className={
-              selectedIndex == 3
-                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-white transition-all"
-                : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-gray-500 transition-all hover:ml-4"
-            }
-            to={routes.Teacher}
-          >
-            <div className="flex items-center">
-              <LiaChalkboardTeacherSolid />
-              <span className="ml-3">Teacher</span>
-            </div>
-          </NavLink>
-          <NavLink
-            key={4}
-            onClick={() => handleListItemClick(4)}
-            className={
-              selectedIndex == 4
-                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-white transition-all"
-                : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-gray-500 transition-all hover:ml-4"
-            }
-            to={routes.Tuition}
-          >
-            <div className="flex items-center">
-              <CiMoneyCheck1 />
-              <span className="ml-3">Tuition</span>
-            </div>
-          </NavLink>
-          <NavLink
-            key={5}
-            onClick={() => handleListItemClick(5)}
-            className={
-              selectedIndex == 5
-                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-white transition-all"
-                : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-gray-500 transition-all hover:ml-4"
-            }
-            to={routes.Regulations}
-          >
-            <div className="flex items-center">
-              <MdOutlineRuleFolder />
-              <span className="ml-3">Regulations</span>
-            </div>
-          </NavLink>
-          <NavLink
-            key={6}
-            onClick={() => handleListItemClick(6)}
-            className={
-              selectedIndex == 6
-                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-white transition-all"
-                : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-gray-500 transition-all hover:ml-4"
-            }
-            to={routes.AdministratorProfile}
-          >
-            <div className="flex items-center">
-              <RiProfileLine />
               <span className="ml-3">Profile</span>
             </div>
           </NavLink>

@@ -13,7 +13,7 @@ import { IconButton } from "@mui/material"
 import { GrLinkPrevious } from "react-icons/gr"
 import React, { useEffect, useMemo, useState } from "react"
 import { useNavigate } from "react-router"
-import { classApi } from "../../apis"
+import { classApi } from "../../../apis"
 export default function Summaries() {
   const [data, setData] = useState("")
   const [classname, setClassName] = useState("")

@@ -26,8 +26,8 @@ class HttpClient {
     return response.data
   }
 
-  async patch(endpoint, data, config) {
-    const response = await this.instance.patch(this.getUrl(endpoint), data, config)
+  async put(endpoint, data, config) {
+    const response = await this.instance.put(this.getUrl(endpoint), data, config)
     return response.data
   }
 
@@ -37,6 +37,7 @@ class HttpClient {
   }
 
   setAuthHeader(token) {
+    console.log("SETAUTHHEADE", token)
     this.instance.defaults.headers.common["Authorization"] = `Bearer ${token}`
   }
 

@@ -1,4 +1,4 @@
-const pagesName = ["Thống kê", "Lớp", "Học Sinh", "Giáo Viên", "Học bạ", "Học phí", "Quy định", "Đăng Xuất"]
+const pagesName = ["Dashboard", "Class", "Summaries", "Tuition", "Student", "Teacher", "Regulations"]
 const pages = [
   "statistics",
   "class",

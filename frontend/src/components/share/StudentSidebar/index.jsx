@@ -6,8 +6,6 @@ import LOGO from "../../../assets/Logo/Black and White Collection 15.svg"
 import { Link, NavLink } from "react-router-dom"
 import { MdOutlineDashboard } from "react-icons/md"
 import { MdOutlineClass } from "react-icons/md"
-import { PiStudent } from "react-icons/pi"
-import { LiaChalkboardTeacherSolid } from "react-icons/lia"
 import { CiMoneyCheck1 } from "react-icons/ci"
 import { MdOutlineRuleFolder } from "react-icons/md"
 import { FaCircleUser } from "react-icons/fa6"
@@ -19,7 +17,7 @@ import LogoutIcon from "@mui/icons-material/Logout"
 import { useAuth } from "../../../hooks"
 const defaultTheme = MainTheme
 
-export default function Sidebar() {
+export default function StudentSidebar() {
   const { logOut } = useAuth()
   const [selectedIndex, setSelectedIndex] = useState(() => parseInt(localStorage.getItem("selectedIndex")) || 0)
   useEffect(() => {
@@ -27,7 +25,10 @@ export default function Sidebar() {
     localStorage.setItem("selectedIndex", selectedIndex)
   }, [selectedIndex])
   const token = localStorage.getItem("accessToken")
-  const decode = jwtDecode(token)
+  let decode = token
+  if (decode != null) {
+    decode = jwtDecode(token)
+  }
   console.log("DECODE", token)
   const handleListItemClick = (index) => {
     setSelectedIndex(index)
@@ -65,7 +66,7 @@ export default function Sidebar() {
                 ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-white transition-all"
                 : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-gray-500 transition-all hover:ml-4"
             }
-            to={routes.Dashboard}
+            to={routes.StudentDashboard}
           >
             <div className="flex items-center">
               <MdOutlineDashboard />
@@ -80,7 +81,7 @@ export default function Sidebar() {
                 ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-white transition-all"
                 : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-gray-500 transition-all hover:ml-4"
             }
-            to={routes.Class}
+            to={routes.StudentClass}
           >
             <div className="flex items-center">
               <MdOutlineClass />
@@ -95,11 +96,11 @@ export default function Sidebar() {
                 ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-white transition-all"
                 : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-gray-500 transition-all hover:ml-4"
             }
-            to={routes.Student}
+            to={routes.StudentTuition}
           >
             <div className="flex items-center">
-              <PiStudent />
-              <span className="ml-3">Student</span>
+              <CiMoneyCheck1 />
+              <span className="ml-3">Tuition</span>
             </div>
           </NavLink>
           <NavLink
@@ -110,11 +111,11 @@ export default function Sidebar() {
                 ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-white transition-all"
                 : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-gray-500 transition-all hover:ml-4"
             }
-            to={routes.Teacher}
+            to={routes.Summaries}
           >
             <div className="flex items-center">
-              <LiaChalkboardTeacherSolid />
-              <span className="ml-3">Teacher</span>
+              <MdOutlineRuleFolder />
+              <span className="ml-3">Summaries</span>
             </div>
           </NavLink>
           <NavLink
@@ -125,37 +126,7 @@ export default function Sidebar() {
                 ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-white transition-all"
                 : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-gray-500 transition-all hover:ml-4"
             }
-            to={routes.Tuition}
-          >
-            <div className="flex items-center">
-              <CiMoneyCheck1 />
-              <span className="ml-3">Tuition</span>
-            </div>
-          </NavLink>
-          <NavLink
-            key={5}
-            onClick={() => handleListItemClick(5)}
-            className={
-              selectedIndex == 5
-                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-white transition-all"
-                : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-gray-500 transition-all hover:ml-4"
-            }
-            to={routes.Regulations}
-          >
-            <div className="flex items-center">
-              <MdOutlineRuleFolder />
-              <span className="ml-3">Regulations</span>
-            </div>
-          </NavLink>
-          <NavLink
-            key={6}
-            onClick={() => handleListItemClick(6)}
-            className={
-              selectedIndex == 6
-                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-white transition-all"
-                : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-gray-500 transition-all hover:ml-4"
-            }
-            to={routes.AdministratorProfile}
+            to={routes.StudentProfile}
           >
             <div className="flex items-center">
               <RiProfileLine />

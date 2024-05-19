@@ -1,26 +1,15 @@
 import { Tab } from "@headlessui/react"
-import React, { useEffect, useMemo, useState } from "react"
+import { useEffect, useState } from "react"
 import { PiStudentBold } from "react-icons/pi"
 import { SiGoogleclassroom } from "react-icons/si"
-import StudentTuitionTable from "../../components/share/StudentTuitionTable"
-import { Button } from "@mui/material"
-import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded"
-import AddTuitionModal from "../../components/share/AddTuitionModal"
-import { gradeApi } from "../../apis"
-import { tuitionApi } from "../../apis"
+import StudentTuitionTable from "../../../components/share/StudentTuitionTable"
+import { gradeApi } from "../../../apis"
+import { tuitionApi } from "../../../apis"
 import { toast } from "react-toastify"
-export default function Plan() {
+export default function OfficerTuition() {
   let [selectYear, setSelectYear] = useState("")
   let [data, setData] = useState("")
   let [checkReLoading, setCheckReLoading] = useState(false)
-  let [isOpenAddTuitionModal, setIsOpenAddTuitionModal] = useState(false)
-  console.log("CHECKRELOAD", checkReLoading)
-  function closeAddTuitionModal() {
-    setIsOpenAddTuitionModal(false)
-  }
-  function openAddTuitionModal() {
-    setIsOpenAddTuitionModal(true)
-  }
   function maxGradeYear(year) {
     console.log("goi maxGradeYear")
     let maxYear = year[0].year
@@ -58,20 +47,6 @@ export default function Plan() {
     <div className="mx-14 mb-0 flex h-screen flex-col overflow-hidden p-0">
       <div className="mt-10 flex items-center justify-between">
         <p className="font-Manrope text-2xl font-bold">Học phí</p>
-        <Button
-          onClick={openAddTuitionModal}
-          variant="contained"
-          color="success"
-          startIcon={<AddCircleRoundedIcon></AddCircleRoundedIcon>}
-        >
-          Add
-        </Button>
-        <AddTuitionModal
-          isOpenAddTuitionModal={isOpenAddTuitionModal}
-          closeAddTuitionModal={closeAddTuitionModal}
-          checkReLoading={checkReLoading}
-          setCheckReLoading={setCheckReLoading}
-        ></AddTuitionModal>
       </div>
       <div className="relative mt-10">
         <Tab.Group>
@@ -96,7 +71,11 @@ export default function Plan() {
           </Tab.List>
           <Tab.Panels>
             <Tab.Panel>
-              <StudentTuitionTable data={data}></StudentTuitionTable>
+              <StudentTuitionTable
+                data={data}
+                checkReLoading={checkReLoading}
+                setCheckReLoading={setCheckReLoading}
+              ></StudentTuitionTable>
             </Tab.Panel>
             <Tab.Panel>Content 2</Tab.Panel>
           </Tab.Panels>

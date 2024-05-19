@@ -8,6 +8,10 @@ class StudentApi {
     const res = await httpClient.get(`/student/student-without-class/${id}`)
     return res
   }
+  async getAllClassByStudentId(id) {
+    const res = await httpClient.get(`/student/get-class/${id}`)
+    return res
+  }
   //   async createClass(data) {
   //     const res = await httpClient.post("/class/create-class", data)
   //     return res

@@ -8,6 +8,14 @@ class TuitionApi {
     const res = await httpClient.get(`/tuitions/in-year/${year}`)
     return res
   }
+  async updateTuiTionFee(id) {
+    try {
+      const res = await httpClient.put(`/tuitions/pay/${id}`)
+      return res
+    } catch (error) {
+      console.log(error)
+    }
+  }
   //   async createClass(data) {
   //     const res = await httpClient.post("/class/create-class", data)
   //     return res
@@ -35,16 +43,6 @@ class TuitionApi {
   //   async getAllMember(id) {
   //     try {
   //       const res = await httpClient.get(`/groups/${id}/members`)
-  //       return res
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
-  //   async updateOwner(currentGroupId, newOwnerId) {
-  //     try {
-  //       const res = await httpClient.patch(`/groups/${currentGroupId}/change-owner`, {
-  //         newOwnerId: newOwnerId,
-  //       })
   //       return res
   //     } catch (error) {
   //       console.log(error)

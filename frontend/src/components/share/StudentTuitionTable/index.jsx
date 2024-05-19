@@ -18,13 +18,21 @@ import InputBase from "@mui/material/InputBase"
 import SearchIcon from "@mui/icons-material/Search"
 import DateCell from "./BillingDate"
 import dayjs from "dayjs"
-const StudentTuitionTable = ({ data }) => {
+import { tuitionApi } from "../../../apis"
+const StudentTuitionTable = ({ data, checkReLoading, setCheckReLoading }) => {
   const [valueMonth, setValueMonth] = useState(dayjs())
   const [columnFilters, setColumnFilters] = useState([])
   function convertMonth(dateString) {
     const date = new Date(dateString)
     const month = String(date.getMonth() + 1).padStart(2, "0")
     return month
+  }
+  const handlePayTuition = async (id) => {
+    let res = await tuitionApi.updateTuiTionFee(id)
+    if (res.EC != 1) {
+      console.log("RELOADING", checkReLoading)
+      setCheckReLoading(!checkReLoading)
+    }
   }
   console.log("COLUMNFILTER", columnFilters)
   const searchInput = columnFilters.find((f) => f.id === "studentname")?.value || ""
@@ -85,7 +93,7 @@ const StudentTuitionTable = ({ data }) => {
       }),
       columnHelper.accessor((row) => `${row.closingdate}`, {
         id: "BillingDate",
-        header: "BillingDate",
+        header: "Payment_DL",
         cell: DateCell,
       }),
       columnHelper.accessor((row) => `${row.status}`, {
@@ -108,29 +116,6 @@ const StudentTuitionTable = ({ data }) => {
       columnHelper.accessor((row) => `${row.price}`, {
         id: "total",
         header: "Tổng tiền",
-      }),
-      columnHelper.accessor((row) => `${row}`, {
-        id: "studentId",
-        header: "",
-        cell: (info) => (
-          <div className="flex w-fit flex-col">
-            {info.row.original.status == 0 ? (
-              <button
-                onClick={() => console.log("GOPAY", info.row.original)}
-                className="gap-2 rounded-lg bg-bgPay px-2 py-1 font-Manrope font-normal text-white"
-              >
-                Pay
-              </button>
-            ) : (
-              <button
-                disabled
-                className="gap-2 rounded-lg bg-neutral-200 px-2 py-1 font-Manrope font-normal text-neutral-500"
-              >
-                Pay
-              </button>
-            )}
-          </div>
-        ),
       }),
     ],
     [],
@@ -260,6 +245,8 @@ const StudentTuitionTable = ({ data }) => {
 }
 StudentTuitionTable.propTypes = {
   data: PropTypes.any,
+  checkReLoading: PropTypes.any,
+  setCheckReLoading: PropTypes.any,
   // columnFilters: PropTypes.any,
 }
 export default StudentTuitionTable

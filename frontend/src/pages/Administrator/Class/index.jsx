@@ -1,17 +1,17 @@
-import CardClass from "../../components/share/CardClass"
-// import CardGrade from "../../components/share/CardGrade"
+import CardClass from "../../../components/share/CardClass"
 import { styled } from "@mui/material/styles"
 import Box from "@mui/material/Box"
 import Paper from "@mui/material/Paper"
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded"
 import IconButton from "@mui/material/IconButton"
-import Dropdown from "../../components/share/Dropdown"
+import Dropdown from "../../../components/share/Dropdown"
 import { useEffect, useState } from "react"
-import { classApi } from "../../apis"
-import { gradeApi } from "../../apis"
-import DialogView from "../../components/share/Modal"
-import AddClassModal from "../../components/share/AddClassModal"
+import { classApi } from "../../../apis"
+import { gradeApi } from "../../../apis"
+import DialogView from "../../../components/share/Modal"
+import AddClassModal from "../../../components/share/AddClassModal"
 import { toast } from "react-toastify"
+import { useAuth } from "../../../hooks"
 // eslint-disable-next-line
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -22,6 +22,8 @@ const Item = styled(Paper)(({ theme }) => ({
 }))
 
 export default function Class() {
+  // eslint-disable-next-line
+  const { isLoggedIn } = useAuth()
   let [checkId, setCheckId] = useState()
   let [checkGrade, setCheckGrade] = useState()
   let [checkReRender, setCheckReRender] = useState(false)
