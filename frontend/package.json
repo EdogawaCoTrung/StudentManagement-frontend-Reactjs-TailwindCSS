@@ -18,9 +18,16 @@
     "@mui/material": "^5.15.15",
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@mui/x-data-grid": "^7.3.0",
+    "@mui/x-date-pickers": "^7.4.0",
+    "@tanstack/react-query": "^5.36.2",
     "@tanstack/react-table": "^8.16.0",
     "axios": "^1.6.8",
     "clsx": "^2.1.0",
+    "dayjs": "^1.11.11",
+    "formik": "^2.4.6",
+    "framer-motion": "^11.1.9",
+    "gsap": "^3.12.5",
+    "jwt-decode": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet-async": "^2.0.4",
@@ -32,7 +39,8 @@
     "simplebar": "^6.2.5",
     "simplebar-core": "^1.2.4",
     "simplebar-react": "^3.2.4",
-    "styled-components": "^6.1.8"
+    "styled-components": "^6.1.8",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.7",
@@ -48,6 +56,7 @@
     "postcss": "^8.4.38",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.12",
+    "sass": "^1.77.1",
     "tailwindcss": "^3.4.3",
     "vite": "^5.1.6",
     "vite-plugin-checker": "^0.6.4"

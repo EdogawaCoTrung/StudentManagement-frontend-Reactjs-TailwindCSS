@@ -4,12 +4,20 @@ class ClassApi {
     const res = await httpClient.get(`/class/get-grade/${gradename}/${year}`)
     return res
   }
+  async getAllClass() {
+    const res = await httpClient.get("/class")
+    return res
+  }
   async createClass(data) {
     const res = await httpClient.post("/class/create-class", data)
     return res
   }
   async getAllStudentByClassId(id) {
     const res = await httpClient.get(`/class/get-student/${id}`)
+    return res
+  }
+  async getAllSummariesByClassId(id) {
+    const res = await httpClient.get(`/class/summaries/${id}`)
     return res
   }
   //   async getAllUnapprovedGroup() {
