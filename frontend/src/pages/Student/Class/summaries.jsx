@@ -88,15 +88,17 @@ export default function Summaries() {
       <div className="mt-10 flex items-center">
         <button
           onClick={HandlePrevious}
-          className="flex h-9 w-9 content-center items-center justify-center rounded-full bg-gradeTitle"
+          className="animate-jump-in flex h-9 w-9 content-center items-center justify-center rounded-full bg-gradeTitle"
         >
           <GrLinkPrevious className="text-2xl text-white" />
         </button>
-        <p className="ml-6 font-Manrope text-2xl font-bold text-gradeTitle">Điểm số</p>
+        <p className="animate-fade-down ml-6 font-Manrope text-2xl font-bold text-gradeTitle">Điểm số</p>
       </div>
       <div className="mt-10 flex items-center">
-        <p className="ml-6 font-Manrope text-2xl font-semibold ">Lớp: {classname}</p>
-        <p className="ml-6 font-Manrope text-2xl font-semibold ">Học bạ</p>
+        <p className="animate-fade-up animate-delay-[500ms] ml-6 font-Manrope text-2xl font-semibold ">
+          Lớp: {classname}
+        </p>
+        <p className="animate-fade-up animate-delay-[500ms] ml-6 font-Manrope text-2xl font-semibold ">Học bạ</p>
       </div>
       <div className="mt-10 h-96 overflow-auto">
         <table className="z-0 w-full border-collapse font-Manrope">
@@ -127,7 +129,7 @@ export default function Summaries() {
               )
             })}
           </thead>
-          <tbody>
+          <tbody className="animate-fade-down">
             {tableInstance.getRowModel().rows.map((row) => {
               return (
                 <tr key={row.id}>

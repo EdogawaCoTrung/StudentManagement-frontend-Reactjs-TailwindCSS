@@ -2,7 +2,7 @@ import { Tab } from "@headlessui/react"
 import { useEffect, useState } from "react"
 import { PiStudentBold } from "react-icons/pi"
 import { SiGoogleclassroom } from "react-icons/si"
-import StudentTuitionTable from "../../../components/share/StudentTuitionTable"
+import OfficerTuitionTable from "../../../components/share/OfficerTuitionTable"
 import { gradeApi } from "../../../apis"
 import { tuitionApi } from "../../../apis"
 import { toast } from "react-toastify"
@@ -10,6 +10,7 @@ export default function OfficerTuition() {
   let [selectYear, setSelectYear] = useState("")
   let [data, setData] = useState("")
   let [checkReLoading, setCheckReLoading] = useState(false)
+  console.log("CHECKRELOADING", checkReLoading)
   function maxGradeYear(year) {
     console.log("goi maxGradeYear")
     let maxYear = year[0].year
@@ -46,7 +47,7 @@ export default function OfficerTuition() {
   return (
     <div className="mx-14 mb-0 flex h-screen flex-col overflow-hidden p-0">
       <div className="mt-10 flex items-center justify-between">
-        <p className="font-Manrope text-2xl font-bold">Học phí</p>
+        <p className="animate-fade-up font-Manrope text-2xl font-bold">Học phí</p>
       </div>
       <div className="relative mt-10">
         <Tab.Group>
@@ -71,11 +72,11 @@ export default function OfficerTuition() {
           </Tab.List>
           <Tab.Panels>
             <Tab.Panel>
-              <StudentTuitionTable
+              <OfficerTuitionTable
                 data={data}
                 checkReLoading={checkReLoading}
                 setCheckReLoading={setCheckReLoading}
-              ></StudentTuitionTable>
+              ></OfficerTuitionTable>
             </Tab.Panel>
             <Tab.Panel>Content 2</Tab.Panel>
           </Tab.Panels>

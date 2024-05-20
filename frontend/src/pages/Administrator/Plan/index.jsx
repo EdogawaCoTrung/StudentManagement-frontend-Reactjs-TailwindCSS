@@ -9,11 +9,13 @@ import AddTuitionModal from "../../../components/share/AddTuitionModal"
 import { gradeApi } from "../../../apis"
 import { tuitionApi } from "../../../apis"
 import { toast } from "react-toastify"
+import "../../../components/Layout/animations/loadingPage.css"
 export default function Tuition() {
   let [selectYear, setSelectYear] = useState("")
   let [data, setData] = useState("")
   let [checkReLoading, setCheckReLoading] = useState(false)
   let [isOpenAddTuitionModal, setIsOpenAddTuitionModal] = useState(false)
+  let [loading, setLoading] = useState(false)
   console.log("CHECKRELOAD", checkReLoading)
   function closeAddTuitionModal() {
     setIsOpenAddTuitionModal(false)
@@ -45,6 +47,7 @@ export default function Tuition() {
       toast.error(tuitions.EM)
     } else if (tuitions.EC != 1) {
       setData(tuitions.DT)
+      setLoading(true)
     }
   }
   useEffect(() => {
@@ -57,15 +60,17 @@ export default function Tuition() {
   return (
     <div className="mx-14 mb-0 flex h-screen flex-col overflow-hidden p-0">
       <div className="mt-10 flex items-center justify-between">
-        <p className="font-Manrope text-2xl font-bold">Học phí</p>
-        <Button
-          onClick={openAddTuitionModal}
-          variant="contained"
-          color="success"
-          startIcon={<AddCircleRoundedIcon></AddCircleRoundedIcon>}
-        >
-          Add
-        </Button>
+        <p className="animate-fade-up font-Manrope text-2xl font-bold">Học phí</p>
+        <div className="animate-fade-up">
+          <Button
+            onClick={openAddTuitionModal}
+            variant="contained"
+            color="success"
+            startIcon={<AddCircleRoundedIcon></AddCircleRoundedIcon>}
+          >
+            Add
+          </Button>
+        </div>
         <AddTuitionModal
           isOpenAddTuitionModal={isOpenAddTuitionModal}
           closeAddTuitionModal={closeAddTuitionModal}

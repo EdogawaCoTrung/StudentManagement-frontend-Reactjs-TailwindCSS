@@ -18,7 +18,7 @@ function CardClass({ nameclass, openModal, checkId, setCheckId }) {
     //     top: 0,
     //   }}
     // >
-    <div className="h-20 w-28 mx-9 my-3">
+    <div className="animate-fade-down mx-9 my-3 h-20 w-28">
       <Button
         onClick={handleOnClick}
         variant="contained"

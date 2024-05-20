@@ -290,7 +290,7 @@ const Student = () => {
                 )
               })
             }
-            className={`  ${isActive ? "bg-gradeTitle" : "bg-white"}  group mr-8 flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md transition-all  `}
+            className={`  ${isActive ? "bg-gradeTitle" : "bg-white"} animate-delay-[200ms] animate-jump-in  group mr-8 flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md transition-all  `}
           >
             <p
               className={`text-center font-Manrope text-xl font-semibold text-gradeTitle ${isActive ? "text-white" : "text-gradeTitle"} `}
@@ -318,7 +318,7 @@ const Student = () => {
                 )
               })
             }
-            className={`  ${isActive2 ? "bg-gradeTitle" : "bg-white"}  group mr-8 flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md transition-all `}
+            className={`  ${isActive2 ? "bg-gradeTitle" : "bg-white"} animate-delay-[350ms] animate-jump-in  group mr-8 flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md transition-all `}
           >
             <p
               className={`text-center font-Manrope text-xl font-semibold text-gradeTitle ${isActive2 ? "text-white" : "text-gradeTitle"} `}
@@ -346,7 +346,7 @@ const Student = () => {
                 )
               })
             }
-            className={`  ${isActive3 ? "bg-gradeTitle" : "bg-white"}  group mr-8 flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md transition-all `}
+            className={`  ${isActive3 ? "bg-gradeTitle" : "bg-white"} animate-delay-[450ms] animate-jump-in group mr-8 flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md transition-all `}
           >
             <p
               className={`text-center font-Manrope text-xl font-semibold text-gradeTitle ${isActive3 ? "text-white" : "text-gradeTitle"} `}
@@ -368,16 +368,16 @@ const Student = () => {
       </div>
       <div className="mb-11 flex flex-row items-center justify-between align-middle">
         <div className="flex">
-          <div className="mr-8 flex h-16 items-center justify-center rounded-lg bg-blurblue px-5 py-1 text-center align-middle shadow-md">
+          <div className="animate-delay-[450ms] animate-fade-right mr-8 flex h-16 items-center justify-center rounded-lg bg-blurblue px-5 py-1 text-center align-middle shadow-md">
             <p className="text-center font-Manrope text-xl font-medium text-black">Số học sinh: {studentCount}</p>
           </div>
-          <div className="flex h-16 items-center justify-center rounded-lg bg-blurblue px-5 py-1 text-center align-middle shadow-md">
+          <div className="animate-delay-[450ms] animate-fade-right flex h-16 items-center justify-center rounded-lg bg-blurblue px-5 py-1 text-center align-middle shadow-md">
             <p className="text-center font-Manrope text-xl font-medium text-black">Số lớp: {classCount}</p>
           </div>
         </div>
         <div className="flex">
           <Dropdown selectYear={selectYear} setSelectYear={setSelectYear}></Dropdown>
-          <button className=" ml-8 flex items-center justify-center rounded-full bg-backgroundplus px-2 py-1 text-center align-middle shadow-md">
+          <button className="animate-fade-right ml-8 flex items-center justify-center rounded-full bg-backgroundplus px-2 py-1 text-center align-middle shadow-md">
             <p className="text-center font-Manrope text-xl font-semibold text-white">Thêm học sinh</p>
           </button>
         </div>
@@ -411,7 +411,7 @@ const Student = () => {
               )
             })}
           </thead>
-          <tbody>
+          <tbody className="animate-fade-down">
             {tableInstance.getRowModel().rows.map((row) => {
               return (
                 <tr key={row.id}>
