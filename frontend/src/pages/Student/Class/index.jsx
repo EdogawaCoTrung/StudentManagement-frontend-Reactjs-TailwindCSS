@@ -58,7 +58,7 @@ export default function StudentClass() {
     <Box className="z-0 mx-14 mt-10 flex flex-col justify-center" sx={{ flexGrow: 1 }}>
       <div className="flex flex-row items-center justify-between">
         <div className="flex flex-row items-center">
-          <div className="flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md">
+          <div className="animate-duration-[625ms] animate-fade-right flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md">
             <p className="text-center text-2xl font-semibold text-gradeTitle">Khối 10</p>
           </div>
         </div>
@@ -88,7 +88,7 @@ export default function StudentClass() {
           ))}
       </div>
       <div className="flex flex-row items-center">
-        <div className="flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md">
+        <div className="animate-duration-[625ms] animate-fade-right flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md">
           <p className="text-center text-2xl font-semibold text-gradeTitle">Khối 11</p>
         </div>
       </div>
@@ -117,7 +117,7 @@ export default function StudentClass() {
           ))}
       </div>
       <div className="flex flex-row items-center">
-        <div className="flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md">
+        <div className="animate-duration-[625ms] animate-fade-right flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md">
           <p className="text-center text-2xl font-semibold text-gradeTitle">Khối 12</p>
         </div>
       </div>

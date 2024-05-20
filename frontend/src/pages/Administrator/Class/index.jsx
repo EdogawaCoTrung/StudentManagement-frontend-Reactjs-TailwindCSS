@@ -12,6 +12,7 @@ import DialogView from "../../../components/share/Modal"
 import AddClassModal from "../../../components/share/AddClassModal"
 import { toast } from "react-toastify"
 import { useAuth } from "../../../hooks"
+import "../../../components/Layout/animations/loadingPage.css"
 // eslint-disable-next-line
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -27,6 +28,7 @@ export default function Class() {
   let [checkId, setCheckId] = useState()
   let [checkGrade, setCheckGrade] = useState()
   let [checkReRender, setCheckReRender] = useState(false)
+  let [loading, setLoading] = useState(false)
   let [isOpen, setIsOpen] = useState(false)
   let [isOpen2, setIsOpen2] = useState(false)
   let [isOpen3, setIsOpen3] = useState(false)
@@ -104,6 +106,7 @@ export default function Class() {
         fetchAllClassByGrade10AndYear()
         fetchAllClassByGrade11AndYear()
         fetchAllClassByGrade12AndYear()
+        setLoading(true)
         toast.success("Lấy danh sách lớp thành công!!!")
       }
     } catch (error) {
@@ -117,11 +120,11 @@ export default function Class() {
     <Box className="z-0 mx-14 mt-10 flex flex-col justify-center" sx={{ flexGrow: 1 }}>
       <div className="flex flex-row items-center justify-between">
         <div className="flex flex-row items-center">
-          <div className="flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md">
+          <div className="animate-duration-[625ms] animate-fade-right flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md">
             <p className="text-center text-2xl font-semibold text-gradeTitle">Khối 10</p>
           </div>
           <IconButton onClick={() => openAddClassModal(10)} size="large">
-            <AddCircleRoundedIcon className="text-backgroundplus" fontSize="large" />
+            <AddCircleRoundedIcon className="animate-jump-in text-backgroundplus" fontSize="large" />
           </IconButton>
           {isOpenAddClassModal && checkGrade === 10 && (
             <AddClassModal
@@ -161,11 +164,11 @@ export default function Class() {
           ))}
       </div>
       <div className="flex flex-row items-center">
-        <div className="flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md">
+        <div className="animate-duration-[625ms] animate-fade-right flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md">
           <p className="text-center text-2xl font-semibold text-gradeTitle">Khối 11</p>
         </div>
         <IconButton onClick={() => openAddClassModal(11)} size="large">
-          <AddCircleRoundedIcon className="text-backgroundplus" fontSize="large" />
+          <AddCircleRoundedIcon className="animate-jump-in text-backgroundplus" fontSize="large" />
         </IconButton>
         {isOpenAddClassModal && checkGrade === 11 && (
           <AddClassModal
@@ -203,11 +206,11 @@ export default function Class() {
           ))}{" "}
       </div>
       <div className="flex flex-row items-center">
-        <div className="flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md">
+        <div className="animate-duration-[625ms] animate-fade-right flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md">
           <p className="text-center text-2xl font-semibold text-gradeTitle">Khối 12</p>
         </div>
         <IconButton onClick={() => openAddClassModal(12)} size="large">
-          <AddCircleRoundedIcon className="text-backgroundplus" fontSize="large" />
+          <AddCircleRoundedIcon className="animate-jump-in text-backgroundplus" fontSize="large" />
         </IconButton>
         {isOpenAddClassModal && checkGrade === 12 && (
           <AddClassModal

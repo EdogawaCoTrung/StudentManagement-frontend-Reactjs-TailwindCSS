@@ -37,34 +37,34 @@ export default function StudentSidebar() {
   return (
     <div style={{ position: "fixed" }}>
       <ThemeProvider theme={defaultTheme}>
-        <div style={{ display: "flex", alignItems: "center", padding: "10px" }}>
-          <img src={LOGO} alt="Logo" style={{ width: "50px", height: "50px", padding: "3px" }} />
-          <Typography
-            variant="h5"
-            component="div"
-            sx={{
-              flexGrow: 1,
-              marginLeft: "10px",
-              fontWeight: "bold",
-              color: "gray",
-              background: "linear-gradient(272deg, #059669 22.06%, #00D995 116.84%)",
-              backgroundClip: "text",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              fontFamily: "Manrope",
-            }}
-          >
-            Student<br></br>Management
-          </Typography>
-        </div>
-        <div className=" flex h-screen w-[220] flex-col content-center border-r-2 bg-white p-3 align-middle shadow">
+        <div className=" flex h-screen w-[220] flex-col content-center border-r-2 bg-sidebar p-3 align-middle shadow">
+          <div style={{ display: "flex", alignItems: "center", marginBottom: "5px" }}>
+            <img src={LOGO} alt="Logo" style={{ width: "50px", height: "50px", padding: "3px" }} />
+            <Typography
+              variant="h5"
+              component="div"
+              sx={{
+                flexGrow: 1,
+                marginLeft: "10px",
+                fontWeight: "bold",
+                color: "gray",
+                background: "linear-gradient(272deg, #059669 22.06%, #00D995 116.84%)",
+                backgroundClip: "text",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                fontFamily: "Manrope",
+              }}
+            >
+              Student<br></br>Management
+            </Typography>
+          </div>
           <NavLink
             key={0}
             onClick={() => handleListItemClick(0)}
             className={
               selectedIndex == 0
-                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-white transition-all"
-                : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-gray-500 transition-all hover:ml-4"
+                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-black transition-all"
+                : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-white transition-all hover:ml-4"
             }
             to={routes.StudentDashboard}
           >
@@ -78,8 +78,8 @@ export default function StudentSidebar() {
             onClick={() => handleListItemClick(1)}
             className={
               selectedIndex == 1
-                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-white transition-all"
-                : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-gray-500 transition-all hover:ml-4"
+                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-black transition-all"
+                : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-white transition-all hover:ml-4"
             }
             to={routes.StudentClass}
           >
@@ -93,8 +93,8 @@ export default function StudentSidebar() {
             onClick={() => handleListItemClick(2)}
             className={
               selectedIndex == 2
-                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-white transition-all"
-                : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-gray-500 transition-all hover:ml-4"
+                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-black transition-all"
+                : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-white transition-all hover:ml-4"
             }
             to={routes.StudentTuition}
           >
@@ -108,8 +108,8 @@ export default function StudentSidebar() {
             onClick={() => handleListItemClick(3)}
             className={
               selectedIndex == 3
-                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-white transition-all"
-                : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-gray-500 transition-all hover:ml-4"
+                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-black transition-all"
+                : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-white transition-all hover:ml-4"
             }
             to={routes.Summaries}
           >
@@ -123,8 +123,8 @@ export default function StudentSidebar() {
             onClick={() => handleListItemClick(4)}
             className={
               selectedIndex == 4
-                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-white transition-all"
-                : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-gray-500 transition-all hover:ml-4"
+                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-black transition-all"
+                : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-white transition-all hover:ml-4"
             }
             to={routes.StudentProfile}
           >
@@ -135,12 +135,12 @@ export default function StudentSidebar() {
           </NavLink>
           <div className=" mx-auto my-2 h-2 w-11/12 border-t-2 border-gray-400 "></div>
           <div className="flex flex-col">
-            <p className="mb-2 font-Manrope  text-base font-semibold text-gray-500">Profile</p>
+            <p className="mb-2 font-Manrope  text-base font-semibold text-white">Profile</p>
             <div className="mb-2 flex items-center">
               <FaCircleUser className="mr-2 text-3xl" />
               <div className="flex flex-col font-Manrope">
-                <p className=" text-base font-semibold text-black">{decode.payload.username}</p>
-                <p className="overflow-ellipsis  text-xs text-neutral-400">{decode.payload.email}</p>
+                <p className=" text-base font-semibold text-white">{decode.payload.username}</p>
+                <p className="overflow-ellipsis  text-xs text-neutral-300">{decode.payload.email}</p>
               </div>
             </div>
             <Link to={routes.Login} className="w-full">

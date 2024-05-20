@@ -45,7 +45,7 @@ export default function StudentTuition() {
   }, [selectYear, checkReLoading])
   return (
     <div className="mx-14 mb-0 flex h-screen flex-col overflow-hidden p-0">
-      <div className="mt-10 flex items-center justify-between">
+      <div className="animate-fade-up mt-10 flex items-center justify-between">
         <p className="font-Manrope text-2xl font-bold">Học phí</p>
       </div>
       <div className="relative mt-10">

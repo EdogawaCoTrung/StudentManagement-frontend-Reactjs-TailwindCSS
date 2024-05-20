@@ -17,9 +17,11 @@ export default {
         Manrope: ["Manrope"],
       },
       colors: {
-        PrimaryColor: "#61B4D1",
+        PrimaryColor: "#B6DDDA",
+        backgroundPage: "#b0d7f8",
         white: "#ffffff",
         black: "#000000",
+        sidebar: "#13313D",
         gradeTitle: "#3497f9",
         backgroundplus: "#8fdc88",
         addBtn: "#8FDC88",
@@ -51,5 +53,5 @@ export default {
       slg: "1280px",
     },
   },
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [require("@tailwindcss/forms"), require("tailwindcss-animated")],
 }

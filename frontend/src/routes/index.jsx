@@ -140,9 +140,9 @@ const OfficerRoutes = [
   {
     path: routes.OfficerProfile,
     component: (
-      <AuthorizedStudent>
+      <AuthorizedOfficer>
         <OfficerProfile></OfficerProfile>
-      </AuthorizedStudent>
+      </AuthorizedOfficer>
     ),
   },
 ]

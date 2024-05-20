@@ -19,7 +19,7 @@ import SearchIcon from "@mui/icons-material/Search"
 import DateCell from "./BillingDate"
 import dayjs from "dayjs"
 import { tuitionApi } from "../../../apis"
-const StudentTuitionTable = ({ data, checkReLoading, setCheckReLoading }) => {
+const OfficerTuitionTable = ({ data, checkReLoading, setCheckReLoading }) => {
   const [valueMonth, setValueMonth] = useState(dayjs())
   const [columnFilters, setColumnFilters] = useState([])
   function convertMonth(dateString) {
@@ -116,6 +116,29 @@ const StudentTuitionTable = ({ data, checkReLoading, setCheckReLoading }) => {
       columnHelper.accessor((row) => `${row.price}`, {
         id: "total",
         header: "Tổng tiền",
+      }),
+      columnHelper.accessor((row) => `${row}`, {
+        id: "studentId",
+        header: "",
+        cell: (info) => (
+          <div className="flex w-fit flex-col">
+            {info.row.original.status == 0 ? (
+              <button
+                onClick={() => handlePayTuition(info.row.original.id)}
+                className="gap-2 rounded-lg bg-bgPay px-2 py-1 font-Manrope font-normal text-white"
+              >
+                Pay
+              </button>
+            ) : (
+              <button
+                disabled
+                className="gap-2 rounded-lg bg-neutral-200 px-2 py-1 font-Manrope font-normal text-neutral-500"
+              >
+                Pay
+              </button>
+            )}
+          </div>
+        ),
       }),
     ],
     [],
@@ -247,10 +270,10 @@ const StudentTuitionTable = ({ data, checkReLoading, setCheckReLoading }) => {
     </div>
   )
 }
-StudentTuitionTable.propTypes = {
+OfficerTuitionTable.propTypes = {
   data: PropTypes.any,
   checkReLoading: PropTypes.any,
   setCheckReLoading: PropTypes.any,
   // columnFilters: PropTypes.any,
 }
-export default StudentTuitionTable
+export default OfficerTuitionTable
