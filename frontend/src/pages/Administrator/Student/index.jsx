@@ -19,10 +19,22 @@ import { studentApi } from "../../../apis"
 import { gradeApi } from "../../../apis"
 import Dropdown from "../../../components/share/Dropdown"
 import { toast } from "react-toastify"
+import AddStudentModal from "../../../components/share/addStudentModal"
+
 const Student = () => {
   const [classCount, setClassCount] = useState("")
   const [studentCount, setStudentCount] = useState("")
   const [data, setData] = useState("")
+  let [isOpenAddStudentModal, setOpenAddStudentModal] = useState(false)
+
+  function openAddStudentModal() {
+    setOpenAddStudentModal(true)
+  }
+
+  function closeAddStudentModal() {
+    setOpenAddStudentModal(false)
+  }
+
   function maxGradeYear(year) {
     console.log("goi maxGradeYear")
     let maxYear = year[0].year
@@ -377,9 +389,16 @@ const Student = () => {
         </div>
         <div className="flex">
           <Dropdown selectYear={selectYear} setSelectYear={setSelectYear}></Dropdown>
-          <button className="animate-fade-right ml-8 flex items-center justify-center rounded-full bg-backgroundplus px-2 py-1 text-center align-middle shadow-md">
+          <button onClick={() => openAddStudentModal()} className="animate-fade-right ml-8 flex items-center justify-center rounded-full bg-backgroundplus px-2 py-1 text-center align-middle shadow-md">
             <p className="text-center font-Manrope text-xl font-semibold text-white">Thêm học sinh</p>
           </button>
+          {isOpenAddStudentModal && (
+            <AddStudentModal
+              isOpenAddStudent = {isOpenAddStudentModal}
+              closeAddStudentModal={closeAddStudentModal}
+              classId={1}
+            ></AddStudentModal>
+          )}
         </div>
       </div>
       <div className="h-96 overflow-auto">

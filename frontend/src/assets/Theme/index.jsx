@@ -1,5 +1,6 @@
 import { createTheme } from '@mui/material/styles';
 import { lightBlue } from '@mui/material/colors';
+import { colors } from '@mui/material';
 
 const MainTheme = createTheme({
   palette: {
@@ -9,6 +10,9 @@ const MainTheme = createTheme({
     secondary: {
       main: lightBlue[200],
     },
+    button: {
+      main: colors.lightGreen[500],
+    }
   },
 });
 
