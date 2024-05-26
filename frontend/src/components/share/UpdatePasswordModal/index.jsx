@@ -9,37 +9,59 @@ import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import CloseIcon from '@mui/icons-material/Close';
+import bcrypt from 'bcryptjs';
 
-function showErrorAlert(message) {
-  
-}
 
 export default function ValidationTextFields() {
-  const currentPassword = "123456";
   const [openErrorAlert, setOpenErrorAlert] = React.useState(false);
   const [openSuccessAlert, setOpenSuccessAlert] = React.useState(false);
   const [message, setMessage] = React.useState('');
+
+
   function handleClick() {
+
+
     let oldPass = document.getElementById('oldPass').value.toString();
     let newPass = document.getElementById('newPass').value.toString();
     let reNewPass = document.getElementById('reNewPass').value.toString();
 
-    if (oldPass !== currentPassword) {
+    const userId = localStorage.getItem('userId');
+
+    let matched = false;
+    const hashedPassword = accountApi.getPasswordById(userId);
+
+    // bcrypt.hash(oldPass, 10, (err, response) => {
+    //   console.log(response);
+    //   console.log(hashedPassword);
+    //   if (hashedPassword == response) {
+    //     matched = true;
+    //   }});
+
+    if (matched) {
+      console.log('Passwords match! User authenticated successfully.');
+      if (newPass !== reNewPass) {
+        setMessage('Mật khẩu mới không khớp');
+        setOpenErrorAlert(true);
+      } else {
+        setMessage('Đổi mật khẩu thành công');
+        setOpenSuccessAlert(true);
+      }
+    } else {
       setMessage('Mật khẩu cũ không đúng');
       setOpenErrorAlert(true);
-    } else if (newPass !== reNewPass) {
-      setMessage('Mật khẩu mới không khớp');
-      setOpenErrorAlert(true);
-    } else {
-      setMessage('Đổi mật khẩu thành công');
-      setOpenSuccessAlert(true);
-    }
-  }
+    } 
+  } 
+
   return (
     <Box
       component="form"
       sx={{
         '& .MuiTextField-root': { m: 1, width: '50vw' },
+        'height': '962px',
+        'flex-shrink': '0',
+        'border-radius': '20px',
+        'background': '#FFF',
+        'box-shadow': '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
       }}
       noValidate
       autoComplete="off"

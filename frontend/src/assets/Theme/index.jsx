@@ -10,9 +10,12 @@ const MainTheme = createTheme({
     secondary: {
       main: lightBlue[200],
     },
-    button: {
-      main: colors.lightGreen[500],
-    }
+    ochre: {
+      main: '#E3D026',
+      light: '#E9DB5D',
+      dark: '#A29415',
+      contrastText: '#242105',
+    },
   },
 });
 

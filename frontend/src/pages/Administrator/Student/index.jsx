@@ -19,20 +19,20 @@ import { studentApi } from "../../../apis"
 import { gradeApi } from "../../../apis"
 import Dropdown from "../../../components/share/Dropdown"
 import { toast } from "react-toastify"
-import AddStudentModal from "../../../components/share/addStudentModal"
+import OnlyAddStudentModal from "../../../components/share/OnlyAddStudentModal"
 
 const Student = () => {
   const [classCount, setClassCount] = useState("")
   const [studentCount, setStudentCount] = useState("")
   const [data, setData] = useState("")
-  let [isOpenAddStudentModal, setOpenAddStudentModal] = useState(false)
+  let [isOpenOnlyAddStudentModal, setOpenOnlyAddStudentModal] = useState(false)
 
-  function openAddStudentModal() {
-    setOpenAddStudentModal(true)
+  function openOnlyAddStudentModal() {
+    setOpenOnlyAddStudentModal(true)
   }
 
-  function closeAddStudentModal() {
-    setOpenAddStudentModal(false)
+  function closeOnlyAddStudentModal() {
+    setOpenOnlyAddStudentModal(false)
   }
 
   function maxGradeYear(year) {
@@ -389,15 +389,14 @@ const Student = () => {
         </div>
         <div className="flex">
           <Dropdown selectYear={selectYear} setSelectYear={setSelectYear}></Dropdown>
-          <button onClick={() => openAddStudentModal()} className="animate-fade-right ml-8 flex items-center justify-center rounded-full bg-backgroundplus px-2 py-1 text-center align-middle shadow-md">
+          <button onClick={() => openOnlyAddStudentModal()} className="animate-fade-right ml-8 flex items-center justify-center rounded-full bg-backgroundplus px-2 py-1 text-center align-middle shadow-md">
             <p className="text-center font-Manrope text-xl font-semibold text-white">Thêm học sinh</p>
           </button>
-          {isOpenAddStudentModal && (
-            <AddStudentModal
-              isOpenAddStudent = {isOpenAddStudentModal}
-              closeAddStudentModal={closeAddStudentModal}
-              classId={1}
-            ></AddStudentModal>
+          {isOpenOnlyAddStudentModal && (
+            <OnlyAddStudentModal 
+            isOpenOnlyAddStudentModal = {isOpenOnlyAddStudentModal}
+            closeOnlyAddStudentModal = {closeOnlyAddStudentModal}
+            ></OnlyAddStudentModal>
           )}
         </div>
       </div>

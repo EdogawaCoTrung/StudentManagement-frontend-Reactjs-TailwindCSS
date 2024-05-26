@@ -1,12 +1,11 @@
 import { httpClient } from "../services"
+import { jwtDecode } from 'jwt-decode';
+
 
 class AccountApi {
     async getPasswordById(id) {
         const res = await httpClient.get(`/account/${id}`)
-        console.log(res)
-        let password = res.data.password;
-        console.log(password)
-        return password;
+        return res.password;
     }
 }
 
