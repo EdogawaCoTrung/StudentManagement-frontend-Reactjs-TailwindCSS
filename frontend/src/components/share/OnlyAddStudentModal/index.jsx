@@ -41,7 +41,7 @@ const classes = [
     name: "12a3",
   },
 ]
-const gender = [
+const genders = [
   {
     id: 1,
     name: "Nam",
@@ -56,8 +56,26 @@ const gender = [
 export default function OnlyAddStudentModal({ isOpenOnlyAddStudentModal, closeOnlyAddStudentModal }) {
 
   const [dateValue, setDateValue] = React.useState(dayjs('2022-04-17'));
+  const [name, setNameValue] = React.useState("");
+  const [grade, setGradeValue] = React.useState("10");
+  const [className, setClassValue] = React.useState("10a1");
+  const [gender, setGenderValue] = React.useState("Nam");
+  const [address, setAddressValue] = React.useState("");
+  const [parentName, setParentValue] = React.useState("");
+  const [parentPhone, setPhoneValue] = React.useState("");
+
+  const handleSaveClick = () => {
+    const day = dateValue.date();
+    const month = dateValue.month();
+    const year = dateValue.year();
+    console.log(day, month, year);
+  };
+  const handleDiscardClick = () => {
+      // Handle discard logic here
+  };
 
   return (
+
     <Transition appear show={isOpenOnlyAddStudentModal} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={closeOnlyAddStudentModal}>
         <Transition.Child
@@ -83,7 +101,8 @@ export default function OnlyAddStudentModal({ isOpenOnlyAddStudentModal, closeOn
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="flex h-fit w-auto transform flex-col rounded-2xl bg-white p-6 text-left font-Manrope shadow-xl transition-all">
+              <Dialog.Panel 
+              className="flex h-fit w-auto transform flex-col rounded-2xl bg-white p-6 text-left font-Manrope shadow-xl transition-all">
                 <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
                   Thêm học sinh
                 </Dialog.Title>
@@ -92,6 +111,8 @@ export default function OnlyAddStudentModal({ isOpenOnlyAddStudentModal, closeOn
                   <div className="flex flex-col items-center">
                     <TextField
                       required
+                      value={name}
+                      onChange={(newValue) => setNameValue(newValue.target.value)}
                       id="outlined-required"
                       label="Họ tên"
                       defaultValue=""
@@ -103,6 +124,8 @@ export default function OnlyAddStudentModal({ isOpenOnlyAddStudentModal, closeOn
                     />
                     <div className="flex">
                       <TextField
+                        value={grade}
+                        onChange={(newValue) => setGradeValue(newValue.target.value)}
                         id="outlined-select-concurrency"
                         select
                         label="Khối"
@@ -119,6 +142,8 @@ export default function OnlyAddStudentModal({ isOpenOnlyAddStudentModal, closeOn
                         ))}
                       </TextField>
                       <TextField
+                        value={className}
+                        onChange={(newValue) => setClassValue(newValue.target.value)}
                         id="outlined-select-concurrency"
                         select
                         label="Lớp"
@@ -139,13 +164,16 @@ export default function OnlyAddStudentModal({ isOpenOnlyAddStudentModal, closeOn
                 </div>
                 <div>
                   <LocalizationProvider dateAdapter={AdapterDayjs} >
-                    <DatePicker sx={{marginLeft: '38%', width: "10vw"}} 
+                    <DatePicker 
+                      sx={{marginLeft: '38%', width: "10vw"}} 
                       label="Ngày sinh" 
                       value={dateValue}
                       onChange={(newValue) => setDateValue(newValue)} 
                       defaultValue={dayjs('2022-04-17')} />
                   </LocalizationProvider>
                   <TextField
+                    value={gender}
+                    onChange={(newValue) => setGenderValue(newValue.target.value)}
                     id="outlined-select-concurrency"
                     select
                     label="Giới tính"
@@ -155,7 +183,7 @@ export default function OnlyAddStudentModal({ isOpenOnlyAddStudentModal, closeOn
                       marginLeft: 2,
                     }}
                   >
-                    {gender.map((option) => (
+                    {genders.map((option) => (
                       <MenuItem key={option.id} value={option.name}>
                         {option.name}
                       </MenuItem>
@@ -164,6 +192,8 @@ export default function OnlyAddStudentModal({ isOpenOnlyAddStudentModal, closeOn
                 </div>
                 <div>
                   <TextField
+                    value={address}
+                    onChange={(newValue) => setAddressValue(newValue.target.value)}
                     required
                     id="outlined-required"
                     label="Địa chỉ"
@@ -178,6 +208,8 @@ export default function OnlyAddStudentModal({ isOpenOnlyAddStudentModal, closeOn
                 </div>
                 <div>
                   <TextField
+                    value={parentName}
+                    onChange={(newValue) => setParentValue(newValue.target.value)}
                     required
                     id="outlined-required"
                     label="Họ tên phụ huynh"
@@ -190,6 +222,8 @@ export default function OnlyAddStudentModal({ isOpenOnlyAddStudentModal, closeOn
                     }}
                   />
                   <TextField
+                    value={parentPhone}
+                    onChange={(newValue) => setPhoneValue(newValue.target.value)}
                     required
                     id="outlined-required"
                     label="Số điện thoại phụ huynh"
@@ -203,10 +237,12 @@ export default function OnlyAddStudentModal({ isOpenOnlyAddStudentModal, closeOn
                   />
                 </div>
                 <div className="flex justify-end">
-                  <Button variant="contained" color="success">
+                  <Button variant="contained" color="success"
+                    onClick={handleSaveClick()}>
                     Lưu
                   </Button>
-                  <Button variant="contained" color="error" sx={{ marginLeft: 4, marginRight: 4 }}>
+                  <Button variant="contained" color="error" sx={{ marginLeft: 4, marginRight: 4 }}
+                    onClick={handleDiscardClick()}>
                     Hủy
                   </Button>
                 </div>
