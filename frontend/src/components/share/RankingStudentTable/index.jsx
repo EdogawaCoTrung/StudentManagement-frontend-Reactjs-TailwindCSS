@@ -12,24 +12,9 @@ import EditIcon from "@mui/icons-material/Edit"
 import DeleteIcon from "@mui/icons-material/Delete"
 import FormatListBulletedRoundedIcon from "@mui/icons-material/FormatListBulletedRounded"
 import InfoRoundedIcon from "@mui/icons-material/InfoRounded"
-import React, { useMemo, useState } from "react"
+import React, { useMemo } from "react"
 import PropTypes from "prop-types"
-import Paper from "@mui/material/Paper"
-import InputBase from "@mui/material/InputBase"
-import SearchIcon from "@mui/icons-material/Search"
-const StudentTable = ({ data }) => {
-  const [columnFilters, setColumnFilters] = useState([])
-  const searchInput = columnFilters.find((f) => f.id === "studentname")?.value || ""
-  const onFilterChange = (id, value) =>
-    setColumnFilters((prev) =>
-      prev
-        .filter((f) => f.id !== id)
-        .concat({
-          id,
-          value,
-        }),
-    )
-  console.log("columnFilter: ", columnFilters)
+const RankingStudentTable = ({ data }) => {
   const columnHelper = createColumnHelper()
   // eslint-disable-next-line
   const columnDef = useMemo(
@@ -161,60 +146,23 @@ const StudentTable = ({ data }) => {
   const tableInstance = useReactTable({
     columns: columnDef,
     data: finalData,
-    state: {
-      columnFilters,
-    },
     getSortedRowModel: getSortedRowModel(),
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     columnResizeMode: "onChange",
   })
   return (
-    <div className="flex flex-col">
-      <Paper
-        component="form"
-        sx={{
-          p: "2px 4px",
-          display: "flex",
-          alignItems: "center",
-          width: 400,
-          marginBottom: "8px",
-        }}
-      >
-        <IconButton sx={{ p: "10px", background: "#13313D", color: "white" }} aria-label="menu">
-          <SearchIcon />
-        </IconButton>
-        <InputBase
-          sx={{
-            ml: 2,
-            flex: 1,
-            borderWidth: 0,
-            border: "none",
-            borderRadius: 0,
-            ":active": {
-              border: "none",
-              borderWidth: 0,
-            },
-            ":focus": {
-              border: "none",
-              borderWidth: 0,
-            },
-            appearance: "none",
-          }}
-          value={searchInput}
-          onChange={(e) => onFilterChange("studentname", e.target.value)}
-          placeholder="Search..."
-        />
-      </Paper>
-      <table className="h-full w-full border-collapse font-Manrope">
-        <thead>
+    <div className="mt-4 flex flex-col rounded-xl bg-white">
+      <p className="p-4 font-Manrope text-base font-semibold text-black">Top 10 Students</p>
+      <table className="mx-8 h-full border-collapse font-Manrope">
+        <thead className="sticky z-10 h-fit">
           {tableInstance.getHeaderGroups().map((header) => {
             return (
-              <tr className="sticky z-10 h-fit" key={header.id}>
+              <tr key={header.id}>
                 {header.headers.map((column) => {
                   return (
                     <th
-                      className="text-1xl sticky border-b-2 pb-2 text-left font-semibold tracking-wide"
+                      className="text-1xl sticky bg-headerTable p-2 text-left font-semibold tracking-wide"
                       key={column.id}
                       colSpan={column.colSpan}
                     >
@@ -234,7 +182,7 @@ const StudentTable = ({ data }) => {
             )
           })}
         </thead>
-        <tbody>
+        <tbody className="animate-fade-down">
           {tableInstance.getRowModel().rows.map((row) => {
             return (
               <tr key={row.id}>
@@ -253,8 +201,8 @@ const StudentTable = ({ data }) => {
     </div>
   )
 }
-StudentTable.propTypes = {
+RankingStudentTable.propTypes = {
   data: PropTypes.any,
   // columnFilters: PropTypes.any,
 }
-export default StudentTable
+export default RankingStudentTable

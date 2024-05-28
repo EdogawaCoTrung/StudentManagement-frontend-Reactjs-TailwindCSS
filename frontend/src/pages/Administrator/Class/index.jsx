@@ -120,8 +120,8 @@ export default function Class() {
     <Box className="z-0 mx-14 mt-10 flex flex-col justify-center" sx={{ flexGrow: 1 }}>
       <div className="flex flex-row items-center justify-between">
         <div className="flex flex-row items-center">
-          <div className="animate-duration-[625ms] animate-fade-right flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md">
-            <p className="text-center text-2xl font-semibold text-gradeTitle">Khối 10</p>
+          <div className="bg-gradeTitle2 flex animate-fade-right items-center justify-center rounded-full px-7 py-2 text-center align-middle shadow-md animate-duration-[625ms]">
+            <p className="text-center text-base font-semibold text-white">Khối 10</p>
           </div>
           <IconButton onClick={() => openAddClassModal(10)} size="large">
             <AddCircleRoundedIcon className="animate-jump-in text-backgroundplus" fontSize="large" />
@@ -164,8 +164,8 @@ export default function Class() {
           ))}
       </div>
       <div className="flex flex-row items-center">
-        <div className="animate-duration-[625ms] animate-fade-right flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md">
-          <p className="text-center text-2xl font-semibold text-gradeTitle">Khối 11</p>
+        <div className="bg-gradeTitle2 flex animate-fade-right items-center justify-center rounded-full px-7 py-2 text-center align-middle shadow-md animate-duration-[625ms]">
+          <p className="text-center text-base font-semibold text-white">Khối 11</p>
         </div>
         <IconButton onClick={() => openAddClassModal(11)} size="large">
           <AddCircleRoundedIcon className="animate-jump-in text-backgroundplus" fontSize="large" />
@@ -206,8 +206,8 @@ export default function Class() {
           ))}{" "}
       </div>
       <div className="flex flex-row items-center">
-        <div className="animate-duration-[625ms] animate-fade-right flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md">
-          <p className="text-center text-2xl font-semibold text-gradeTitle">Khối 12</p>
+        <div className="bg-gradeTitle2 flex animate-fade-right items-center justify-center rounded-full px-7 py-2 text-center align-middle shadow-md animate-duration-[625ms]">
+          <p className="text-center text-base font-semibold text-white">Khối 12</p>
         </div>
         <IconButton onClick={() => openAddClassModal(12)} size="large">
           <AddCircleRoundedIcon className="animate-jump-in text-backgroundplus" fontSize="large" />

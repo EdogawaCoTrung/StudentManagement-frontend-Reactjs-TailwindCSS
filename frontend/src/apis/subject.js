@@ -1,11 +1,11 @@
 import { httpClient } from "../services"
-class SummaryApi {
-  async createSummaries(id, data) {
-    const res = await httpClient.post(`/summaries/add-student/${id}`, data)
+class SubjectApi {
+  async createSubject(data) {
+    const res = await httpClient.post("/subjects/add-subject", data)
     return res
   }
-  async getSummariesById(id, data) {
-    const res = await httpClient.get(`/summaries/my-transcript/${id}`, data)
+  async getAllSubject() {
+    const res = await httpClient.get("/subjects")
     return res
   }
   //   async createClass(data) {
@@ -67,5 +67,5 @@ class SummaryApi {
   //     }
   //   }
 }
-const summaryApi = new SummaryApi()
-export default summaryApi
+const subjectApi = new SubjectApi()
+export default subjectApi

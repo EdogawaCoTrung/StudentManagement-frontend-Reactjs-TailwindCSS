@@ -19,10 +19,15 @@ import { studentApi } from "../../../apis"
 import { gradeApi } from "../../../apis"
 import Dropdown from "../../../components/share/Dropdown"
 import { toast } from "react-toastify"
+import { useNavigate } from "react-router-dom"
 const Student = () => {
+  const navigate = useNavigate()
   const [classCount, setClassCount] = useState("")
-  const [studentCount, setStudentCount] = useState("")
+  const [studentCount, setStudentCount] = useState([])
   const [data, setData] = useState("")
+  const HandleClick = (id) => {
+    navigate(`/summaries/my-transcript/${id}`)
+  }
   function maxGradeYear(year) {
     console.log("goi maxGradeYear")
     let maxYear = year[0].year
@@ -150,7 +155,7 @@ const Student = () => {
           return filterYear == yearNumber
         },
       }),
-      columnHelper.accessor("id", {
+      columnHelper.accessor((row) => `${row.studentId}`, {
         id: "action",
         header: "Thao tac",
         cell: (info) => (
@@ -158,8 +163,7 @@ const Student = () => {
             <IconButton
               size="large"
               onClick={() => {
-                console.log(`View clicked on row with id: ${info.getValue()}`)
-                // Add your view logic here
+                HandleClick(info.getValue())
               }}
             >
               <FormatListBulletedRoundedIcon
@@ -290,7 +294,7 @@ const Student = () => {
                 )
               })
             }
-            className={`  ${isActive ? "bg-gradeTitle" : "bg-white"} animate-delay-[200ms] animate-jump-in  group mr-8 flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md transition-all  `}
+            className={`  ${isActive ? "bg-gradeTitle" : "bg-white"} group mr-8  flex animate-jump-in items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md transition-all animate-delay-[200ms]  `}
           >
             <p
               className={`text-center font-Manrope text-xl font-semibold text-gradeTitle ${isActive ? "text-white" : "text-gradeTitle"} `}
@@ -318,7 +322,7 @@ const Student = () => {
                 )
               })
             }
-            className={`  ${isActive2 ? "bg-gradeTitle" : "bg-white"} animate-delay-[350ms] animate-jump-in  group mr-8 flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md transition-all `}
+            className={`  ${isActive2 ? "bg-gradeTitle" : "bg-white"} group mr-8  flex animate-jump-in items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md transition-all animate-delay-[350ms] `}
           >
             <p
               className={`text-center font-Manrope text-xl font-semibold text-gradeTitle ${isActive2 ? "text-white" : "text-gradeTitle"} `}
@@ -346,7 +350,7 @@ const Student = () => {
                 )
               })
             }
-            className={`  ${isActive3 ? "bg-gradeTitle" : "bg-white"} animate-delay-[450ms] animate-jump-in group mr-8 flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md transition-all `}
+            className={`  ${isActive3 ? "bg-gradeTitle" : "bg-white"} group mr-8 flex animate-jump-in items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md transition-all animate-delay-[450ms] `}
           >
             <p
               className={`text-center font-Manrope text-xl font-semibold text-gradeTitle ${isActive3 ? "text-white" : "text-gradeTitle"} `}
@@ -368,16 +372,16 @@ const Student = () => {
       </div>
       <div className="mb-11 flex flex-row items-center justify-between align-middle">
         <div className="flex">
-          <div className="animate-delay-[450ms] animate-fade-right mr-8 flex h-16 items-center justify-center rounded-lg bg-blurblue px-5 py-1 text-center align-middle shadow-md">
+          <div className="mr-8 flex h-16 animate-fade-right items-center justify-center rounded-lg bg-blurblue px-5 py-1 text-center align-middle shadow-md animate-delay-[450ms]">
             <p className="text-center font-Manrope text-xl font-medium text-black">Số học sinh: {studentCount}</p>
           </div>
-          <div className="animate-delay-[450ms] animate-fade-right flex h-16 items-center justify-center rounded-lg bg-blurblue px-5 py-1 text-center align-middle shadow-md">
+          <div className="flex h-16 animate-fade-right items-center justify-center rounded-lg bg-blurblue px-5 py-1 text-center align-middle shadow-md animate-delay-[450ms]">
             <p className="text-center font-Manrope text-xl font-medium text-black">Số lớp: {classCount}</p>
           </div>
         </div>
         <div className="flex">
           <Dropdown selectYear={selectYear} setSelectYear={setSelectYear}></Dropdown>
-          <button className="animate-fade-right ml-8 flex items-center justify-center rounded-full bg-backgroundplus px-2 py-1 text-center align-middle shadow-md">
+          <button className="ml-8 flex animate-fade-right items-center justify-center rounded-full bg-backgroundplus px-2 py-1 text-center align-middle shadow-md">
             <p className="text-center font-Manrope text-xl font-semibold text-white">Thêm học sinh</p>
           </button>
         </div>

@@ -28,7 +28,7 @@ export default function OfficerTuition() {
   }
   useEffect(() => {
     fetchAllYear()
-  }, [])
+  }, [checkReLoading])
   const fetchAllTuitionByYear = async () => {
     let tuitions = await tuitionApi.getAllTuitionByYear(selectYear)
     if (tuitions.EC == 1) {

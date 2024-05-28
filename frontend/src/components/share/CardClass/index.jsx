@@ -18,13 +18,13 @@ function CardClass({ nameclass, openModal, checkId, setCheckId }) {
     //     top: 0,
     //   }}
     // >
-    <div className="animate-fade-down mx-9 my-3 h-20 w-28">
+    <div className="mx-9 my-3 h-20 w-28 animate-fade-down">
       <Button
         onClick={handleOnClick}
         variant="contained"
         className=" h-20 w-28"
         style={{
-          backgroundColor: "#F1F8FF",
+          backgroundColor: "#e9fce8",
           borderRadius: "20%",
           color: "black",
           zIndex: 0,
@@ -36,7 +36,10 @@ function CardClass({ nameclass, openModal, checkId, setCheckId }) {
           fontWeight: "bold",
         }}
       >
-        {nameclass}
+        <div className="flex flex-col">
+          <p className="text-2xl">{nameclass}</p>
+          <p className="font-normal lowercase">Siso: 40</p>
+        </div>
       </Button>
       {/* <IconButton
         sx={{

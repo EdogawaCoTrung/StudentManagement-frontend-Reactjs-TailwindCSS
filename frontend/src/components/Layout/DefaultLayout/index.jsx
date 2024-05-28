@@ -16,7 +16,7 @@ export default function DefaultLayout({ children }) {
         <Grid item xs={false} sm={4} lg={2} sx={{ display: { xs: "none", sm: "block" } }}>
           {role == 1 ? <SideBar /> : role == 4 ? <StudentSidebar /> : role == 3 ? <OfficerSidebar /> : <div></div>}
         </Grid>
-        <Grid sx={{ overflow: "hidden" }} item xs={12} sm={8} lg={10} elevation={6}>
+        <Grid sx={{ overflow: "hidden", background: "#fafafa" }} item xs={12} sm={8} lg={10} elevation={6}>
           {children}
         </Grid>
       </Grid>
