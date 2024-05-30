@@ -4,6 +4,10 @@ class SummaryApi {
     const res = await httpClient.post(`/summaries/add-student/${id}`, data)
     return res
   }
+  async getSummariesById(id, data) {
+    const res = await httpClient.get(`/summaries/my-transcript/${id}`, data)
+    return res
+  }
   //   async createClass(data) {
   //     const res = await httpClient.post("/class/create-class", data)
   //     return res

@@ -111,7 +111,7 @@ export default function StudentSidebar() {
                 ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-black transition-all"
                 : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-white transition-all hover:ml-4"
             }
-            to={routes.Summaries}
+            to={routes.StudentSummaries}
           >
             <div className="flex items-center">
               <MdOutlineRuleFolder />

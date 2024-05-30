@@ -39,10 +39,10 @@ const StudentTable = ({ data }) => {
         cell: (info) => <span>{info.row.index + 1}</span>,
         header: "STT",
       }),
-      {
-        accessorKey: "id",
+      columnHelper.accessor((row) => `${row.student.id}`, {
+        id: "id",
         header: "Id",
-      },
+      }),
       //<span>{info.cell.getValue().studentname}</span>
       columnHelper.accessor((row) => `${row.student.studentname}`, {
         id: "studentname",
@@ -181,12 +181,12 @@ const StudentTable = ({ data }) => {
           marginBottom: "8px",
         }}
       >
-        <IconButton sx={{ p: "10px" }} aria-label="menu">
+        <IconButton sx={{ p: "10px", background: "#13313D", color: "white" }} aria-label="menu">
           <SearchIcon />
         </IconButton>
         <InputBase
           sx={{
-            ml: 1,
+            ml: 2,
             flex: 1,
             borderWidth: 0,
             border: "none",
