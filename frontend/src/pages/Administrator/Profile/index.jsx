@@ -1,3 +1,8 @@
+import UpdatePasswordModal from "../../../components/share/UpdatePasswordModal"
+
 export default function AdministratorProfile() {
-  return <div>AdministratorProfile</div>
+  return <div>
+    <UpdatePasswordModal 
+    ></UpdatePasswordModal>
+  </div>
 }

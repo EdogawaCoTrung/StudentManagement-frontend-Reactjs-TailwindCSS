@@ -29,7 +29,9 @@ export default function StudentTuition() {
     fetchAllYear()
   }, [])
   const fetchAllTuitionByYear = async () => {
+    console.log("VAOHAm")
     let tuitions = await tuitionApi.getAllTuitionByYear(selectYear)
+    console.log("TUITIONS", tuitions.DT)
     if (tuitions.EC == 1) {
       toast.error(tuitions.EM)
     } else if (tuitions.EC != 1) {
@@ -39,13 +41,13 @@ export default function StudentTuition() {
   useEffect(() => {
     console.log("VAOFETCHNGOAIIF")
     if (selectYear != "") {
-      console.log("VAOFETCH")
+      console.log("VAOFETCHNE")
       fetchAllTuitionByYear()
     }
   }, [selectYear, checkReLoading])
   return (
     <div className="mx-14 mb-0 flex h-screen flex-col overflow-hidden p-0">
-      <div className="animate-fade-up mt-10 flex items-center justify-between">
+      <div className="mt-10 flex animate-fade-up items-center justify-between">
         <p className="font-Manrope text-2xl font-bold">Học phí</p>
       </div>
       <div className="relative mt-10">

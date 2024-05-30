@@ -19,12 +19,24 @@ import { studentApi } from "../../../apis"
 import { gradeApi } from "../../../apis"
 import Dropdown from "../../../components/share/Dropdown"
 import { toast } from "react-toastify"
+import OnlyAddStudentModal from "../../../components/share/OnlyAddStudentModal"
+
 import { useNavigate } from "react-router-dom"
 const Student = () => {
   const navigate = useNavigate()
   const [classCount, setClassCount] = useState("")
   const [studentCount, setStudentCount] = useState([])
   const [data, setData] = useState("")
+  let [isOpenOnlyAddStudentModal, setOpenOnlyAddStudentModal] = useState(false)
+
+  function openOnlyAddStudentModal() {
+    setOpenOnlyAddStudentModal(true)
+  }
+
+  function closeOnlyAddStudentModal() {
+    setOpenOnlyAddStudentModal(false)
+  }
+
   const HandleClick = (id) => {
     navigate(`/summaries/my-transcript/${id}`)
   }
@@ -381,9 +393,18 @@ const Student = () => {
         </div>
         <div className="flex">
           <Dropdown selectYear={selectYear} setSelectYear={setSelectYear}></Dropdown>
-          <button className="ml-8 flex animate-fade-right items-center justify-center rounded-full bg-backgroundplus px-2 py-1 text-center align-middle shadow-md">
+          <button
+            onClick={() => openOnlyAddStudentModal()}
+            className="ml-8 flex animate-fade-right items-center justify-center rounded-full bg-backgroundplus px-2 py-1 text-center align-middle shadow-md"
+          >
             <p className="text-center font-Manrope text-xl font-semibold text-white">Thêm học sinh</p>
           </button>
+          {isOpenOnlyAddStudentModal && (
+            <OnlyAddStudentModal
+              isOpenOnlyAddStudentModal={isOpenOnlyAddStudentModal}
+              closeOnlyAddStudentModal={closeOnlyAddStudentModal}
+            ></OnlyAddStudentModal>
+          )}
         </div>
       </div>
       <div className="h-96 overflow-auto">

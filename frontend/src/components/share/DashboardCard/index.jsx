@@ -4,9 +4,11 @@ import { PieChart, Pie, Cell, Tooltip } from "recharts"
 export default function DashboardCard() {
   const data = [
     {
+      name: "NumberHSG",
       number: 6, //HSG
     },
     {
+      name: "TotalHS",
       number: 10, //TOTALHS
     },
   ]
