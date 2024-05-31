@@ -10,6 +10,7 @@ export default function StudentTuition() {
   let [selectYear, setSelectYear] = useState("")
   let [data, setData] = useState("")
   let [checkReLoading, setCheckReLoading] = useState(false)
+  const id = localStorage.getItem("studentId")
   function maxGradeYear(year) {
     console.log("goi maxGradeYear")
     let maxYear = year[0].year
@@ -30,8 +31,8 @@ export default function StudentTuition() {
   }, [])
   const fetchAllTuitionByYear = async () => {
     console.log("VAOHAm")
-    let tuitions = await tuitionApi.getAllTuitionByYear(selectYear)
-    console.log("TUITIONS", tuitions.DT)
+    let tuitions = await tuitionApi.getTuitionById(id)
+    console.log("TUITIONS", tuitions)
     if (tuitions.EC == 1) {
       toast.error(tuitions.EM)
     } else if (tuitions.EC != 1) {

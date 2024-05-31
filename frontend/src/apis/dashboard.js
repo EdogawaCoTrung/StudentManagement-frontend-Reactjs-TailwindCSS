@@ -1,34 +1,13 @@
 import { httpClient } from "../services"
-class TuitionApi {
-  async createTuition(data) {
-    const res = await httpClient.post("/tuitions/add-tuitions", data)
+class DashboardApi {
+  async getBestStudentInEachGrade(year) {
+    const res = await httpClient.get(`statistics/best-students/${year}`)
     return res
   }
-  async getAllTuitionByYear(year) {
-    const res = await httpClient.get(`/tuitions/in-year/${year}`)
+  async getExcellentStudent(year) {
+    const res = await httpClient.get(`statistics/count-excellent-students/${year}`)
     return res
   }
-  async updateTuiTionFee(id) {
-    try {
-      const res = await httpClient.put(`/tuitions/pay/${id}`)
-      return res
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  async getTuitionById(studentId) {
-    try {
-      const res = await httpClient.get(`/tuitions/get-all/${studentId}`)
-      console.log("RESTUITION", res)
-      return res
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  //   async createClass(data) {
-  //     const res = await httpClient.post("/class/create-class", data)
-  //     return res
-  //   }
   //   async getAllStudentByClassId(id) {
   //     const res = await httpClient.get(`/class/get-student/${id}`)
   //     return res
@@ -57,6 +36,16 @@ class TuitionApi {
   //       console.log(error)
   //     }
   //   }
+  //   async updateOwner(currentGroupId, newOwnerId) {
+  //     try {
+  //       const res = await httpClient.patch(`/groups/${currentGroupId}/change-owner`, {
+  //         newOwnerId: newOwnerId,
+  //       })
+  //       return res
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
   //   async approveGroup(groupId) {
   //     try {
   //       const res = await httpClient.patch(`/groups/${groupId}/approve`)
@@ -74,5 +63,5 @@ class TuitionApi {
   //     }
   //   }
 }
-const tuitionApi = new TuitionApi()
-export default tuitionApi
+const dashboardApi = new DashboardApi()
+export default dashboardApi
