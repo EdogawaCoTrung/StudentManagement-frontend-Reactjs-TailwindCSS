@@ -4,8 +4,10 @@ import { jwtDecode } from 'jwt-decode';
 
 class AccountApi {
     async getPasswordById(id) {
-        const res = await httpClient.get(`/account/${id}`)
-        return res.password;
+        const res = await httpClient.get(`/account/${id}`);
+        password = res.password;
+        return password;
+       
     }
 }
 
