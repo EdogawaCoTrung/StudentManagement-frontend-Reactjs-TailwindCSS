@@ -33,6 +33,7 @@ export default function DialogView({ isOpen, closeModal, nameclass, classId, ope
   const fetchAllStudentByClassId = async () => {
     let getData = await classApi.getAllStudentByClassId(classId)
     setData(getData.DT)
+    console.log("HOCAINH",getData.DT)
   }
   useEffect(() => {
     console.log("CHAY VAO USEEFFECT")

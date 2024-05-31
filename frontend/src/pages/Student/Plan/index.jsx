@@ -2,7 +2,7 @@ import { Tab } from "@headlessui/react"
 import { useEffect, useState } from "react"
 import { PiStudentBold } from "react-icons/pi"
 import { SiGoogleclassroom } from "react-icons/si"
-import StudentTuitionTable from "../../../components/share/StudentTuitionTable"
+import OneStudentTuitionTable from "../../../components/share/OneStudentTuitionTable"
 import { gradeApi } from "../../../apis"
 import { tuitionApi } from "../../../apis"
 import { toast } from "react-toastify"
@@ -10,6 +10,7 @@ export default function StudentTuition() {
   let [selectYear, setSelectYear] = useState("")
   let [data, setData] = useState("")
   let [checkReLoading, setCheckReLoading] = useState(false)
+  const id = localStorage.getItem("studentId")
   function maxGradeYear(year) {
     console.log("goi maxGradeYear")
     let maxYear = year[0].year
@@ -30,7 +31,7 @@ export default function StudentTuition() {
   }, [])
   const fetchAllTuitionByYear = async () => {
     console.log("VAOHAm")
-    let tuitions = await tuitionApi.getAllTuitionByYear(selectYear)
+    let tuitions = await tuitionApi.getTuitionById(id)
     console.log("TUITIONS", tuitions.DT)
     if (tuitions.EC == 1) {
       toast.error(tuitions.EM)
@@ -73,11 +74,11 @@ export default function StudentTuition() {
           </Tab.List>
           <Tab.Panels>
             <Tab.Panel>
-              <StudentTuitionTable
+              <OneStudentTuitionTable
                 data={data}
                 checkReLoading={checkReLoading}
                 setCheckReLoading={setCheckReLoading}
-              ></StudentTuitionTable>
+              ></OneStudentTuitionTable>
             </Tab.Panel>
             <Tab.Panel>Content 2</Tab.Panel>
           </Tab.Panels>
