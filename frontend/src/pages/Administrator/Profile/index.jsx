@@ -24,7 +24,7 @@ export default function AdministratorProfile() {
           aria-label="wrapped label tabs example"
           centered
           sx={{
-            backgroundColor: 'lightskyblue',
+            backgroundColor: 'whitesmoke',
             marginLeft: '20vw',
             marginRight: '20vw',
             borderRadius: '20px',
@@ -37,7 +37,7 @@ export default function AdministratorProfile() {
             sx = {{
               fontSize: '20px',
               fontWeight: 'medium',
-              color: "white",
+              color: "black",
               textTransform: 'none',
             }}
           />
@@ -48,7 +48,7 @@ export default function AdministratorProfile() {
             sx = {{
               fontSize: '20px',
               fontWeight: 'medium',
-              color: "white",
+              color: "black",
               textTransform: 'none',
             }}
           />
