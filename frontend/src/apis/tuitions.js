@@ -16,6 +16,14 @@ class TuitionApi {
       console.log(error)
     }
   }
+  async getTuitionById(id) {
+    try {
+      const res = await httpClient.get(`/tuitions/get-all/${id}`)
+      return res
+    } catch (error) {
+      console.log(error)
+    }
+  }
   //   async createClass(data) {
   //     const res = await httpClient.post("/class/create-class", data)
   //     return res
