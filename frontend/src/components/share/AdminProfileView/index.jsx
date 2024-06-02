@@ -2,7 +2,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import CloseIcon from '@mui/icons-material/Close';
@@ -10,7 +9,6 @@ import bcrypt from 'bcryptjs';
 import { httpClient } from "../../../services";
 import { jwtDecode } from "jwt-decode";
 import Avatar from "@mui/material/Avatar"
-
 
 
 
@@ -49,7 +47,7 @@ export default function ViewProfile() {
     >
       <div className='flex h-fit w-auto transform flex-col rounded-2xl bg-white p-6 text-left font-Manrope shadow-xl transition-all'>
         <div className="h-fit w-auto flex flex-row">
-          <Avatar src="/student.png" alt="Student" sx={{ height: 150, width: 150, border: "solid" }} />
+          <Avatar src="/student.png" alt="Student" sx={{ height: 150, width: 150, border: "solid", marginLeft: "10px" }} />
           <div className='flex flex-col'>
             <h4 className="pl-10" style={{ fontSize: "30px", marginTop: "20px" }}>{name}</h4>
             <h3 className="pl-10" style={{ fontSize: "24px", marginTop: "20px" }}>{className}</h3>
@@ -69,20 +67,13 @@ export default function ViewProfile() {
             <p className="pl-10" style={{ fontSize: "20px", marginTop: "20px" }}>{`Địa chỉ: ${address}`}</p>
             <p className="pl-10" style={{ fontSize: "20px", marginTop: "20px" }}>{`Tên phụ huynh: ${parentName}`}</p>
             <p className="pl-10" style={{ fontSize: "20px", marginTop: "20px" }}>{`Số điện thoại phụ huynh: ${parentPhone}`}</p>
-            
+            <div className="p-10">
+            </div>
           </div>
           <div>
             
           </div>
-          <div style={{marginTop: 20, }}>
-            
           </div>
-        <div>
-        
-         
-        </div>
-
-      </div>
     </Box>
   );
 }
