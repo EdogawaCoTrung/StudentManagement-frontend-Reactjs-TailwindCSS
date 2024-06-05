@@ -1,6 +1,4 @@
 
-import { accountApi } from '../../../apis';
-
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -10,103 +8,66 @@ import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import CloseIcon from '@mui/icons-material/Close';
 import bcrypt from 'bcryptjs';
-
+import { httpClient } from "../../../services";
+import { jwtDecode } from "jwt-decode";
+import {useAuth} from "../../../hooks";
+import { toast } from "react-toastify"
 
 export default function ValidationTextFields() {
-  const [openErrorAlert, setOpenErrorAlert] = React.useState(false);
-  const [openSuccessAlert, setOpenSuccessAlert] = React.useState(false);
-  const [message, setMessage] = React.useState('');
+  const { logIn } = useAuth();
 
+  async function handleClick() {
 
-  function handleClick() {
+    const token = localStorage.getItem("accessToken")
+    const decode = jwtDecode(token)
+    const oldPass = document.getElementById('oldPass').value.toString();
+    const newPass = document.getElementById('newPass').value.toString();
+    const reNewPass = document.getElementById('reNewPass').value.toString();
+    let username = "";
 
+    username = `${decode.payload.username}`;
+    console.log(username.toString());
 
-    let oldPass = document.getElementById('oldPass').value.toString();
-    let newPass = document.getElementById('newPass').value.toString();
-    let reNewPass = document.getElementById('reNewPass').value.toString();
+    try {
+      await logIn({
+        username: username,
+        password: oldPass,
+      })
+      const role = localStorage.getItem("role")
+      console.log("ROLELOGIN", role);
 
-    const userId = localStorage.getItem('userId');
-
-    let matched = false;
-    const hashedPassword = accountApi.getPasswordById(userId);
-
-    // bcrypt.hash(oldPass, 10, (err, response) => {
-    //   console.log(response);
-    //   console.log(hashedPassword);
-    //   if (hashedPassword == response) {
-    //     matched = true;
-    //   }});
-
-    if (matched) {
-      console.log('Passwords match! User authenticated successfully.');
       if (newPass !== reNewPass) {
-        setMessage('Mật khẩu mới không khớp');
-        setOpenErrorAlert(true);
-      } else {
-        setMessage('Đổi mật khẩu thành công');
-        setOpenSuccessAlert(true);
-      }
-    } else {
-      setMessage('Mật khẩu cũ không đúng');
-      setOpenErrorAlert(true);
-    } 
+        toast.error('Mật khẩu mới không khớp');
+        } else {
+          toast.success('Đổi mật khẩu thành công');
+        }
+    } catch (error) {
+      console.log(error);
+      toast.error("Mật khẩu cũ không đúng")
+    }
   } 
 
   return (
     <Box
       component="form"
       sx={{
-        '& .MuiTextField-root': { m: 1, width: '50vw' },
+        '& .MuiTextField-root': { m: 1, width: '40vw' },
         'height': '962px',
         'flex-shrink': '0',
         'border-radius': '20px',
         'background': '#FFF',
         'box-shadow': '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+        'alignItems': 'center',
+        'paddingLeft': '24%',
+        'paddingRight': '24%',
+        'paddingTop': '40px',
+        'paddingBottom': '40px'
       }}
       noValidate
       autoComplete="off"
     >
-      <Collapse in={openErrorAlert}>
-        <Alert
-          severity="error"
-          action={
-            <IconButton
-              aria-label="close"
-              color="inherit"
-              size="small"
-              onClick={() => {
-                setOpenErrorAlert(false);
-              }}
-            >
-              <CloseIcon fontSize="inherit" />
-            </IconButton>
-          }
-          sx={{ mb: 2 }}
-        >
-          {message}
-        </Alert>
-        </Collapse>
-        <Collapse in={openSuccessAlert}>
-        <Alert
-          severity="success"
-          action={
-            <IconButton
-              aria-label="close"
-              color="inherit"
-              size="small"
-              onClick={() => {
-                setOpenSuccessAlert(false);
-              }}
-            >
-              <CloseIcon fontSize="inherit" />
-            </IconButton>
-          }
-          sx={{ mb: 2 }}
-        >
-          {message}
-        </Alert>
-      </Collapse>
-      <div>
+      <div className="flex h-fit transform flex-col rounded-2xl bg-white text-left p-6 font-Manrope shadow-xl transition-all">
+        <div>
         <TextField
           className='error outlined-error fullWidth'
           id="oldPass"
@@ -127,16 +88,18 @@ export default function ValidationTextFields() {
             type="password"
             defaultValue="Nhập lại mật khẩu mới"
         />
-      </div>
+        </div>
       <Button variant="contained" onClick={handleClick} color="primary" className='cursor-pointer float-right'
       sx={{
-        marginRight: '33vw',
+        marginLeft: '90%',
         marginTop: 2,
         padding: '10px 20px',
-        borderRadius: '5px',
+        borderRadius: '10px',
         fontSize: '14px',
         fontWeight: 'bold',
+        width: '10px',
       }}>Lưu</Button>
+      </div>
     </Box>
   );
 }
