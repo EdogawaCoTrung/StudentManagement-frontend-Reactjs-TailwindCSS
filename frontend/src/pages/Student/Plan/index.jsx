@@ -2,7 +2,7 @@ import { Tab } from "@headlessui/react"
 import { useEffect, useState } from "react"
 import { PiStudentBold } from "react-icons/pi"
 import { SiGoogleclassroom } from "react-icons/si"
-import StudentTuitionTable from "../../../components/share/StudentTuitionTable"
+import OneStudentTuitionTable from "../../../components/share/OneStudentTuitionTable"
 import { gradeApi } from "../../../apis"
 import { tuitionApi } from "../../../apis"
 import { toast } from "react-toastify"
@@ -32,7 +32,7 @@ export default function StudentTuition() {
   const fetchAllTuitionByYear = async () => {
     console.log("VAOHAm")
     let tuitions = await tuitionApi.getTuitionById(id)
-    console.log("TUITIONS", tuitions)
+    console.log("TUITIONS", tuitions.DT)
     if (tuitions.EC == 1) {
       toast.error(tuitions.EM)
     } else if (tuitions.EC != 1) {
@@ -74,11 +74,11 @@ export default function StudentTuition() {
           </Tab.List>
           <Tab.Panels>
             <Tab.Panel>
-              <StudentTuitionTable
+              <OneStudentTuitionTable
                 data={data}
                 checkReLoading={checkReLoading}
                 setCheckReLoading={setCheckReLoading}
-              ></StudentTuitionTable>
+              ></OneStudentTuitionTable>
             </Tab.Panel>
             <Tab.Panel>Content 2</Tab.Panel>
           </Tab.Panels>

@@ -24,19 +24,22 @@ const RankingStudentTable = ({ data }) => {
         cell: (info) => <span>{info.row.index + 1}</span>,
         header: "STT",
       }),
-      columnHelper.accessor((row) => `${row.student.id}`, {
+      columnHelper.accessor((row) => `${row.id}`, {
         id: "id",
         header: "Id",
       }),
       //<span>{info.cell.getValue().studentname}</span>
-      columnHelper.accessor((row) => `${row.student.studentname}`, {
+      columnHelper.accessor((row) => `${row.studentname}`, {
         id: "studentname",
         header: "Ho va Ten",
       }),
-      columnHelper.accessor((row) => `${row.student.gender}`, {
-        id: "gender",
-        header: "Gioi tinh",
-        cell: (info) => <div>{info.getValue() === "1" ? <span>Nam</span> : <span>Nữ</span>}</div>,
+      columnHelper.accessor((row) => `${row.gpa}`, {
+        id: "gpa",
+        header: "GPA",
+      }),
+      columnHelper.accessor((row) => `${row.classname}`, {
+        id: "classname",
+        header: "Lớp",
       }),
       columnHelper.accessor("id", {
         id: "action",

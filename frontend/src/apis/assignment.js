@@ -1,29 +1,17 @@
 import { httpClient } from "../services"
-class DashboardApi {
-  async getBestStudentInEachGrade(year) {
-    const res = await httpClient.get(`/statistics/best-students/${year}`)
+class AssignmentApi {
+  async getAllAssignmentByYear(year) {
+    const res = await httpClient.get(`/assignment/all-assigment/${year}`)
     return res
   }
-  async getExcellentStudent(year) {
-    const res = await httpClient.get(`/statistics/count-excellent-students/${year}`)
+  async createAssignment(data) {
+    const res = await httpClient.post("/assignment/create-assignment", data)
     return res
   }
-  async getCompare3year(year) {
-    const res = await httpClient.get(`/statistics/compare-three-year/${year}`)
+  async deleteAssignment() {
+    const res = await httpClient.delete("/assignment/delete")
     return res
   }
-  async getTop10Students(year) {
-    const res = await httpClient.get(`/statistics/top-ten-students/${year}`)
-    return res
-  }
-  async getNumberOfStudentsWithType(year) {
-    const res = await httpClient.get(`/statistics/number-of-student-by-title/${year}`)
-    return res
-  }
-  //   async getAllStudentByClassId(id) {
-  //     const res = await httpClient.get(`/class/get-student/${id}`)
-  //     return res
-  //   }
   //   async getAllUnapprovedGroup() {
   //     const res = await httpClient.get("/groups/unapproved")
   //     return res
@@ -75,5 +63,5 @@ class DashboardApi {
   //     }
   //   }
 }
-const dashboardApi = new DashboardApi()
-export default dashboardApi
+const assignmentApi = new AssignmentApi()
+export default assignmentApi

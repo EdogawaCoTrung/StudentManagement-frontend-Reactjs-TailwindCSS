@@ -1,7 +1,8 @@
 import React, { PureComponent } from "react"
 import { students } from "./data"
 import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts"
-export default function BarchartAdmin() {
+import PropTypes from "prop-types"
+export default function BarchartAdmin({ compare3year }) {
   console.log("CHAYCHART")
   return (
     <div className="flex flex-col rounded-xl bg-white">
@@ -11,7 +12,7 @@ export default function BarchartAdmin() {
       <BarChart
         width={600}
         height={300}
-        data={students}
+        data={compare3year}
         margin={{
           top: 5,
           right: 30,
@@ -19,7 +20,7 @@ export default function BarchartAdmin() {
         }}
         barSize={30}
       >
-        <XAxis dataKey="type" axisLine={false} padding={{ left: 10 }} />
+        <XAxis dataKey="Year" axisLine={false} padding={{ left: 10 }} />
         <YAxis axisLine={false} tickLine={false} padding={{ bottom: 10, top: 10 }} />
         <Tooltip cursor={{ fill: "transparent" }} />
         <Legend iconType="circle" iconSize={10} verticalAlign="top" align="right" />
@@ -29,13 +30,35 @@ export default function BarchartAdmin() {
           isAnimationActive={true}
           barSize={24}
           radius={[4, 4, 4, 4]}
-          dataKey="numberThisYear"
+          dataKey="NumberHSG"
           animationBegin={0}
           animationDuration={1500}
           animationEasing="ease"
         />
         <Bar
-          dataKey="numberLastYear"
+          fill="#5D7B6F"
+          activeBar={false}
+          isAnimationActive={true}
+          barSize={24}
+          radius={[4, 4, 4, 4]}
+          dataKey="NumberHSK"
+          animationBegin={0}
+          animationDuration={1500}
+          animationEasing="ease"
+        />
+        <Bar
+          fill="#A4C3A2"
+          activeBar={false}
+          isAnimationActive={true}
+          barSize={24}
+          radius={[4, 4, 4, 4]}
+          dataKey="NumberHSTB"
+          animationBegin={0}
+          animationDuration={1500}
+          animationEasing="ease"
+        />
+        <Bar
+          dataKey="NumberHSY"
           fill="#B0D4B8"
           activeBar={false}
           isAnimationActive={true}
@@ -48,4 +71,8 @@ export default function BarchartAdmin() {
       </BarChart>
     </div>
   )
+}
+BarchartAdmin.propTypes = {
+  compare3year: PropTypes.any,
+  // columnFilters: PropTypes.any,
 }

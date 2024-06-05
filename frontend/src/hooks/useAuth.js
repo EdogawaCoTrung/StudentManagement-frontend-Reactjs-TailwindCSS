@@ -47,7 +47,7 @@ export function useAuth() {
       console.log("DECODE", decodeToken)
       localStorage.setItem("role", role)
       if (payload.studentId != null) {
-        localStorage.setItem("studentId", role)
+        localStorage.setItem("studentId", payload.studentId)
       }
       console.log("TYPEROLE", typeof role)
       setAccessToken(accessToken)

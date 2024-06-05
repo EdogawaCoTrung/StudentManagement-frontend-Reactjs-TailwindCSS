@@ -39,9 +39,6 @@ export default function AddStudentModal({ isOpenAddStudent, closeAddStudentModal
   console.log("CHECKVALUEMANG", checkValue)
   let fetchAllStudentNotInClass = async () => {
     let res = await studentApi.getAllStudentNotInClass(classId)
-    if (res.EC == 1) {
-      toast.error(res.EM)
-    }
     setData(res.DT)
   }
   useEffect(() => {

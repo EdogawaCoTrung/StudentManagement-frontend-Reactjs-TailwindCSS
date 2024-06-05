@@ -1,29 +1,9 @@
 import { httpClient } from "../services"
-class DashboardApi {
-  async getBestStudentInEachGrade(year) {
-    const res = await httpClient.get(`/statistics/best-students/${year}`)
+class TeacherApi {
+  async getAllTeacherBySubjectId(id) {
+    const res = await httpClient.get(`/teacher/subject/${id}`)
     return res
   }
-  async getExcellentStudent(year) {
-    const res = await httpClient.get(`/statistics/count-excellent-students/${year}`)
-    return res
-  }
-  async getCompare3year(year) {
-    const res = await httpClient.get(`/statistics/compare-three-year/${year}`)
-    return res
-  }
-  async getTop10Students(year) {
-    const res = await httpClient.get(`/statistics/top-ten-students/${year}`)
-    return res
-  }
-  async getNumberOfStudentsWithType(year) {
-    const res = await httpClient.get(`/statistics/number-of-student-by-title/${year}`)
-    return res
-  }
-  //   async getAllStudentByClassId(id) {
-  //     const res = await httpClient.get(`/class/get-student/${id}`)
-  //     return res
-  //   }
   //   async getAllUnapprovedGroup() {
   //     const res = await httpClient.get("/groups/unapproved")
   //     return res
@@ -75,5 +55,5 @@ class DashboardApi {
   //     }
   //   }
 }
-const dashboardApi = new DashboardApi()
-export default dashboardApi
+const teacherApi = new TeacherApi()
+export default teacherApi

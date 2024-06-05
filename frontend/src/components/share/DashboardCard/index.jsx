@@ -1,22 +1,25 @@
 import { PiStudent } from "react-icons/pi"
+import PropTypes from "prop-types"
 // import PropTypes from "prop-types"
 import { PieChart, Pie, Cell, Tooltip } from "recharts"
-export default function DashboardCard() {
+export default function DashboardCard({ NumberHSG, NumberHSTotal, grade }) {
+  console.log("NumberHSGPIE", NumberHSG)
   const data = [
     {
       name: "NumberHSG",
-      number: 6, //HSG
+      number: NumberHSG, //HSG
     },
     {
       name: "TotalHS",
-      number: 10, //TOTALHS
+      number: NumberHSTotal, //TOTALHS
     },
   ]
+  console.log("DATACHART", data[0])
   const colors = ["#e4e8ef", "#475be8"]
   return (
     <div className="mr-3 flex items-center justify-between rounded-xl bg-white p-4">
       <div className="flex flex-col">
-        <p className="font-Manrope text-xl font-semibold">Student Grade 10</p>
+        <p className="font-Manrope text-xl font-semibold">Student Grade {grade}</p>
         <div className="mt-2 flex items-center">
           <PiStudent />
           <p className="font-Manrope font-bold">1000</p>
@@ -47,4 +50,9 @@ export default function DashboardCard() {
       </PieChart>
     </div>
   )
+}
+DashboardCard.propTypes = {
+  NumberHSG: PropTypes.any,
+  NumberHSTotal: PropTypes.any,
+  grade: PropTypes.any,
 }

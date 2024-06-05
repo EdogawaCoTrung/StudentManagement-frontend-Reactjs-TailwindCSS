@@ -45,7 +45,7 @@ export default function Dropdown({ selectYear, setSelectYear }) {
   //   }
   // }, [data, loading])
   return (
-    <div className="animate-fade-right z-10 w-fit">
+    <div className="z-10 w-fit animate-fade-right">
       <Listbox value={selectYear} onChange={setSelectYear}>
         <div className="relative mt-1">
           <Listbox.Button className="bg-Background1 relative w-32 cursor-default rounded-lg py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">

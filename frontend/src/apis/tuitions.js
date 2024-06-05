@@ -16,10 +16,9 @@ class TuitionApi {
       console.log(error)
     }
   }
-  async getTuitionById(studentId) {
+  async getTuitionById(id) {
     try {
-      const res = await httpClient.get(`/tuitions/get-all/${studentId}`)
-      console.log("RESTUITION", res)
+      const res = await httpClient.get(`/tuitions/get-all/${id}`)
       return res
     } catch (error) {
       console.log(error)
