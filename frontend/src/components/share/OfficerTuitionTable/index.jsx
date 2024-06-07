@@ -48,11 +48,10 @@ const OfficerTuitionTable = ({ data, checkReLoading, setCheckReLoading }) => {
   const columnHelper = createColumnHelper()
   const columnDef1 = useMemo(
     () => [
-      // columnHelper.accessor("id", {
-      //   id: "S.No",
-      //   cell: (info) => <Checkbox value={info.getValue()}></Checkbox>,
-      //   header: <Checkbox></Checkbox>,
-      // }),
+      columnHelper.accessor((row) => `${row.id}`, {
+        id: "S.No",
+        header: "Id",
+      }),
       //<span>{info.cell.getValue().studentname}</span>
       columnHelper.accessor((row) => `${row.student.studentname}`, {
         id: "studentname",
@@ -60,10 +59,10 @@ const OfficerTuitionTable = ({ data, checkReLoading, setCheckReLoading }) => {
         enableColumnFilter: true,
         filterFn: "includesString",
       }),
-      columnHelper.accessor((row) => `${row.student.summaries[0].class.classname}`, {
-        id: "classname",
-        header: "Lop",
-      }),
+      // columnHelper.accessor((row) => `${row.student.summaries[0].class.classname}`, {
+      //   id: "classname",
+      //   header: "Lop",
+      // }),
       columnHelper.accessor((row) => `${row.month}`, {
         id: "month",
         header: "Tháng",
@@ -141,7 +140,7 @@ const OfficerTuitionTable = ({ data, checkReLoading, setCheckReLoading }) => {
         ),
       }),
     ],
-    [],
+    [checkReLoading],
   )
   const finalData1 = React.useMemo(() => data, [data])
   const tableInstance1 = useReactTable({

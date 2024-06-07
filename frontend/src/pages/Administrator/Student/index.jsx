@@ -54,8 +54,8 @@ const Student = () => {
     let uniqueClass = new Set()
     let res = await studentApi.getAllStudent()
     res.DT.map((student) => {
-      uniqueStudent.add(student.studentId)
-      uniqueClass.add(student.classId)
+      uniqueStudent.add(student.id)
+      uniqueClass.add(student.class)
     })
     setClassCount(uniqueClass.size)
     setStudentCount(uniqueStudent.size)
@@ -119,7 +119,7 @@ const Student = () => {
   const columnHelper = createColumnHelper()
   const columnDef = useMemo(
     () => [
-      columnHelper.accessor("id", {
+      columnHelper.accessor((row) => `${row.id}`, {
         id: "S.No",
         header: "Id",
       }),
@@ -139,43 +139,43 @@ const Student = () => {
         ),
         filterFn: "includesString",
       }),
-      // columnHelper.accessor((row) => `${row.class.grade.gradename}`, {
-      //   id: "gradename",
-      //   header: "Khối",
-      //   enableColumnFilter: true,
-      //   filterFn: (row, columnId, filterGrades) => {
-      //     const grade = row.getValue(columnId)
-      //     const gradeNumber = parseInt(grade, 10)
-      //     console.log("GRADEID: ", typeof gradeNumber)
-      //     console.log("filterGrades", filterGrades)
-      //     console.log("filterGradesInClude", filterGrades.includes(gradeNumber))
-      //     return filterGrades.includes(gradeNumber)
-      //   },
-      // }),
-      // columnHelper.accessor((row) => `${row.class.classname}`, {
-      //   id: "classname",
-      //   header: "Lop",
-      // }),
+      columnHelper.accessor((row) => `${row.grade}`, {
+        id: "gradename",
+        header: "Khối",
+        enableColumnFilter: true,
+        filterFn: (row, columnId, filterGrades) => {
+          const grade = row.getValue(columnId)
+          const gradeNumber = parseInt(grade, 10)
+          console.log("GRADEID: ", typeof gradeNumber)
+          console.log("filterGrades", filterGrades)
+          console.log("filterGradesInClude", filterGrades.includes(gradeNumber))
+          return filterGrades.includes(gradeNumber)
+        },
+      }),
+      columnHelper.accessor((row) => `${row.class}`, {
+        id: "classname",
+        header: "Lop",
+      }),
       columnHelper.accessor((row) => `${row.gender}`, {
         id: "gender",
         header: "Gioi tinh",
         cell: (info) => <div>{info.getValue() === "1" ? <span>Nam</span> : <span>Nữ</span>}</div>,
       }),
-      // columnHelper.accessor((row) => `${row.class.grade.year}`, {
-      //   id: "year",
-      //   header: "Năm",
-      //   enableColumnFilter: true,
-      //   filterFn: (row, columnId, filterYear) => {
-      //     const year = row.getValue(columnId)
-      //     const yearNumber = parseInt(year, 10)
-      //     console.log("filterYear", filterYear)
-      //     console.log("GIATRIROW", year)
-      //     console.log("YEARID: ", filterYear[0])
-      //     // console.log("filterYear", filterYear.includes(yearNumber))
-      //     return filterYear == yearNumber
-      //   },
-      // }),
-      columnHelper.accessor((row) => `${row.studentId}`, {
+      columnHelper.accessor((row) => `${row.year}`, {
+        id: "year",
+        header: "Năm",
+        enableColumnFilter: true,
+        filterFn: (row, columnId, filterYear) => {
+          const year = row.getValue(columnId)
+          const yearNumber = parseInt(year, 10)
+          console.log("filterYear", filterYear)
+          console.log("GIATRIROW", year)
+          console.log("YEARID: ", filterYear[0])
+          // console.log("filterYear", filterYear.includes(yearNumber))
+          return filterYear == yearNumber
+        },
+      }),
+      columnHelper.accessor((row) => `${row.id}`, {
         id: "action",
         header: "Thao tac",
         cell: (info) => (

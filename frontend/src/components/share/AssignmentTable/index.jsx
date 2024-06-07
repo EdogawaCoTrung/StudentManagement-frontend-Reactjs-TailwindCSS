@@ -113,7 +113,7 @@ const AssignmentTable = ({ data }) => {
     columnResizeMode: "onChange",
   })
   return (
-    <div className="flex flex-col">
+    <div className=" flex h-screen flex-col">
       <Paper
         component="form"
         sx={{
@@ -149,50 +149,52 @@ const AssignmentTable = ({ data }) => {
           placeholder="Search..."
         />
       </Paper>
-      <table className="h-full w-full border-collapse font-Manrope">
-        <thead>
-          {tableInstance.getHeaderGroups().map((header) => {
-            return (
-              <tr className="sticky z-10 h-fit" key={header.id}>
-                {header.headers.map((column) => {
-                  return (
-                    <th
-                      className="text-1xl sticky border-b-2 pb-2 text-left font-semibold tracking-wide"
-                      key={column.id}
-                      colSpan={column.colSpan}
-                    >
-                      {flexRender(column.column.columnDef.header, column.getContext())}
-                      {column.id !== "action" && column.column.getCanSort() && (
-                        <IconButton
-                          sx={{ marginLeft: "5px", borderWidth: "0px" }}
-                          onClick={column.column.getToggleSortingHandler()}
-                        >
-                          <SwapVertIcon sx={{ fontSize: "20px" }}></SwapVertIcon>
-                        </IconButton>
-                      )}
-                    </th>
-                  )
-                })}
-              </tr>
-            )
-          })}
-        </thead>
-        <tbody>
-          {tableInstance.getRowModel().rows.map((row) => {
-            return (
-              <tr key={row.id}>
-                {row.getVisibleCells().map((cell) => {
-                  return (
-                    <td className="p-5 pl-0 font-normal" key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </td>
-                  )
-                })}
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
+      <div className="h-96 overflow-auto">
+        <table className="h-full w-full border-collapse overflow-auto font-Manrope">
+          <thead>
+            {tableInstance.getHeaderGroups().map((header) => {
+              return (
+                <tr className="sticky z-10 h-fit" key={header.id}>
+                  {header.headers.map((column) => {
+                    return (
+                      <th
+                        className="text-1xl sticky border-b-2 pb-2 text-left font-semibold tracking-wide"
+                        key={column.id}
+                        colSpan={column.colSpan}
+                      >
+                        {flexRender(column.column.columnDef.header, column.getContext())}
+                        {column.id !== "action" && column.column.getCanSort() && (
+                          <IconButton
+                            sx={{ marginLeft: "5px", borderWidth: "0px" }}
+                            onClick={column.column.getToggleSortingHandler()}
+                          >
+                            <SwapVertIcon sx={{ fontSize: "20px" }}></SwapVertIcon>
+                          </IconButton>
+                        )}
+                      </th>
+                    )
+                  })}
+                </tr>
+              )
+            })}
+          </thead>
+          <tbody>
+            {tableInstance.getRowModel().rows.map((row) => {
+              return (
+                <tr key={row.id}>
+                  {row.getVisibleCells().map((cell) => {
+                    return (
+                      <td className="p-5 pl-0 font-normal" key={cell.id}>
+                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      </td>
+                    )
+                  })}
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }

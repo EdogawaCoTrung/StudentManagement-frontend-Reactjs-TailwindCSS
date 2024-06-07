@@ -4,8 +4,12 @@ class SummaryApi {
     const res = await httpClient.post(`/summaries/add-student/${id}`, data)
     return res
   }
-  async getSummariesById(id, data) {
-    const res = await httpClient.get(`/summaries/my-transcript/${id}`, data)
+  async getSummariesById(id, gradename) {
+    const res = await httpClient.get(`/summaries/all-year/${id}/${gradename}`)
+    return res
+  }
+  async getSummariesByIdAndGrade(id, gradename, term) {
+    const res = await httpClient.get(`/summaries/${id}/${gradename}/${term}`)
     return res
   }
   //   async createClass(data) {

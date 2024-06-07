@@ -10,18 +10,31 @@ import { gradeApi } from "../../../apis"
 import { tuitionApi } from "../../../apis"
 import { toast } from "react-toastify"
 import "../../../components/Layout/animations/loadingPage.css"
+import QrCodeIcon from "@mui/icons-material/QrCode"
+import ScannerModal from "../../../components/share/ScannerModal"
 export default function Tuition() {
   let [selectYear, setSelectYear] = useState("")
   let [data, setData] = useState("")
   let [checkReLoading, setCheckReLoading] = useState(false)
   let [isOpenAddTuitionModal, setIsOpenAddTuitionModal] = useState(false)
+  let [isOpenScannerModal, setIsOpenScannerModal] = useState(false)
+  const [tabSelect, setTabSelect] = useState(1)
+  const handleListTabClick = (index) => {
+    setTabSelect(index)
+  }
   let [loading, setLoading] = useState(false)
   console.log("CHECKRELOAD", checkReLoading)
+  function closeScannerModal() {
+    setIsOpenScannerModal(false)
+  }
   function closeAddTuitionModal() {
     setIsOpenAddTuitionModal(false)
   }
   function openAddTuitionModal() {
     setIsOpenAddTuitionModal(true)
+  }
+  function openScannerModal() {
+    setIsOpenScannerModal(true)
   }
   function maxGradeYear(year) {
     console.log("goi maxGradeYear")
@@ -56,12 +69,12 @@ export default function Tuition() {
       console.log("VAOFETCH")
       fetchAllTuitionByYear()
     }
-  }, [selectYear, checkReLoading])
+  }, [selectYear, checkReLoading, isOpenScannerModal])
   return (
     <div className="mx-14 mb-0 flex h-screen flex-col overflow-hidden p-0">
       <div className="mt-10 flex items-center justify-between">
         <p className="animate-fade-up font-Manrope text-2xl font-bold">Học phí</p>
-        <div className="animate-fade-up">
+        <div className="flex animate-fade-up items-center">
           <Button
             onClick={openAddTuitionModal}
             variant="contained"
@@ -70,7 +83,19 @@ export default function Tuition() {
           >
             Add
           </Button>
+          <Button
+            sx={{ marginLeft: "12px" }}
+            onClick={openScannerModal}
+            variant="contained"
+            color="info"
+            startIcon={<QrCodeIcon></QrCodeIcon>}
+          >
+            QR
+          </Button>
         </div>
+        {isOpenScannerModal == true && (
+          <ScannerModal isOpenScannerModal={isOpenScannerModal} closeScannerModal={closeScannerModal}></ScannerModal>
+        )}
         <AddTuitionModal
           isOpenAddTuitionModal={isOpenAddTuitionModal}
           closeAddTuitionModal={closeAddTuitionModal}
@@ -83,19 +108,57 @@ export default function Tuition() {
           <Tab.List className="absolute flex w-full">
             <Tab
               autoFocus
-              className="group z-0 flex h-14 w-fit flex-row rounded-none bg-gray-500 px-3 transition-all duration-300 focus:-translate-y-2 focus:bg-backgroundplus active:-translate-y-2 active:bg-backgroundplus"
+              onClick={() => handleListTabClick(1)}
+              className={
+                tabSelect == 1
+                  ? "group z-0 flex h-14 w-fit -translate-y-2 flex-row rounded-none bg-backgroundplus px-3 transition-all duration-300 focus:-translate-y-2"
+                  : "group z-0 flex h-14 w-fit flex-row rounded-none bg-gray-500 px-3 transition-all duration-300"
+              }
             >
               <div className="mt-2 flex flex-row items-center justify-center  align-top">
-                <PiStudentBold className="mr-1 text-base font-semibold transition-none duration-0 group-focus:text-white" />
-                <p className="group-text font-Manrope text-base font-semibold transition-none duration-0 group-focus:text-white">
+                <PiStudentBold
+                  className={
+                    tabSelect == 1
+                      ? "mr-1 text-base font-semibold text-white transition-none duration-0"
+                      : "mr-1 text-base font-semibold transition-none duration-0"
+                  }
+                />
+                <p
+                  className={
+                    tabSelect == 1
+                      ? "group-text font-Manrope text-base font-semibold text-white transition-none duration-0"
+                      : "group-text font-Manrope text-base font-semibold transition-none duration-0"
+                  }
+                >
                   Học sinh
                 </p>
               </div>
             </Tab>
-            <Tab className="group z-0 flex h-14 w-fit flex-row rounded-none bg-gray-500 px-3 transition-all duration-300 focus:-translate-y-2 focus:bg-backgroundplus active:-translate-y-2 active:bg-backgroundplus">
+            <Tab
+              onClick={() => handleListTabClick(2)}
+              className={
+                tabSelect == 2
+                  ? "group z-0 flex h-14 w-fit -translate-y-2 flex-row rounded-none bg-backgroundplus px-3 transition-all duration-300 focus:-translate-y-2"
+                  : "group z-0 flex h-14 w-fit flex-row rounded-none bg-gray-500 px-3 transition-all duration-300"
+              }
+            >
               <div className="mt-2 flex flex-row items-center justify-center  align-top">
-                <SiGoogleclassroom className="mr-1 text-base font-semibold duration-0 group-focus:text-white" />
-                <p className="group-text font-Manrope text-base font-semibold duration-0 group-focus:text-white">Lớp</p>
+                <SiGoogleclassroom
+                  className={
+                    tabSelect == 2
+                      ? "mr-1 text-base font-semibold text-white transition-none duration-0"
+                      : "mr-1 text-base font-semibold transition-none duration-0"
+                  }
+                />
+                <p
+                  className={
+                    tabSelect == 2
+                      ? "group-text font-Manrope text-base font-semibold text-white transition-none duration-0"
+                      : "group-text font-Manrope text-base font-semibold transition-none duration-0"
+                  }
+                >
+                  Lớp
+                </p>
               </div>
             </Tab>
           </Tab.List>
