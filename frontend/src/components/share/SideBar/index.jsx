@@ -18,6 +18,7 @@ import { Button } from "@mui/material"
 import LogoutIcon from "@mui/icons-material/Logout"
 import { useAuth } from "../../../hooks"
 import { IoBookOutline } from "react-icons/io5"
+import { MdOutlineAssignmentInd } from "react-icons/md"
 const defaultTheme = MainTheme
 
 export default function Sidebar() {
@@ -37,11 +38,11 @@ export default function Sidebar() {
   return (
     <div style={{ position: "fixed" }}>
       <ThemeProvider theme={defaultTheme}>
-        <div className=" flex h-screen w-[220] flex-col content-center border-r-2 bg-sidebar p-3 align-middle shadow">
+        <div className=" flex h-screen w-[220] flex-col content-center border-r-2 bg-sidebar p-2 align-middle shadow">
           <div style={{ display: "flex", alignItems: "center", marginBottom: "5px" }}>
             <img src={LOGO} alt="Logo" style={{ width: "50px", height: "50px", padding: "3px" }} />
             <Typography
-              variant="h5"
+              variant="h6"
               component="div"
               sx={{
                 flexGrow: 1,
@@ -63,8 +64,8 @@ export default function Sidebar() {
             onClick={() => handleListItemClick(0)}
             className={
               selectedIndex == 0
-                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-black transition-all"
-                : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-white transition-all hover:ml-4"
+                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-2 font-Manrope text-xl font-semibold text-black transition-all"
+                : "content-center space-x-3 rounded-md p-2 font-Manrope text-xl font-semibold text-white transition-all hover:ml-4"
             }
             to={routes.Dashboard}
           >
@@ -78,8 +79,8 @@ export default function Sidebar() {
             onClick={() => handleListItemClick(1)}
             className={
               selectedIndex == 1
-                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-black transition-all"
-                : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-white transition-all hover:ml-4"
+                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-2 font-Manrope text-xl font-semibold text-black transition-all"
+                : "content-center space-x-3 rounded-md p-2 font-Manrope text-xl font-semibold text-white transition-all hover:ml-4"
             }
             to={routes.Class}
           >
@@ -93,8 +94,8 @@ export default function Sidebar() {
             onClick={() => handleListItemClick(2)}
             className={
               selectedIndex == 2
-                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-black transition-all"
-                : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-white transition-all hover:ml-4"
+                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-2 font-Manrope text-xl font-semibold text-black transition-all"
+                : "content-center space-x-3 rounded-md p-2 font-Manrope text-xl font-semibold text-white transition-all hover:ml-4"
             }
             to={routes.Student}
           >
@@ -108,8 +109,8 @@ export default function Sidebar() {
             onClick={() => handleListItemClick(3)}
             className={
               selectedIndex == 3
-                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-black transition-all"
-                : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-white transition-all hover:ml-4"
+                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-2 font-Manrope text-xl font-semibold text-black transition-all"
+                : "content-center space-x-3 rounded-md p-2 font-Manrope text-xl font-semibold text-white transition-all hover:ml-4"
             }
             to={routes.Teacher}
           >
@@ -123,8 +124,23 @@ export default function Sidebar() {
             onClick={() => handleListItemClick(4)}
             className={
               selectedIndex == 4
-                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-black transition-all"
-                : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-white transition-all hover:ml-4"
+                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-2 font-Manrope text-xl font-semibold text-black transition-all"
+                : "content-center space-x-3 rounded-md p-2 font-Manrope text-xl font-semibold text-white transition-all hover:ml-4"
+            }
+            to={routes.Assignment}
+          >
+            <div className="flex items-center">
+              <MdOutlineAssignmentInd />
+              <span className="ml-3">Assignment</span>
+            </div>
+          </NavLink>
+          <NavLink
+            key={5}
+            onClick={() => handleListItemClick(5)}
+            className={
+              selectedIndex == 5
+                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-2 font-Manrope text-xl font-semibold text-black transition-all"
+                : "content-center space-x-3 rounded-md p-2 font-Manrope text-xl font-semibold text-white transition-all hover:ml-4"
             }
             to={routes.Tuition}
           >
@@ -134,12 +150,27 @@ export default function Sidebar() {
             </div>
           </NavLink>
           <NavLink
-            key={5}
-            onClick={() => handleListItemClick(5)}
+            key={6}
+            onClick={() => handleListItemClick(6)}
             className={
-              selectedIndex == 5
-                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-black transition-all"
-                : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-white transition-all hover:ml-4"
+              selectedIndex == 6
+                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-2 font-Manrope text-xl font-semibold text-black transition-all"
+                : "content-center space-x-3 rounded-md p-2 font-Manrope text-xl font-semibold text-white transition-all hover:ml-4"
+            }
+            to={routes.Subject}
+          >
+            <div className="flex items-center">
+              <IoBookOutline />
+              <span className="ml-3">Subject</span>
+            </div>
+          </NavLink>
+          <NavLink
+            key={7}
+            onClick={() => handleListItemClick(7)}
+            className={
+              selectedIndex == 7
+                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-2 font-Manrope text-xl font-semibold text-black transition-all"
+                : "content-center space-x-3 rounded-md p-2 font-Manrope text-xl font-semibold text-white transition-all hover:ml-4"
             }
             to={routes.Regulations}
           >
@@ -149,33 +180,18 @@ export default function Sidebar() {
             </div>
           </NavLink>
           <NavLink
-            key={6}
-            onClick={() => handleListItemClick(6)}
+            key={8}
+            onClick={() => handleListItemClick(8)}
             className={
-              selectedIndex == 6
-                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-black transition-all"
-                : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-white transition-all hover:ml-4"
+              selectedIndex == 8
+                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-2 font-Manrope text-xl font-semibold text-black transition-all"
+                : "content-center space-x-3 rounded-md p-2 font-Manrope text-xl font-semibold text-white transition-all hover:ml-4"
             }
             to={routes.AdministratorProfile}
           >
             <div className="flex items-center">
               <RiProfileLine />
               <span className="ml-3">Profile</span>
-            </div>
-          </NavLink>
-          <NavLink
-            key={7}
-            onClick={() => handleListItemClick(7)}
-            className={
-              selectedIndex == 7
-                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-black transition-all"
-                : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-white transition-all hover:ml-4"
-            }
-            to={routes.Subject}
-          >
-            <div className="flex items-center">
-              <IoBookOutline />
-              <span className="ml-3">Subject</span>
             </div>
           </NavLink>
           <div className=" mx-auto my-2 h-2 w-11/12 border-t-2 border-gray-400 "></div>

@@ -1,26 +1,17 @@
 import "./index.scss"
-import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts"
-const totalStudent = 4000
-const data = [
-  {
-    name: "HSG",
-    percentValues: 1500,
-  },
-  {
-    name: "HSK",
-    percentValues: 2000,
-  },
-  {
-    name: "HSTB",
-    percentValues: 500,
-  },
-  {
-    name: "HSY",
-    percentValues: 100,
-  },
-]
-
-const AreaProgressChart = () => {
+import { BarChart, Bar, XAxis, YAxis, Tooltip } from "recharts"
+import PropTypes from "prop-types"
+import { useEffect } from "react"
+import { studentApi } from "../../../apis"
+const AreaProgressChart = ({ numberByTitle }) => {
+  let totalStudent = 1
+  const getTotalStudent = async () => {
+    let res = studentApi.getAllStudent()
+    totalStudent = res.DT.length()
+  }
+  useEffect(() => {
+    getTotalStudent()
+  }, [])
   return (
     <div className="ml-5 flex w-full flex-col rounded-xl bg-white pl-5">
       <div>
@@ -29,7 +20,7 @@ const AreaProgressChart = () => {
       <BarChart
         width={400}
         height={300}
-        data={data}
+        data={numberByTitle}
         layout="vertical"
         margin={{
           top: 5,
@@ -38,7 +29,7 @@ const AreaProgressChart = () => {
         }}
       >
         <XAxis type="number" axisLine={false} domain={[0, totalStudent]} />
-        <YAxis type="category" dataKey="name" axisLine={false} tickLine={false} />
+        <YAxis type="category" dataKey="title" axisLine={false} tickLine={false} />
         <Tooltip cursor={{ fill: "transparent" }} />
         {/* <Legend iconType="circle" iconSize={10} verticalAlign="top" align="right" /> */}
         <Bar
@@ -47,7 +38,7 @@ const AreaProgressChart = () => {
           isAnimationActive={true}
           barSize={20}
           radius={[4, 4, 4, 4]}
-          dataKey="percentValues"
+          dataKey="NumberHS"
           animationBegin={0}
           animationDuration={1500}
           animationEasing="ease"
@@ -57,5 +48,8 @@ const AreaProgressChart = () => {
     </div>
   )
 }
-
+AreaProgressChart.propTypes = {
+  numberByTitle: PropTypes.any,
+  // columnFilters: PropTypes.any,
+}
 export default AreaProgressChart

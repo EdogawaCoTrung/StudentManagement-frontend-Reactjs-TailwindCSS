@@ -22,6 +22,7 @@ import OfficerTuition from "../pages/Officer/Plan"
 import OfficerProfile from "../pages/Officer/Profile"
 import Subject from "../pages/Administrator/Subject"
 import StudentSummariesTable from "../pages/Administrator/Student/SummariesById"
+import Assignment from "../pages/Administrator/Assignment"
 const publicRoutes = [
   {
     path: routes.Dashboard,
@@ -100,6 +101,14 @@ const publicRoutes = [
     component: (
       <AuthorizedAdministrator>
         <StudentSummariesTable></StudentSummariesTable>
+      </AuthorizedAdministrator>
+    ),
+  },
+  {
+    path: routes.Assignment,
+    component: (
+      <AuthorizedAdministrator>
+        <Assignment></Assignment>
       </AuthorizedAdministrator>
     ),
   },

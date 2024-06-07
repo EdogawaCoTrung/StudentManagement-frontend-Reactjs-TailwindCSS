@@ -1,25 +1,17 @@
 import { httpClient } from "../services"
-class SummaryApi {
-  async createSummaries(id, data) {
-    const res = await httpClient.post(`/summaries/add-student/${id}`, data)
+class AssignmentApi {
+  async getAllAssignmentByYear(year) {
+    const res = await httpClient.get(`/assignment/all-assigment/${year}`)
     return res
   }
-  async getSummariesById(id, gradename) {
-    const res = await httpClient.get(`/summaries/all-year/${id}/${gradename}`)
+  async createAssignment(data) {
+    const res = await httpClient.post("/assignment/create-assignment", data)
     return res
   }
-  async getSummariesByIdAndGrade(id, gradename, term) {
-    const res = await httpClient.get(`/summaries/${id}/${gradename}/${term}`)
+  async deleteAssignment() {
+    const res = await httpClient.delete("/assignment/delete")
     return res
   }
-  //   async createClass(data) {
-  //     const res = await httpClient.post("/class/create-class", data)
-  //     return res
-  //   }
-  //   async getAllStudentByClassId(id) {
-  //     const res = await httpClient.get(`/class/get-student/${id}`)
-  //     return res
-  //   }
   //   async getAllUnapprovedGroup() {
   //     const res = await httpClient.get("/groups/unapproved")
   //     return res
@@ -71,5 +63,5 @@ class SummaryApi {
   //     }
   //   }
 }
-const summaryApi = new SummaryApi()
-export default summaryApi
+const assignmentApi = new AssignmentApi()
+export default assignmentApi

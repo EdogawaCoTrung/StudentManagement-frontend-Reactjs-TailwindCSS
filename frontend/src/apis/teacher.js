@@ -1,25 +1,9 @@
 import { httpClient } from "../services"
-class SummaryApi {
-  async createSummaries(id, data) {
-    const res = await httpClient.post(`/summaries/add-student/${id}`, data)
+class TeacherApi {
+  async getAllTeacherBySubjectId(id) {
+    const res = await httpClient.get(`/teacher/subject/${id}`)
     return res
   }
-  async getSummariesById(id, gradename) {
-    const res = await httpClient.get(`/summaries/all-year/${id}/${gradename}`)
-    return res
-  }
-  async getSummariesByIdAndGrade(id, gradename, term) {
-    const res = await httpClient.get(`/summaries/${id}/${gradename}/${term}`)
-    return res
-  }
-  //   async createClass(data) {
-  //     const res = await httpClient.post("/class/create-class", data)
-  //     return res
-  //   }
-  //   async getAllStudentByClassId(id) {
-  //     const res = await httpClient.get(`/class/get-student/${id}`)
-  //     return res
-  //   }
   //   async getAllUnapprovedGroup() {
   //     const res = await httpClient.get("/groups/unapproved")
   //     return res
@@ -71,5 +55,5 @@ class SummaryApi {
   //     }
   //   }
 }
-const summaryApi = new SummaryApi()
-export default summaryApi
+const teacherApi = new TeacherApi()
+export default teacherApi

@@ -54,8 +54,8 @@ const Student = () => {
     let uniqueClass = new Set()
     let res = await studentApi.getAllStudent()
     res.DT.map((student) => {
-      uniqueStudent.add(student.studentId)
-      uniqueClass.add(student.classId)
+      uniqueStudent.add(student.id)
+      uniqueClass.add(student.class)
     })
     setClassCount(uniqueClass.size)
     setStudentCount(uniqueStudent.size)
@@ -119,19 +119,27 @@ const Student = () => {
   const columnHelper = createColumnHelper()
   const columnDef = useMemo(
     () => [
-      columnHelper.accessor("id", {
+      columnHelper.accessor((row) => `${row.id}`, {
         id: "S.No",
-        cell: (info) => <span>{info.row.index + 1}</span>,
-        header: "STT",
+        header: "Id",
       }),
       //<span>{info.cell.getValue().studentname}</span>
-      columnHelper.accessor((row) => `${row.student.studentname}`, {
+      columnHelper.accessor((row) => `${row.studentname}`, {
         id: "studentname",
         header: "Ho va Ten",
         enableColumnFilter: true,
+        cell: (info) => (
+          <div className="flex items-center align-middle">
+            <img className="mr-3 h-10 w-10 rounded-full object-cover" src={info.cell.row.original.User.image}></img>
+            <div className="flex flex-col">
+              <span className="">{info.cell.row.original.studentname}</span>
+              <span className="text-xs text-neutral-400">{info.cell.row.original.User.email}</span>
+            </div>
+          </div>
+        ),
         filterFn: "includesString",
       }),
-      columnHelper.accessor((row) => `${row.class.grade.gradename}`, {
+      columnHelper.accessor((row) => `${row.grade}`, {
         id: "gradename",
         header: "Khối",
         enableColumnFilter: true,
@@ -144,16 +152,16 @@ const Student = () => {
           return filterGrades.includes(gradeNumber)
         },
       }),
-      columnHelper.accessor((row) => `${row.class.classname}`, {
+      columnHelper.accessor((row) => `${row.class}`, {
         id: "classname",
         header: "Lop",
       }),
-      columnHelper.accessor((row) => `${row.student.gender}`, {
+      columnHelper.accessor((row) => `${row.gender}`, {
         id: "gender",
         header: "Gioi tinh",
         cell: (info) => <div>{info.getValue() === "1" ? <span>Nam</span> : <span>Nữ</span>}</div>,
       }),
-      columnHelper.accessor((row) => `${row.class.grade.year}`, {
+      columnHelper.accessor((row) => `${row.year}`, {
         id: "year",
         header: "Năm",
         enableColumnFilter: true,
@@ -167,7 +175,7 @@ const Student = () => {
           return filterYear == yearNumber
         },
       }),
-      columnHelper.accessor((row) => `${row.studentId}`, {
+      columnHelper.accessor((row) => `${row.id}`, {
         id: "action",
         header: "Thao tac",
         cell: (info) => (

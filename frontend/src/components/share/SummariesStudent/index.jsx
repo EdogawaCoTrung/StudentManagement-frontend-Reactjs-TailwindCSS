@@ -65,30 +65,30 @@ export default function SummariesStudent({ data, listSubjectResult }) {
         id: "averageScore",
         header: "ĐTBM",
       }),
+      columnHelper.accessor((row) => `${row.result}`, {
+        id: "Result",
+        header: "Result",
+      }),
     ],
     [],
   )
   const columnDef2 = useMemo(
     () => [
-      columnHelper2.accessor((row) => `${row.gpa}`, {
+      columnHelper2.accessor((row) => `${row.concludecore}`, {
         id: "gpa",
         header: "ĐTB",
       }),
-      columnHelper2.accessor((row) => `${row.title}`, {
+      columnHelper2.accessor((row) => `${row.concludetitle}`, {
         id: "title",
         header: "Học lực",
       }),
-      columnHelper2.accessor((row) => `${row.behaviorpoint}`, {
+      columnHelper2.accessor((row) => `${row.concludebehaviorpoint}`, {
         id: "behaviorpoint",
         header: "ĐĐG",
       }),
-      columnHelper2.accessor((row) => `${row.discipline}`, {
+      columnHelper2.accessor((row) => `${row.concludediscipline}`, {
         id: "discipline",
         header: "Hạnh kiểm",
-      }),
-      columnHelper2.accessor((row) => `${row.teachercomment}`, {
-        id: "teachercomment",
-        header: "Nhận xét",
       }),
     ],
     [],
@@ -113,7 +113,7 @@ export default function SummariesStudent({ data, listSubjectResult }) {
     columnResizeMode: "onChange",
   })
   return (
-    <div className="mx-14 mb-10 flex flex-col overflow-hidden p-0">
+    <div className="relative mb-10 mt-10 flex flex-col overflow-hidden bg-white p-0 shadow-xl">
       <div className="mt-10 flex items-center">
         <p className="ml-6 animate-fade-up font-Manrope text-2xl font-semibold animate-delay-[500ms] ">Lớp: 10</p>
         <p className="ml-6 animate-fade-up font-Manrope text-2xl font-semibold animate-delay-[500ms] ">Học bạ</p>
@@ -127,7 +127,7 @@ export default function SummariesStudent({ data, listSubjectResult }) {
                   {header.headers.map((column) => {
                     return (
                       <th
-                        className="text-1xl sticky border-b-2 border-r-2 pb-2 text-center font-semibold tracking-wide"
+                        className="text-1xl sticky border-2 pb-2 text-center font-semibold tracking-wide"
                         key={column.id}
                         colSpan={column.colSpan}
                       >
@@ -147,7 +147,7 @@ export default function SummariesStudent({ data, listSubjectResult }) {
                   {row.getVisibleCells().map((cell) => {
                     console.log("COLUMN1", cell.column.columnDef.cell)
                     return (
-                      <td className=" border-r-2 text-center font-normal" key={cell.id}>
+                      <td className="border-2 text-center font-normal" key={cell.id}>
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                       </td>
                     )
@@ -167,7 +167,7 @@ export default function SummariesStudent({ data, listSubjectResult }) {
                   {header.headers.map((column) => {
                     return (
                       <th
-                        className="text-1xl sticky border-b-2 border-r-2 pb-2 text-center font-semibold tracking-wide"
+                        className="text-1xl sticky border-2 pb-2 text-center font-semibold tracking-wide"
                         key={column.id}
                         colSpan={column.colSpan}
                       >
@@ -187,7 +187,7 @@ export default function SummariesStudent({ data, listSubjectResult }) {
                   {row.getVisibleCells().map((cell) => {
                     console.log("COLUMN2", cell.column.columnDef.cell)
                     return (
-                      <td className=" border-r-2 text-center font-normal" key={cell.id}>
+                      <td className=" border-2 text-center font-normal" key={cell.id}>
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                       </td>
                     )

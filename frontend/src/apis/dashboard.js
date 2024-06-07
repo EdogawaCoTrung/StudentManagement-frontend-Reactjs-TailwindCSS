@@ -1,21 +1,25 @@
 import { httpClient } from "../services"
-class SummaryApi {
-  async createSummaries(id, data) {
-    const res = await httpClient.post(`/summaries/add-student/${id}`, data)
+class DashboardApi {
+  async getBestStudentInEachGrade(year) {
+    const res = await httpClient.get(`/statistics/best-students/${year}`)
     return res
   }
-  async getSummariesById(id, gradename) {
-    const res = await httpClient.get(`/summaries/all-year/${id}/${gradename}`)
+  async getExcellentStudent(year) {
+    const res = await httpClient.get(`/statistics/count-excellent-students/${year}`)
     return res
   }
-  async getSummariesByIdAndGrade(id, gradename, term) {
-    const res = await httpClient.get(`/summaries/${id}/${gradename}/${term}`)
+  async getCompare3year(year) {
+    const res = await httpClient.get(`/statistics/compare-three-year/${year}`)
     return res
   }
-  //   async createClass(data) {
-  //     const res = await httpClient.post("/class/create-class", data)
-  //     return res
-  //   }
+  async getTop10Students(year) {
+    const res = await httpClient.get(`/statistics/top-ten-students/${year}`)
+    return res
+  }
+  async getNumberOfStudentsWithType(year) {
+    const res = await httpClient.get(`/statistics/number-of-student-by-title/${year}`)
+    return res
+  }
   //   async getAllStudentByClassId(id) {
   //     const res = await httpClient.get(`/class/get-student/${id}`)
   //     return res
@@ -71,5 +75,5 @@ class SummaryApi {
   //     }
   //   }
 }
-const summaryApi = new SummaryApi()
-export default summaryApi
+const dashboardApi = new DashboardApi()
+export default dashboardApi

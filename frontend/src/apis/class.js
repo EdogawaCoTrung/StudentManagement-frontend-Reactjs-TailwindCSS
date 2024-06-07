@@ -13,7 +13,7 @@ class ClassApi {
     return res
   }
   async getAllStudentByClassId(id) {
-    const res = await httpClient.get(`/class/get-student/${id}`)
+    const res = await httpClient.get(`/class/summaries/${id}`)
     return res
   }
   async getAllSummariesByClassId(id) {

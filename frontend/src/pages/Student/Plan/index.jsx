@@ -10,6 +10,10 @@ export default function StudentTuition() {
   let [selectYear, setSelectYear] = useState("")
   let [data, setData] = useState("")
   let [checkReLoading, setCheckReLoading] = useState(false)
+  const [tabSelect, setTabSelect] = useState(1)
+  const handleListTabClick = (index) => {
+    setTabSelect(index)
+  }
   const id = localStorage.getItem("studentId")
   function maxGradeYear(year) {
     console.log("goi maxGradeYear")
@@ -56,19 +60,57 @@ export default function StudentTuition() {
           <Tab.List className="absolute flex w-full">
             <Tab
               autoFocus
-              className="group z-0 flex h-14 w-fit flex-row rounded-none bg-gray-500 px-3 transition-all duration-300 focus:-translate-y-2 focus:bg-backgroundplus active:-translate-y-2 active:bg-backgroundplus"
+              onClick={() => handleListTabClick(1)}
+              className={
+                tabSelect == 1
+                  ? "group z-0 flex h-14 w-fit -translate-y-2 flex-row rounded-none bg-backgroundplus px-3 transition-all duration-300 focus:-translate-y-2"
+                  : "group z-0 flex h-14 w-fit flex-row rounded-none bg-gray-500 px-3 transition-all duration-300"
+              }
             >
               <div className="mt-2 flex flex-row items-center justify-center  align-top">
-                <PiStudentBold className="mr-1 text-base font-semibold transition-none duration-0 group-focus:text-white" />
-                <p className="group-text font-Manrope text-base font-semibold transition-none duration-0 group-focus:text-white">
+                <PiStudentBold
+                  className={
+                    tabSelect == 1
+                      ? "mr-1 text-base font-semibold text-white transition-none duration-0"
+                      : "mr-1 text-base font-semibold transition-none duration-0"
+                  }
+                />
+                <p
+                  className={
+                    tabSelect == 1
+                      ? "group-text font-Manrope text-base font-semibold text-white transition-none duration-0"
+                      : "group-text font-Manrope text-base font-semibold transition-none duration-0"
+                  }
+                >
                   Học sinh
                 </p>
               </div>
             </Tab>
-            <Tab className="group z-0 flex h-14 w-fit flex-row rounded-none bg-gray-500 px-3 transition-all duration-300 focus:-translate-y-2 focus:bg-backgroundplus active:-translate-y-2 active:bg-backgroundplus">
+            <Tab
+              onClick={() => handleListTabClick(2)}
+              className={
+                tabSelect == 2
+                  ? "group z-0 flex h-14 w-fit -translate-y-2 flex-row rounded-none bg-backgroundplus px-3 transition-all duration-300 focus:-translate-y-2"
+                  : "group z-0 flex h-14 w-fit flex-row rounded-none bg-gray-500 px-3 transition-all duration-300"
+              }
+            >
               <div className="mt-2 flex flex-row items-center justify-center  align-top">
-                <SiGoogleclassroom className="mr-1 text-base font-semibold duration-0 group-focus:text-white" />
-                <p className="group-text font-Manrope text-base font-semibold duration-0 group-focus:text-white">Lớp</p>
+                <SiGoogleclassroom
+                  className={
+                    tabSelect == 2
+                      ? "mr-1 text-base font-semibold text-white transition-none duration-0"
+                      : "mr-1 text-base font-semibold transition-none duration-0"
+                  }
+                />
+                <p
+                  className={
+                    tabSelect == 2
+                      ? "group-text font-Manrope text-base font-semibold text-white transition-none duration-0"
+                      : "group-text font-Manrope text-base font-semibold transition-none duration-0"
+                  }
+                >
+                  Lớp
+                </p>
               </div>
             </Tab>
           </Tab.List>

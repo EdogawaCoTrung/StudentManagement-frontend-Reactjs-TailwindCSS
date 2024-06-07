@@ -39,7 +39,7 @@ const StudentTable = ({ data }) => {
         cell: (info) => <span>{info.row.index + 1}</span>,
         header: "STT",
       }),
-      columnHelper.accessor((row) => `${row.student.id}`, {
+      columnHelper.accessor((row) => `${row.studentId}`, {
         id: "id",
         header: "Id",
       }),
@@ -47,6 +47,20 @@ const StudentTable = ({ data }) => {
       columnHelper.accessor((row) => `${row.student.studentname}`, {
         id: "studentname",
         header: "Ho va Ten",
+        enableColumnFilter: true,
+        cell: (info) => (
+          <div className="flex items-center align-middle">
+            <img
+              className="mr-3 h-10 w-10 rounded-full object-cover"
+              src={info.cell.row.original.student.User.image}
+            ></img>
+            <div className="flex flex-col">
+              <span className="">{info.cell.row.original.student.studentname}</span>
+              <span className="text-xs text-neutral-400">{info.cell.row.original.student.User.email}</span>
+            </div>
+          </div>
+        ),
+        filterFn: "includesString",
       }),
       columnHelper.accessor((row) => `${row.student.gender}`, {
         id: "gender",

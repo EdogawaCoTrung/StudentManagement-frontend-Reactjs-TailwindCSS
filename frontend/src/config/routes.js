@@ -12,6 +12,7 @@ export const routes = {
   Regulations: "/regulations",
   AdministratorProfile: "/administratorProfile",
   Subject: "/subject",
+  Assignment: "/assignment",
   //STUDENT
   StudentDashboard: "/studentDashboard",
   StudentClass: "/studentClass",
