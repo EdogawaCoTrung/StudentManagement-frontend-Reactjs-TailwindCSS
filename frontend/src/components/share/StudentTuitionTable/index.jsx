@@ -24,7 +24,7 @@ const StudentTuitionTable = ({ data, checkReLoading, setCheckReLoading }) => {
   const [columnFilters, setColumnFilters] = useState([])
   function convertMonth(dateString) {
     const date = new Date(dateString)
-    const month = String(date.getMonth() + 1).padStart(2, "0")
+    const month = String(date.getMonth() + 1)
     return month
   }
   const handlePayTuition = async (id) => {

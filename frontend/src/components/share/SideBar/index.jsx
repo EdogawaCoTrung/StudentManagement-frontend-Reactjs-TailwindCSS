@@ -42,7 +42,7 @@ export default function Sidebar() {
           <div style={{ display: "flex", alignItems: "center", marginBottom: "5px" }}>
             <img src={LOGO} alt="Logo" style={{ width: "50px", height: "50px", padding: "3px" }} />
             <Typography
-              variant="h6"
+              variant="h5"
               component="div"
               sx={{
                 flexGrow: 1,

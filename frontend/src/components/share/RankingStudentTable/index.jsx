@@ -33,7 +33,7 @@ const RankingStudentTable = ({ data }) => {
         id: "studentname",
         header: "Ho va Ten",
       }),
-      columnHelper.accessor((row) => `${row.gpa}`, {
+      columnHelper.accessor((row) => `${row.concludecore}`, {
         id: "gpa",
         header: "GPA",
       }),

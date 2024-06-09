@@ -19,6 +19,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function StudentClass() {
   // eslint-disable-next-line
   const { isLoggedIn } = useAuth()
+  const role = "student"
   let [checkId, setCheckId] = useState()
   let [dataClassGrade10, setGrade10] = useState("")
   let [dataClassGrade11, setGrade11] = useState("")
@@ -35,7 +36,6 @@ export default function StudentClass() {
     let studentId = localStorage.getItem("studentId")
     let res = await studentApi.getAllClassByStudentId(studentId)
     if (res.EC != 1) {
-      toast.success("Lấy danh sách lớp thành công!")
       const class10 = res.DT.filter((item) => item.class.classname.startsWith("10"))
       const class11 = res.DT.filter((item) => item.class.classname.startsWith("11"))
       const class12 = res.DT.filter((item) => item.class.classname.startsWith("12"))
@@ -49,7 +49,6 @@ export default function StudentClass() {
   useEffect(() => {
     try {
       fetchAllClassByStudentId()
-      toast.success("Lấy danh sách lớp thành công!!!")
     } catch (error) {
       toast.error(error)
     }
@@ -58,7 +57,7 @@ export default function StudentClass() {
     <Box className="z-0 mx-14 mt-10 flex flex-col justify-center" sx={{ flexGrow: 1 }}>
       <div className="flex flex-row items-center justify-between">
         <div className="flex flex-row items-center">
-          <div className="animate-duration-[625ms] animate-fade-right flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md">
+          <div className="flex animate-fade-right items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md animate-duration-[625ms]">
             <p className="text-center text-2xl font-semibold text-gradeTitle">Khối 10</p>
           </div>
         </div>
@@ -82,13 +81,14 @@ export default function StudentClass() {
                   closeModal={closeModal}
                   nameclass={item.class.classname}
                   openModal={openModal}
+                  role={role}
                 ></DialogView>
               )}
             </div>
           ))}
       </div>
       <div className="flex flex-row items-center">
-        <div className="animate-duration-[625ms] animate-fade-right flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md">
+        <div className="flex animate-fade-right items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md animate-duration-[625ms]">
           <p className="text-center text-2xl font-semibold text-gradeTitle">Khối 11</p>
         </div>
       </div>
@@ -111,13 +111,14 @@ export default function StudentClass() {
                   closeModal={closeModal}
                   nameclass={item.class.classname}
                   openModal={openModal}
+                  role={role}
                 ></DialogView>
               )}
             </div>
           ))}
       </div>
       <div className="flex flex-row items-center">
-        <div className="animate-duration-[625ms] animate-fade-right flex items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md">
+        <div className="flex animate-fade-right items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md animate-duration-[625ms]">
           <p className="text-center text-2xl font-semibold text-gradeTitle">Khối 12</p>
         </div>
       </div>
@@ -140,6 +141,7 @@ export default function StudentClass() {
                   closeModal={closeModal}
                   nameclass={item.class.classname}
                   openModal={openModal}
+                  role={role}
                 ></DialogView>
               )}
             </div>

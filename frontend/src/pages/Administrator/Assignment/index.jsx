@@ -42,7 +42,7 @@ export default function Assignment() {
         <p className="animate-fade-up font-Manrope text-2xl font-bold">Assignment</p>
         <Dropdown selectYear={selectYear} setSelectYear={setSelectYear}></Dropdown>
       </div>
-      <div className="mt-10 h-screen">
+      <div className="mt-10 h-full w-full overflow-y-auto">
         <AssignmentTable data={data}></AssignmentTable>
       </div>
     </div>

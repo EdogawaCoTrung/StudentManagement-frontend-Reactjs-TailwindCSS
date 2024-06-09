@@ -113,44 +113,46 @@ const AssignmentTable = ({ data }) => {
     columnResizeMode: "onChange",
   })
   return (
-    <div className=" flex h-screen flex-col">
-      <Paper
-        component="form"
-        sx={{
-          p: "2px 4px",
-          display: "flex",
-          alignItems: "center",
-          width: 400,
-          marginBottom: "8px",
-        }}
-      >
-        <IconButton sx={{ p: "10px", background: "#13313D", color: "white" }} aria-label="menu">
-          <SearchIcon />
-        </IconButton>
-        <InputBase
+    <div className=" flex h-fit flex-col">
+      <div className="animate-fade-right">
+        <Paper
+          component="form"
           sx={{
-            ml: 2,
-            flex: 1,
-            borderWidth: 0,
-            border: "none",
-            borderRadius: 0,
-            ":active": {
-              border: "none",
-              borderWidth: 0,
-            },
-            ":focus": {
-              border: "none",
-              borderWidth: 0,
-            },
-            appearance: "none",
+            p: "2px 4px",
+            display: "flex",
+            alignItems: "center",
+            width: 400,
+            marginBottom: "8px",
           }}
-          value={searchInput}
-          onChange={(e) => onFilterChange("classname", e.target.value)}
-          placeholder="Search..."
-        />
-      </Paper>
-      <div className="h-96 overflow-auto">
-        <table className="h-full w-full border-collapse overflow-auto font-Manrope">
+        >
+          <IconButton sx={{ p: "10px", background: "#13313D", color: "white" }} aria-label="menu">
+            <SearchIcon />
+          </IconButton>
+          <InputBase
+            sx={{
+              ml: 2,
+              flex: 1,
+              borderWidth: 0,
+              border: "none",
+              borderRadius: 0,
+              ":active": {
+                border: "none",
+                borderWidth: 0,
+              },
+              ":focus": {
+                border: "none",
+                borderWidth: 0,
+              },
+              appearance: "none",
+            }}
+            value={searchInput}
+            onChange={(e) => onFilterChange("classname", e.target.value)}
+            placeholder="Search..."
+          />
+        </Paper>
+      </div>
+      <div className="">
+        <table className=" w-full border-collapse overflow-auto font-Manrope">
           <thead>
             {tableInstance.getHeaderGroups().map((header) => {
               return (
@@ -178,7 +180,7 @@ const AssignmentTable = ({ data }) => {
               )
             })}
           </thead>
-          <tbody>
+          <tbody className="animate-fade-down">
             {tableInstance.getRowModel().rows.map((row) => {
               return (
                 <tr key={row.id}>
