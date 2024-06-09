@@ -7,28 +7,19 @@ import {
 } from "@tanstack/react-table"
 import { createColumnHelper } from "@tanstack/react-table"
 import SwapVertIcon from "@mui/icons-material/SwapVert"
-import { Button, IconButton } from "@mui/material"
+import { Avatar, IconButton } from "@mui/material"
 import React, { useMemo, useState } from "react"
 import PropTypes from "prop-types"
 import Paper from "@mui/material/Paper"
 import InputBase from "@mui/material/InputBase"
 import SearchIcon from "@mui/icons-material/Search"
-import AddAssignmentModal from "../AddAssignmentModal"
-const AssignmentTable = ({ data }) => {
+import InfoRoundedIcon from "@mui/icons-material/InfoRounded"
+import EditIcon from "@mui/icons-material/Edit"
+import DeleteIcon from "@mui/icons-material/Delete"
+import DateCell from "../StudentTuitionTable/BillingDate"
+const TeacherTable = ({ data }) => {
   const [columnFilters, setColumnFilters] = useState([])
-  const [checkReLoading, setCheckReLoading] = useState(false)
-  let [checkId, setCheckId] = useState()
-  let [isOpenAddTuitionModal, setIsOpenAddTuitionModal] = useState(false)
-  function closeAddTuitionModal() {
-    setIsOpenAddTuitionModal(false)
-  }
-  function openAddTuitionModal(id) {
-    console.log("MO", id)
-    setCheckId(id)
-    setIsOpenAddTuitionModal(true)
-  }
-  console.log("isOpenAddTuitionModal", isOpenAddTuitionModal)
-  const searchInput = columnFilters.find((f) => f.id === "classname")?.value || ""
+  const searchInput = columnFilters.find((f) => f.id === "teachername")?.value || ""
   const onFilterChange = (id, value) =>
     setColumnFilters((prev) =>
       prev
@@ -43,62 +34,127 @@ const AssignmentTable = ({ data }) => {
   // eslint-disable-next-line
   const columnDef = useMemo(
     () => [
-      columnHelper.accessor("id", {
-        id: "S.No",
-        cell: (info) => <span>{info.row.index + 1}</span>,
-        header: "STT",
+      columnHelper.accessor((row) => `${row.id}`, {
+        id: "id",
+        header: "Id",
       }),
-      columnHelper.accessor((row) => `${row.class?.classname}`, {
-        id: "classname",
-        header: "Lớp",
-      }),
-      //<span>{info.cell.getValue().studentname}</span>
-      columnHelper.accessor((row) => `${row.subject.subjectname}`, {
-        id: "subjectname",
-        header: "Môn học",
-      }),
-      columnHelper.accessor((row) => `${row.teacher}`, {
-        id: "teacherName",
-        header: "Giáo viên",
+      columnHelper.accessor((row) => `${row.teachername}`, {
+        id: "teachername",
+        header: "Teacher",
+        enableColumnFilter: true,
         cell: (info) => (
-          <div>
-            {info.getValue() == "null" ? <span>Null</span> : <span>{info.cell.row.original.teacher.teacherName}</span>}
+          <div className="flex items-center align-middle">
+            {info.cell.row.original.User.image != null ? (
+              <img className="mr-3 h-10 w-10 rounded-full object-cover" src={info.cell.row.original.User.image}></img>
+            ) : (
+              <Avatar src="/student.png" alt="Student" sx={{ height: 40, width: 40, marginRight: "12px" }} />
+            )}
+            <div className="flex flex-col">
+              <span className="">{info.cell.row.original.teachername}</span>
+              <span className="text-xs text-neutral-400">{info.cell.row.original.User.email}</span>
+            </div>
           </div>
         ),
+        filterFn: "includesString",
+      }),
+      //<span>{info.cell.getValue().studentname}</span>
+      columnHelper.accessor((row) => `${row.birthDate}`, {
+        id: "birthDate",
+        header: "Date of Birth",
+        cell: DateCell,
+      }),
+      columnHelper.accessor((row) => `${row.startDate}`, {
+        id: "startDate",
+        header: "Date of Start",
+        cell: DateCell,
+      }),
+      columnHelper.accessor((row) => `${row.gender}`, {
+        id: "gender",
+        header: "Gender",
+        cell: (info) => <div>{info.getValue() === "1" ? <span>Nam</span> : <span>Nữ</span>}</div>,
+      }),
+      columnHelper.accessor((row) => `${row.subject.subjectname}`, {
+        id: "subjectname",
+        header: "Subject",
       }),
       columnHelper.accessor((row) => `${row}`, {
         id: "action",
         header: "Thao tác",
         cell: (info) => (
-          <div key={info.cell.row.original.id} className="flex justify-between">
-            <Button
-              key={info.cell.row.original.id}
-              onClick={() => openAddTuitionModal(info.cell.row.original.id)}
-              variant="contained"
-              color="success"
+          <strong>
+            <IconButton
+              size="large"
+              onClick={() => {
+                console.log(`View clicked on row with id: ${info.getValue()}`)
+                // Add your view logic here
+              }}
             >
-              Add / Edit
-            </Button>
-            {checkId == info.cell.row.original.id && (
-              <AddAssignmentModal
-                key={info.cell.row.original.id}
-                teacher={info.cell.row.original.teacher}
-                teacherId={info.cell.row.original.teacherId}
-                isOpenAddTuitionModal={isOpenAddTuitionModal}
-                closeAddTuitionModal={closeAddTuitionModal}
-                checkReLoading={checkReLoading}
-                setCheckReLoading={setCheckReLoading}
-                subjectId={info.cell.row.original.subjectId}
-                classId={info.cell.row.original.classId}
-                subjectName={info.cell.row.original.subject.subjectname}
-                className={info.cell.row.original.class.classname}
-              ></AddAssignmentModal>
-            )}
-          </div>
+              <InfoRoundedIcon
+                sx={{
+                  background: "#7F8F98",
+                  color: "white",
+                  borderRadius: "50%",
+                  fontSize: "30px",
+                  padding: "3px",
+                  fontWeight: "bold",
+                  ":hover": {
+                    color: "#3497f9",
+                    background: "#8fdc88",
+                    transition: "all",
+                  },
+                }}
+              />
+            </IconButton>
+            <IconButton
+              size="large"
+              onClick={() => {
+                console.log(`Edit clicked on row with id: ${info.getValue()}`)
+                // Add your edit logic here
+              }}
+            >
+              <EditIcon
+                sx={{
+                  background: "#7F8F98",
+                  color: "white",
+                  borderRadius: "50%",
+                  fontSize: "30px",
+                  padding: "4px",
+                  fontWeight: "bold",
+                  ":hover": {
+                    color: "#3497f9",
+                    background: "#8fdc88",
+                    transition: "all",
+                  },
+                }}
+              />
+            </IconButton>
+            <IconButton
+              size="large"
+              //   onClick={() => {
+              //     deleteStudent(info.getValue())
+              //   }}
+            >
+              <DeleteIcon
+                sx={{
+                  background: "#7F8F98",
+                  color: "white",
+                  borderRadius: "50%",
+                  fontSize: "30px",
+                  padding: "4px",
+                  fontWeight: "bold",
+                  ":hover": {
+                    color: "#3497f9",
+                    background: "#8fdc88",
+                    transition: "all",
+                  },
+                }}
+              />
+            </IconButton>
+          </strong>
         ),
       }),
     ],
-    [isOpenAddTuitionModal],
+    [],
   )
   const finalData = React.useMemo(() => data, [data])
   const tableInstance = useReactTable({
@@ -145,7 +201,7 @@ const AssignmentTable = ({ data }) => {
             appearance: "none",
           }}
           value={searchInput}
-          onChange={(e) => onFilterChange("classname", e.target.value)}
+          onChange={(e) => onFilterChange("teachername", e.target.value)}
           placeholder="Search..."
         />
       </Paper>
@@ -198,8 +254,8 @@ const AssignmentTable = ({ data }) => {
     </div>
   )
 }
-AssignmentTable.propTypes = {
+TeacherTable.propTypes = {
   data: PropTypes.any,
   // columnFilters: PropTypes.any,
 }
-export default AssignmentTable
+export default TeacherTable
