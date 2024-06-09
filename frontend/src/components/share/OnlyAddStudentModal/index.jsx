@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Fragment } from "react"
+import { Fragment, useState } from "react"
 import Box from "@mui/material/Box"
 import TextField from "@mui/material/TextField"
 import { Dialog, Transition } from "@headlessui/react"
@@ -12,35 +12,14 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Button from '@mui/material/Button';
 import dayjs from 'dayjs';
+import { gradeApi } from "../../../apis";
+import { classApi } from "../../../apis";
+import { toast } from "react-toastify";
+import { KeyboardReturnOutlined } from "@mui/icons-material"
+import { httpClient } from "../../../services";
+import { studentApi } from "../../../apis";
+import { accountApi } from "../../../apis";
 
-const grades = [
-  {
-    id: 1,
-    name: "10",
-  },
-  {
-    id: 2,
-    name: "11",
-  },
-  {
-    id: 3,
-    name: "12",
-  },
-]
-const classes = [
-  {
-    id: 1,
-    name: "10a1",
-  },
-  {
-    id: 2,
-    name: "11a2",
-  },
-  {
-    id: 3,
-    name: "12a3",
-  },
-]
 const genders = [
   {
     id: 1,
@@ -53,26 +32,75 @@ const genders = [
 ]
 
 
-export default function OnlyAddStudentModal({ isOpenOnlyAddStudentModal, closeOnlyAddStudentModal }) {
-
+export default function OnlyAddStudentModal({ isOpenOnlyAddStudentModal, closeOnlyAddStudentModal, year }) {
+  const [grades, setGrades] = useState([]);
+  const [classes, setClasses] = useState([]);
   const [dateValue, setDateValue] = React.useState(dayjs('2022-04-17'));
   const [name, setNameValue] = React.useState("");
   const [grade, setGradeValue] = React.useState("10");
-  const [className, setClassValue] = React.useState("10a1");
+  const [className, setClassValue] = React.useState("10A1");
+  const [gradeId, setGradeId] = React.useState(1);
+  const [classId, setClassId] = React.useState(1);
   const [gender, setGenderValue] = React.useState("Nam");
+  const [genderId, setGenderId] = React.useState(0);
   const [address, setAddressValue] = React.useState("");
   const [parentName, setParentValue] = React.useState("");
-  const [parentPhone, setPhoneValue] = React.useState("");
+  const [email, setEmailValue] = React.useState("");
 
-  const handleSaveClick = () => {
-    const day = dateValue.date();
-    const month = dateValue.month();
-    const year = dateValue.year();
-    console.log(day, month, year);
-  };
-  const handleDiscardClick = () => {
-      // Handle discard logic here
-  };
+  async function getAllGrades() {
+    let res = await gradeApi.getAllGradeByYearService(year);
+    const grades = res.DT.map((grade) => ({ id: grade.id, name: grade.gradename }));
+    setGrades(grades);
+  }
+  async function getAllClasses() {
+    let res = await classApi.getAllClassByGradeAndYear(grade, year);
+    const classes = res.DT.map((className) => ({ id: className.id, name: className.classname }));
+    setClasses(classes);
+  }
+
+  getAllGrades();
+  getAllClasses();
+
+  const handleSaveClick = async () => {
+    console.log(classId);
+    console.log(gradeId);
+
+    const dataAccount = {
+      username: name.trim(" "),
+      password: "123456",
+      email: email,
+      groupId: 4
+    }
+
+    const resAccount = await accountApi.createAccount(dataAccount);
+    console.log(resAccount);
+    if (resAccount.EC === 0) {
+      if (gender === "Nam") {
+        setGenderId(0);
+      } else {
+        setGenderId(1);
+      }
+      const data = {
+        image: null,
+        studentname: name,
+        birthDate: dateValue,
+        startDate: "2024-06-06",
+        gender: genderId,
+        email: `${email}.edu.vn`
+      }
+
+      const res1 = await studentApi.createStudent(data);
+      console.log(res1);
+      if (res1.EC === 0) {
+          toast.success("Thêm học sinh thành công!");
+          closeOnlyAddStudentModal();
+        } else {
+        toast.error(res1.EM);
+      }
+    } else {
+      toast.error(resAccount.EM);
+    }
+  }
 
   return (
 
@@ -125,7 +153,7 @@ export default function OnlyAddStudentModal({ isOpenOnlyAddStudentModal, closeOn
                     <div className="flex">
                       <TextField
                         value={grade}
-                        onChange={(newValue) => setGradeValue(newValue.target.value)}
+                        onChange={(newValue) => {setGradeValue(newValue.target.value), setGradeId(newValue.target.key)}}
                         id="outlined-select-concurrency"
                         select
                         label="Khối"
@@ -135,19 +163,18 @@ export default function OnlyAddStudentModal({ isOpenOnlyAddStudentModal, closeOn
                           marginLeft: 4,
                         }}
                       >
-                        {grades.map((option) => (
-                          <MenuItem key={option.id} value={option.name}>
-                            {option.name}
+                        {grades.map((grade) => (
+                          <MenuItem key={grade.id} value={grade.name}>
+                            {grade.name}
                           </MenuItem>
                         ))}
                       </TextField>
                       <TextField
                         value={className}
-                        onChange={(newValue) => setClassValue(newValue.target.value)}
+                        onChange={(newValue) => {setClassValue(newValue.target.value), setClassId(newValue.target.key)}}
                         id="outlined-select-concurrency"
                         select
                         label="Lớp"
-                        defaultValue="10a1"
                         sx={{
                           marginLeft: 2,
                           width: "10vw",
@@ -222,11 +249,11 @@ export default function OnlyAddStudentModal({ isOpenOnlyAddStudentModal, closeOn
                     }}
                   />
                   <TextField
-                    value={parentPhone}
-                    onChange={(newValue) => setPhoneValue(newValue.target.value)}
+                    value={email}
+                    onChange={(newValue) => setEmailValue(newValue.target.value)}
                     required
                     id="outlined-required"
-                    label="Số điện thoại phụ huynh"
+                    label="email"
                     defaultValue=""
                     sx={{
                       marginLeft: 2,
@@ -238,11 +265,11 @@ export default function OnlyAddStudentModal({ isOpenOnlyAddStudentModal, closeOn
                 </div>
                 <div className="flex justify-end">
                   <Button variant="contained" color="success"
-                    onClick={handleSaveClick()}>
+                    onClick={handleSaveClick}>
                     Lưu
                   </Button>
-                  <Button variant="contained" color="error" sx={{ marginLeft: 4, marginRight: 4 }}
-                    onClick={handleDiscardClick()}>
+                  <Button variant="contained" color="error" sx={{ marginLeft: 4, marginRight: 4, }}
+                    onClick={closeOnlyAddStudentModal}>
                     Hủy
                   </Button>
                 </div>

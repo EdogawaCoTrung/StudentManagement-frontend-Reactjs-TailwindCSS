@@ -6,25 +6,37 @@ import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import CloseIcon from '@mui/icons-material/Close';
 import bcrypt from 'bcryptjs';
-import { httpClient } from "../../../services";
 import { jwtDecode } from "jwt-decode";
-import Avatar from "@mui/material/Avatar"
-
-
-
+import Avatar from "@mui/material/Avatar";
+import { accountApi } from "../../../apis";
+import { httpClient } from "../../../services";
 
 
 export default function ViewProfile() {
-  const name = "Nguyễn Văn A";
-  const username = "bgh1";
-  const className = "10A2";
-  const dob = "1/1/2005";
-  const createdAt = "2/2/2022";
-  const address = "Thu Duc, Ho Chi Mnh";
-  const parentName = "Nguyen Thi C";
-  const parentPhone = "50249485603";
-  const gender = "Nam";
 
+  const [name, setName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [createdAt, setCreatedAt] = React.useState("");
+  const [admin, setAdmin] = React.useState({});
+
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
+
+  async function getAdmin() {
+    const id = localStorage.getItem("userId");
+    setAdmin(await httpClient.get(`/account/${id}`));
+    setName(admin.username);
+    setEmail(admin.email);
+    setCreatedAt(formatDate(admin.createdAt));
+  }
+
+  getAdmin();
 
   return (
     <Box
@@ -50,26 +62,10 @@ export default function ViewProfile() {
           <Avatar src="/student.png" alt="Student" sx={{ height: 150, width: 150, border: "solid", marginLeft: "10px" }} />
           <div className='flex flex-col'>
             <h4 className="pl-10" style={{ fontSize: "30px", marginTop: "20px" }}>{name}</h4>
-            <h3 className="pl-10" style={{ fontSize: "24px", marginTop: "20px" }}>{className}</h3>
-          </div>
-          <div className='flex flex-col pt-10 ml-10'>
-            <h2 style={{ fontSize: "20px", marginLeft: "25%", marginTop: "-6%" }}>{`Tên tài khoản: ${username}`}</h2>
+            <h2 className='pl-10' style={{ fontSize: "20px", marginTop: "10px" }}>{`Email: ${email}`}</h2>
+            <p className="pl-10" style={{ fontSize: "20px", marginTop: "20px" }}>{`Ngày tạo tài khoản: ${createdAt}`}</p>
           </div>
         </div>
-          <div>
-            <div className="flex flex-row">
-              <p className="pl-10" style={{ fontSize: "20px", marginTop: "40px" }}>{`Ngày sinh: ${dob}`}</p> 
-              <div className = "ml-40">
-              <p className="pl-10" style={{ fontSize: "20px", marginTop: "38px", marginLeft: "10px" }}>{`Giới tính: ${gender}`}</p> 
-              </div>
-            </div>
-            <p className="pl-10" style={{ fontSize: "20px", marginTop: "20px" }}>{`Ngày nhập học: ${createdAt}`}</p>
-            <p className="pl-10" style={{ fontSize: "20px", marginTop: "20px" }}>{`Địa chỉ: ${address}`}</p>
-            <p className="pl-10" style={{ fontSize: "20px", marginTop: "20px" }}>{`Tên phụ huynh: ${parentName}`}</p>
-            <p className="pl-10" style={{ fontSize: "20px", marginTop: "20px" }}>{`Số điện thoại phụ huynh: ${parentPhone}`}</p>
-            <div className="p-10">
-            </div>
-          </div>
           <div>
             
           </div>

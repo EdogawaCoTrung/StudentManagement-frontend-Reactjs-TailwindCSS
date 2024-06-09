@@ -20,6 +20,9 @@ import { gradeApi } from "../../../apis"
 import Dropdown from "../../../components/share/Dropdown"
 import { toast } from "react-toastify"
 import OnlyAddStudentModal from "../../../components/share/OnlyAddStudentModal"
+import StudentProfileView from "../../../components/share/StudentProfileView"
+import EditStudent from "../../../components/share/EditStudentModal"
+import DeleteStudent from "../../../components/share/DeleteStudentModal"
 
 import { useNavigate } from "react-router-dom"
 const Student = () => {
@@ -27,7 +30,19 @@ const Student = () => {
   const [classCount, setClassCount] = useState("")
   const [studentCount, setStudentCount] = useState([])
   const [data, setData] = useState("")
+  const [id, setId] = useState(0)
   let [isOpenOnlyAddStudentModal, setOpenOnlyAddStudentModal] = useState(false)
+  let [isOpenStudentProfileView, setOpenStudentProfileView] = useState(false)
+  let [isOpenEditStudent, setOpenEditStudent] = useState(false)
+  let [isOpenDeleteStudent, setOpenDeleteStudent] = useState(false)
+
+  function openDeleteStudent() {
+    setOpenDeleteStudent(true)
+  }
+
+  function closeDeleteStudent() {
+    setOpenDeleteStudent(false)
+  }
 
   function openOnlyAddStudentModal() {
     setOpenOnlyAddStudentModal(true)
@@ -37,9 +52,26 @@ const Student = () => {
     setOpenOnlyAddStudentModal(false)
   }
 
+  function openStudentProfileView() {
+    setOpenStudentProfileView(true)
+  }
+
+  function closeStudentProfileView() {
+    setOpenStudentProfileView(false)
+  }
+
+  function openEditStudent() {
+    setOpenEditStudent(true)
+  }
+
+  function closeEditStudent() {
+    setOpenEditStudent(false)
+  }
+
   const HandleClick = (id) => {
     navigate(`/summaries/my-transcript/${id}`)
   }
+
   function maxGradeYear(year) {
     console.log("goi maxGradeYear")
     let maxYear = year[0].year
@@ -206,8 +238,9 @@ const Student = () => {
             <IconButton
               size="large"
               onClick={() => {
-                console.log(`View clicked on row with id: ${info.getValue()}`)
-                // Add your view logic here
+                console.log(`View clicked on row with id: ${info.getValue()}`);
+                openStudentProfileView();
+                setId(info.getValue());
               }}
             >
               <InfoRoundedIcon
@@ -230,7 +263,8 @@ const Student = () => {
               size="large"
               onClick={() => {
                 console.log(`Edit clicked on row with id: ${info.getValue()}`)
-                // Add your edit logic here
+                openEditStudent();
+                setId(info.getValue());
               }}
             >
               <EditIcon
@@ -253,6 +287,8 @@ const Student = () => {
               size="large"
               onClick={() => {
                 console.log(`Delete clicked on row with id: ${info.getValue()}`)
+                setId(info.getValue());
+                openDeleteStudent();
                 // Add your delete logic here
               }}
             >
@@ -411,6 +447,7 @@ const Student = () => {
             <OnlyAddStudentModal
               isOpenOnlyAddStudentModal={isOpenOnlyAddStudentModal}
               closeOnlyAddStudentModal={closeOnlyAddStudentModal}
+              year = {selectYear}
             ></OnlyAddStudentModal>
           )}
         </div>
@@ -460,6 +497,27 @@ const Student = () => {
             })}
           </tbody>
         </table>
+        {isOpenStudentProfileView && (
+          <StudentProfileView
+            isOpenStudentProfileView={isOpenStudentProfileView}
+            closeStudentProfileView={closeStudentProfileView}
+            id={id}
+          />
+        )}
+        {isOpenEditStudent && (
+          <EditStudent
+            isOpenEditStudent={isOpenEditStudent}
+            closeEditStudent={closeEditStudent}
+            id={id}
+          />
+        )}
+        {isOpenDeleteStudent && (
+          <DeleteStudent
+            isOpenDeleteStudent={isOpenDeleteStudent}
+            closeDeleteStudent={closeDeleteStudent}
+            id={id}
+          />
+        )}
       </div>
     </div>
   )

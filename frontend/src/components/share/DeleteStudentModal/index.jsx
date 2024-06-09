@@ -12,8 +12,15 @@ import { studentApi } from "../../../apis";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { accountApi } from "../../../apis";
+import Button from '@mui/material/Button';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import { toast } from "react-toastify"
 
-export default function StudentProfileView({ isOpenStudentProfileView, closeStudentProfileView, id }) {
+
+export default function DeleteStudent({ isOpenDeleteStudent, closeDeleteStudent, id }) {
     const [className, setClass] = React.useState("10A2");
     const [grade, setGrade] = React.useState("10");
     const [student, setStudent] = React.useState({});
@@ -56,10 +63,21 @@ export default function StudentProfileView({ isOpenStudentProfileView, closeStud
         const year = date.getFullYear();
         return `${day}/${month}/${year}`;
     };
+    
+
+    async function HandleDeleteClick() {
+        const res = await studentApi.deleteStudent(student.id)
+        console.log(res);
+        if (res.message == "deleted user") {
+            toast.success("Xóa thành công")
+        } else {
+            toast.error("Xóa thất bại")
+        }
+    }
 
     return (
-        <Transition appear show={isOpenStudentProfileView} as={Fragment}>
-            <Dialog as="div" className="relative z-10" onClose={closeStudentProfileView}>
+        <Transition appear show={isOpenDeleteStudent} as={Fragment}>
+            <Dialog as="div" className="relative z-10" onClose={closeDeleteStudent}>
                 <Transition.Child
                     as={Fragment}
                     enter="ease-out duration-300"
@@ -119,6 +137,16 @@ export default function StudentProfileView({ isOpenStudentProfileView, closeStud
                                         <div></div>
                                     </div>
                                 </div>
+                                <div className="flex justify-end">
+                                    <Button variant="contained" color="error"
+                                        onClick={HandleDeleteClick}>
+                                        Xóa
+                                    </Button>
+                                    <Button variant="contained" color="primary" sx={{ marginLeft: 4, marginRight: 4, }}
+                                        onClick={closeDeleteStudent}>
+                                        Hủy
+                                    </Button>
+                                    </div>
                             </Dialog.Panel>
                         </Transition.Child>
                     </div>

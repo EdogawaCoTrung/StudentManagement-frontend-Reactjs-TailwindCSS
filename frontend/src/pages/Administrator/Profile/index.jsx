@@ -1,5 +1,5 @@
 import UpdatePasswordModal from "../../../components/share/UpdatePasswordModal"
-import ProfileViewModal from "../../../components/share/AdminProfileView"
+import AdminProfileView from "../../../components/share/AdminProfileView"
 
 import * as React from 'react';
 import Tabs from '@mui/material/Tabs';
@@ -55,7 +55,7 @@ export default function AdministratorProfile() {
         </Tabs>
       </Box>
       {value === 'updatePassword' && <UpdatePasswordModal />}
-      {value === 'profileView' && <ProfileViewModal />}
+      {value === 'profileView' && <AdminProfileView />}
     </div>
   );
 }
