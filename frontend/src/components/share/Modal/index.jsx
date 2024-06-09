@@ -5,8 +5,11 @@ import PropTypes from "prop-types"
 import { classApi } from "../../../apis"
 import { useNavigate } from "react-router"
 import AddStudentModal from "../addStudentModal"
+import { GrScorecard } from "react-icons/gr"
+import { RiUserAddLine } from "react-icons/ri"
+
 // import { Input } from "@mui/material"
-export default function DialogView({ isOpen, closeModal, nameclass, classId, openModal }) {
+export default function DialogView({ isOpen, closeModal, nameclass, classId, openModal, role }) {
   let [isOpenAddStudent, setIsOpenAddStudent] = useState(false)
   function closeAddStudentModal() {
     setIsOpenAddStudent(false)
@@ -33,7 +36,7 @@ export default function DialogView({ isOpen, closeModal, nameclass, classId, ope
   const fetchAllStudentByClassId = async () => {
     let getData = await classApi.getAllStudentByClassId(classId)
     setData(getData.DT)
-    console.log("HOCAINH",getData.DT)
+    console.log("HOCAINH", getData.DT)
   }
   useEffect(() => {
     console.log("CHAY VAO USEEFFECT")
@@ -80,18 +83,24 @@ export default function DialogView({ isOpen, closeModal, nameclass, classId, ope
                       value={searchInput}
                       onChange={(e) => onFilterChange("student.studentname", e.target.value)}
                     /> */}
-                    <button
-                      onClick={HandleSummariesClick}
-                      className="mr-7 h-fit w-fit rounded-full bg-gradeTitle px-2 font-bold text-white"
-                    >
-                      Bảng điểm
-                    </button>
-                    <button
-                      onClick={HandleAddStudent}
-                      className="h-fit w-fit rounded-full bg-backgroundplus px-2 font-bold text-white"
-                    >
-                      Thêm học sinh
-                    </button>
+                    {role == "admin" && (
+                      <button
+                        onClick={HandleSummariesClick}
+                        className="mr-7 flex h-fit w-fit items-center rounded-md bg-gradeTitle px-6 py-[6px] font-bold text-white"
+                      >
+                        <GrScorecard className="mr-2" />
+                        Bảng điểm
+                      </button>
+                    )}
+                    {role == "admin" && (
+                      <button
+                        onClick={HandleAddStudent}
+                        className="bg-greenBtn flex h-fit w-fit items-center rounded-md px-2 py-[6px] font-bold text-white"
+                      >
+                        <RiUserAddLine className="mr-2" />
+                        Thêm học sinh
+                      </button>
+                    )}
                     <AddStudentModal
                       isOpenAddStudent={isOpenAddStudent}
                       closeAddStudentModal={closeAddStudentModal}
@@ -100,7 +109,7 @@ export default function DialogView({ isOpen, closeModal, nameclass, classId, ope
                   </div>
                 </div>
                 <div className="h-full w-full overflow-y-auto">
-                  <StudentTable data={data}></StudentTable>
+                  <StudentTable role={role} data={data}></StudentTable>
                 </div>
                 <div className="mt-4">
                   <button
@@ -125,4 +134,5 @@ DialogView.propTypes = {
   nameclass: PropTypes.any,
   classId: PropTypes.any,
   openModal: PropTypes.any,
+  role: PropTypes.any,
 }

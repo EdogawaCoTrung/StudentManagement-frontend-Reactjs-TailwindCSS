@@ -5,9 +5,9 @@ import PropTypes from "prop-types"
 export default function BarchartAdmin({ compare3year }) {
   console.log("CHAYCHART")
   return (
-    <div className="flex flex-col rounded-xl bg-white">
+    <div className="flex flex-col rounded-xl bg-white shadow-xl">
       <div>
-        <p className="p-4 font-Manrope text-base font-semibold text-black">Student Classification</p>
+        <p className="p-4 text-center font-Manrope text-xl font-semibold text-black">Student Classification</p>
       </div>
       <BarChart
         width={600}
@@ -23,7 +23,7 @@ export default function BarchartAdmin({ compare3year }) {
         <XAxis dataKey="Year" axisLine={false} padding={{ left: 10 }} />
         <YAxis axisLine={false} tickLine={false} padding={{ bottom: 10, top: 10 }} />
         <Tooltip cursor={{ fill: "transparent" }} />
-        <Legend iconType="circle" iconSize={10} verticalAlign="top" align="right" />
+        <Legend iconType="circle" iconSize={10} verticalAlign="top" align="center" height={50} />
         <Bar
           fill="#4a7746"
           activeBar={false}

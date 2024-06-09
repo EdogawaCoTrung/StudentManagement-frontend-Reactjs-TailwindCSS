@@ -23,8 +23,6 @@ export default function Subject() {
     const res = await subjectApi.getAllSubject()
     if (res.EC == 1) {
       toast.error(res.EM)
-    } else if (res.EC != 1) {
-      toast.success("Lấy danh sách môn thành công!")
     }
     console.log("SUBJECT", res.DT)
     setData(res.DT)

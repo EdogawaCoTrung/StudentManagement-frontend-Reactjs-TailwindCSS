@@ -25,6 +25,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function Class() {
   // eslint-disable-next-line
   const { isLoggedIn } = useAuth()
+  const role = "admin"
   let [checkId, setCheckId] = useState()
   let [checkGrade, setCheckGrade] = useState()
   let [checkReRender, setCheckReRender] = useState(false)
@@ -120,7 +121,7 @@ export default function Class() {
     <Box className="z-0 mx-14 mt-10 flex flex-col justify-center" sx={{ flexGrow: 1 }}>
       <div className="flex flex-row items-center justify-between">
         <div className="flex flex-row items-center">
-          <div className="bg-gradeTitle2 flex animate-fade-right items-center justify-center rounded-full px-7 py-2 text-center align-middle shadow-md animate-duration-[625ms]">
+          <div className="flex animate-fade-right items-center justify-center rounded-full bg-gradeTitle2 px-7 py-2 text-center align-middle shadow-md animate-duration-[625ms]">
             <p className="text-center text-base font-semibold text-white">Khối 10</p>
           </div>
           <IconButton onClick={() => openAddClassModal(10)} size="large">
@@ -158,13 +159,14 @@ export default function Class() {
                   closeModal={closeModal}
                   nameclass={classname}
                   openModal={openModal}
+                  role={role}
                 ></DialogView>
               )}
             </div>
           ))}
       </div>
       <div className="flex flex-row items-center">
-        <div className="bg-gradeTitle2 flex animate-fade-right items-center justify-center rounded-full px-7 py-2 text-center align-middle shadow-md animate-duration-[625ms]">
+        <div className="flex animate-fade-right items-center justify-center rounded-full bg-gradeTitle2 px-7 py-2 text-center align-middle shadow-md animate-duration-[625ms]">
           <p className="text-center text-base font-semibold text-white">Khối 11</p>
         </div>
         <IconButton onClick={() => openAddClassModal(11)} size="large">
@@ -200,13 +202,14 @@ export default function Class() {
                   closeModal={closeModal2}
                   nameclass={classname}
                   openModal={openModal2}
+                  role={role}
                 ></DialogView>
               )}
             </div>
           ))}{" "}
       </div>
       <div className="flex flex-row items-center">
-        <div className="bg-gradeTitle2 flex animate-fade-right items-center justify-center rounded-full px-7 py-2 text-center align-middle shadow-md animate-duration-[625ms]">
+        <div className="flex animate-fade-right items-center justify-center rounded-full bg-gradeTitle2 px-7 py-2 text-center align-middle shadow-md animate-duration-[625ms]">
           <p className="text-center text-base font-semibold text-white">Khối 12</p>
         </div>
         <IconButton onClick={() => openAddClassModal(12)} size="large">
@@ -242,6 +245,7 @@ export default function Class() {
                   closeModal={closeModal3}
                   nameclass={classname}
                   openModal={openModal3}
+                  role={role}
                 ></DialogView>
               )}
             </div>

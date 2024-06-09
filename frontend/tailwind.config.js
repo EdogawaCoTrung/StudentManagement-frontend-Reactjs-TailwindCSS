@@ -25,6 +25,7 @@ export default {
         black: "#000000",
         sidebar: "#13313D",
         // gradeTitle: "#3497f9",
+        greenBtn: "#577caa",
         headerTable: "#B0D4B8",
         gradeTitle2: "#4a7746",
         gradeTitle: "#212F3F",

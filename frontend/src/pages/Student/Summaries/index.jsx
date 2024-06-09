@@ -1,9 +1,6 @@
 import { toast } from "react-toastify"
 import { Tab } from "@headlessui/react"
-import { useParams } from "react-router"
-import { GrLinkPrevious } from "react-icons/gr"
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router"
 import { summaryApi } from "../../../apis"
 import SummariesStudent from "../../../components/share/SummariesStudent"
 import { MenuItem, TextField } from "@mui/material"
@@ -46,11 +43,6 @@ export default function StudentSummariesTable() {
   const changeGrade = (gradename) => {
     setGradeValue(gradename)
   }
-  const navigate = useNavigate()
-  const HandlePrevious = () => {
-    navigate("/student")
-    setCheckReLoading(!checkReLoading)
-  }
   console.log("HOCBA", data, typeof data)
   const id = localStorage.getItem("studentId")
   const fetchAllOverallByGrade = async () => {
@@ -69,8 +61,8 @@ export default function StudentSummariesTable() {
       toast.error(res.EM)
     } else if (res.EC != 1) {
       setDataTerm1(res.DT)
-      let birthDayFormat = convertDate(res.DT[0].student.birthDate)
-      let startDateFormat = convertDate(res.DT[0].student.startDate)
+      let birthDayFormat = convertDate(res.DT[0]?.student.birthDate)
+      let startDateFormat = convertDate(res.DT[0]?.student.startDate)
       setBirthDay(birthDayFormat)
       setStartDay(startDateFormat)
     }
@@ -87,7 +79,7 @@ export default function StudentSummariesTable() {
     fetchAllOverallByGrade()
     fetchAllSummariesByTerm1()
     fetchAllSummariesByTerm2()
-  }, [checkReLoading])
+  }, [checkReLoading, grade])
   function SummaryData(data) {
     let FilterSummaries = data
     console.log("CHAYVAOSUMMAY")
@@ -110,13 +102,7 @@ export default function StudentSummariesTable() {
     <div className="mb-0 ml-14 flex h-screen flex-col overflow-y-auto pr-14">
       <div className="mt-10 flex items-center justify-between">
         <div className="flex">
-          <button
-            onClick={HandlePrevious}
-            className="flex h-9 w-9 animate-jump-in content-center items-center justify-center rounded-full bg-gradeTitle"
-          >
-            <GrLinkPrevious className="text-2xl text-white" />
-          </button>
-          <p className="ml-6 animate-fade-down font-Manrope text-2xl font-bold text-gradeTitle">Điểm số</p>
+          <p className="animate-fade-down font-Manrope text-2xl font-bold text-gradeTitle">Điểm số</p>
         </div>
         <TextField
           value={grade}
@@ -141,18 +127,18 @@ export default function StudentSummariesTable() {
         <div className="mt-10 flex w-full items-center rounded-lg bg-white shadow-xl">
           <img
             className="m-5 mr-10 h-40 w-40 flex-shrink rounded-full object-cover"
-            src={dataTerm1[0].student.User.image}
+            src={dataTerm1[0]?.student.User.image}
           ></img>
           <div className="flex flex-1 flex-col pr-5">
-            <p className="font-Manrope text-4xl font-bold">{dataTerm1[0].student.studentname}</p>
+            <p className="font-Manrope text-4xl font-bold">{dataTerm1[0]?.student.studentname}</p>
             <div className="mt-3 flex flex-row items-center justify-between">
               <div className="mr-2 flex w-full flex-col rounded-lg border-2 p-2">
                 <p className="font-Manrope text-base">
-                  <span className="mr-3 font-bold">Email:</span> {dataTerm1[0].student.User.email}
+                  <span className="mr-3 font-bold">Email:</span> {dataTerm1[0]?.student.User.email}
                 </p>
                 <p className="font-Manrope text-base">
                   <span className="mr-3 font-bold">Classname:</span>
-                  {dataTerm1[0].class.classname}
+                  {dataTerm1[0]?.class.classname}
                 </p>
                 <p className="font-Manrope text-base">
                   <span className="mr-3 font-bold">Grade:</span>
@@ -160,17 +146,17 @@ export default function StudentSummariesTable() {
                 </p>
                 <p className="font-Manrope text-base">
                   <span className="mr-3 font-bold">Year:</span>
-                  {dataTerm1[0].class.grade.year}
+                  {dataTerm1[0]?.class.grade.year}
                 </p>
               </div>
               <div className="flex w-full flex-col rounded-lg border-2 p-2">
                 <p className="font-Manrope text-base">
                   <span className="mr-3 font-bold">Address:</span>
-                  {dataTerm1[0].student.address}
+                  {dataTerm1[0]?.student.address}
                 </p>
                 <p className="font-Manrope text-base">
                   <span className="mr-3 font-bold">Gender:</span>
-                  {dataTerm1[0].student.gender == 1 ? <span>Nam</span> : <span>Nữ</span>}
+                  {dataTerm1[0]?.student.gender == 1 ? <span>Nam</span> : <span>Nữ</span>}
                 </p>
                 <p className="font-Manrope text-base">
                   <span className="mr-3 font-bold">Date of Birth:</span>

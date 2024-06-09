@@ -115,7 +115,9 @@ export default function SummariesStudent({ data, listSubjectResult }) {
   return (
     <div className="relative mb-10 mt-10 flex flex-col overflow-hidden bg-white p-0 shadow-xl">
       <div className="mt-10 flex items-center">
-        <p className="ml-6 animate-fade-up font-Manrope text-2xl font-semibold animate-delay-[500ms] ">Lớp: 10</p>
+        <p className="ml-6 animate-fade-up font-Manrope text-2xl font-semibold animate-delay-[500ms] ">
+          Lớp: {data[0].class.classname}
+        </p>
         <p className="ml-6 animate-fade-up font-Manrope text-2xl font-semibold animate-delay-[500ms] ">Học bạ</p>
       </div>
       <div className="mt-3 overflow-auto">

@@ -15,9 +15,9 @@ export default function DashboardCard({ NumberHSG, NumberHSTotal, grade }) {
     },
   ]
   console.log("DATACHART", data[0])
-  const colors = ["#e4e8ef", "#475be8"]
+  const colors = ["#475be8", "#e4e8ef"]
   return (
-    <div className="mr-3 flex items-center justify-between rounded-xl bg-white p-4">
+    <div className="mr-3 flex items-center justify-between rounded-xl bg-white p-4 shadow-xl">
       <div className="flex flex-col">
         <p className="font-Manrope text-xl font-semibold">Student Grade {grade}</p>
         <div className="mt-2 flex items-center">
@@ -39,7 +39,7 @@ export default function DashboardCard({ NumberHSG, NumberHSTotal, grade }) {
           stroke="none"
           isAnimationActive={true}
           animationBegin={0}
-          animationDuration={3000}
+          animationDuration={2000}
           animationEasing="ease"
         >
           {data.map((entry, index) => (

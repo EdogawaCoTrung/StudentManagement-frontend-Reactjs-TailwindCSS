@@ -13,9 +13,9 @@ const AreaProgressChart = ({ numberByTitle }) => {
     getTotalStudent()
   }, [])
   return (
-    <div className="ml-5 flex w-full flex-col rounded-xl bg-white pl-5">
+    <div className="ml-5 flex w-full flex-col rounded-xl bg-white pl-5 shadow-xl">
       <div>
-        <p className="p-4 font-Manrope text-base font-semibold text-black">Student Type</p>
+        <p className="p-4 text-center font-Manrope text-xl font-semibold text-black">Student Type</p>
       </div>
       <BarChart
         width={400}

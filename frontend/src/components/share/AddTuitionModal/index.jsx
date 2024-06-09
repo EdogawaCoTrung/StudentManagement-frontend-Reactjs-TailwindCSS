@@ -19,7 +19,7 @@ export default function AddTuitionModal({
   const [value, setValue] = useState(dayjs("2024-05-17"))
   let [selectYear, setSelectYear] = useState("")
   const [tuitionInfo, setTuitionInfo] = useState({
-    classId: "",
+    classId: 1,
     price: "",
     month: "",
     year: selectYear,
@@ -81,7 +81,7 @@ export default function AddTuitionModal({
         toast.error(res.EM)
       }
       setTuitionInfo({
-        classname: "",
+        classId: tuitionInfo.classId,
         price: "",
         month: "",
         year: selectYear,
