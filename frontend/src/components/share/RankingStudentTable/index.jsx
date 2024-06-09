@@ -8,14 +8,17 @@ import {
 import { createColumnHelper } from "@tanstack/react-table"
 import SwapVertIcon from "@mui/icons-material/SwapVert"
 import { IconButton } from "@mui/material"
-import EditIcon from "@mui/icons-material/Edit"
-import DeleteIcon from "@mui/icons-material/Delete"
 import FormatListBulletedRoundedIcon from "@mui/icons-material/FormatListBulletedRounded"
 import InfoRoundedIcon from "@mui/icons-material/InfoRounded"
 import React, { useMemo } from "react"
 import PropTypes from "prop-types"
+import { useNavigate } from "react-router-dom"
 const RankingStudentTable = ({ data }) => {
   const columnHelper = createColumnHelper()
+  const navigate = useNavigate()
+  const HandleClick = (id) => {
+    navigate(`/summaries/my-transcript/${id}`)
+  }
   // eslint-disable-next-line
   const columnDef = useMemo(
     () => [
@@ -49,8 +52,7 @@ const RankingStudentTable = ({ data }) => {
             <IconButton
               size="large"
               onClick={() => {
-                console.log(`View clicked on row with id: ${info.getValue()}`)
-                // Add your view logic here
+                HandleClick(info.getValue())
               }}
             >
               <FormatListBulletedRoundedIcon
@@ -84,52 +86,6 @@ const RankingStudentTable = ({ data }) => {
                   borderRadius: "50%",
                   fontSize: "30px",
                   padding: "3px",
-                  fontWeight: "bold",
-                  ":hover": {
-                    color: "#3497f9",
-                    background: "#8fdc88",
-                    transition: "all",
-                  },
-                }}
-              />
-            </IconButton>
-            <IconButton
-              size="large"
-              onClick={() => {
-                console.log(`Edit clicked on row with id: ${info.getValue()}`)
-                // Add your edit logic here
-              }}
-            >
-              <EditIcon
-                sx={{
-                  background: "#7F8F98",
-                  color: "white",
-                  borderRadius: "50%",
-                  fontSize: "30px",
-                  padding: "4px",
-                  fontWeight: "bold",
-                  ":hover": {
-                    color: "#3497f9",
-                    background: "#8fdc88",
-                    transition: "all",
-                  },
-                }}
-              />
-            </IconButton>
-            <IconButton
-              size="large"
-              onClick={() => {
-                console.log(`Delete clicked on row with id: ${info.getValue()}`)
-                // Add your delete logic here
-              }}
-            >
-              <DeleteIcon
-                sx={{
-                  background: "#7F8F98",
-                  color: "white",
-                  borderRadius: "50%",
-                  fontSize: "30px",
-                  padding: "4px",
                   fontWeight: "bold",
                   ":hover": {
                     color: "#3497f9",

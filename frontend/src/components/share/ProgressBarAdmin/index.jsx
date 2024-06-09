@@ -1,14 +1,16 @@
 import "./index.scss"
 import { BarChart, Bar, XAxis, YAxis, Tooltip } from "recharts"
 import PropTypes from "prop-types"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { studentApi } from "../../../apis"
 const AreaProgressChart = ({ numberByTitle }) => {
-  let totalStudent = 1
+  let [totalStudent, setTotalStudent] = useState(1)
   const getTotalStudent = async () => {
-    let res = studentApi.getAllStudent()
-    totalStudent = res.DT.length()
+    let res = await studentApi.getAllStudent()
+    console.log("LENGHT", res.DT)
+    setTotalStudent(res.DT.length)
   }
+  console.log("TOTAL", totalStudent)
   useEffect(() => {
     getTotalStudent()
   }, [])
@@ -29,7 +31,7 @@ const AreaProgressChart = ({ numberByTitle }) => {
         }}
       >
         <XAxis type="number" axisLine={false} domain={[0, totalStudent]} />
-        <YAxis type="category" dataKey="title" axisLine={false} tickLine={false} />
+        <YAxis type="category" dataKey="concludetitle" axisLine={false} tickLine={false} />
         <Tooltip cursor={{ fill: "transparent" }} />
         {/* <Legend iconType="circle" iconSize={10} verticalAlign="top" align="right" /> */}
         <Bar
