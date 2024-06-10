@@ -19,13 +19,7 @@ const Scanner = ({ getValue, row, column, table }) => {
   let getLink = convertLink(id)
   return (
     <div>
-      <Button
-        sx={{ marginLeft: "12px" }}
-        onClick={openScannerModal}
-        variant="contained"
-        color="info"
-        startIcon={<QrCodeIcon></QrCodeIcon>}
-      >
+      <Button onClick={openScannerModal} variant="contained" color="info" startIcon={<QrCodeIcon></QrCodeIcon>}>
         QR
       </Button>
       <QrCodeModal

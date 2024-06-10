@@ -70,6 +70,7 @@ export default function DeleteStudent({ isOpenDeleteStudent, closeDeleteStudent,
         console.log(res);
         if (res.message == "deleted user") {
             toast.success("Xóa thành công")
+            closeDeleteStudent();
         } else {
             toast.error("Xóa thất bại")
         }

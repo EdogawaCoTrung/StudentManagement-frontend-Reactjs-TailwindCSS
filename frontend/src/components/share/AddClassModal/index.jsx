@@ -17,7 +17,6 @@ export default function AddClassModal({
   let [gradeId, setGradeId] = useState("")
   const [classInfo, setClassInfo] = useState({
     classname: "",
-    total: "",
     gradeId: gradeId,
   })
   let fetchAllGradeByYear = async () => {
@@ -55,7 +54,6 @@ export default function AddClassModal({
       e.preventDefault() // Xóa sau
       const data = {
         classname: classInfo.classname,
-        total: classInfo.total,
         gradeId: gradeId,
       }
       res = await classApi.createClass(data)
@@ -67,7 +65,6 @@ export default function AddClassModal({
       }
       setClassInfo({
         classname: "",
-        total: "",
         gradeId: gradeId,
       })
     } catch (error) {
@@ -101,28 +98,19 @@ export default function AddClassModal({
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="font-Manrope flex h-fit w-fit transform flex-col rounded-2xl bg-white p-6 text-left shadow-xl transition-all">
+              <Dialog.Panel className="flex h-fit w-fit transform flex-col rounded-2xl bg-white p-6 text-left font-Manrope shadow-xl transition-all">
                 <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                  Thêm Lop
+                  Create Class
                 </Dialog.Title>
-                <div className="mt-8 flex flex-row">
+                <div className="mt-8 flex w-full flex-row items-center">
                   <TextField
-                    sx={{ marginRight: "12px" }}
+                    sx={{ width: "100%" }}
                     required
                     id="classname"
                     name="classname"
                     label="Tên lớp"
                     variant="outlined"
                     value={classInfo.classname}
-                    onChange={handleChange}
-                  ></TextField>
-                  <TextField
-                    id="total"
-                    name="total"
-                    required
-                    label="Sĩ số"
-                    variant="outlined"
-                    value={classInfo.total}
                     onChange={handleChange}
                   ></TextField>
                 </div>

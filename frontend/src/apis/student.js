@@ -27,12 +27,6 @@ class StudentApi {
     console.log(res);
     return res;
   }
-
-  async deleteStudent(studentId) {
-    console.log(studentId);
-    const res = await httpClient.put(`/student/delete-student/${studentId}`);
-    return res;
-  }
   //   async createClass(data) {
   //     const res = await httpClient.post("/class/create-class", data)
   //     return res
@@ -91,6 +85,15 @@ class StudentApi {
   //       console.log(error)
   //     }
   //   }
+  async deleteStudent(id) {
+    try {
+      const res = await httpClient.put(`/student/delete-student/${id}`)
+      console.log(res)
+      return res
+    } catch (error) {
+      console.log(error)
+    }
+  }
 }
 const studentApi = new StudentApi()
 export default studentApi

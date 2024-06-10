@@ -23,8 +23,6 @@ export default function Subject() {
     const res = await subjectApi.getAllSubject()
     if (res.EC == 1) {
       toast.error(res.EM)
-    } else if (res.EC != 1) {
-      toast.success("Lấy danh sách môn thành công!")
     }
     console.log("SUBJECT", res.DT)
     setData(res.DT)
@@ -119,7 +117,7 @@ export default function Subject() {
         </Paper>
       </div>
       <div className="mt-10 flex">
-        <p className="mr-4 animate-fade-up font-Manrope text-2xl font-bold">Học phí</p>
+        <p className="mr-4 animate-fade-up font-Manrope text-2xl font-bold">Subject</p>
         <div className="animate-flip-down">
           <Button
             onClick={openAddTuitionModal}

@@ -6,6 +6,9 @@ import {
   getSortedRowModel,
 } from "@tanstack/react-table"
 import { createColumnHelper } from "@tanstack/react-table"
+import Paper from "@mui/material/Paper"
+import InputBase from "@mui/material/InputBase"
+import SearchIcon from "@mui/icons-material/Search"
 import SwapVertIcon from "@mui/icons-material/SwapVert"
 import { IconButton } from "@mui/material"
 import EditIcon from "@mui/icons-material/Edit"
@@ -14,7 +17,6 @@ import FormatListBulletedRoundedIcon from "@mui/icons-material/FormatListBullete
 import InfoRoundedIcon from "@mui/icons-material/InfoRounded"
 import React, { useEffect, useMemo, useState } from "react"
 import PropTypes from "prop-types"
-import { Input } from "@mui/material"
 import { studentApi } from "../../../apis"
 import { gradeApi } from "../../../apis"
 import Dropdown from "../../../components/share/Dropdown"
@@ -31,6 +33,7 @@ const Student = () => {
   const [studentCount, setStudentCount] = useState([])
   const [data, setData] = useState("")
   const [id, setId] = useState(0)
+  const [checkReload, setCheckReload] = useState(false)
   let [isOpenOnlyAddStudentModal, setOpenOnlyAddStudentModal] = useState(false)
   let [isOpenStudentProfileView, setOpenStudentProfileView] = useState(false)
   let [isOpenEditStudent, setOpenEditStudent] = useState(false)
@@ -103,6 +106,10 @@ const Student = () => {
       setSelectYear(maxYear)
     }
   }
+  const deleteStudent = async (id) => {
+    await studentApi.deleteStudent(id)
+    setCheckReload(!checkReload)
+  }
   useEffect(() => {
     if (selectYear != "") {
       console.log("VaoYear")
@@ -128,7 +135,7 @@ const Student = () => {
   useEffect(() => {
     fetchAllStudent()
     fetchAllYear()
-  }, [])
+  }, [checkReload])
   const [columnFilters, setColumnFilters] = useState([])
   const searchInput = columnFilters.find((f) => f.id === "studentname")?.value || ""
   const filterGrade = columnFilters.find((f) => f.id === "gradename")?.value || []
@@ -289,7 +296,6 @@ const Student = () => {
                 console.log(`Delete clicked on row with id: ${info.getValue()}`)
                 setId(info.getValue());
                 openDeleteStudent();
-                // Add your delete logic here
               }}
             >
               <DeleteIcon
@@ -416,14 +422,41 @@ const Student = () => {
           </button>
         </div>
         <div className="">
-          <Input
+          <Paper
+            component="form"
             sx={{
-              width: "200px",
+              p: "2px 4px",
+              display: "flex",
+              alignItems: "center",
+              width: 320,
+              marginBottom: "8px",
             }}
-            placeholder="Search..."
-            value={searchInput}
-            onChange={(e) => onFilterChange("studentname", e.target.value)}
-          />
+          >
+            <IconButton sx={{ p: "10px", background: "#13313D", color: "white" }} aria-label="menu">
+              <SearchIcon />
+            </IconButton>
+            <InputBase
+              sx={{
+                ml: 2,
+                flex: 1,
+                borderWidth: 0,
+                border: "none",
+                borderRadius: 0,
+                ":active": {
+                  border: "none",
+                  borderWidth: 0,
+                },
+                ":focus": {
+                  border: "none",
+                  borderWidth: 0,
+                },
+                appearance: "none",
+              }}
+              value={searchInput}
+              onChange={(e) => onFilterChange("studentname", e.target.value)}
+              placeholder="Search..."
+            />
+          </Paper>
         </div>
       </div>
       <div className="mb-11 flex flex-row items-center justify-between align-middle">
