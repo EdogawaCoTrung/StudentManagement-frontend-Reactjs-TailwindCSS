@@ -1,27 +1,19 @@
 import * as React from "react"
 import { Fragment, useState } from "react"
-import Box from "@mui/material/Box"
 import TextField from "@mui/material/TextField"
 import { Dialog, Transition } from "@headlessui/react"
 import Avatar from "@mui/material/Avatar"
-import Stack from "@mui/material/Stack"
 import MenuItem from "@mui/material/MenuItem"
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo"
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
 import { DatePicker } from "@mui/x-date-pickers/DatePicker"
 import Button from "@mui/material/Button"
 import dayjs from "dayjs"
-import { gradeApi } from "../../../apis"
-import { classApi } from "../../../apis"
+import { subjectApi, teacherApi } from "../../../apis"
 import { toast } from "react-toastify"
-import { KeyboardReturnOutlined } from "@mui/icons-material"
-import { httpClient } from "../../../services"
-import { studentApi } from "../../../apis"
-import { accountApi } from "../../../apis"
 import PropTypes from "prop-types"
 import { MdCloudUpload } from "react-icons/md"
-import { json } from "react-router"
+import SubjectComboBox from "../SubjectCombobox"
 const genders = [
   {
     id: 1,
@@ -33,14 +25,19 @@ const genders = [
   },
 ]
 
-export default function OnlyAddStudentModal({ isOpenOnlyAddStudentModal, closeOnlyAddStudentModal, year }) {
-  const [dateValue, setDateValue] = React.useState(dayjs("2022-04-17"))
+export default function OnlyAddTeacherModal({
+  isOpenOnlyAddTeacherModal,
+  closeOnlyAddTeachertModal,
+  setCheckReLoading,
+}) {
+  const [dateValue, setDateValue] = React.useState(dayjs())
   const [name, setNameValue] = React.useState("")
   const [gender, setGenderValue] = React.useState("Nam")
-  const [address, setAddressValue] = React.useState("")
   const [email, setEmailValue] = React.useState("")
   const [avatar, setAvatar] = React.useState(null)
   const [preview, setPreview] = useState(null)
+  const [subjectId, setSubjectId] = useState(null)
+  const [subjectname, setSubjectName] = useState(null)
   const handlePreviewAvatar = (e) => {
     let file = e.target.files[0]
     if (file) {
@@ -57,20 +54,13 @@ export default function OnlyAddStudentModal({ isOpenOnlyAddStudentModal, closeOn
       avatar && URL.revokeObjectURL(avatar.preview)
     }
   }, [avatar])
-  console.log("avatar", avatar)
-  async function getAllGrades() {
-    let res = await gradeApi.getAllGradeByYearService(year)
-    const grades = res.DT.map((grade) => ({ id: grade.id, name: grade.gradename }))
-    setGrades(grades)
-  }
-  async function getAllClasses() {
-    let res = await classApi.getAllClassByGradeAndYear(grade, year)
-    const classes = res.DT.map((className) => ({ id: className.id, name: className.classname }))
-    setClasses(classes)
+  async function getAllSubject() {
+    let res = await subjectApi.getAllSubject()
+    setSubjectId(res.DT[0].id)
+    setSubjectName(res.DT[0].subjectname)
   }
   React.useEffect(() => {
-    getAllGrades()
-    getAllClasses()
+    getAllSubject()
   }, [])
   const handleSaveClick = async () => {
     const formData = new FormData()
@@ -81,7 +71,7 @@ export default function OnlyAddStudentModal({ isOpenOnlyAddStudentModal, closeOn
     }
 
     // Thêm các dữ liệu khác vào FormData
-    formData.append("studentname", name)
+    formData.append("teachername", name)
     formData.append("birthDate", dateValue.toISOString()) // Chuyển đổi sang chuỗi ISO
     formData.append("startDate", "2024-06-06")
     if (gender == "Nam") {
@@ -90,20 +80,20 @@ export default function OnlyAddStudentModal({ isOpenOnlyAddStudentModal, closeOn
       formData.append("gender", 2)
     }
     formData.append("email", email)
-    formData.append("address", address)
-    const res1 = await studentApi.createStudent(formData)
+    formData.append("subjectId", subjectId)
+    const res1 = await teacherApi.createTeacher(formData)
     console.log(res1)
     if (res1.EC === 0) {
-      toast.success("Thêm học sinh thành công!")
-      closeOnlyAddStudentModal()
+      toast.success("Thêm giáo viên thành công!")
+      closeOnlyAddTeachertModal()
     } else {
       toast.error(res1.EM)
     }
   }
 
   return (
-    <Transition appear show={isOpenOnlyAddStudentModal} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={closeOnlyAddStudentModal}>
+    <Transition appear show={isOpenOnlyAddTeacherModal} as={Fragment}>
+      <Dialog as="div" className="relative z-10" onClose={closeOnlyAddTeachertModal}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -136,13 +126,13 @@ export default function OnlyAddStudentModal({ isOpenOnlyAddStudentModal, closeOn
                     {preview ? (
                       <Avatar
                         src={preview}
-                        alt="Student"
+                        alt="Teacher"
                         sx={{ height: 200, width: 200, border: "solid", zIndex: 0, objectFit: "cover" }}
                       />
                     ) : (
                       <Avatar
                         src="/student.png"
-                        alt="Student"
+                        alt="Teacher"
                         sx={{ height: 200, width: 200, border: "solid", zIndex: 0 }}
                       />
                     )}
@@ -207,18 +197,11 @@ export default function OnlyAddStudentModal({ isOpenOnlyAddStudentModal, closeOn
                   </div>
                 </div>
                 <div className="px-2">
-                  <TextField
-                    value={address}
-                    onChange={(newValue) => setAddressValue(newValue.target.value)}
-                    required
-                    id="outlined-required"
-                    label="Địa chỉ"
-                    sx={{
-                      width: "100%",
-                      marginTop: 2,
-                      float: "center",
-                    }}
-                  ></TextField>
+                  <SubjectComboBox
+                    setSubjectId={setSubjectId}
+                    subjectId={subjectId}
+                    subjectname={subjectname}
+                  ></SubjectComboBox>
                 </div>
                 <div className="px-2">
                   <TextField
@@ -243,7 +226,7 @@ export default function OnlyAddStudentModal({ isOpenOnlyAddStudentModal, closeOn
                     variant="contained"
                     color="error"
                     sx={{ marginLeft: 4, marginRight: 4 }}
-                    onClick={closeOnlyAddStudentModal}
+                    onClick={closeOnlyAddTeachertModal}
                   >
                     Hủy
                   </Button>
@@ -256,9 +239,9 @@ export default function OnlyAddStudentModal({ isOpenOnlyAddStudentModal, closeOn
     </Transition>
   )
 }
-OnlyAddStudentModal.propTypes = {
-  isOpenOnlyAddStudentModal: PropTypes.any,
-  closeOnlyAddStudentModal: PropTypes.any,
-  year: PropTypes.any,
+OnlyAddTeacherModal.propTypes = {
+  isOpenOnlyAddTeacherModal: PropTypes.any,
+  closeOnlyAddTeachertModal: PropTypes.any,
+  setCheckReLoading: PropTypes.any,
   // columnFilters: PropTypes.any,
 }

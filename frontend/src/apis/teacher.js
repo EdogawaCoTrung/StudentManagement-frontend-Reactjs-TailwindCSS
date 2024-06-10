@@ -8,6 +8,10 @@ class TeacherApi {
     const res = await httpClient.get("/teacher")
     return res
   }
+  async createTeacher(data) {
+    const res = await httpClient.post("/teacher/create-teacher", data)
+    return res
+  }
   //   async getAllUnapprovedGroup() {
   //     const res = await httpClient.get("/groups/unapproved")
   //     return res
