@@ -18,6 +18,7 @@ export default {
       },
       colors: {
         PrimaryColor: "#B6DDDA",
+        uploadBtn: "#0390fc",
         backgroundPage: "#e8f2f1",
         gradeBackground: "#E9EAEC",
         subjectCard: "#5D786F",
