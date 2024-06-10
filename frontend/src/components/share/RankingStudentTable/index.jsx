@@ -10,10 +10,23 @@ import SwapVertIcon from "@mui/icons-material/SwapVert"
 import { IconButton } from "@mui/material"
 import FormatListBulletedRoundedIcon from "@mui/icons-material/FormatListBulletedRounded"
 import InfoRoundedIcon from "@mui/icons-material/InfoRounded"
-import React, { useMemo } from "react"
 import PropTypes from "prop-types"
 import { useNavigate } from "react-router-dom"
+import StudentProfileView from "../StudentProfileView"
+import React, { useMemo, useState } from "react"
+
+
 const RankingStudentTable = ({ data }) => {
+
+  let [isOpenStudentProfileView, setOpenStudentProfileView] = useState(false)
+  let [id, setId] = useState(0)
+  function openStudentProfileView() {
+    setOpenStudentProfileView(true)
+  }
+
+  function closeStudentProfileView() {
+    setOpenStudentProfileView(false)
+  }
   const columnHelper = createColumnHelper()
   const navigate = useNavigate()
   const HandleClick = (id) => {
@@ -77,6 +90,8 @@ const RankingStudentTable = ({ data }) => {
               onClick={() => {
                 console.log(`View clicked on row with id: ${info.getValue()}`)
                 // Add your view logic here
+                setId(info.getValue());
+                openStudentProfileView();
               }}
             >
               <InfoRoundedIcon
@@ -157,6 +172,13 @@ const RankingStudentTable = ({ data }) => {
           })}
         </tbody>
       </table>
+      {isOpenStudentProfileView && (
+        <StudentProfileView
+          isOpenStudentProfileView={isOpenStudentProfileView}
+          closeStudentProfileView={closeStudentProfileView}
+          id={id}
+        />
+      )}
     </div>
   )
 }

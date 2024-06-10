@@ -151,12 +151,12 @@ export default function EditStudent ({ isOpenEditStudent, closeEditStudent, id }
                                                     value={name}
                                                     onChange={(event) => setName(event.target.value)}
                                                     className="pl-10"
-                                                    style={{ fontSize: "30px", marginTop: "20px", marginLeft: "80px" , width: "120%"}}
+                                                    style={{ fontSize: "28px", marginTop: "20px", marginLeft: "80px" , width: "120%"}}
                                                 />
                                                 <TextField
                                                     label="Lớp"
                                                     className="pl-10" 
-                                                    style={{ fontSize: "24px", marginTop: "20px", marginLeft: "80px", width: "120%" }}
+                                                    style={{ fontSize: "22px", marginTop: "20px", marginLeft: "80px", width: "120%" }}
                                                     value={className}
                                                     onChange={(event) => setClass(event.target.value)}
                                                 />
@@ -171,7 +171,7 @@ export default function EditStudent ({ isOpenEditStudent, closeEditStudent, id }
                                                     value={birthDate}
                                                     onChange={(event) => setBirthDate(event.target.value)}
                                                     className="pl-10"
-                                                    style={{ fontSize: "20px", marginTop: "40px", marginLeft: "40px" }}
+                                                    style={{ fontSize: "18px", marginTop: "40px", marginLeft: "40px" }}
                                                 />
                                                 <div className="ml-40">
                                                     <TextField
@@ -179,7 +179,7 @@ export default function EditStudent ({ isOpenEditStudent, closeEditStudent, id }
                                                         value={gender}
                                                         onChange={(event) => setGender(event.target.value)}
                                                         className="pl-10"
-                                                        style={{ fontSize: "20px", marginTop: "36px", marginRight: "20px", marginLeft: "-40px" }}
+                                                        style={{ fontSize: "18px", marginTop: "36px", marginRight: "20px", marginLeft: "-40px" }}
                                                     />
                                                 </div>
                                             </div>
@@ -190,14 +190,14 @@ export default function EditStudent ({ isOpenEditStudent, closeEditStudent, id }
                                                     value={startDate}
                                                     onChange={(event) => setStartDate(event.target.value)}
                                                     className="pl-10"
-                                                    style={{ fontSize: "20px", marginTop: "20px", marginLeft: "40px" }}
+                                                    style={{ fontSize: "18px", marginTop: "20px", marginLeft: "40px" }}
                                                 />
                                                 <TextField
                                                     label="Khối"
                                                     value={grade}
                                                     onChange={(event) => setGrade(event.target.value)}
                                                     className="pl-10"
-                                                    style={{ fontSize: "20px", marginLeft: "120px", marginTop: "18px" }}
+                                                    style={{ fontSize: "18px", marginLeft: "120px", marginTop: "18px" }}
                                                 />
                                                 </div>
                                                 <div>
@@ -206,14 +206,14 @@ export default function EditStudent ({ isOpenEditStudent, closeEditStudent, id }
                                                     value={username}
                                                     onChange={(event) => setUsername(event.target.value)}
                                                     className="pl-10"
-                                                    style={{ fontSize: "20px", marginTop: "20px", marginLeft: "40px" }}
+                                                    style={{ fontSize: "18px", marginTop: "20px", marginLeft: "40px" }}
                                                 />
                                                 <TextField
                                                     label="Email"
                                                     value={email}
                                                     onChange={(event) => setEmail(event.target.value)}
                                                     className="pl-10"
-                                                    style={{ fontSize: "20px", marginTop: "20px", marginLeft: "120px" }}
+                                                    style={{ fontSize: "18px", marginTop: "20px", marginLeft: "120px" }}
                                                 />
                                                 </div>
                                                 <TextField
@@ -221,19 +221,17 @@ export default function EditStudent ({ isOpenEditStudent, closeEditStudent, id }
                                                     value={address}
                                                     onChange={(event) => setAddress(event.target.value)}
                                                     className="pl-10"
-                                                    style={{ fontSize: "20px", marginTop: "20px", marginLeft: "40px" }}
+                                                    style={{ fontSize: "18px", marginTop: "20px", marginLeft: "40px" }}
                                                 />
                                                 <TextField
                                                     label="Trạng thái trong năm"
                                                     value={statusInYear === 0 ? "Chưa hoàn thành" : "Đã hoàn thành"}
                                                     onChange={(event) => setStatusInYear(event.target.value)}
                                                     className="pl-10"
-                                                    style={{ fontSize: "20px", marginTop: "20px", marginLeft: "120px" }}
+                                                    style={{ fontSize: "18px", marginTop: "20px", marginLeft: "120px" }}
                                                 />
-                                                <div className="p-10"></div>
                                             </div>
                                         </div>
-                                        <div></div>
                                     </div>
                                 </div>
                                 <div className="flex justify-end">
