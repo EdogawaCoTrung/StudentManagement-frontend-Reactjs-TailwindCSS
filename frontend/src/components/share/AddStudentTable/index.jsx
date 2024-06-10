@@ -14,7 +14,20 @@ import PropTypes from "prop-types"
 import Paper from "@mui/material/Paper"
 import InputBase from "@mui/material/InputBase"
 import SearchIcon from "@mui/icons-material/Search"
+import StudentProfileView from "../StudentProfileView"
+
 const AddStudentTable = ({ HandleSetCheckValue, data }) => {
+
+  let [id, setId] = useState(0)
+  let [isOpenStudentProfileView, setOpenStudentProfileView] = useState(false)
+  function openStudentProfileView() {
+    setOpenStudentProfileView(true)
+  }
+
+  function closeStudentProfileView() {
+    setOpenStudentProfileView(false)
+  }
+
   const [columnFilters, setColumnFilters] = useState([])
   const searchInput = columnFilters.find((f) => f.id === "studentname")?.value || ""
   const onFilterChange = (id, value) =>
@@ -60,6 +73,8 @@ const AddStudentTable = ({ HandleSetCheckValue, data }) => {
               onClick={() => {
                 console.log(`View clicked on row with id: ${info.getValue()}`)
                 // Add your view logic here
+                setId(info.getValue());
+                openStudentProfileView();
               }}
             >
               <InfoRoundedIcon
@@ -171,6 +186,13 @@ const AddStudentTable = ({ HandleSetCheckValue, data }) => {
           })}
         </tbody>
       </table>
+      {isOpenStudentProfileView && (
+        <StudentProfileView
+          isOpenStudentProfileView={isOpenStudentProfileView}
+          closeStudentProfileView={closeStudentProfileView}
+          id={id}
+        />
+      )}
     </div>
   )
 }

@@ -20,6 +20,10 @@ import InputBase from "@mui/material/InputBase"
 import SearchIcon from "@mui/icons-material/Search"
 import { SiMicrosoftexcel } from "react-icons/si"
 import { useNavigate } from "react-router-dom"
+import StudentProfileView from "../StudentProfileView"
+import EditStudent from "../EditStudentModal"
+import DeleteStudent from "../DeleteStudentModal"
+
 const StudentTable = ({ data, role }) => {
   const navigate = useNavigate()
   const [columnFilters, setColumnFilters] = useState([])
@@ -31,6 +35,34 @@ const StudentTable = ({ data, role }) => {
     const day = String(date.getDate()).padStart(2, "0")
     const formattedDate = `${day}-${month}-${year}`
     return formattedDate
+  }
+  let [isOpenStudentProfileView, setOpenStudentProfileView] = useState(false)
+  let [isOpenEditStudent, setOpenEditStudent] = useState(false)
+  let [isOpenDeleteStudent, setOpenDeleteStudent] = useState(false)
+  let [id, setId] = useState(0)
+
+  function openDeleteStudent() {
+    setOpenDeleteStudent(true)
+  }
+
+  function closeDeleteStudent() {
+    setOpenDeleteStudent(false)
+  }
+
+  function openStudentProfileView() {
+    setOpenStudentProfileView(true)
+  }
+
+  function closeStudentProfileView() {
+    setOpenStudentProfileView(false)
+  }
+
+  function openEditStudent() {
+    setOpenEditStudent(true)
+  }
+
+  function closeEditStudent() {
+    setOpenEditStudent(false)
   }
   const HandleClick = (id) => {
     navigate(`/summaries/my-transcript/${id}`)
@@ -142,6 +174,8 @@ const StudentTable = ({ data, role }) => {
               onClick={() => {
                 console.log(`View clicked on row with id: ${info.getValue()}`)
                 // Add your view logic here
+                setId(info.getValue())
+                openStudentProfileView()
               }}
             >
               <InfoRoundedIcon
@@ -166,6 +200,8 @@ const StudentTable = ({ data, role }) => {
                 onClick={() => {
                   console.log(`Edit clicked on row with id: ${info.getValue()}`)
                   // Add your edit logic here
+                  setId(info.getValue())
+                  openEditStudent()
                 }}
               >
                 <EditIcon
@@ -191,6 +227,8 @@ const StudentTable = ({ data, role }) => {
                 onClick={() => {
                   console.log(`Delete clicked on row with id: ${info.getValue()}`)
                   // Add your delete logic here
+                  setId(info.getValue())
+                  openDeleteStudent()
                 }}
               >
                 <DeleteIcon
@@ -320,6 +358,19 @@ const StudentTable = ({ data, role }) => {
           })}
         </tbody>
       </table>
+      {isOpenStudentProfileView && (
+        <StudentProfileView
+          isOpenStudentProfileView={isOpenStudentProfileView}
+          closeStudentProfileView={closeStudentProfileView}
+          id={id}
+        />
+      )}
+      {isOpenEditStudent && (
+        <EditStudent isOpenEditStudent={isOpenEditStudent} closeEditStudent={closeEditStudent} id={id} />
+      )}
+      {isOpenDeleteStudent && (
+        <DeleteStudent isOpenDeleteStudent={isOpenDeleteStudent} closeDeleteStudent={closeDeleteStudent} id={id} />
+      )}
     </div>
   )
 }

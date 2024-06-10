@@ -1,14 +1,16 @@
 import UpdatePasswordModal from "../../../components/share/UpdatePasswordModal"
-import StudentProfileView from "../../../components/share/StudentProfileView"
+import AdminProfileView from "../../../components/share/AdminProfileView"
 
 import * as React from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import { useState } from "react"
 
 
 
 export default function StudentProfile() {
+  
   const [value, setValue] = React.useState('profileView');
 
   const handleChange = (event, newValue) => {
@@ -55,7 +57,7 @@ export default function StudentProfile() {
         </Tabs>
       </Box>
       {value === 'updatePassword' && <UpdatePasswordModal />}
-      {value === 'profileView' && <StudentProfileView />}
+      {value === 'profileView' && <AdminProfileView/>}
     </div>
   );
 }
