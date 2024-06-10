@@ -4,7 +4,7 @@ import { ThemeProvider } from "@mui/material/styles"
 import Typography from "@mui/material/Typography"
 import LOGO from "../../../assets/Logo/Black and White Collection 15.svg"
 import { Link, NavLink } from "react-router-dom"
-import { MdOutlineDashboard } from "react-icons/md"
+import { MdOutlineClass } from "react-icons/md"
 import { FaCircleUser } from "react-icons/fa6"
 import { routes } from "../../../config"
 import { jwtDecode } from "jwt-decode"
@@ -14,7 +14,7 @@ import { useAuth } from "../../../hooks"
 import { RiProfileLine } from "react-icons/ri"
 const defaultTheme = MainTheme
 
-export default function OfficerSidebar() {
+export default function TeacherSidebar() {
   const { logOut } = useAuth()
   const [selectedIndex, setSelectedIndex] = useState(() => parseInt(localStorage.getItem("selectedIndex")) || 0)
   useEffect(() => {
@@ -60,11 +60,11 @@ export default function OfficerSidebar() {
                 ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-black transition-all"
                 : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-white transition-all hover:ml-4"
             }
-            to={routes.OfficerTuition}
+            to={routes.TeacherClass}
           >
             <div className="flex items-center">
-              <MdOutlineDashboard />
-              <span className="ml-3">Tuition</span>
+              <MdOutlineClass />
+              <span className="ml-3">Class</span>
             </div>
           </NavLink>
           <NavLink
@@ -75,7 +75,7 @@ export default function OfficerSidebar() {
                 ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-black transition-all"
                 : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-white transition-all hover:ml-4"
             }
-            to={routes.OfficerProfile}
+            to={routes.TeacherProfile}
           >
             <div className="flex items-center">
               <RiProfileLine />

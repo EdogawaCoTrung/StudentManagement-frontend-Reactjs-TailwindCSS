@@ -119,7 +119,7 @@ export default function OnlyAddTeacherModal({
             >
               <Dialog.Panel className="flex h-fit w-auto transform flex-col rounded-2xl bg-white p-6 text-left font-Manrope shadow-xl transition-all">
                 <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                  Thêm học sinh
+                  Thêm giáo viên
                 </Dialog.Title>
                 <div className="flex items-center p-4">
                   <div className="relative flex flex-col items-center justify-center">

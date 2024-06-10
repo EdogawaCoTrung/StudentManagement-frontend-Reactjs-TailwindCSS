@@ -10,7 +10,7 @@ import Paper from "@mui/material/Paper"
 import InputBase from "@mui/material/InputBase"
 import SearchIcon from "@mui/icons-material/Search"
 import SwapVertIcon from "@mui/icons-material/SwapVert"
-import { IconButton } from "@mui/material"
+import { Avatar, IconButton } from "@mui/material"
 import EditIcon from "@mui/icons-material/Edit"
 import DeleteIcon from "@mui/icons-material/Delete"
 import FormatListBulletedRoundedIcon from "@mui/icons-material/FormatListBulletedRounded"
@@ -169,7 +169,11 @@ const Student = () => {
         enableColumnFilter: true,
         cell: (info) => (
           <div className="flex items-center align-middle">
-            <img className="mr-3 h-10 w-10 rounded-full object-cover" src={info.cell.row.original.User.image}></img>
+            {info.cell.row.original.User.image != null ? (
+              <img className="mr-3 h-10 w-10 rounded-full object-cover" src={info.cell.row.original.User.image}></img>
+            ) : (
+              <Avatar src="/student.png" alt="Student" sx={{ height: 40, width: 40, marginRight: "12px" }} />
+            )}
             <div className="flex flex-col">
               <span className="">{info.cell.row.original.studentname}</span>
               <span className="text-xs text-neutral-400">{info.cell.row.original.User.email}</span>
@@ -245,9 +249,9 @@ const Student = () => {
             <IconButton
               size="large"
               onClick={() => {
-                console.log(`View clicked on row with id: ${info.getValue()}`);
-                openStudentProfileView();
-                setId(info.getValue());
+                console.log(`View clicked on row with id: ${info.getValue()}`)
+                openStudentProfileView()
+                setId(info.getValue())
               }}
             >
               <InfoRoundedIcon
@@ -270,8 +274,8 @@ const Student = () => {
               size="large"
               onClick={() => {
                 console.log(`Edit clicked on row with id: ${info.getValue()}`)
-                openEditStudent();
-                setId(info.getValue());
+                openEditStudent()
+                setId(info.getValue())
               }}
             >
               <EditIcon
@@ -294,8 +298,8 @@ const Student = () => {
               size="large"
               onClick={() => {
                 console.log(`Delete clicked on row with id: ${info.getValue()}`)
-                setId(info.getValue());
-                openDeleteStudent();
+                setId(info.getValue())
+                openDeleteStudent()
               }}
             >
               <DeleteIcon
@@ -480,7 +484,7 @@ const Student = () => {
             <OnlyAddStudentModal
               isOpenOnlyAddStudentModal={isOpenOnlyAddStudentModal}
               closeOnlyAddStudentModal={closeOnlyAddStudentModal}
-              year = {selectYear}
+              year={selectYear}
             ></OnlyAddStudentModal>
           )}
         </div>
@@ -538,18 +542,10 @@ const Student = () => {
           />
         )}
         {isOpenEditStudent && (
-          <EditStudent
-            isOpenEditStudent={isOpenEditStudent}
-            closeEditStudent={closeEditStudent}
-            id={id}
-          />
+          <EditStudent isOpenEditStudent={isOpenEditStudent} closeEditStudent={closeEditStudent} id={id} />
         )}
         {isOpenDeleteStudent && (
-          <DeleteStudent
-            isOpenDeleteStudent={isOpenDeleteStudent}
-            closeDeleteStudent={closeDeleteStudent}
-            id={id}
-          />
+          <DeleteStudent isOpenDeleteStudent={isOpenDeleteStudent} closeDeleteStudent={closeDeleteStudent} id={id} />
         )}
       </div>
     </div>
