@@ -17,7 +17,39 @@ import InfoRoundedIcon from "@mui/icons-material/InfoRounded"
 import EditIcon from "@mui/icons-material/Edit"
 import DeleteIcon from "@mui/icons-material/Delete"
 import DateCell from "../StudentTuitionTable/BillingDate"
+import TeacherDelete from "../TeacherDelete"
+import TeacherView from "../TeacherView"
+import TeacherEdit from "../TeacherEdit"
+
 const TeacherTable = ({ data }) => {
+  let [isOpenTeacherView, setOpenTeacherView] = useState(false)
+  let [isOpenTeacherEdit, setOpenTeacherEdit] = useState(false)
+  let [isOpenTeacherDelete, setOpenTeacherDelete] = useState(false)
+  let [id, setId] = useState(0)
+
+  function openTeacherDelete() {
+    setOpenTeacherDelete(true)
+  }
+
+  function closeTeacherDelete() {
+    setOpenTeacherDelete(false)
+  }
+  function openTeacherView() {
+    setOpenTeacherView(true)
+  }
+
+  function closeTeacherView() {
+    setOpenTeacherView(false)
+  }
+
+  function openTeacherEdit() {
+    setOpenTeacherEdit(true)
+  }
+
+  function closeTeacherEdit() {
+    setOpenTeacherEdit(false)
+  }
+
   const [columnFilters, setColumnFilters] = useState([])
   const searchInput = columnFilters.find((f) => f.id === "teachername")?.value || ""
   const onFilterChange = (id, value) =>
@@ -45,9 +77,9 @@ const TeacherTable = ({ data }) => {
         cell: (info) => (
           <div className="flex items-center align-middle">
             {info.cell.row.original.User.image != null ? (
-              <img className="mr-3 h-10 w-10 rounded-full object-cover" src={info.cell.row.original.User.image}></img>
+              <img className="mr-3 h-10 w-10 rounded-full object-cover" src={info.cell.row.original.User.image} alt="Teacher" />
             ) : (
-              <Avatar src="/student.png" alt="Student" sx={{ height: 40, width: 40, marginRight: "12px" }} />
+              <Avatar src="/student.png" alt="Teacher" sx={{ height: 40, width: 40, marginRight: "12px" }} />
             )}
             <div className="flex flex-col">
               <span className="">{info.cell.row.original.teachername}</span>
@@ -57,7 +89,6 @@ const TeacherTable = ({ data }) => {
         ),
         filterFn: "includesString",
       }),
-      //<span>{info.cell.getValue().studentname}</span>
       columnHelper.accessor((row) => `${row.birthDate}`, {
         id: "birthDate",
         header: "Date of Birth",
@@ -77,7 +108,7 @@ const TeacherTable = ({ data }) => {
         id: "subjectname",
         header: "Subject",
       }),
-      columnHelper.accessor((row) => `${row}`, {
+      columnHelper.accessor((row) => row.id, { // Update here to use row ID
         id: "action",
         header: "Thao tác",
         cell: (info) => (
@@ -85,8 +116,10 @@ const TeacherTable = ({ data }) => {
             <IconButton
               size="large"
               onClick={() => {
-                console.log(`View clicked on row with id: ${info.getValue()}`)
-                // Add your view logic here
+                console.log(`View clicked on row with id: ${info.getValue()}`);
+                openTeacherView();
+                setId(info.getValue())
+                
               }}
             >
               <InfoRoundedIcon
@@ -110,6 +143,8 @@ const TeacherTable = ({ data }) => {
               onClick={() => {
                 console.log(`Edit clicked on row with id: ${info.getValue()}`)
                 // Add your edit logic here
+                openTeacherEdit();
+                setId(info.getValue());
               }}
             >
               <EditIcon
@@ -130,9 +165,10 @@ const TeacherTable = ({ data }) => {
             </IconButton>
             <IconButton
               size="large"
-              //   onClick={() => {
-              //     deleteStudent(info.getValue())
-              //   }}
+                onClick={() => {
+                  openTeacherDelete();
+                  setId(info.getValue());
+                }}
             >
               <DeleteIcon
                 sx={{
@@ -156,6 +192,7 @@ const TeacherTable = ({ data }) => {
     ],
     [],
   )
+  
   const finalData = React.useMemo(() => data, [data])
   const tableInstance = useReactTable({
     columns: columnDef,
@@ -250,6 +287,27 @@ const TeacherTable = ({ data }) => {
             })}
           </tbody>
         </table>
+        {isOpenTeacherView && (
+          <TeacherView
+            isOpenTeacherView={isOpenTeacherView}
+            closeTeacherView={closeTeacherView}
+            id={id}
+          />
+        )}
+        {isOpenTeacherEdit && (
+          <TeacherEdit
+            isOpenTeacherEdit={isOpenTeacherEdit}
+            closeTeacherEdit={closeTeacherEdit}
+            id={id}
+          />
+        )}
+        {isOpenTeacherDelete && (
+          <TeacherDelete
+            isOpenTeacherDelete={isOpenTeacherDelete}
+            closeTeacherDelete={closeTeacherDelete}
+            id={id}
+          />
+        )}
       </div>
     </div>
   )

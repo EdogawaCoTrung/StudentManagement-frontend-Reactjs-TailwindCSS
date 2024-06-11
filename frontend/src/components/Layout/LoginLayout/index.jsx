@@ -62,7 +62,7 @@ export default function LogIn() {
           navigate("/studentDashboard")
         } else if (role == 3) {
           navigate("/officerTuition")
-        }
+        } 
       } catch (error) {
         toast.error("Đăng nhập không thành công, vui lòng thử lại")
       }
