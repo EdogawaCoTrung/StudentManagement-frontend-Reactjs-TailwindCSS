@@ -27,6 +27,7 @@ import EditStudent from "../../../components/share/EditStudentModal"
 import DeleteStudent from "../../../components/share/DeleteStudentModal"
 
 import { useNavigate } from "react-router-dom"
+import YearCell from "../../../components/share/YearCell"
 const Student = () => {
   const navigate = useNavigate()
   const [classCount, setClassCount] = useState("")
@@ -144,7 +145,7 @@ const Student = () => {
   const isActive = filterGrade.includes(10)
   const isActive2 = filterGrade.includes(11)
   const isActive3 = filterGrade.includes(12)
-  console.log("ISACTIVE", filterYear)
+  console.log("ISACTIVE", filterGrade)
   const onFilterChange = (id, value) =>
     setColumnFilters((prev) =>
       prev
@@ -154,6 +155,11 @@ const Student = () => {
           value,
         }),
     )
+  function convertYear(dateString) {
+    const date = new Date(dateString)
+    const year = date.getFullYear()
+    return year
+  }
   console.log("columnFilter: ", columnFilters)
   const columnHelper = createColumnHelper()
   const columnDef = useMemo(
@@ -182,7 +188,7 @@ const Student = () => {
         ),
         filterFn: "includesString",
       }),
-      columnHelper.accessor((row) => `${row.grade}`, {
+      columnHelper.accessor((row) => `${row.gradename}`, {
         id: "gradename",
         header: "Khối",
         enableColumnFilter: true,
@@ -192,10 +198,13 @@ const Student = () => {
           console.log("GRADEID: ", typeof gradeNumber)
           console.log("filterGrades", filterGrades)
           console.log("filterGradesInClude", filterGrades.includes(gradeNumber))
+          if (filterGrades.length == 0) {
+            return true
+          }
           return filterGrades.includes(gradeNumber)
         },
       }),
-      columnHelper.accessor((row) => `${row.class}`, {
+      columnHelper.accessor((row) => `${row.classname}`, {
         id: "classname",
         header: "Lop",
       }),
@@ -215,8 +224,20 @@ const Student = () => {
           console.log("GIATRIROW", year)
           console.log("YEARID: ", filterYear[0])
           // console.log("filterYear", filterYear.includes(yearNumber))
+          if (filterYear == "All") {
+            return true
+          }
           return filterYear == yearNumber
         },
+        cell: (info) => (
+          <div>
+            {info.getValue() == "null" ? (
+              <span>{convertYear(info.row.original.startDate)}</span>
+            ) : (
+              <span>{info.getValue()}</span>
+            )}
+          </div>
+        ),
       }),
       columnHelper.accessor((row) => `${row.id}`, {
         id: "action",
@@ -473,7 +494,7 @@ const Student = () => {
           </div>
         </div>
         <div className="flex">
-          <Dropdown selectYear={selectYear} setSelectYear={setSelectYear}></Dropdown>
+          <Dropdown selectYear={selectYear} setSelectYear={setSelectYear} type="filterAll"></Dropdown>
           <button
             onClick={() => openOnlyAddStudentModal()}
             className="ml-8 flex animate-fade-right items-center justify-center rounded-full bg-backgroundplus px-2 py-1 text-center align-middle shadow-md"
