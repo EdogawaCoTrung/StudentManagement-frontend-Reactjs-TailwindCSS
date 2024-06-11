@@ -12,6 +12,19 @@ class TeacherApi {
     const res = await httpClient.post("/teacher/create-teacher", data)
     return res
   }
+  async getTeacherById(id) {
+    const res = await httpClient.get(`/teacher/${id}`)
+    console.log(res)
+    return res
+  }
+  async deleteTeacher(id) {
+    const res = await httpClient.put(`/teacher/delete-teacher/${id}`);
+    return res;
+  }
+  async updateTeacher(id, data) {
+    const res = await httpClient.put(`/teacher/update-teacher/${id}`, data);
+    return res
+  }
   //   async getAllUnapprovedGroup() {
   //     const res = await httpClient.get("/groups/unapproved")
   //     return res
