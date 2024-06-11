@@ -49,6 +49,12 @@ export function useAuth() {
       if (payload.studentId != null) {
         localStorage.setItem("studentId", payload.studentId)
       }
+      if (payload.teacherId != null) {
+        localStorage.setItem("teacherId", payload.teacherId)
+      }
+      if (payload.subjectId != null) {
+        localStorage.setItem("subjectId", payload.subjectId)
+      }
       console.log("TYPEROLE", typeof role)
       setAccessToken(accessToken)
       setUserId(userId)

@@ -22,4 +22,7 @@ export const routes = {
   //OFFICER
   OfficerTuition: "/officerTuition",
   OfficerProfile: "/officerProfile",
+  //TEACHER
+  TeacherClass: "/teacherclass",
+  TeacherProfile: "/teacherProfile",
 }

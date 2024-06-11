@@ -8,7 +8,7 @@ import {
 import { CSVLink } from "react-csv"
 import { createColumnHelper } from "@tanstack/react-table"
 import SwapVertIcon from "@mui/icons-material/SwapVert"
-import { IconButton } from "@mui/material"
+import { Avatar, IconButton } from "@mui/material"
 import EditIcon from "@mui/icons-material/Edit"
 import DeleteIcon from "@mui/icons-material/Delete"
 import FormatListBulletedRoundedIcon from "@mui/icons-material/FormatListBulletedRounded"
@@ -122,10 +122,14 @@ const StudentTable = ({ data, role }) => {
         enableColumnFilter: true,
         cell: (info) => (
           <div className="flex items-center align-middle">
-            <img
-              className="mr-3 h-10 w-10 rounded-full object-cover"
-              src={info.cell.row.original.student.User.image}
-            ></img>
+            {info.cell.row.original.student.User.image != null ? (
+              <img
+                className="mr-3 h-10 w-10 rounded-full object-cover"
+                src={info.cell.row.original.student.User.image}
+              ></img>
+            ) : (
+              <Avatar src="/student.png" alt="Student" sx={{ height: 40, width: 40, marginRight: "12px" }} />
+            )}
             <div className="flex flex-col">
               <span className="">{info.cell.row.original.student.studentname}</span>
               <span className="text-xs text-neutral-400">{info.cell.row.original.student.User.email}</span>

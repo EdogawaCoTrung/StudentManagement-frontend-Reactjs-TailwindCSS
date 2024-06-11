@@ -11,6 +11,7 @@ import {
   AuthorizedAdministrator,
   AuthorizedStudent,
   AuthorizedOfficer,
+  AuthorizedTeacher,
 } from "../components/Layout/LoginLayout/authenticate"
 import AdministratorProfile from "../pages/Administrator/Profile"
 import StudentDashboard from "../pages/Student/Dashboard"
@@ -23,6 +24,8 @@ import OfficerProfile from "../pages/Officer/Profile"
 import Subject from "../pages/Administrator/Subject"
 import StudentSummariesTable from "../pages/Administrator/Student/SummariesById"
 import Assignment from "../pages/Administrator/Assignment"
+import TeacherClass from "../pages/Teacher/Class"
+import TeacherProfile from "../pages/Teacher/Profile"
 const publicRoutes = [
   {
     path: routes.Dashboard,
@@ -173,6 +176,24 @@ const OfficerRoutes = [
     ),
   },
 ]
+const TeacherRoutes = [
+  {
+    path: routes.TeacherClass,
+    component: (
+      <AuthorizedTeacher>
+        <TeacherClass></TeacherClass>
+      </AuthorizedTeacher>
+    ),
+  },
+  {
+    path: routes.TeacherProfile,
+    component: (
+      <AuthorizedTeacher>
+        <TeacherProfile></TeacherProfile>
+      </AuthorizedTeacher>
+    ),
+  },
+]
 const LoginRoute = [{ path: routes.Login, component: LogIn }]
 console.log("LINK", publicRoutes[1].path)
-export { publicRoutes, StudentRoutes, LoginRoute, OfficerRoutes }
+export { publicRoutes, StudentRoutes, LoginRoute, OfficerRoutes, TeacherRoutes }
