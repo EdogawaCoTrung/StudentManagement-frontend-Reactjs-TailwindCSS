@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { httpClient } from "../../../services";
 import CardClass from "../../../components/share/CardClass";
 import Box from "@mui/material/Box";
-import DialogView from "../../../components/share/Modal";
+import DialogView from "../../../components/share/TeacherModal";
 import Dropdown from "../../../components/share/Dropdown";
 
 export default function TeacherClass() {
@@ -11,6 +11,7 @@ export default function TeacherClass() {
     let [isOpen2, setIsOpen2] = useState(false);
     let [isOpen3, setIsOpen3] = useState(false);
     const [classValue, setClassValue] = useState([]);
+    const [subject, setSubject] = useState("");
     const [grade10, setGrade10] = useState([]);  // Initialize as array
     const [grade11, setGrade11] = useState([]);  // Initialize as array
     const [grade12, setGrade12] = useState([]);  // Initialize as array
@@ -42,6 +43,10 @@ export default function TeacherClass() {
     function openModal3() {
         setIsOpen3(true);
     }
+    async function getSubject() {
+      const res = await httpClient.get(`/teacher/${id}`)
+      setSubject(res.DT.subject.subjectname);
+    }
 
     async function getClass() {
         const res = await httpClient.get(`/class/teacher/${id}`);
@@ -49,11 +54,10 @@ export default function TeacherClass() {
         setClassValue(res.DT);
     }
 
-    console.log("Class Value:", classValue);
-
     useEffect(() => {
         if (id) {
-            getClass(); // Fetch teacher data when the component mounts and id is available
+            getClass();
+            getSubject(); // Fetch teacher data when the component mounts and id is available
         }
     }, [id]);
 
@@ -73,10 +77,6 @@ export default function TeacherClass() {
                 grade12Classes.push({ id, classname });
             }
         });
-
-        console.log("Grade 10 Classes: ", grade10Classes);
-        console.log("Grade 11 Classes: ", grade11Classes);
-        console.log("Grade 12 Classes: ", grade12Classes);
 
         setGrade10(grade10Classes);
         setGrade11(grade11Classes);
@@ -105,12 +105,13 @@ export default function TeacherClass() {
                             />
                             {checkId === id && (
                                 <DialogView
-                                    classId={id}
-                                    isOpen={isOpen}
-                                    closeModal={closeModal}
-                                    nameclass={classname}
-                                    openModal={openModal}
-                                    role={"teacher"}  // Replace with the actual role if needed
+                                  classId={id}
+                                  isOpen={isOpen}
+                                  closeModal={closeModal}
+                                  nameclass={classname}
+                                  openModal={openModal}
+                                  gradename={10}
+                                  subjectname={subject} // Replace with the actual role if needed
                                 />
                             )}
                         </div>
@@ -137,7 +138,8 @@ export default function TeacherClass() {
                                     closeModal={closeModal2}
                                     nameclass={classname}
                                     openModal={openModal2}
-                                    role={"teacher"}  // Replace with the actual role if needed
+                                    gradename={11}
+                                    subjectname={subject}  // Replace with the actual role if needed
                                 />
                             )}
                         </div>
@@ -164,7 +166,8 @@ export default function TeacherClass() {
                                     closeModal={closeModal3}
                                     nameclass={classname}
                                     openModal={openModal3}
-                                    role={"teacher"}  // Replace with the actual role if needed
+                                    gradename={12}
+                                    subjectname={subject}   // Replace with the actual role if needed
                                 />
                             )}
                         </div>
