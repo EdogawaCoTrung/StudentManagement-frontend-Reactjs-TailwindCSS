@@ -20,6 +20,14 @@ class DashboardApi {
     const res = await httpClient.get(`/statistics/number-of-student-by-title/${year}`)
     return res
   }
+  async getGpaOfOneStudent(id) {
+    const res = await httpClient.get(`/statistics/compare-gpa/${id}`)
+    return res
+  }
+  async getCompareGpaOfClass(id, term, year) {
+    const res = await httpClient.get(`/statistics/compare-gpa-student-to-class/${id}/${term}/${year}`)
+    return res
+  }
   //   async getAllStudentByClassId(id) {
   //     const res = await httpClient.get(`/class/get-student/${id}`)
   //     return res

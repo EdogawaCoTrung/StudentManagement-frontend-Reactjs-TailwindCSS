@@ -9,7 +9,7 @@ import { toast } from "react-toastify"
 import { createColumnHelper } from "@tanstack/react-table"
 import { useParams } from "react-router"
 import SwapVertIcon from "@mui/icons-material/SwapVert"
-import { IconButton } from "@mui/material"
+import { Avatar, IconButton } from "@mui/material"
 import { GrLinkPrevious } from "react-icons/gr"
 import React, { useEffect, useMemo, useState } from "react"
 import { useNavigate } from "react-router"
@@ -50,24 +50,40 @@ export default function Summaries() {
       columnHelper.accessor((row) => `${row.student.studentname}`, {
         id: "studentname",
         header: "Ho va Ten",
+        cell: (info) => (
+          <div className="flex items-center align-middle">
+            {info.cell.row.original.student.User.image != null ? (
+              <img
+                className="mr-3 h-10 w-10 rounded-full object-cover"
+                src={info.cell.row.original.student.User.image}
+              ></img>
+            ) : (
+              <Avatar src="/student.png" alt="Student" sx={{ height: 40, width: 40, marginRight: "12px" }} />
+            )}
+            <div className="flex flex-col">
+              <span className="">{info.cell.row.original.student.studentname}</span>
+              <span className="text-xs text-neutral-400">{info.cell.row.original.student.User.email}</span>
+            </div>
+          </div>
+        ),
       }),
       columnHelper.accessor((row) => `${row.class.classname}`, {
         id: "classname",
         header: "Lop",
       }),
-      columnHelper.accessor((row) => `${row.behaviorpoint}`, {
+      columnHelper.accessor((row) => `${row.concludebehaviorpoint}`, {
         id: "behaviorpoint",
         header: "behaviorpoint",
       }),
-      columnHelper.accessor((row) => `${row.discipline}`, {
+      columnHelper.accessor((row) => `${row.concludediscipline}`, {
         id: "discipline",
         header: "discipline",
       }),
-      columnHelper.accessor((row) => `${row.title}`, {
+      columnHelper.accessor((row) => `${row.concludetitle}`, {
         id: "title",
         header: "title",
       }),
-      columnHelper.accessor((row) => `${row.gpa}`, {
+      columnHelper.accessor((row) => `${row.concludecore}`, {
         id: "GPA",
         header: "GPA",
       }),
@@ -88,17 +104,17 @@ export default function Summaries() {
       <div className="mt-10 flex items-center">
         <button
           onClick={HandlePrevious}
-          className="animate-jump-in flex h-9 w-9 content-center items-center justify-center rounded-full bg-gradeTitle"
+          className="flex h-9 w-9 animate-jump-in content-center items-center justify-center rounded-full bg-gradeTitle"
         >
           <GrLinkPrevious className="text-2xl text-white" />
         </button>
-        <p className="animate-fade-down ml-6 font-Manrope text-2xl font-bold text-gradeTitle">Điểm số</p>
+        <p className="ml-6 animate-fade-down font-Manrope text-2xl font-bold text-gradeTitle">Điểm số</p>
       </div>
       <div className="mt-10 flex items-center">
-        <p className="animate-fade-up animate-delay-[500ms] ml-6 font-Manrope text-2xl font-semibold ">
+        <p className="ml-6 animate-fade-up font-Manrope text-2xl font-semibold animate-delay-[500ms] ">
           Lớp: {classname}
         </p>
-        <p className="animate-fade-up animate-delay-[500ms] ml-6 font-Manrope text-2xl font-semibold ">Học bạ</p>
+        <p className="ml-6 animate-fade-up font-Manrope text-2xl font-semibold animate-delay-[500ms] ">Học bạ</p>
       </div>
       <div className="mt-10 h-96 overflow-auto">
         <table className="z-0 w-full border-collapse font-Manrope">

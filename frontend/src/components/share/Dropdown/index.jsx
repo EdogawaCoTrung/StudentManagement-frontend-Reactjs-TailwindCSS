@@ -4,8 +4,9 @@ import { Listbox, Transition } from "@headlessui/react"
 import { FaAngleDown } from "react-icons/fa6"
 import { FaAngleUp } from "react-icons/fa6"
 import { gradeApi } from "../../../apis"
+import PropTypes from "prop-types"
 // eslint-disable-next-line
-export default function Dropdown({ selectYear, setSelectYear }) {
+export default function Dropdown({ selectYear, setSelectYear, type }) {
   // eslint-disable-next-line
   const [data, setData] = useState("")
   let [yearArr, setYearArr] = useState([])
@@ -26,9 +27,15 @@ export default function Dropdown({ selectYear, setSelectYear }) {
     fetchAllYear()
   }, [])
   useEffect(() => {
-    let arr = destructYear(data)
-    let reductArr = [...new Set(arr)]
-    setYearArr(reductArr)
+    if (type != null) {
+      let arr = destructYear(data)
+      let reductArr = ["All", ...new Set(arr)]
+      setYearArr(reductArr)
+    } else if (type == null) {
+      let arr = destructYear(data)
+      let reductArr = [...new Set(arr)]
+      setYearArr(reductArr)
+    }
   }, [data])
   console.log(selectYear + "View dropdown")
   console.log(yearArr)
@@ -48,7 +55,7 @@ export default function Dropdown({ selectYear, setSelectYear }) {
     <div className="z-10 w-fit animate-fade-right">
       <Listbox value={selectYear} onChange={setSelectYear}>
         <div className="relative mt-1">
-          <Listbox.Button className="bg-Background1 relative w-32 cursor-default rounded-lg py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+          <Listbox.Button className="relative w-32 cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
             <span className="block truncate">{selectYear}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <FaAngleDown className="h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -60,8 +67,8 @@ export default function Dropdown({ selectYear, setSelectYear }) {
                 <Listbox.Option
                   key={yearIdx}
                   className={({ active }) =>
-                    `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                      active ? "bg-amber-100 text-amber-900" : "text-gray-900"
+                    `relative cursor-default select-none bg-white py-2 pl-10 pr-4 ${
+                      active ? "bg-amber-400 text-amber-900" : "text-gray-900"
                     }`
                   }
                   value={year}

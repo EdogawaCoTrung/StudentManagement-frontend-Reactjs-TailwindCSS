@@ -48,7 +48,7 @@ export default function StudentSummariesTable() {
   }
   const navigate = useNavigate()
   const HandlePrevious = () => {
-    navigate("/student")
+    navigate(-1)
     setCheckReLoading(!checkReLoading)
   }
   console.log("HOCBA", data, typeof data)
