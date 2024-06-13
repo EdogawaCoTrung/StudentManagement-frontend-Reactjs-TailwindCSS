@@ -12,14 +12,17 @@ import { FaCircleUser } from "react-icons/fa6"
 import { routes } from "../../../config"
 import { jwtDecode } from "jwt-decode"
 import { RiProfileLine } from "react-icons/ri"
-import { Button } from "@mui/material"
+import { Avatar, Button } from "@mui/material"
 import LogoutIcon from "@mui/icons-material/Logout"
 import { useAuth } from "../../../hooks"
+import { accountApi } from "../../../apis"
 const defaultTheme = MainTheme
 
 export default function StudentSidebar() {
   const { logOut } = useAuth()
   const [selectedIndex, setSelectedIndex] = useState(() => parseInt(localStorage.getItem("selectedIndex")) || 0)
+  const userId = localStorage.getItem("userId")
+  const [student, setStudent] = useState("")
   useEffect(() => {
     console.log("selectedIndex", selectedIndex)
     localStorage.setItem("selectedIndex", selectedIndex)
@@ -33,7 +36,15 @@ export default function StudentSidebar() {
   const handleListItemClick = (index) => {
     setSelectedIndex(index)
   }
-
+  const fetchAccountById = async () => {
+    let res = await accountApi.getAccountById(userId)
+    console.log("RESDT", res)
+    setStudent(res)
+  }
+  useEffect(() => {
+    fetchAccountById()
+  }, [])
+  console.log("student", student)
   return (
     <div style={{ position: "fixed" }}>
       <ThemeProvider theme={defaultTheme}>
@@ -137,7 +148,11 @@ export default function StudentSidebar() {
           <div className="flex flex-col">
             <p className="mb-2 font-Manrope  text-base font-semibold text-white">Profile</p>
             <div className="mb-2 flex items-center">
-              <FaCircleUser className="mr-2 text-3xl" />
+              {student?.image != null ? (
+                <img className="mr-3 h-10 w-10 rounded-full object-cover" src={student.image}></img>
+              ) : (
+                <Avatar src="/teacher.png" alt="Student" sx={{ height: 40, width: 40, marginRight: "12px" }} />
+              )}
               <div className="flex flex-col font-Manrope">
                 <p className=" text-base font-semibold text-white">{decode.payload.username}</p>
                 <p className="overflow-ellipsis  text-xs text-neutral-300">{decode.payload.email}</p>

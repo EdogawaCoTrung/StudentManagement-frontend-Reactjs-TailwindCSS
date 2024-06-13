@@ -89,9 +89,11 @@ const Student = () => {
     let uniqueStudent = new Set()
     let uniqueClass = new Set()
     let res = await studentApi.getAllStudent()
-    res.DT.map((student) => {
-      uniqueStudent.add(student.id)
-      uniqueClass.add(student.class)
+    res.DT.forEach((student) => {
+      if (student.year === 2023) {
+        uniqueStudent.add(student.studentname)
+        uniqueClass.add(student.classname)
+      }
     })
     setClassCount(uniqueClass.size)
     setStudentCount(uniqueStudent.size)

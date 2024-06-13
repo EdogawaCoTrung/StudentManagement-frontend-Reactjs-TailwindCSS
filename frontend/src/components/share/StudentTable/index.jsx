@@ -75,93 +75,6 @@ const StudentTable = ({ data, role }) => {
   const HandleClick = (id) => {
     navigate(`/summaries/my-transcript/${id}`)
   }
-  const getUsersExport = (event, done) => {
-    let result = []
-    if (data && data.length > 0) {
-      result.push(["Id", "Student Name", "Gender", "Email", "Date of birth", "classId", "subjectId"])
-      data.map((item, index) => {
-        let arr = []
-        let genderFormat
-        if (item.student.gender == 1) {
-          genderFormat = "Nam"
-        } else if (item.student.gender != 1) {
-          genderFormat = "Nữ"
-        }
-
-        arr[0] = item.studentId
-        arr[1] = item.student.studentname
-        arr[2] = genderFormat
-        arr[3] = item.student.User.email
-        arr[4] = convertDate(item.student.birthDate)
-        result.push(arr)
-      })
-      setDataExport(result)
-      done()
-    }
-  }
-  let HandleImport = (event) => {
-    if (event.target && event.target.files && event.target.files[0]) {
-      let file = event.target.files[0]
-      if (file.type !== "text/csv") {
-        toast.error("Only accept CSV files!")
-        return
-      }
-      Papa.parse(file, {
-        complete: function (results) {
-          let rawCsv = results.data
-          console.log("rawCSVFORMA", rawCsv.length, rawCsv[0])
-          if (rawCsv.length > 0) {
-            if (rawCsv[0] && rawCsv.length > 1) {
-              if (
-                rawCsv[0][0] !== "studentId" ||
-                rawCsv[0][1] !== "classId" ||
-                rawCsv[0][2] !== "subjectId" ||
-                rawCsv[0][3] !== "fifteen_1" ||
-                rawCsv[0][4] !== "fifteen_2" ||
-                rawCsv[0][5] !== "fifteen_3" ||
-                rawCsv[0][6] !== "fifteen_4" ||
-                rawCsv[0][7] !== "fourtyFive_1" ||
-                rawCsv[0][8] !== "fourtyFive_2" ||
-                rawCsv[0][9] !== "finalExam" ||
-                rawCsv[0][10] !== "teacherComment"
-              ) {
-                toast.error("Wrong format!")
-              } else {
-                console.log("rawCSV", rawCsv)
-                let rawCSVFormat = rawCsv.slice(1)
-                let result = []
-                rawCSVFormat.map((item, index) => {
-                  console.log("INDEXCHECK", item, item.length, item > 0)
-                  if (item.length > 2) {
-                    console.log("CHAYVOMAP")
-                    let obj = {}
-                    obj.studentId = item[0]
-                    obj.classId = item[1]
-                    obj.subjectId = item[2]
-                    obj.fifteen_1 = item[3]
-                    obj.fifteen_2 = item[4]
-                    obj.fifteen_3 = item[5]
-                    obj.fifteen_4 = item[6]
-                    obj.fourtyFive_1 = item[7]
-                    obj.fourtyFive_2 = item[8]
-                    obj.finalExam = item[9]
-                    obj.teacherComment = item[10]
-                    result.push(obj)
-                  }
-                })
-                console.log("IMPORT RESULT", result)
-                let listScore = {
-                  data: result,
-                }
-                importScoreByExcelFile(listScore)
-                setDataImport(result)
-              }
-            } else toast.error("Wrong format!")
-          } else toast.error("Not found data in file!")
-        },
-      })
-    }
-  }
   const searchInput = columnFilters.find((f) => f.id === "studentname")?.value || ""
   const onFilterChange = (id, value) =>
     setColumnFilters((prev) =>
@@ -375,7 +288,6 @@ const StudentTable = ({ data, role }) => {
                 />
               </IconButton>
             )}
-            
           </strong>
         ),
       }),
@@ -432,25 +344,6 @@ const StudentTable = ({ data, role }) => {
             placeholder="Search..."
           />
         </Paper>
-        <div className="flex items-center">
-          <CSVLink
-            className="flex w-fit items-center rounded-md bg-gradeTitle2 px-[12px] py-[6px] font-Manrope font-bold text-white decoration-0 transition-all visited:text-white hover:bg-green-950 hover:text-white"
-            filename={"students.csv"}
-            data={dataExport}
-            asyncOnClick={true}
-            onClick={getUsersExport}
-          >
-            <SiMicrosoftexcel className="mr-2"></SiMicrosoftexcel>Export
-          </CSVLink>
-          <label
-            htmlFor="importcsv"
-            className="mt-2 flex w-fit cursor-pointer items-center rounded-md bg-uploadBtn px-[12px] py-[6px] font-Manrope font-bold text-white decoration-0 transition-all visited:text-white hover:bg-blue-950 hover:text-white"
-          >
-            <FaFileImport />
-            Import
-          </label>
-          <input type="file" id="importcsv" hidden onChange={(event) => HandleImport(event)}></input>
-        </div>
       </div>
       <table className="h-full w-full border-collapse font-Manrope">
         <thead>

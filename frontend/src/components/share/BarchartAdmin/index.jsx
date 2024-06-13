@@ -21,7 +21,7 @@ export default function BarchartAdmin({ compare3year }) {
         barSize={30}
       >
         <XAxis dataKey="Year" axisLine={false} padding={{ left: 10 }} />
-        <YAxis type="number" axisLine={false} tickLine={false} padding={{ top: 10 }} domain={[0]} />
+        <YAxis type="number" axisLine={false} tickLine={false} padding={{ top: 10 }} />
         <Tooltip cursor={{ fill: "transparent" }} />
         <Legend iconType="circle" iconSize={10} verticalAlign="top" align="center" height={50} />
         <Bar

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router"
 import { summaryApi } from "../../../../apis"
 import SummariesStudent from "../../../../components/share/SummariesStudent"
-import { MenuItem, TextField } from "@mui/material"
+import { Avatar, MenuItem, TextField } from "@mui/material"
 import Overall from "../../../../components/share/SummariesStudent/Overall"
 const grades = [
   {
@@ -141,10 +141,18 @@ export default function StudentSummariesTable() {
       </div>
       {dataTerm1 && (
         <div className="mt-10 flex w-full items-center rounded-lg bg-white shadow-xl">
-          <img
-            className="m-5 mr-10 h-40 w-40 flex-shrink rounded-full object-cover"
-            src={dataTerm1[0]?.student.User.image}
-          ></img>
+          {dataTerm1[0]?.student.User.image != null ? (
+            <img
+              className="m-5 mr-10 h-40 w-40 flex-shrink rounded-full object-cover"
+              src={dataTerm1[0]?.student.User.image}
+            ></img>
+          ) : (
+            <Avatar
+              src="/student.png"
+              alt="Student"
+              sx={{ height: 160, width: 160, marginRight: "12px", border: "solid" }}
+            />
+          )}
           <div className="flex flex-1 flex-col pr-5">
             <p className="font-Manrope text-4xl font-bold">{dataTerm1[0]?.student.studentname}</p>
             <div className="mt-3 flex flex-row items-center justify-between">

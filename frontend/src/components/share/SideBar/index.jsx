@@ -34,7 +34,6 @@ export default function Sidebar() {
   const handleListItemClick = (index) => {
     setSelectedIndex(index)
   }
-
   return (
     <div style={{ position: "fixed" }}>
       <ThemeProvider theme={defaultTheme}>

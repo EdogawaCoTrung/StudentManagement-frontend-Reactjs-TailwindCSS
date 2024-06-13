@@ -12,6 +12,14 @@ class SubjectApi {
     const res = await httpClient.post("/subject-result/import-excel-of-score", data)
     return res
   }
+  async getSubjectById(id) {
+    const res = await httpClient.get(`/subjects/${id}`)
+    return res
+  }
+  async updateSubject(id, data) {
+    const res = await httpClient.put(`/subjects/update/${id}`, data)
+    return res
+  }
   //   async createClass(data) {
   //     const res = await httpClient.post("/class/create-class", data)
   //     return res

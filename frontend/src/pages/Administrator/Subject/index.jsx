@@ -58,7 +58,13 @@ export default function Subject() {
       FilterSubject = inputQuery
     }
     return FilterSubject.map(({ id, subjectname }) => (
-      <SubjectCard subjectName={subjectname} key={id} id={id}></SubjectCard>
+      <SubjectCard
+        setCheckReLoading={setCheckReLoading}
+        checkReLoading={checkReLoading}
+        subjectName={subjectname}
+        key={id}
+        id={id}
+      ></SubjectCard>
     ))
   }
   const result = SubjectData(Query, data)

@@ -8,26 +8,40 @@ import { MdOutlineClass } from "react-icons/md"
 import { FaCircleUser } from "react-icons/fa6"
 import { routes } from "../../../config"
 import { jwtDecode } from "jwt-decode"
-import { Button } from "@mui/material"
+import { Avatar, Button } from "@mui/material"
 import LogoutIcon from "@mui/icons-material/Logout"
 import { useAuth } from "../../../hooks"
 import { RiProfileLine } from "react-icons/ri"
+import { teacherApi } from "../../../apis"
+import { toast } from "react-toastify"
 const defaultTheme = MainTheme
 
 export default function TeacherSidebar() {
   const { logOut } = useAuth()
   const [selectedIndex, setSelectedIndex] = useState(() => parseInt(localStorage.getItem("selectedIndex")) || 0)
+  const [teacher, setTeacher] = useState("")
   useEffect(() => {
     console.log("selectedIndex", selectedIndex)
     localStorage.setItem("selectedIndex", selectedIndex)
   }, [selectedIndex])
   const token = localStorage.getItem("accessToken")
   const decode = jwtDecode(token)
+  const id = localStorage.getItem("teacherId")
   console.log("DECODE", token)
   const handleListItemClick = (index) => {
     setSelectedIndex(index)
   }
-
+  const fetchTeacherById = async () => {
+    let res = await teacherApi.getTeacherById(id)
+    console.log("RESDT", res)
+    if (res.EC != 1) {
+      setTeacher(res.DT)
+    } else toast.error(res.EM)
+  }
+  useEffect(() => {
+    console.log("CHAYEFFECTTEAC")
+    fetchTeacherById()
+  }, [])
   return (
     <div style={{ position: "fixed" }}>
       <ThemeProvider theme={defaultTheme}>
@@ -86,7 +100,11 @@ export default function TeacherSidebar() {
           <div className="flex flex-col">
             <p className="mb-2 font-Manrope  text-base font-semibold text-white">Profile</p>
             <div className="mb-2 flex items-center">
-              <FaCircleUser className="mr-2 text-3xl" />
+              {teacher?.User?.image != null ? (
+                <img className="mr-3 h-10 w-10 rounded-full object-cover" src={teacher.User.image}></img>
+              ) : (
+                <Avatar src="/teacher.png" alt="Student" sx={{ height: 40, width: 40, marginRight: "12px" }} />
+              )}
               <div className="flex flex-col font-Manrope">
                 <p className=" text-base font-semibold text-white">{decode.payload.username}</p>
                 <p className="overflow-ellipsis  text-xs text-neutral-300">{decode.payload.email}</p>
