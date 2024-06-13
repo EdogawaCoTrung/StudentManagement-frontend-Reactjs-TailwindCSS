@@ -9,6 +9,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react"
 
 export default function ScoreView(idParam) {
+    console.log(idParam);
     const isOpenScoreView = idParam.isOpenScoreView;
     const closeScoreView = idParam.closeScoreView;
     const id = idParam.id;
@@ -139,10 +140,10 @@ export default function ScoreView(idParam) {
     const result2 = SummaryData(dataTerm2);
 
     return (
-        <Transition appear show={isOpenScoreView} as={Fragment}>
+        <Transition appear show={isOpenScoreView} as="div">
             <Dialog as="div" className="relative z-10" onClose={closeScoreView}>
                 <Transition.Child
-                    as={Fragment}
+                    as="div"
                     enter="ease-out duration-300"
                     enterFrom="opacity-0"
                     enterTo="opacity-100"
@@ -156,13 +157,14 @@ export default function ScoreView(idParam) {
                 <div className="fixed inset-0 flex items-center justify-center align-middle ">
                     <div className="">
                         <Transition.Child
-                            as={Fragment}
+                            as="div"
                             enter="ease-out duration-300"
                             enterFrom="opacity-0 scale-95"
                             enterTo="opacity-100 scale-100"
                             leave="ease-in duration-200"
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95"
+                            sx={{height: "80%"}}
                         >
                         <Dialog.Panel className="flex h-fit w-auto transform flex-col rounded-2xl bg-white text-left font-Manrope shadow-xl transition-all">
                             <div className="flex items-center p-6">
@@ -176,7 +178,7 @@ export default function ScoreView(idParam) {
                                 </div>
                             </div>
                             {dataTerm1 && (
-                                <div className="mt-10 flex w-full items-center rounded-lg bg-white shadow-xl">
+                                <div className=" flex w-full items-center rounded-lg bg-white shadow-xl">
                                     <img
                                         className="m-5 mr-10 h-40 w-40 flex-shrink rounded-full object-cover"
                                         src={dataTerm1[0]?.student.User.image}

@@ -308,7 +308,7 @@ import {
           <ScoreView id={id} isOpenScoreView={isOpenScoreView} closeScoreView={closeScoreView} gradename={gradename} subjectname={subjectname} />
         )}
         {isOpenScoreEdit && (
-          <ScoreInsert id={id} isOpenScoreInsert={isOpenScoreEdit} closeScoreInsert={closeScoreEdit} gradename={gradename} subjectId={subjectId} classId={classId} />
+          <ScoreInsert id={id} isOpenScoreInsert={isOpenScoreEdit} closeScoreInsert={closeScoreEdit} gradename={gradename} subjectId={subjectId} classId={classId} subjectname={subjectname}/>
         )}
       </div>
     )
