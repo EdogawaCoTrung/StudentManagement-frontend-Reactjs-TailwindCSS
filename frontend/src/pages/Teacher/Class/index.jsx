@@ -22,6 +22,7 @@ export default function TeacherClass() {
     let [checkId, setCheckId] = useState();
     const [subjectId, setSubjectId] = useState(0);
     const [dataGrade, setDataGrade] = useState([]);
+    let [defaultYear, setDefaultYear] = useState("");
 
     function closeModal() {
         setIsOpen(false);
@@ -41,7 +42,12 @@ export default function TeacherClass() {
     function openModal3() {
         setIsOpen3(true);
     }
-
+    let getLatestYear = async () => {
+        const res = await gradeApi.getAllYear();
+        console.log("res", res);
+        const yearArr = res.DT.sort((a, b) => b.year - a.year);
+        setSelectYear(yearArr[0].year);
+    }
     const getAllGradesByYear = async () => {
         const res = await gradeApi.getAllGradeByYearService(selectYear);
         setDataGrade(res.DT);
@@ -64,6 +70,10 @@ export default function TeacherClass() {
         const res = await httpClient.get(`/class/teacher/${id}`);
         setClassValue(res.DT);
     }
+
+    useEffect(() => {
+        getLatestYear();
+    }, []);
 
     useEffect(() => {
         if (selectYear) {

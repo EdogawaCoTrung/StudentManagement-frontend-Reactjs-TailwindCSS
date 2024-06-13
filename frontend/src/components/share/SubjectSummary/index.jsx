@@ -9,7 +9,7 @@ import {
   import PropTypes from "prop-types"
   import React, { useMemo } from "react"
 
-  export default function SubjectSummary({ data, listSubjectResult }) {
+  export default function SubjectSummary({ data, listSubjectResult, term }) {
     const columnHelper = createColumnHelper()
     const columnHelper2 = createColumnHelper()
     const columnDef = useMemo(
@@ -89,7 +89,7 @@ import {
       <div className="relative mb-10 mt-10 flex flex-col overflow-hidden bg-white p-0 shadow-xl">
         <div className="mt-10 flex items-center">
           <p className="ml-6 animate-fade-up font-Manrope text-2xl font-semibold animate-delay-[500ms] ">
-            Học kỳ
+            Học kỳ {term}
           </p>
         </div>
         <div className="mt-3 overflow-auto">

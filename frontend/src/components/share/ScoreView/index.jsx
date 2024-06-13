@@ -119,7 +119,7 @@ export default function ScoreView(idParam) {
         fetchAllOverallByGrade();
     }, [checkReLoading, grade]);
 
-    function SummaryData(data) {
+    function SummaryData(data, term) {
         let FilterSummaries = data;
         console.log("CHAYVAOSUMMAY");
         if (FilterSummaries) {
@@ -129,6 +129,7 @@ export default function ScoreView(idParam) {
                     listSubjectResult={item.summaries[0].subjectresults}
                     key={id}
                     id={id}
+                    term={term}
                 ></SubjectSummary>
             ));
         } else {
@@ -136,8 +137,8 @@ export default function ScoreView(idParam) {
         }
     }
 
-    const result1 = SummaryData(dataTerm1);
-    const result2 = SummaryData(dataTerm2);
+    const result1 = SummaryData(dataTerm1, "I");
+    const result2 = SummaryData(dataTerm2, "II");
 
     return (
         <Transition appear show={isOpenScoreView} as="div">
@@ -206,7 +207,7 @@ export default function ScoreView(idParam) {
                                                     {dataTerm1[0]?.class.grade.year}
                                                 </p>
                                             </div>
-                                            <div className="flex w-full flex-col rounded-lg border-2 p-2">
+                                            <div className="flex w-full flex-col rounded-lg border-2 p-5">
                                                 <p className="font-Manrope text-base">
                                                     <span className="mr-3 font-bold">Address:</span>
                                                     {dataTerm1[0]?.student.address}
