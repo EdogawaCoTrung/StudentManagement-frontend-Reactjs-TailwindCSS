@@ -4,6 +4,9 @@ import CardClass from "../../../components/share/CardClass";
 import Box from "@mui/material/Box";
 import DialogView from "../../../components/share/TeacherModal";
 import Dropdown from "../../../components/share/Dropdown";
+import { classApi } from "../../../apis"
+import { gradeApi } from "../../../apis/" 
+
 
 export default function TeacherClass() {
     let [isOpen, setIsOpen] = useState(false);
@@ -12,59 +15,61 @@ export default function TeacherClass() {
     let [isOpen3, setIsOpen3] = useState(false);
     const [classValue, setClassValue] = useState([]);
     const [subject, setSubject] = useState("");
-    const [grade10, setGrade10] = useState([]);  // Initialize as array
-    const [grade11, setGrade11] = useState([]);  // Initialize as array
-    const [grade12, setGrade12] = useState([]);  // Initialize as array
+    const [grade10, setGrade10] = useState([]);
+    const [grade11, setGrade11] = useState([]);
+    const [grade12, setGrade12] = useState([]);
     const id = localStorage.getItem("teacherId");
     let [checkId, setCheckId] = useState();
     const [subjectId, setSubjectId] = useState(0);
-
+    const [dataGrade, setDataGrade] = useState([]);
 
     function closeModal() {
         setIsOpen(false);
     }
-
     function openModal() {
         setIsOpen(true);
     }
-
     function closeModal2() {
         setIsOpen2(false);
     }
-
     function openModal2() {
         setIsOpen2(true);
     }
-
     function closeModal3() {
         setIsOpen3(false);
     }
-
     function openModal3() {
         setIsOpen3(true);
     }
+
+    const getAllGradesByYear = async () => {
+        const res = await gradeApi.getAllGradeByYearService(selectYear);
+        setDataGrade(res.DT);
+    }
     async function getSubjectName() {
-      const res = await httpClient.get(`/teacher/${id}`)
-      setSubject(res.DT.subject.subjectname);
+        const res = await httpClient.get(`/teacher/${id}`);
+        setSubject(res.DT.subject.subjectname);
     }
 
     async function getSubjectId() {
-
-    console.log("GET SUBJECT!!!!!!!!1!!!!!!!!!!")
-      const res2 = await httpClient.get("/subjects/");
-    res2.DT.forEach((subjectValue) => {
-        console.log(subjectValue.subjectname)
-        if (subjectValue.subjectname == subject) {
-            setSubjectId(subjectValue.id)
-        }
-    });
-        console.log(subjectId)
+        const res2 = await httpClient.get("/subjects/");
+        res2.DT.forEach((subjectValue) => {
+            if (subjectValue.subjectname === subject) {
+                setSubjectId(subjectValue.id);
+            }
+        });
     }
 
     async function getClass() {
         const res = await httpClient.get(`/class/teacher/${id}`);
         setClassValue(res.DT);
     }
+
+    useEffect(() => {
+        if (selectYear) {
+            getAllGradesByYear();
+        }
+    }, [selectYear]);
 
     useEffect(() => {
         if (id) {
@@ -74,32 +79,38 @@ export default function TeacherClass() {
     }, [id]);
 
     useEffect(() => {
-        if (subject !== null) {
+        if (subject) {
             getSubjectId();
         }
-    }, [subject])
+    }, [subject]);
 
     useEffect(() => {
+        if (classValue.length > 0 && dataGrade.length > 0) {
+            console.log("CLASS VALUE", classValue);
+            console.log("DATA VALUE", dataGrade);
+            const grade10Classes = [];
+            const grade11Classes = [];
+            const grade12Classes = [];
 
-        // Process the classValue to separate grades
-        const grade10Classes = [];
-        const grade11Classes = [];
-        const grade12Classes = [];
+            classValue.forEach(({ id, classname, gradeId }) => {
+                dataGrade.forEach((grade) => {
+                    if (grade.id === gradeId) {
+                        if (grade.gradename === "10") {
+                            grade10Classes.push({ id, classname });
+                        } else if (grade.gradename === "11") {
+                            grade11Classes.push({ id, classname });
+                        } else if (grade.gradename === "12") {
+                            grade12Classes.push({ id, classname });
+                        }
+                    }
+                });
+            });
 
-        classValue.forEach(({ id, classname, gradeId }) => {
-            if (gradeId === 1) {
-                grade10Classes.push({ id, classname });
-            } else if (gradeId === 2) {
-                grade11Classes.push({ id, classname });
-            } else if (gradeId === 3) {
-                grade12Classes.push({ id, classname });
-            }
-        });
-
-        setGrade10(grade10Classes);
-        setGrade11(grade11Classes);
-        setGrade12(grade12Classes);
-    }, [classValue]);
+            setGrade10(grade10Classes);
+            setGrade11(grade11Classes);
+            setGrade12(grade12Classes);
+        }
+    }, [classValue, dataGrade]);
 
     return (
         <div>
