@@ -20,6 +20,11 @@ class ClassApi {
     const res = await httpClient.get(`/class/summaries/${id}`)
     return res
   }
+  async getAllClassesByTeacherId(id) {
+    const res = await httpClient.get(`/class/teacher/${id}`)
+    console.log(res)
+    return res
+  }
   //   async getAllUnapprovedGroup() {
   //     const res = await httpClient.get("/groups/unapproved")
   //     return res

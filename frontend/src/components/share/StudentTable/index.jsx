@@ -244,6 +244,31 @@ const StudentTable = ({ data, role }) => {
                 />
               </IconButton>
             )}
+            {role == "teacher" && (
+              <IconButton
+                size="large"
+                onClick={() => {
+                  HandleClick(info.getValue())
+                }}
+              >
+                <FormatListBulletedRoundedIcon
+                  sx={{
+                    background: "#7F8F98",
+                    color: "white",
+                    borderRadius: "50%",
+                    fontSize: "30px",
+                    padding: "3px",
+                    fontWeight: "bold",
+                    ":hover": {
+                      color: "#3497f9",
+                      background: "#8fdc88",
+                      transition: "all",
+                    },
+                  }}
+                  className="bg-black"
+                />
+              </IconButton>
+            )}
             <IconButton
               size="large"
               onClick={() => {
@@ -270,6 +295,33 @@ const StudentTable = ({ data, role }) => {
               />
             </IconButton>
             {role == "admin" && (
+              <IconButton
+                size="large"
+                onClick={() => {
+                  console.log(`Edit clicked on row with id: ${info.getValue()}`)
+                  // Add your edit logic here
+                  setId(info.getValue())
+                  openEditStudent()
+                }}
+              >
+                <EditIcon
+                  sx={{
+                    background: "#7F8F98",
+                    color: "white",
+                    borderRadius: "50%",
+                    fontSize: "30px",
+                    padding: "4px",
+                    fontWeight: "bold",
+                    ":hover": {
+                      color: "#3497f9",
+                      background: "#8fdc88",
+                      transition: "all",
+                    },
+                  }}
+                />
+              </IconButton>
+            )}
+            {role == "teacher" && (
               <IconButton
                 size="large"
                 onClick={() => {
@@ -323,6 +375,7 @@ const StudentTable = ({ data, role }) => {
                 />
               </IconButton>
             )}
+            
           </strong>
         ),
       }),

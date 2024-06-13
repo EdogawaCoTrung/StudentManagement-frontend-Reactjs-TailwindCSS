@@ -6,12 +6,14 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { useState } from "react"
+import StudentSelfView from "../../../components/share/StudentSelfView"
 
 
 
 export default function StudentProfile() {
   
   const [value, setValue] = React.useState('profileView');
+  const id = localStorage.getItem('studentId');
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -57,7 +59,7 @@ export default function StudentProfile() {
         </Tabs>
       </Box>
       {value === 'updatePassword' && <UpdatePasswordModal />}
-      {value === 'profileView' && <AdminProfileView/>}
+      {value === 'profileView' && <StudentSelfView id={id}/>}
     </div>
   );
 }
