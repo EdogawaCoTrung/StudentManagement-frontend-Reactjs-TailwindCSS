@@ -9,10 +9,9 @@ import { GrScorecard } from "react-icons/gr"
 import { RiUserAddLine } from "react-icons/ri"
 
 // import { Input } from "@mui/material"
-export default function DialogView({ isOpen, closeModal, nameclass, classId, openModal, gradename, subjectname }) {
+export default function DialogView({ isOpen, closeModal, nameclass, classId, gradename, subjectname, subjectId }) {
   const navigate = useNavigate()
-  console.log("classId: ", classId)
-  console.log("nameclass: ", nameclass)
+
   // const [columnFilters, setColumnFilters] = useState([])
   // const searchInput = columnFilters.find((f) => f.id === "student.studentname")?.value || ""
   // const onFilterChange = (id, value) =>
@@ -28,10 +27,10 @@ export default function DialogView({ isOpen, closeModal, nameclass, classId, ope
   const fetchAllStudentByClassId = async () => {
     let getData = await classApi.getAllStudentByClassId(classId)
     setData(getData.DT)
-    console.log("HOCAINH", getData.DT)
+
   }
   useEffect(() => {
-    console.log("CHAY VAO USEEFFECT")
+
     fetchAllStudentByClassId()
   }, [])
   const HandleSummariesClick = () => {
@@ -73,6 +72,8 @@ export default function DialogView({ isOpen, closeModal, nameclass, classId, ope
                     data={data}
                     gradename={gradename}
                     subjectname={subjectname}
+                    subjectId={subjectId}
+                    classId={classId}
                   ></TeacherStudentTable>
                 </div>
                 <div className="mt-4">

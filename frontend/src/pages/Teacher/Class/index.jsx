@@ -17,8 +17,8 @@ export default function TeacherClass() {
     const [grade12, setGrade12] = useState([]);  // Initialize as array
     const id = localStorage.getItem("teacherId");
     let [checkId, setCheckId] = useState();
+    const [subjectId, setSubjectId] = useState(0);
 
-    console.log("Teacher ID:", id);
 
     function closeModal() {
         setIsOpen(false);
@@ -43,26 +43,44 @@ export default function TeacherClass() {
     function openModal3() {
         setIsOpen3(true);
     }
-    async function getSubject() {
+    async function getSubjectName() {
       const res = await httpClient.get(`/teacher/${id}`)
       setSubject(res.DT.subject.subjectname);
     }
 
+    async function getSubjectId() {
+
+    console.log("GET SUBJECT!!!!!!!!1!!!!!!!!!!")
+      const res2 = await httpClient.get("/subjects/");
+    res2.DT.forEach((subjectValue) => {
+        console.log(subjectValue.subjectname)
+        if (subjectValue.subjectname == subject) {
+            setSubjectId(subjectValue.id)
+        }
+    });
+        console.log(subjectId)
+    }
+
     async function getClass() {
         const res = await httpClient.get(`/class/teacher/${id}`);
-        console.log("API Response:", res);
         setClassValue(res.DT);
     }
 
     useEffect(() => {
         if (id) {
             getClass();
-            getSubject(); // Fetch teacher data when the component mounts and id is available
+            getSubjectName();
         }
     }, [id]);
 
     useEffect(() => {
-        console.log("Class Value Updated: ", classValue);
+        if (subject !== null) {
+            getSubjectId();
+        }
+    }, [subject])
+
+    useEffect(() => {
+
         // Process the classValue to separate grades
         const grade10Classes = [];
         const grade11Classes = [];
@@ -109,9 +127,9 @@ export default function TeacherClass() {
                                   isOpen={isOpen}
                                   closeModal={closeModal}
                                   nameclass={classname}
-                                  openModal={openModal}
                                   gradename={10}
-                                  subjectname={subject} // Replace with the actual role if needed
+                                  subjectname={subject} 
+                                  subjectId={subjectId}
                                 />
                             )}
                         </div>
@@ -137,7 +155,6 @@ export default function TeacherClass() {
                                     isOpen={isOpen2}
                                     closeModal={closeModal2}
                                     nameclass={classname}
-                                    openModal={openModal2}
                                     gradename={11}
                                     subjectname={subject}  // Replace with the actual role if needed
                                 />
@@ -165,7 +182,6 @@ export default function TeacherClass() {
                                     isOpen={isOpen3}
                                     closeModal={closeModal3}
                                     nameclass={classname}
-                                    openModal={openModal3}
                                     gradename={12}
                                     subjectname={subject}   // Replace with the actual role if needed
                                 />

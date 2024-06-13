@@ -239,7 +239,7 @@ export default function EditStudent ({ isOpenEditStudent, closeEditStudent, id }
                                         onClick={handleSaveClick}>
                                         Lưu
                                     </Button>
-                                    <Button variant="contained" color="error" sx={{ marginLeft: 4, marginRight: 4, }}
+                                    <Button variant="outlined" color="secondary" sx={{ marginLeft: 4, marginRight: 4, }}
                                         onClick={closeEditStudent}>
                                         Hủy
                                     </Button>

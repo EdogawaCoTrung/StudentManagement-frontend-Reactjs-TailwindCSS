@@ -26,7 +26,7 @@ import {
   import ScoreView from "../ScoreView"
   import ScoreInsert from "../ScoreInsert"
   
-  const StudentTable = ({ data, gradename, subjectname }) => {
+  const StudentTable = ({ data, gradename, subjectname, subjectId, classId}) => {
     const navigate = useNavigate()
     const [columnFilters, setColumnFilters] = useState([])
     const [dataExport, setDataExport] = useState([])
@@ -101,7 +101,7 @@ import {
             value,
           }),
       )
-    console.log("columnFilter: ", columnFilters)
+
     const columnHelper = createColumnHelper()
     // eslint-disable-next-line
     const columnDef = useMemo(
@@ -175,7 +175,7 @@ import {
               <IconButton
                 size="large"
                 onClick={() => {
-                  console.log(`View clicked on row with id: ${info.getValue()}`)
+
                   // Add your view logic here
                   setId(info.getValue())
                   openStudentProfileView()
@@ -200,7 +200,7 @@ import {
                 <IconButton
                   size="large"
                   onClick={() => {
-                    console.log(`Edit clicked on row with id: ${info.getValue()}`)
+
                     // Add your edit logic here
                     setId(info.getValue())
                     openScoreEdit();
@@ -305,10 +305,10 @@ import {
           />
         )}
         {isOpenScoreView && (
-          <ScoreView id={id} gradename={gradename} subjectname={subjectname} />
+          <ScoreView id={id} isOpenScoreView={isOpenScoreView} closeScoreView={closeScoreView} gradename={gradename} subjectname={subjectname} />
         )}
         {isOpenScoreEdit && (
-          <ScoreInsert id={id} />
+          <ScoreInsert id={id} isOpenScoreInsert={isOpenScoreEdit} closeScoreInsert={closeScoreEdit} gradename={gradename} subjectId={subjectId} classId={classId} />
         )}
       </div>
     )
