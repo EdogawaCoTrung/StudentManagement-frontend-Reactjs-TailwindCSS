@@ -91,16 +91,6 @@ import {
         done()
       }
     }
-    const searchInput = columnFilters.find((f) => f.id === "studentname")?.value || ""
-    const onFilterChange = (id, value) =>
-      setColumnFilters((prev) =>
-        prev
-          .filter((f) => f.id !== id)
-          .concat({
-            id,
-            value,
-          }),
-      )
 
     const columnHelper = createColumnHelper()
     // eslint-disable-next-line
