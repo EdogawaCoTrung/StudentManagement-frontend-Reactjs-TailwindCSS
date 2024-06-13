@@ -74,19 +74,19 @@ export default function SummariesStudent({ data, listSubjectResult }) {
   )
   const columnDef2 = useMemo(
     () => [
-      columnHelper2.accessor((row) => `${row.concludecore}`, {
+      columnHelper2.accessor((row) => `${row.summaries[0].gpa}`, {
         id: "gpa",
         header: "ĐTB",
       }),
-      columnHelper2.accessor((row) => `${row.concludetitle}`, {
+      columnHelper2.accessor((row) => `${row.summaries[0].title}`, {
         id: "title",
         header: "Học lực",
       }),
-      columnHelper2.accessor((row) => `${row.concludebehaviorpoint}`, {
+      columnHelper2.accessor((row) => `${row.summaries[0].behaviorpoint}`, {
         id: "behaviorpoint",
         header: "ĐĐG",
       }),
-      columnHelper2.accessor((row) => `${row.concludediscipline}`, {
+      columnHelper2.accessor((row) => `${row.summaries[0].discipline}`, {
         id: "discipline",
         header: "Hạnh kiểm",
       }),
