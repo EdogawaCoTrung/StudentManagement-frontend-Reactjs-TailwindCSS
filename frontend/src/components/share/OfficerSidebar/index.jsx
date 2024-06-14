@@ -12,6 +12,7 @@ import { Button } from "@mui/material"
 import LogoutIcon from "@mui/icons-material/Logout"
 import { useAuth } from "../../../hooks"
 import { RiProfileLine } from "react-icons/ri"
+import { MdChangeHistory } from "react-icons/md"
 const defaultTheme = MainTheme
 
 export default function OfficerSidebar() {
@@ -72,6 +73,21 @@ export default function OfficerSidebar() {
             onClick={() => handleListItemClick(1)}
             className={
               selectedIndex == 1
+                ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-black transition-all"
+                : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-white transition-all hover:ml-4"
+            }
+            to={routes.OfficerDiscipline}
+          >
+            <div className="flex items-center">
+              <MdChangeHistory />
+              <span className="ml-3">Discipline</span>
+            </div>
+          </NavLink>
+          <NavLink
+            key={2}
+            onClick={() => handleListItemClick(2)}
+            className={
+              selectedIndex == 2
                 ? "f content-center space-x-3 rounded-md border-l-[6px] border-solid border-blue-500 bg-PrimaryColor p-3 font-Manrope text-xl font-semibold text-black transition-all"
                 : "content-center space-x-3 rounded-md p-3 font-Manrope text-xl font-semibold text-white transition-all hover:ml-4"
             }

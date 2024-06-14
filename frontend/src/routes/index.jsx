@@ -26,6 +26,9 @@ import StudentSummariesTable from "../pages/Administrator/Student/SummariesById"
 import Assignment from "../pages/Administrator/Assignment"
 import TeacherClass from "../pages/Teacher/Class"
 import TeacherProfile from "../pages/Teacher/Profile"
+import Disipline from "../pages/Officer/Discipline"
+import StudentDisc from "../pages/Officer/Discipline/StudentDisc"
+
 const publicRoutes = [
   {
     path: routes.Dashboard,
@@ -172,6 +175,22 @@ const OfficerRoutes = [
     component: (
       <AuthorizedOfficer>
         <OfficerProfile></OfficerProfile>
+      </AuthorizedOfficer>
+    ),
+  },
+  {
+    path: routes.OfficerDiscipline,
+    component: (
+      <AuthorizedOfficer>
+        <Disipline></Disipline>
+      </AuthorizedOfficer>
+    ),
+  },
+  {
+    path: routes.OfficerStudentDiscipline,
+    component: (
+      <AuthorizedOfficer>
+        <StudentDisc></StudentDisc>
       </AuthorizedOfficer>
     ),
   },

@@ -12,6 +12,22 @@ class SummaryApi {
     const res = await httpClient.get(`/summaries/${id}/${gradename}/${term}`)
     return res
   }
+  async getDiscipineById(id) {
+    const res = await httpClient.get(`/detail-summary/${id}`)
+    return res
+  }
+  async getAllDiscipine() {
+    const res = await httpClient.get("/detail-summary/all-fringes")
+    return res
+  }
+  async createDisciplines(data) {
+    const res = await httpClient.post("/detail-summary/create-new-detail-summary", data)
+    return res
+  }
+  async deleteDisciplines(id) {
+    const res = await httpClient.delete(`/detail-summary/delete-details-summary/${id}`)
+    return res
+  }
   //   async createClass(data) {
   //     const res = await httpClient.post("/class/create-class", data)
   //     return res

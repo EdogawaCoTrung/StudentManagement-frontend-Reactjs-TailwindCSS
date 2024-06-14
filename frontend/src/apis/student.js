@@ -26,6 +26,11 @@ class StudentApi {
     console.log(res)
     return res
   }
+  async getStudentInYear() {
+    const res = await httpClient.get("/detail-summary/students")
+    console.log(res)
+    return res
+  }
   //   async createClass(data) {
   //     const res = await httpClient.post("/class/create-class", data)
   //     return res

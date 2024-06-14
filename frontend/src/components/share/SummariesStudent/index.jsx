@@ -80,15 +80,11 @@ export default function SummariesStudent({ data, listSubjectResult }) {
       }),
       columnHelper2.accessor((row) => `${row.summaries[0].title}`, {
         id: "title",
-        header: "Học lực",
+        header: "Danh hiệu",
       }),
       columnHelper2.accessor((row) => `${row.summaries[0].behaviorpoint}`, {
         id: "behaviorpoint",
         header: "ĐĐG",
-      }),
-      columnHelper2.accessor((row) => `${row.summaries[0].discipline}`, {
-        id: "discipline",
-        header: "Hạnh kiểm",
       }),
     ],
     [],
