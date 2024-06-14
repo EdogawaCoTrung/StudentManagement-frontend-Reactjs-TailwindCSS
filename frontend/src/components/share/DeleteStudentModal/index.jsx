@@ -76,7 +76,6 @@ export default function DeleteStudent({
     console.log(res)
     if (res.EC != 1) {
       toast.success("Xóa thành công")
-      setCheckReloading(!checkReloading)
       closeDeleteStudent()
     } else {
       toast.error("Xóa thất bại")

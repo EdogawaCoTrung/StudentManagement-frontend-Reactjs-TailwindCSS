@@ -39,7 +39,7 @@ const Student = () => {
   let [isOpenStudentProfileView, setOpenStudentProfileView] = useState(false)
   let [isOpenEditStudent, setOpenEditStudent] = useState(false)
   let [isOpenDeleteStudent, setOpenDeleteStudent] = useState(false)
-
+  let [checkBeginFilter, setCheckBeginFilter] = useState(false)
   function openDeleteStudent() {
     setOpenDeleteStudent(true)
   }
@@ -84,7 +84,7 @@ const Student = () => {
     }
     return maxYear
   }
-  let [selectYear, setSelectYear] = useState("")
+  let [selectYear, setSelectYear] = useState("All")
   let fetchAllStudent = async () => {
     let uniqueStudent = new Set()
     let uniqueClass = new Set()
@@ -102,18 +102,19 @@ const Student = () => {
     }
     setData(res.DT)
   }
-  const fetchAllYear = async () => {
-    let year = await gradeApi.getAllYear()
-    if (year.DT) {
-      let maxYear = maxGradeYear(year.DT)
-      setSelectYear(maxYear)
-    }
-  }
+  // const fetchAllYear = async () => {
+  //   let year = await gradeApi.getAllYear()
+  //   if (year.DT) {
+  //     let maxYear = maxGradeYear(year.DT)
+  //     setSelectYear(maxYear)
+  //   }
+  // }
   const deleteStudent = async (id) => {
     await studentApi.deleteStudent(id)
     setCheckReload(!checkReload)
   }
   useEffect(() => {
+    console.log("CHECK", selectYear, checkBeginFilter)
     if (selectYear != "") {
       console.log("VaoYear")
       setColumnFilters((prev) => {
@@ -137,8 +138,7 @@ const Student = () => {
   }, [selectYear])
   useEffect(() => {
     fetchAllStudent()
-    fetchAllYear()
-  }, [checkReload])
+  }, [checkReload, isOpenOnlyAddStudentModal, isOpenEditStudent, isOpenDeleteStudent])
   const [columnFilters, setColumnFilters] = useState([])
   const searchInput = columnFilters.find((f) => f.id === "studentname")?.value || ""
   const filterGrade = columnFilters.find((f) => f.id === "gradename")?.value || []
@@ -349,7 +349,7 @@ const Student = () => {
         ),
       }),
     ],
-    [],
+    [isOpenOnlyAddStudentModal, isOpenEditStudent, isOpenDeleteStudent],
   )
   const finalData = React.useMemo(() => data, [data])
   const tableInstance = useReactTable({

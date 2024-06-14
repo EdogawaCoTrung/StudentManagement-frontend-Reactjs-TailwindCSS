@@ -107,6 +107,7 @@ export default function EditStudent({ isOpenEditStudent, closeEditStudent, id, c
     if (res.EC === 0) {
       toast.success("Chỉnh sửa thông tin thành công")
       setCheckReloading(!checkReloading)
+      closeEditStudent()
     } else {
       toast.error("Không thể chỉnh sủa thông tin")
     }

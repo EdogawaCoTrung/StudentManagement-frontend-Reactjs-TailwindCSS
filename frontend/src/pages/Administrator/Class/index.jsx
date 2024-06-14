@@ -113,7 +113,7 @@ export default function Class() {
     } catch (error) {
       toast.error(error)
     }
-  }, [selectYear, checkReRender])
+  }, [selectYear, checkReRender, isOpen, isOpen2, isOpen3])
   console.log(dataClassGrade10)
   console.log(dataClassGrade11)
   console.log(dataClassGrade12)

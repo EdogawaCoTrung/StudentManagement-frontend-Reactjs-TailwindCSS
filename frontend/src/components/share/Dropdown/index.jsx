@@ -6,7 +6,7 @@ import { FaAngleUp } from "react-icons/fa6"
 import { gradeApi } from "../../../apis"
 import PropTypes from "prop-types"
 // eslint-disable-next-line
-export default function Dropdown({selectYear, setSelectYear, type }) {
+export default function Dropdown({ selectYear, setSelectYear, type }) {
   let [defaultYear, setDefaultYear] = useState("")
   // eslint-disable-next-line
   const [data, setData] = useState("")
@@ -25,14 +25,14 @@ export default function Dropdown({selectYear, setSelectYear, type }) {
     setData(year.DT)
   }
   let getLatestYear = async () => {
-    const yearArr = data.sort((a, b) => b.year - a.year);
-    setDefaultYear(yearArr[0].year);
+    const yearArr = data.sort((a, b) => b.year - a.year)
+    setDefaultYear(yearArr[0].year)
   }
   useEffect(() => {
     fetchAllYear()
   }, [])
   useEffect(() => {
-      getLatestYear();
+    getLatestYear()
   }, [data])
   useEffect(() => {
     if (type != null) {
@@ -45,7 +45,7 @@ export default function Dropdown({selectYear, setSelectYear, type }) {
       setYearArr(reductArr)
     }
   }, [data])
-  console.log("Default Year", defaultYear);
+  console.log("Default Year", defaultYear)
   console.log(selectYear + "View dropdown")
   console.log(yearArr)
   //   const fetchAllGroup = async () => {
