@@ -44,7 +44,7 @@ const OneStudentTuitionTable = ({ data, checkReLoading, setCheckReLoading }) => 
       //<span>{info.cell.getValue().studentname}</span>
       columnHelper.accessor((row) => `${row.id}`, {
         id: "id",
-        header: "Id",
+        header: "ID",
         enableColumnFilter: true,
       }),
       columnHelper.accessor((row) => `${row.month}`, {
@@ -76,12 +76,12 @@ const OneStudentTuitionTable = ({ data, checkReLoading, setCheckReLoading }) => 
       }),
       columnHelper.accessor((row) => `${row.closingdate}`, {
         id: "BillingDate",
-        header: "Payment_DL",
+        header: "Hạn nộp",
         cell: DateCell,
       }),
       columnHelper.accessor((row) => `${row.status}`, {
         id: "status",
-        header: "status",
+        header: "Trạng thái",
         cell: (info) => (
           <div className="flex w-fit flex-col">
             {info.row.original.status == 1 ? (
@@ -102,7 +102,7 @@ const OneStudentTuitionTable = ({ data, checkReLoading, setCheckReLoading }) => 
       }),
       columnHelper.accessor((row) => `${row.id}`, {
         id: "QR",
-        header: "QR-code",
+        header: "QR-Code",
         cell: Scanner,
       }),
     ],
@@ -121,8 +121,8 @@ const OneStudentTuitionTable = ({ data, checkReLoading, setCheckReLoading }) => 
     columnResizeMode: "onChange",
   })
   return (
-    <div className="relative z-10 mt-10 flex flex-col">
-      <div className="flex justify-between bg-bgSearch p-3">
+    <div className="relative z-10 mt-12 flex flex-col">
+      <div className="flex justify-between bg-bgSearch mt-5 mb-5">
         <div className="animate-fade-left">
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
@@ -152,7 +152,7 @@ const OneStudentTuitionTable = ({ data, checkReLoading, setCheckReLoading }) => 
                 })
               }}
               sx={{ background: "white" }}
-              label={'"month"'}
+              label={'Month'}
               views={["month"]}
             />
           </LocalizationProvider>

@@ -242,7 +242,7 @@ const TeacherTable = ({ data }) => {
           placeholder="Search..."
         />
       </Paper>
-      <div className="h-[400px] overflow-auto">
+      <div className="h-[400px] overflow-auto mt-[12px]">
         <table className="h-full w-full border-collapse overflow-auto font-Manrope">
           <thead>
             {tableInstance.getHeaderGroups().map((header) => {
