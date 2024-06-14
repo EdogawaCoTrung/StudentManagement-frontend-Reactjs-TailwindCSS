@@ -387,7 +387,7 @@ const Student = () => {
                 )
               })
             }
-            className={`  ${isActive ? "bg-gradeTitle" : "bg-white"} group mr-8  flex animate-jump-in items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md transition-all animate-delay-[200ms]  `}
+            className={`  ${isActive ? "bg-gradeTitle" : "bg-white"} group mr-8 flex animate-jump-in items-center justify-center rounded-full px-8 py-1 text-center align-middle shadow-md transition-all animate-delay-[200ms]  `}
           >
             <p
               className={`text-center font-Manrope text-xl font-semibold text-gradeTitle ${isActive ? "text-white" : "text-gradeTitle"} `}

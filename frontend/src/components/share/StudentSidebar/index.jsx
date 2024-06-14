@@ -151,14 +151,14 @@ export default function StudentSidebar() {
               {student?.image != null ? (
                 <img className="mr-3 h-10 w-10 rounded-full object-cover" src={student.image}></img>
               ) : (
-                <Avatar src="/teacher.png" alt="Student" sx={{ height: 40, width: 40, marginRight: "12px" }} />
+                <Avatar src="/student.png" alt="Student" sx={{ height: 40, width: 40, marginRight: "12px" }} />
               )}
               <div className="flex flex-col font-Manrope">
                 <p className=" text-base font-semibold text-white">{decode.payload.username}</p>
                 <p className="overflow-ellipsis  text-xs text-neutral-300">{decode.payload.email}</p>
               </div>
             </div>
-            <Link to={routes.Login} className="w-full">
+            <Link to={routes.Login} className="w-full mt-2 flex justify-center">
               <Button
                 onClick={() => logOut()}
                 fontFamily="Manrope"
@@ -166,7 +166,15 @@ export default function StudentSidebar() {
                 color="secondary"
                 startIcon={<LogoutIcon />}
               >
-                Logout
+                <Typography
+                  component="div"
+                  sx={{
+                    flexGrow: 1,
+                    fontWeight: "bold",
+                  }}
+                >
+                  Log Out
+                </Typography>
               </Button>
             </Link>
           </div>

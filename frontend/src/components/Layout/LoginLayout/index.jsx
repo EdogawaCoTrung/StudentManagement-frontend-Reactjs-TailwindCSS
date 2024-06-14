@@ -141,6 +141,7 @@ export default function LogIn() {
                 sx={{ mt: 3, mb: 2 }}
                 style={{
                   color: "white",
+                  fontWeight: "bold",
                 }}
               >
                 Đăng Nhập
@@ -148,7 +149,7 @@ export default function LogIn() {
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">
-                    Quên mật khẩu?
+                    <FormControlLabel control={<Link value="remember" color="primary" />} label="Quên mật khẩu?" />
                   </Link>
                 </Grid>
               </Grid>

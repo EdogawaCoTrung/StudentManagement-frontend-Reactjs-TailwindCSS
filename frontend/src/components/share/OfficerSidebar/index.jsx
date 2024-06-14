@@ -92,7 +92,7 @@ export default function OfficerSidebar() {
                 <p className="overflow-ellipsis  text-xs text-neutral-300">{decode.payload.email}</p>
               </div>
             </div>
-            <Link to={routes.Login} className="w-full">
+            <Link to={routes.Login} className="mt-2 flex w-full justify-center ">
               <Button
                 onClick={() => logOut()}
                 fontFamily="Manrope"
@@ -100,7 +100,15 @@ export default function OfficerSidebar() {
                 color="secondary"
                 startIcon={<LogoutIcon />}
               >
-                Logout
+                <Typography
+                  component="div"
+                  sx={{
+                    flexGrow: 1,
+                    fontWeight: "bold",
+                  }}
+                >
+                  Log Out
+                </Typography>
               </Button>
             </Link>
           </div>

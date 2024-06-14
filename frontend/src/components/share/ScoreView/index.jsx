@@ -191,36 +191,36 @@ export default function ScoreView(idParam) {
                       <div className="mt-3 flex flex-row items-center justify-between">
                         <div className="mr-2 flex w-full flex-col rounded-lg border-2 p-2">
                           <p className="font-Manrope text-base">
-                            <span className="mr-3 font-bold">Email:</span> {dataTerm1[0]?.student.User.email}
+                            <span className="mr-3 font-bold mb-3">Email:</span> {dataTerm1[0]?.student.User.email}
                           </p>
                           <p className="font-Manrope text-base">
-                            <span className="mr-3 font-bold">Lớp:</span>
+                            <span className="mr-3 font-bold mb-3">Lớp:</span>
                             {dataTerm1[0]?.class.classname}
                           </p>
                           <p className="font-Manrope text-base">
-                            <span className="mr-3 font-bold">Khối:</span>
+                            <span className="mr-3 font-bold mb-3">Khối:</span>
                             {grade}
                           </p>
                           <p className="font-Manrope text-base">
-                            <span className="mr-3 font-bold">Năm:</span>
+                            <span className="mr-3 font-bold mb-3">Năm:</span>
                             {dataTerm1[0]?.class.grade.year}
                           </p>
                         </div>
                         <div className="flex w-full flex-col rounded-lg border-2 p-2">
                           <p className="font-Manrope text-base">
-                            <span className="mr-3 font-bold">Địa chỉ:</span>
+                            <span className="mr-3 font-bold mb-3">Địa chỉ:</span>
                             {dataTerm1[0]?.student.address}
                           </p>
                           <p className="font-Manrope text-base">
-                            <span className="mr-3 font-bold">Giới tính:</span>
+                            <span className="mr-3 font-bold mb-3">Giới tính:</span>
                             {dataTerm1[0]?.student.gender == 1 ? <span>Nam</span> : <span>Nữ</span>}
                           </p>
                           <p className="font-Manrope text-base">
-                            <span className="mr-3 font-bold">Ngày sinh:</span>
+                            <span className="mr-3 font-bold mb-3">Ngày sinh:</span>
                             {birthDay}
                           </p>
                           <p className="font-Manrope text-base">
-                            <span className="mr-3 font-bold">Ngày nhập học:</span>
+                            <span className="mr-3 font-bold mb-3">Ngày nhập học:</span>
                             {startDay}
                           </p>
                         </div>

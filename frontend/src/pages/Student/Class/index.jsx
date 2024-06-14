@@ -57,7 +57,7 @@ export default function StudentClass() {
     <Box className="z-0 mx-14 mt-10 flex flex-col justify-center" sx={{ flexGrow: 1 }}>
       <div className="flex flex-row items-center justify-between">
         <div className="flex flex-row items-center">
-          <div className="flex animate-fade-right items-center justify-center rounded-full bg-gradeTitle2 px-7 py-2 text-center align-middle shadow-md animate-duration-[625ms]">
+          <div className="flex mb-3 animate-fade-right items-center justify-center rounded-full bg-gradeTitle2 px-7 py-2 text-center align-middle shadow-md animate-duration-[625ms]">
             <p className="text-center text-base font-semibold text-white">Khối 10</p>
           </div>
         </div>
@@ -89,7 +89,7 @@ export default function StudentClass() {
           ))}
       </div>
       <div className="flex flex-row items-center">
-        <div className="flex animate-fade-right items-center justify-center rounded-full bg-gradeTitle2 px-7 py-2 text-center align-middle shadow-md animate-duration-[625ms]">
+        <div className="flex mb-3 animate-fade-right items-center justify-center rounded-full bg-gradeTitle2 px-7 py-2 text-center align-middle shadow-md animate-duration-[625ms]">
           <p className="text-center text-base font-semibold text-white">Khối 11</p>
         </div>
       </div>
@@ -120,7 +120,7 @@ export default function StudentClass() {
           ))}
       </div>
       <div className="flex flex-row items-center">
-        <div className="flex animate-fade-right items-center justify-center rounded-full bg-gradeTitle2 px-7 py-2 text-center align-middle shadow-md animate-duration-[625ms]">
+        <div className="flex mb-3 animate-fade-right items-center justify-center rounded-full bg-gradeTitle2 px-7 py-2 text-center align-middle shadow-md animate-duration-[625ms]">
           <p className="text-center text-base font-semibold text-white">Khối 12</p>
         </div>
       </div>
