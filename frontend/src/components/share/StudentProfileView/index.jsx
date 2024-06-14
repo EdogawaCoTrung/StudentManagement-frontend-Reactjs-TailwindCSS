@@ -107,7 +107,7 @@ export default function StudentProfileView({ isOpenStudentProfileView, closeStud
                                             <div className="flex flex-row">
                                                 <p className="pl-10" style={{ fontSize: "18px", marginTop: "40px" }}>{`Ngày sinh: ${formatDate(student.birthDate)}`}</p>
                                                 <div className="ml-40">
-                                                    <p className="pl-10" style={{ fontSize: "18px", marginTop: "18px" }}>{`Giới tính: ${student.gender === "0" ? "Nam" : "Nữ"}`}</p>
+                                                    <p className="pl-10" style={{ fontSize: "18px",marginLeft: "0vw", marginTop: "40px" }}>{`Giới tính: ${student.gender === "1" ? "Nam" : "Nữ"}`}</p>
                                                 </div>
                                             </div>
                                             <div>
