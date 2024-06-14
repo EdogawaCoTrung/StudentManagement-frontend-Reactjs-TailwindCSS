@@ -111,7 +111,7 @@ export default function DeleteStudent({
             >
               <Dialog.Panel className="flex h-fit w-auto transform flex-col rounded-2xl bg-white p-6 text-left font-Manrope shadow-xl transition-all">
                 <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                  Thong tin hoc sinh
+                  Xóa học sinh
                 </Dialog.Title>
                 <div className="flex items-center p-4">
                   <div className="flex h-fit w-auto transform flex-col rounded-2xl bg-white p-6 text-left font-Manrope shadow-xl transition-all">
@@ -146,7 +146,7 @@ export default function DeleteStudent({
                           <p
                             className="pl-10"
                             style={{ fontSize: "18px", marginTop: "36px", marginLeft: "10px" }}
-                          >{`Giới tính: ${student.gender === "0" ? "Nam" : "Nữ"}`}</p>
+                          >{`Giới tính: ${student.gender === "1" ? "Nam" : "Nữ"}`}</p>
                         </div>
                       </div>
                       <div>
@@ -157,7 +157,7 @@ export default function DeleteStudent({
                           >{`Ngày nhập học: ${formatDate(student.startDate)}`}</p>
                           <p
                             className="pl-10"
-                            style={{ fontSize: "18px", marginLeft: "190px", marginTop: "18px" }}
+                            style={{ fontSize: "18px", marginLeft: "160px", marginTop: "18px" }}
                           >{`Khối:${grade}`}</p>
                         </div>
                         <p

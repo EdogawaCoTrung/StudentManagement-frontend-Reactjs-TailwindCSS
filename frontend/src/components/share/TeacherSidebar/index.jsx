@@ -116,7 +116,8 @@ export default function TeacherSidebar() {
                 fontFamily="Manrope"
                 variant="contained"
                 color="secondary"
-                startIcon={<LogoutIcon />}
+                startIcon={<LogoutIcon />
+                }
               >
                 Logout
               </Button>
