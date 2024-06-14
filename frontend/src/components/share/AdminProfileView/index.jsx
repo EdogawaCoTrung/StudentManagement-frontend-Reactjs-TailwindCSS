@@ -59,7 +59,7 @@ export default function ViewProfile() {
     >
       <div className='flex h-fit w-auto transform flex-col rounded-2xl bg-white p-6 text-left font-Manrope shadow-xl transition-all'>
         <div className="h-fit w-auto flex flex-row">
-          <Avatar src="/student.png" alt="Student" sx={{ height: 150, width: 150, border: "solid", marginLeft: "10px" }} />
+          <Avatar src="/teacher.png" alt="Student" sx={{ height: 150, width: 150, border: "solid", marginLeft: "10px" }} />
           <div className='flex flex-col'>
             <h4 className="pl-10" style={{ fontSize: "30px", marginTop: "20px" }}>{name}</h4>
             <h2 className='pl-10' style={{ fontSize: "20px", marginTop: "10px" }}>{`Email: ${email}`}</h2>

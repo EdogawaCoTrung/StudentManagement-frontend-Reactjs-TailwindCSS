@@ -52,7 +52,7 @@ export default function TeacherEdit({ isOpenTeacherEdit, closeTeacherEdit, id })
       setTeacher(res.DT) // Set the teacher state with the fetched data
       setUser(res.DT.User) // Set the user state with the fetched data
       setSubjectObject(res.DT.subject)
-      console.log(res.DT) // Log the response data to ensure it's correct
+      console.log("TEACHER", res.DT) // Log the response data to ensure it's correct
     } catch (error) {
       console.error("Failed to fetch teacher data:", error)
     }
@@ -66,7 +66,7 @@ export default function TeacherEdit({ isOpenTeacherEdit, closeTeacherEdit, id })
 
   function setValues() {
     setName(`${teacher.teachername}`)
-    if (teacher.gender === 1) setGender("Nam")
+    if (teacher.gender === "1") setGender("Nam")
     else setGender("Nữ")
     setBirthDate(dayjs(teacher.birthDate) || "")
     setEmail(user.email)
@@ -145,7 +145,7 @@ export default function TeacherEdit({ isOpenTeacherEdit, closeTeacherEdit, id })
                           />
                         ) : (
                           <Avatar
-                            src="/student.png"
+                            src="/teacher.png"
                             alt="Student"
                             sx={{ height: 150, width: 150, border: "solid", zIndex: 0, border: "solid" }}
                           />

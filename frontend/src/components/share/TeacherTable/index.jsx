@@ -83,7 +83,7 @@ const TeacherTable = ({ data }) => {
                 alt="Teacher"
               />
             ) : (
-              <Avatar src="/student.png" alt="Teacher" sx={{ height: 40, width: 40, marginRight: "12px" }} />
+              <Avatar src="/teacher.png" alt="Teacher" sx={{ height: 40, width: 40, marginRight: "12px" }} />
             )}
             <div className="flex flex-col">
               <span className="">{info.cell.row.original.teachername}</span>

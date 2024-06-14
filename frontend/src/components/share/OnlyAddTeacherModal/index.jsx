@@ -131,7 +131,7 @@ export default function OnlyAddTeacherModal({
                       />
                     ) : (
                       <Avatar
-                        src="/student.png"
+                        src="/teacher.png"
                         alt="Teacher"
                         sx={{ height: 200, width: 200, border: "solid", zIndex: 0 }}
                       />
