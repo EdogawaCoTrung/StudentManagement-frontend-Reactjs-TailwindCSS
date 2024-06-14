@@ -82,7 +82,7 @@ export default function AddDisciplineModal({
             >
               <Dialog.Panel className="flex h-fit w-fit transform flex-col rounded-2xl bg-white p-6 text-left font-Manrope shadow-xl transition-all">
                 <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                  Phân công giảng dạy
+                  Trừ hạnh kiểm
                 </Dialog.Title>
                 <div className="mt-8 flex flex-row">
                   <TextField
@@ -104,7 +104,7 @@ export default function AddDisciplineModal({
                     onChange={(event) => handleChange("reason", event.target.value)}
                   ></TextField>
                 </div>
-                <div className="mt-8 flex flex-row">
+                <div className="mt-8 flex w-full flex-row items-center justify-between gap-2 pr-10">
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
                       name="violateruledate"

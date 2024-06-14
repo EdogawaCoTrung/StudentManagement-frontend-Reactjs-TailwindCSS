@@ -40,6 +40,7 @@ const Student = () => {
   let [isOpenEditStudent, setOpenEditStudent] = useState(false)
   let [isOpenDeleteStudent, setOpenDeleteStudent] = useState(false)
   let [checkBeginFilter, setCheckBeginFilter] = useState(false)
+  const [isStudentView, setIsStudentView] = useState(true)
   function openDeleteStudent() {
     setOpenDeleteStudent(true)
   }
@@ -138,7 +139,7 @@ const Student = () => {
   }, [selectYear])
   useEffect(() => {
     fetchAllStudent()
-  }, [checkReload, isOpenOnlyAddStudentModal, isOpenEditStudent, isOpenDeleteStudent])
+  }, [checkReload, isOpenOnlyAddStudentModal, isOpenEditStudent])
   const [columnFilters, setColumnFilters] = useState([])
   const searchInput = columnFilters.find((f) => f.id === "studentname")?.value || ""
   const filterGrade = columnFilters.find((f) => f.id === "gradename")?.value || []
@@ -572,7 +573,14 @@ const Student = () => {
           <EditStudent isOpenEditStudent={isOpenEditStudent} closeEditStudent={closeEditStudent} id={id} />
         )}
         {isOpenDeleteStudent && (
-          <DeleteStudent isOpenDeleteStudent={isOpenDeleteStudent} closeDeleteStudent={closeDeleteStudent} id={id} />
+          <DeleteStudent
+            setCheckReloading={setCheckReload}
+            checkReloading={checkReload}
+            isStudentView={isStudentView}
+            isOpenDeleteStudent={isOpenDeleteStudent}
+            closeDeleteStudent={closeDeleteStudent}
+            id={id}
+          />
         )}
       </div>
     </div>

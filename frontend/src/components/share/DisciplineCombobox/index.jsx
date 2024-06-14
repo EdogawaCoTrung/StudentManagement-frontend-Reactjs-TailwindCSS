@@ -47,7 +47,7 @@ export default function DisciplineCombobox({ handleChange }) {
               .replace(/\s+/g, "")
               .includes(query.toLowerCase().replace(/\s+|-/g, "")) ||
             (query.includes("-")
-              ? cloneQuery.split("-")[1].includes(teacherDT.id.toString()) &&
+              ? cloneQuery.split("-")[1].includes(teacherDT.minuspoint.toString()) &&
                 query
                   .toLowerCase()
                   .normalize("NFD")
@@ -64,7 +64,7 @@ export default function DisciplineCombobox({ handleChange }) {
                   )),
         )
   return (
-    <div className="mr-3 w-56">
+    <div className="w-60">
       <Combobox value={selected} onChange={handleChangeInput}>
         <div className="relative">
           <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">

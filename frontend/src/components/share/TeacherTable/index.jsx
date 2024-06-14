@@ -112,7 +112,7 @@ const TeacherTable = ({ data, checkReLoading, setCheckReLoading }) => {
         id: "subjectname",
         header: "Môn học",
       }),
-      columnHelper.accessor((row) => row.id, {
+      columnHelper.accessor((row) => `${row.id}`, {
         // Update here to use row ID
         id: "action",
         header: "Thao tác",

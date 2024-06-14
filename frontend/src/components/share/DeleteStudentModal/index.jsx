@@ -23,6 +23,7 @@ export default function DeleteStudent({
   isOpenDeleteStudent,
   closeDeleteStudent,
   id,
+  isStudentView,
   setCheckReloading,
   checkReloading,
 }) {
@@ -72,10 +73,17 @@ export default function DeleteStudent({
   }
 
   async function HandleDeleteClick() {
-    const res = await studentApi.deleteStudentFromClass(student.id, classId)
+    let res
+    console.log("ISSTUDENTVIWE", isStudentView)
+    if (isStudentView) {
+      res = await studentApi.deleteStudent(student.id)
+    } else {
+      res = await studentApi.deleteStudentFromClass(student.id, classId)
+    }
     console.log(res)
     if (res.EC != 1) {
       toast.success("Xóa thành công")
+      setCheckReloading(!checkReloading)
       closeDeleteStudent()
     } else {
       toast.error("Xóa thất bại")
