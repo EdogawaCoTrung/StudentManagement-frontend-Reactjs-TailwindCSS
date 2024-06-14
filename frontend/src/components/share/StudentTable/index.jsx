@@ -27,7 +27,7 @@ import { FaFileImport } from "react-icons/fa6"
 import Papa from "papaparse"
 import { toast } from "react-toastify"
 import { subjectApi } from "../../../apis"
-const StudentTable = ({ data, role }) => {
+const StudentTable = ({ data, role, checkReloading, setCheckReloading }) => {
   const navigate = useNavigate()
   const [columnFilters, setColumnFilters] = useState([])
   const [dataExport, setDataExport] = useState([])
@@ -292,7 +292,7 @@ const StudentTable = ({ data, role }) => {
         ),
       }),
     ],
-    [],
+    [checkReloading],
   )
   const finalData = React.useMemo(() => data, [data])
   const tableInstance = useReactTable({
@@ -397,10 +397,22 @@ const StudentTable = ({ data, role }) => {
         />
       )}
       {isOpenEditStudent && (
-        <EditStudent isOpenEditStudent={isOpenEditStudent} closeEditStudent={closeEditStudent} id={id} />
+        <EditStudent
+          checkReloading={checkReloading}
+          setCheckReloading={setCheckReloading}
+          isOpenEditStudent={isOpenEditStudent}
+          closeEditStudent={closeEditStudent}
+          id={id}
+        />
       )}
       {isOpenDeleteStudent && (
-        <DeleteStudent isOpenDeleteStudent={isOpenDeleteStudent} closeDeleteStudent={closeDeleteStudent} id={id} />
+        <DeleteStudent
+          setCheckReloading={setCheckReloading}
+          checkReloading={checkReloading}
+          isOpenDeleteStudent={isOpenDeleteStudent}
+          closeDeleteStudent={closeDeleteStudent}
+          id={id}
+        />
       )}
     </div>
   )

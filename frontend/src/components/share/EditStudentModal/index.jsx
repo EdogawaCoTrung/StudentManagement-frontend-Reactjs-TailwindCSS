@@ -19,7 +19,7 @@ import dayjs from "dayjs"
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
 import { MdCloudUpload } from "react-icons/md"
-export default function EditStudent({ isOpenEditStudent, closeEditStudent, id }) {
+export default function EditStudent({ isOpenEditStudent, closeEditStudent, id, checkReloading, setCheckReloading }) {
   const [preview, setPreview] = useState(null)
   const [student, setStudent] = React.useState({})
   const [user, setUser] = React.useState({})
@@ -106,6 +106,7 @@ export default function EditStudent({ isOpenEditStudent, closeEditStudent, id })
     console.log(res)
     if (res.EC === 0) {
       toast.success("Chỉnh sửa thông tin thành công")
+      setCheckReloading(!checkReloading)
     } else {
       toast.error("Không thể chỉnh sủa thông tin")
     }

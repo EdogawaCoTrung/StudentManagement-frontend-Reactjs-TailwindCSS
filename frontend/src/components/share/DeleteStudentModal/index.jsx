@@ -19,17 +19,24 @@ import DialogContentText from "@mui/material/DialogContentText"
 import DialogTitle from "@mui/material/DialogTitle"
 import { toast } from "react-toastify"
 
-export default function DeleteStudent({ isOpenDeleteStudent, closeDeleteStudent, id }) {
+export default function DeleteStudent({
+  isOpenDeleteStudent,
+  closeDeleteStudent,
+  id,
+  setCheckReloading,
+  checkReloading,
+}) {
   const [className, setClass] = React.useState("10A2")
   const [grade, setGrade] = React.useState("10")
   const [student, setStudent] = React.useState({})
   const [user, setUser] = React.useState({})
-
+  const [classId, setClassId] = React.useState("")
   async function getStudent() {
     const res = await studentApi.getStudentById(id)
     setStudent(res.DT)
     const classdata = await studentApi.getAllClassByStudentId(id)
     setClass(classdata.DT[0].class.classname)
+    setClassId(classdata.DT[0].class.id)
     const gradeId = classdata.DT[0].class.gradeId
     if (gradeId === 1) {
       setGrade("10")
@@ -65,10 +72,11 @@ export default function DeleteStudent({ isOpenDeleteStudent, closeDeleteStudent,
   }
 
   async function HandleDeleteClick() {
-    const res = await studentApi.deleteStudent(student.id)
+    const res = await studentApi.deleteStudentFromClass(student.id, classId)
     console.log(res)
-    if (res.message == "deleted user") {
+    if (res.EC != 1) {
       toast.success("Xóa thành công")
+      setCheckReloading(!checkReloading)
       closeDeleteStudent()
     } else {
       toast.error("Xóa thất bại")
