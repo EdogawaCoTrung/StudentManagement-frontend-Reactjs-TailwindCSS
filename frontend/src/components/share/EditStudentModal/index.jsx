@@ -187,7 +187,7 @@ export default function EditStudent ({ isOpenEditStudent, closeEditStudent, id }
                                                     value={grade}
                                                     onChange={(event) => setGrade(event.target.value)}
                                                     className="pl-10"
-                                                    style={{ fontSize: "18px", marginRight: "20px"}}
+                                                    style={{ fontSize: "18px", marginLeft: "160px"}}
                                                 />
                                                 </div>
                                                 <div>
@@ -225,7 +225,7 @@ export default function EditStudent ({ isOpenEditStudent, closeEditStudent, id }
                                     </div>
                                 </div>
                                 <div className="flex justify-end">
-                                    <Button variant="contained" color="success" sx={{ marginLeft: 4, marginRight: 4, }}
+                                    <Button variant="contained" color="success"
                                         onClick={handleSaveClick}>
                                         Lưu
                                     </Button>
