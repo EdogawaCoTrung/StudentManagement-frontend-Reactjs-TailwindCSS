@@ -97,12 +97,12 @@ const StudentTable = ({ data, role }) => {
       }),
       columnHelper.accessor((row) => `${row.studentId}`, {
         id: "id",
-        header: "Id",
+        header: "ID",
       }),
       //<span>{info.cell.getValue().studentname}</span>
       columnHelper.accessor((row) => `${row.student.studentname}`, {
         id: "studentname",
-        header: "Ho va Ten",
+        header: "Họ và Tên",
         enableColumnFilter: true,
         cell: (info) => (
           <div className="flex items-center align-middle">
@@ -124,12 +124,12 @@ const StudentTable = ({ data, role }) => {
       }),
       columnHelper.accessor((row) => `${row.student.gender}`, {
         id: "gender",
-        header: "Gioi tinh",
+        header: "Giới tính",
         cell: (info) => <div>{info.getValue() === "1" ? <span>Nam</span> : <span>Nữ</span>}</div>,
       }),
       columnHelper.accessor((row) => `${row.studentId}`, {
         id: "action",
-        header: "Thao tac",
+        header: "Thao tác",
         cell: (info) => (
           <strong>
             {role == "admin" && (

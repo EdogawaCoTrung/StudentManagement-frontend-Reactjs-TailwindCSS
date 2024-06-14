@@ -42,12 +42,12 @@ const RankingStudentTable = ({ data }) => {
       }),
       columnHelper.accessor((row) => `${row.id}`, {
         id: "id",
-        header: "Id",
+        header: "ID",
       }),
       //<span>{info.cell.getValue().studentname}</span>
       columnHelper.accessor((row) => `${row.studentname}`, {
         id: "studentname",
-        header: "Ho va Ten",
+        header: "Họ và Tên",
       }),
       columnHelper.accessor((row) => `${row.concludecore}`, {
         id: "gpa",
@@ -59,7 +59,7 @@ const RankingStudentTable = ({ data }) => {
       }),
       columnHelper.accessor("id", {
         id: "action",
-        header: "Thao tac",
+        header: "Thao tác",
         cell: (info) => (
           <strong>
             <IconButton

@@ -56,16 +56,16 @@ const AddStudentTable = ({ HandleSetCheckValue, data }) => {
       //<span>{info.cell.getValue().studentname}</span>
       columnHelper.accessor((row) => `${row.studentname}`, {
         id: "studentname",
-        header: "Ho va Ten",
+        header: "Họ và Tên",
       }),
       columnHelper.accessor((row) => `${row.gender}`, {
         id: "gender",
-        header: "Gioi tinh",
+        header: "Giới tính",
         cell: (info) => <div>{info.getValue() === "1" ? <span>Nam</span> : <span>Nữ</span>}</div>,
       }),
       columnHelper.accessor("id", {
         id: "action",
-        header: "Thao tac",
+        header: "Thao tác",
         cell: (info) => (
           <strong>
             <IconButton

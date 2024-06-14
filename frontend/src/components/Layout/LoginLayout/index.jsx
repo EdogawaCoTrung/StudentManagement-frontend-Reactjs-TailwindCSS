@@ -71,7 +71,7 @@ export default function LogIn() {
     },
   })
   const divStyle = {
-    backgroundImage: `url(public/Login.png)`,
+    backgroundImage: `url(Login.png)`,
     backgroundSize: "cover",
     height: "100%",
     width: "100%",

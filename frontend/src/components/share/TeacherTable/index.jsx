@@ -68,11 +68,11 @@ const TeacherTable = ({ data }) => {
     () => [
       columnHelper.accessor((row) => `${row.id}`, {
         id: "id",
-        header: "Id",
+        header: "ID",
       }),
       columnHelper.accessor((row) => `${row.teachername}`, {
         id: "teachername",
-        header: "Teacher",
+        header: "Giáo viên",
         enableColumnFilter: true,
         cell: (info) => (
           <div className="flex items-center align-middle">
@@ -91,22 +91,22 @@ const TeacherTable = ({ data }) => {
       }),
       columnHelper.accessor((row) => `${row.birthDate}`, {
         id: "birthDate",
-        header: "Date of Birth",
+        header: "Ngày sinh",
         cell: DateCell,
       }),
       columnHelper.accessor((row) => `${row.startDate}`, {
         id: "startDate",
-        header: "Date of Start",
+        header: "Ngày bắt đầu",
         cell: DateCell,
       }),
       columnHelper.accessor((row) => `${row.gender}`, {
         id: "gender",
-        header: "Gender",
+        header: "Giới tính",
         cell: (info) => <div>{info.getValue() === "1" ? <span>Nam</span> : <span>Nữ</span>}</div>,
       }),
       columnHelper.accessor((row) => `${row.subject.subjectname}`, {
         id: "subjectname",
-        header: "Subject",
+        header: "Môn học phụ trách",
       }),
       columnHelper.accessor((row) => row.id, { // Update here to use row ID
         id: "action",

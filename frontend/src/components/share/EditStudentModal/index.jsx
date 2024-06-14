@@ -225,7 +225,7 @@ export default function EditStudent ({ isOpenEditStudent, closeEditStudent, id }
                                     </div>
                                 </div>
                                 <div className="flex justify-end">
-                                    <Button variant="contained" color="success"
+                                    <Button variant="contained" color="success" sx={{ marginLeft: 4, marginRight: 4, }}
                                         onClick={handleSaveClick}>
                                         Lưu
                                     </Button>

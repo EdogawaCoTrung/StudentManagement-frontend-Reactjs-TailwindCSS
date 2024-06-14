@@ -168,12 +168,12 @@ const Student = () => {
     () => [
       columnHelper.accessor((row) => `${row.id}`, {
         id: "S.No",
-        header: "Id",
+        header: "ID",
       }),
       //<span>{info.cell.getValue().studentname}</span>
       columnHelper.accessor((row) => `${row.studentname}`, {
         id: "studentname",
-        header: "Ho va Ten",
+        header: "Họ và Tên",
         enableColumnFilter: true,
         cell: (info) => (
           <div className="flex items-center align-middle">
@@ -208,11 +208,11 @@ const Student = () => {
       }),
       columnHelper.accessor((row) => `${row.classname}`, {
         id: "classname",
-        header: "Lop",
+        header: "Lớp",
       }),
       columnHelper.accessor((row) => `${row.gender}`, {
         id: "gender",
-        header: "Gioi tinh",
+        header: "Giới tính",
         cell: (info) => <div>{info.getValue() === "1" ? <span>Nam</span> : <span>Nữ</span>}</div>,
       }),
       columnHelper.accessor((row) => `${row.year}`, {
@@ -243,7 +243,7 @@ const Student = () => {
       }),
       columnHelper.accessor((row) => `${row.id}`, {
         id: "action",
-        header: "Thao tac",
+        header: "Thao tác",
         cell: (info) => (
           <strong>
             <IconButton
