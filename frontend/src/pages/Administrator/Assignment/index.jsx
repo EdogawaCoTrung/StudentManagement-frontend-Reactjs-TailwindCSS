@@ -43,7 +43,11 @@ export default function Assignment() {
         <Dropdown selectYear={selectYear} setSelectYear={setSelectYear}></Dropdown>
       </div>
       <div className="mt-10 h-screen">
-        <AssignmentTable data={data}></AssignmentTable>
+        <AssignmentTable
+          checkReLoading={checkReLoading}
+          setCheckReLoading={setCheckReLoading}
+          data={data}
+        ></AssignmentTable>
       </div>
     </div>
   )

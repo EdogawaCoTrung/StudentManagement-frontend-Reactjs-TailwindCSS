@@ -29,19 +29,21 @@ export default function Teacher() {
     <div className="mx-14 mb-0 flex h-screen flex-col overflow-hidden p-0">
       <div className="mt-10 flex items-center justify-between">
         <p className="animate-fade-up font-Manrope text-2xl font-bold">Teacher</p>
-        <Button
-          onClick={openOnlyAddTeachertModal}
-          variant="contained"
-          color="success"
-          startIcon={<AddCircleRoundedIcon></AddCircleRoundedIcon>}
-        >
-          Add
-        </Button>
-        <OnlyAddTeacherModal
-          isOpenOnlyAddTeacherModal={isOpenOnlyAddTeacherModal}
-          closeOnlyAddTeachertModal={closeOnlyAddTeachertModal}
-          setCheckReLoading={setCheckReLoading}
-        ></OnlyAddTeacherModal>
+        <div className="animate-fade-right">
+          <Button
+            onClick={openOnlyAddTeachertModal}
+            variant="contained"
+            color="success"
+            startIcon={<AddCircleRoundedIcon></AddCircleRoundedIcon>}
+          >
+            Add
+          </Button>
+          <OnlyAddTeacherModal
+            isOpenOnlyAddTeacherModal={isOpenOnlyAddTeacherModal}
+            closeOnlyAddTeachertModal={closeOnlyAddTeachertModal}
+            setCheckReLoading={setCheckReLoading}
+          ></OnlyAddTeacherModal>
+        </div>
       </div>
       <div className="mt-10 h-screen">
         <TeacherTable data={data}></TeacherTable>

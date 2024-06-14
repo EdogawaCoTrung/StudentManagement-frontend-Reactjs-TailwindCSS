@@ -30,7 +30,7 @@ export default {
         headerTable: "#B0D4B8",
         gradeTitle2: "#4a7746",
         gradeTitle: "#212F3F",
-        backgroundplus: "#8fdc88",
+        backgroundplus: "#5db555",
         addBtn: "#8FDC88",
         cancelBtn: "#DC8888",
         blurblue: "#F1F8FFF1",

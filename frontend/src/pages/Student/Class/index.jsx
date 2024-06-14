@@ -72,7 +72,8 @@ export default function StudentClass() {
                 setCheckId={setCheckId}
                 openModal={openModal}
                 nameclass={item.class.classname}
-              ></CardClass>
+                total={item.class.total}
+              ></CardClass>{" "}
               {checkId === item.classId && (
                 <DialogView
                   key={item.classId}
@@ -102,7 +103,8 @@ export default function StudentClass() {
                 setCheckId={setCheckId}
                 openModal={openModal}
                 nameclass={item.class.classname}
-              ></CardClass>
+                total={item.class.total}
+              ></CardClass>{" "}
               {checkId === item.classId && (
                 <DialogView
                   key={item.classId}
@@ -132,6 +134,7 @@ export default function StudentClass() {
                 setCheckId={setCheckId}
                 openModal={openModal}
                 nameclass={item.class.classname}
+                total={item.class.total}
               ></CardClass>
               {checkId === item.classId && (
                 <DialogView

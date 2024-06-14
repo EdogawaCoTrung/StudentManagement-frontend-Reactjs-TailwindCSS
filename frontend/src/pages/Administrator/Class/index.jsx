@@ -142,7 +142,7 @@ export default function Class() {
       </div>
       <div className="flex flex-row flex-wrap">
         {dataClassGrade10 &&
-          dataClassGrade10.map(({ id, classname }) => (
+          dataClassGrade10.map(({ id, classname, total }) => (
             <div key={id}>
               <CardClass
                 key={id}
@@ -150,6 +150,7 @@ export default function Class() {
                 setCheckId={setCheckId}
                 openModal={openModal}
                 nameclass={classname}
+                total={total}
               ></CardClass>
               {checkId === id && (
                 <DialogView
@@ -185,7 +186,7 @@ export default function Class() {
       </div>
       <div className="flex flex-row flex-wrap">
         {dataClassGrade11 &&
-          dataClassGrade11.map(({ id, classname }) => (
+          dataClassGrade11.map(({ id, classname, total }) => (
             <div key={id}>
               <CardClass
                 key={id}
@@ -193,6 +194,7 @@ export default function Class() {
                 setCheckId={setCheckId}
                 openModal={openModal2}
                 nameclass={classname}
+                total={total}
               ></CardClass>
               {checkId === id && (
                 <DialogView
@@ -228,7 +230,7 @@ export default function Class() {
       </div>
       <div className="flex flex-row flex-wrap">
         {dataClassGrade12 &&
-          dataClassGrade12.map(({ id, classname }) => (
+          dataClassGrade12.map(({ id, classname, total }) => (
             <div key={id}>
               <CardClass
                 key={id}
@@ -236,6 +238,7 @@ export default function Class() {
                 setCheckId={setCheckId}
                 openModal={openModal3}
                 nameclass={classname}
+                total={total}
               ></CardClass>
               {checkId === id && (
                 <DialogView

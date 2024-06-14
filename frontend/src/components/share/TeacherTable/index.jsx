@@ -77,7 +77,11 @@ const TeacherTable = ({ data }) => {
         cell: (info) => (
           <div className="flex items-center align-middle">
             {info.cell.row.original.User.image != null ? (
-              <img className="mr-3 h-10 w-10 rounded-full object-cover" src={info.cell.row.original.User.image} alt="Teacher" />
+              <img
+                className="mr-3 h-10 w-10 rounded-full object-cover"
+                src={info.cell.row.original.User.image}
+                alt="Teacher"
+              />
             ) : (
               <Avatar src="/student.png" alt="Teacher" sx={{ height: 40, width: 40, marginRight: "12px" }} />
             )}
@@ -108,7 +112,8 @@ const TeacherTable = ({ data }) => {
         id: "subjectname",
         header: "Subject",
       }),
-      columnHelper.accessor((row) => row.id, { // Update here to use row ID
+      columnHelper.accessor((row) => row.id, {
+        // Update here to use row ID
         id: "action",
         header: "Thao tác",
         cell: (info) => (
@@ -116,10 +121,9 @@ const TeacherTable = ({ data }) => {
             <IconButton
               size="large"
               onClick={() => {
-                console.log(`View clicked on row with id: ${info.getValue()}`);
-                openTeacherView();
+                console.log(`View clicked on row with id: ${info.getValue()}`)
+                openTeacherView()
                 setId(info.getValue())
-                
               }}
             >
               <InfoRoundedIcon
@@ -143,8 +147,8 @@ const TeacherTable = ({ data }) => {
               onClick={() => {
                 console.log(`Edit clicked on row with id: ${info.getValue()}`)
                 // Add your edit logic here
-                openTeacherEdit();
-                setId(info.getValue());
+                openTeacherEdit()
+                setId(info.getValue())
               }}
             >
               <EditIcon
@@ -165,10 +169,10 @@ const TeacherTable = ({ data }) => {
             </IconButton>
             <IconButton
               size="large"
-                onClick={() => {
-                  openTeacherDelete();
-                  setId(info.getValue());
-                }}
+              onClick={() => {
+                openTeacherDelete()
+                setId(info.getValue())
+              }}
             >
               <DeleteIcon
                 sx={{
@@ -192,7 +196,7 @@ const TeacherTable = ({ data }) => {
     ],
     [],
   )
-  
+
   const finalData = React.useMemo(() => data, [data])
   const tableInstance = useReactTable({
     columns: columnDef,
@@ -207,41 +211,43 @@ const TeacherTable = ({ data }) => {
   })
   return (
     <div className=" flex h-screen flex-col">
-      <Paper
-        component="form"
-        sx={{
-          p: "2px 4px",
-          display: "flex",
-          alignItems: "center",
-          width: 400,
-          marginBottom: "8px",
-        }}
-      >
-        <IconButton sx={{ p: "10px", background: "#13313D", color: "white" }} aria-label="menu">
-          <SearchIcon />
-        </IconButton>
-        <InputBase
+      <div className="animate-fade-right">
+        <Paper
+          component="form"
           sx={{
-            ml: 2,
-            flex: 1,
-            borderWidth: 0,
-            border: "none",
-            borderRadius: 0,
-            ":active": {
-              border: "none",
-              borderWidth: 0,
-            },
-            ":focus": {
-              border: "none",
-              borderWidth: 0,
-            },
-            appearance: "none",
+            p: "2px 4px",
+            display: "flex",
+            alignItems: "center",
+            width: 400,
+            marginBottom: "8px",
           }}
-          value={searchInput}
-          onChange={(e) => onFilterChange("teachername", e.target.value)}
-          placeholder="Search..."
-        />
-      </Paper>
+        >
+          <IconButton sx={{ p: "10px", background: "#13313D", color: "white" }} aria-label="menu">
+            <SearchIcon />
+          </IconButton>
+          <InputBase
+            sx={{
+              ml: 2,
+              flex: 1,
+              borderWidth: 0,
+              border: "none",
+              borderRadius: 0,
+              ":active": {
+                border: "none",
+                borderWidth: 0,
+              },
+              ":focus": {
+                border: "none",
+                borderWidth: 0,
+              },
+              appearance: "none",
+            }}
+            value={searchInput}
+            onChange={(e) => onFilterChange("teachername", e.target.value)}
+            placeholder="Search..."
+          />
+        </Paper>
+      </div>
       <div className="h-[400px] overflow-auto">
         <table className="h-full w-full border-collapse overflow-auto font-Manrope">
           <thead>
@@ -271,7 +277,7 @@ const TeacherTable = ({ data }) => {
               )
             })}
           </thead>
-          <tbody>
+          <tbody className="animate-fade-down">
             {tableInstance.getRowModel().rows.map((row) => {
               return (
                 <tr key={row.id}>
@@ -288,25 +294,13 @@ const TeacherTable = ({ data }) => {
           </tbody>
         </table>
         {isOpenTeacherView && (
-          <TeacherView
-            isOpenTeacherView={isOpenTeacherView}
-            closeTeacherView={closeTeacherView}
-            id={id}
-          />
+          <TeacherView isOpenTeacherView={isOpenTeacherView} closeTeacherView={closeTeacherView} id={id} />
         )}
         {isOpenTeacherEdit && (
-          <TeacherEdit
-            isOpenTeacherEdit={isOpenTeacherEdit}
-            closeTeacherEdit={closeTeacherEdit}
-            id={id}
-          />
+          <TeacherEdit isOpenTeacherEdit={isOpenTeacherEdit} closeTeacherEdit={closeTeacherEdit} id={id} />
         )}
         {isOpenTeacherDelete && (
-          <TeacherDelete
-            isOpenTeacherDelete={isOpenTeacherDelete}
-            closeTeacherDelete={closeTeacherDelete}
-            id={id}
-          />
+          <TeacherDelete isOpenTeacherDelete={isOpenTeacherDelete} closeTeacherDelete={closeTeacherDelete} id={id} />
         )}
       </div>
     </div>

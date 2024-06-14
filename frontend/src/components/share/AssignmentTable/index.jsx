@@ -14,9 +14,8 @@ import Paper from "@mui/material/Paper"
 import InputBase from "@mui/material/InputBase"
 import SearchIcon from "@mui/icons-material/Search"
 import AddAssignmentModal from "../AddAssignmentModal"
-const AssignmentTable = ({ data }) => {
+const AssignmentTable = ({ data, checkReLoading, setCheckReLoading }) => {
   const [columnFilters, setColumnFilters] = useState([])
-  const [checkReLoading, setCheckReLoading] = useState(false)
   let [checkId, setCheckId] = useState()
   let [isOpenAddTuitionModal, setIsOpenAddTuitionModal] = useState(false)
   function closeAddTuitionModal() {
@@ -114,41 +113,43 @@ const AssignmentTable = ({ data }) => {
   })
   return (
     <div className=" flex h-screen flex-col">
-      <Paper
-        component="form"
-        sx={{
-          p: "2px 4px",
-          display: "flex",
-          alignItems: "center",
-          width: 400,
-          marginBottom: "8px",
-        }}
-      >
-        <IconButton sx={{ p: "10px", background: "#13313D", color: "white" }} aria-label="menu">
-          <SearchIcon />
-        </IconButton>
-        <InputBase
+      <div className="animate-fade-right">
+        <Paper
+          component="form"
           sx={{
-            ml: 2,
-            flex: 1,
-            borderWidth: 0,
-            border: "none",
-            borderRadius: 0,
-            ":active": {
-              border: "none",
-              borderWidth: 0,
-            },
-            ":focus": {
-              border: "none",
-              borderWidth: 0,
-            },
-            appearance: "none",
+            p: "2px 4px",
+            display: "flex",
+            alignItems: "center",
+            width: 400,
+            marginBottom: "8px",
           }}
-          value={searchInput}
-          onChange={(e) => onFilterChange("classname", e.target.value)}
-          placeholder="Search..."
-        />
-      </Paper>
+        >
+          <IconButton sx={{ p: "10px", background: "#13313D", color: "white" }} aria-label="menu">
+            <SearchIcon />
+          </IconButton>
+          <InputBase
+            sx={{
+              ml: 2,
+              flex: 1,
+              borderWidth: 0,
+              border: "none",
+              borderRadius: 0,
+              ":active": {
+                border: "none",
+                borderWidth: 0,
+              },
+              ":focus": {
+                border: "none",
+                borderWidth: 0,
+              },
+              appearance: "none",
+            }}
+            value={searchInput}
+            onChange={(e) => onFilterChange("classname", e.target.value)}
+            placeholder="Search..."
+          />
+        </Paper>
+      </div>
       <div className="h-[400px] overflow-auto">
         <table className="h-full w-full border-collapse overflow-auto font-Manrope">
           <thead>
@@ -178,7 +179,7 @@ const AssignmentTable = ({ data }) => {
               )
             })}
           </thead>
-          <tbody>
+          <tbody className="animate-fade-down">
             {tableInstance.getRowModel().rows.map((row) => {
               return (
                 <tr key={row.id}>
@@ -200,6 +201,7 @@ const AssignmentTable = ({ data }) => {
 }
 AssignmentTable.propTypes = {
   data: PropTypes.any,
-  // columnFilters: PropTypes.any,
+  checkReLoadingc: PropTypes.any,
+  setCheckReLoading: PropTypes.any,
 }
 export default AssignmentTable

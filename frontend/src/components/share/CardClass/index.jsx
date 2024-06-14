@@ -3,11 +3,15 @@ import Button from "@mui/material/Button"
 // import RemoveIcon from "@mui/icons-material/Remove"
 // import IconButton from "@mui/material/IconButton"
 
-function CardClass({ nameclass, openModal, checkId, setCheckId }) {
+function CardClass({ nameclass, openModal, checkId, setCheckId, total }) {
+  console.log("TOTAL", total)
   let handleOnClick = () => {
     console.log("THIS MODAL CLICK!!!!")
     openModal()
     setCheckId(checkId)
+  }
+  if (total == null) {
+    total = 0
   }
   return (
     // <
@@ -38,7 +42,7 @@ function CardClass({ nameclass, openModal, checkId, setCheckId }) {
       >
         <div className="flex flex-col">
           <p className="text-2xl">{nameclass}</p>
-          <p className="font-normal lowercase">Siso: 40</p>
+          <p className="font-normal lowercase">Siso: {total}</p>
         </div>
       </Button>
       {/* <IconButton
@@ -62,6 +66,7 @@ CardClass.propTypes = {
   openModal: PropTypes.any,
   checkId: PropTypes.any,
   setCheckId: PropTypes.any,
+  total: PropTypes.any,
 }
 
 CardClass.defaultProps = {

@@ -86,15 +86,15 @@ export default function TeacherClass() {
       const grade11Classes = []
       const grade12Classes = []
 
-      classValue.forEach(({ id, classname, gradeId }) => {
+      classValue.forEach(({ id, classname, total, gradeId }) => {
         dataGrade.forEach((grade) => {
           if (grade.id === gradeId) {
             if (grade.gradename === "10") {
-              grade10Classes.push({ id, classname })
+              grade10Classes.push({ id, classname, total })
             } else if (grade.gradename === "11") {
-              grade11Classes.push({ id, classname })
+              grade11Classes.push({ id, classname, total })
             } else if (grade.gradename === "12") {
-              grade12Classes.push({ id, classname })
+              grade12Classes.push({ id, classname, total })
             }
           }
         })
@@ -118,9 +118,15 @@ export default function TeacherClass() {
           <Dropdown selectYear={selectYear} setSelectYear={setSelectYear}></Dropdown>
         </div>
         <div className="flex flex-row flex-wrap">
-          {grade10.map(({ id, classname }) => (
+          {grade10.map(({ id, classname, total }) => (
             <div key={id}>
-              <CardClass checkId={id} setCheckId={setCheckId} openModal={openModal} nameclass={classname} />
+              <CardClass
+                checkId={id}
+                total={total}
+                setCheckId={setCheckId}
+                openModal={openModal}
+                nameclass={classname}
+              />
               {checkId === id && (
                 <DialogView
                   classId={id}
@@ -141,9 +147,15 @@ export default function TeacherClass() {
           </div>
         </div>
         <div className="flex flex-row flex-wrap">
-          {grade11.map(({ id, classname }) => (
+          {grade11.map(({ id, classname, total }) => (
             <div key={id}>
-              <CardClass checkId={id} setCheckId={setCheckId} openModal={openModal2} nameclass={classname} />
+              <CardClass
+                checkId={id}
+                total={total}
+                setCheckId={setCheckId}
+                openModal={openModal2}
+                nameclass={classname}
+              />
               {checkId === id && (
                 <DialogView
                   classId={id}
@@ -164,9 +176,15 @@ export default function TeacherClass() {
           </div>
         </div>
         <div className="flex flex-row flex-wrap">
-          {grade12.map(({ id, classname }) => (
+          {grade12.map(({ id, classname, total }) => (
             <div key={id}>
-              <CardClass checkId={id} setCheckId={setCheckId} openModal={openModal3} nameclass={classname} />
+              <CardClass
+                checkId={id}
+                total={total}
+                setCheckId={setCheckId}
+                openModal={openModal3}
+                nameclass={classname}
+              />
               {checkId === id && (
                 <DialogView
                   classId={id}
