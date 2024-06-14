@@ -92,7 +92,7 @@ export default function StudentDashboard() {
           <Dropdown selectYear={selectYear} setSelectYear={setSelectYear}></Dropdown>
         </div>
       </div>
-      <div className="mt-5 flex w-full">
+      <div className="mt-10 flex w-full">
         <BarchartCompareGpaStudent compare3year={compare3year}></BarchartCompareGpaStudent>
         <BarchartCompareGpaClass compareClass={compareClass}></BarchartCompareGpaClass>
       </div>
