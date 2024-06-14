@@ -19,7 +19,13 @@ import DialogContentText from "@mui/material/DialogContentText"
 import DialogTitle from "@mui/material/DialogTitle"
 import { toast } from "react-toastify"
 
-export default function TeacherDelete({ isOpenTeacherDelete, closeTeacherDelete, id }) {
+export default function TeacherDelete({
+  isOpenTeacherDelete,
+  closeTeacherDelete,
+  id,
+  checkReLoading,
+  setCheckReLoading,
+}) {
   const [teacher, setTeacher] = React.useState({})
   const [user, setUser] = React.useState({})
   const [subject, setSubject] = React.useState({})
@@ -54,6 +60,7 @@ export default function TeacherDelete({ isOpenTeacherDelete, closeTeacherDelete,
     console.log(res)
     if (res.message == "deleted user") {
       toast.success("Xóa thành công")
+      setCheckReLoading(!checkReLoading)
       closeTeacherDelete()
     } else {
       toast.error("Xóa thất bại")

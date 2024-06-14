@@ -18,7 +18,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
 import { DatePicker } from "@mui/x-date-pickers/DatePicker"
 import dayjs from "dayjs"
-export default function TeacherEdit({ isOpenTeacherEdit, closeTeacherEdit, id }) {
+export default function TeacherEdit({ isOpenTeacherEdit, closeTeacherEdit, id, checkReLoading, setCheckReLoading }) {
   const [avatar, setAvatar] = React.useState(null)
   const [preview, setPreview] = useState(null)
   const [name, setName] = React.useState("")
@@ -98,6 +98,8 @@ export default function TeacherEdit({ isOpenTeacherEdit, closeTeacherEdit, id })
     console.log(res)
     if (res.EC === 0) {
       toast.success("Chỉnh sửa thông tin thành công")
+      setCheckReLoading(!checkReLoading)
+      closeTeacherEdit()
     } else {
       toast.error("Không thể chỉnh sủa thông tin")
     }

@@ -21,7 +21,7 @@ import TeacherDelete from "../TeacherDelete"
 import TeacherView from "../TeacherView"
 import TeacherEdit from "../TeacherEdit"
 
-const TeacherTable = ({ data }) => {
+const TeacherTable = ({ data, checkReLoading, setCheckReLoading }) => {
   let [isOpenTeacherView, setOpenTeacherView] = useState(false)
   let [isOpenTeacherEdit, setOpenTeacherEdit] = useState(false)
   let [isOpenTeacherDelete, setOpenTeacherDelete] = useState(false)
@@ -110,7 +110,7 @@ const TeacherTable = ({ data }) => {
       }),
       columnHelper.accessor((row) => `${row.subject.subjectname}`, {
         id: "subjectname",
-        header: "Môn học phụ trách",
+        header: "Môn học",
       }),
       columnHelper.accessor((row) => row.id, {
         // Update here to use row ID
@@ -297,10 +297,22 @@ const TeacherTable = ({ data }) => {
           <TeacherView isOpenTeacherView={isOpenTeacherView} closeTeacherView={closeTeacherView} id={id} />
         )}
         {isOpenTeacherEdit && (
-          <TeacherEdit isOpenTeacherEdit={isOpenTeacherEdit} closeTeacherEdit={closeTeacherEdit} id={id} />
+          <TeacherEdit
+            checkReLoading={checkReLoading}
+            setCheckReLoading={setCheckReLoading}
+            isOpenTeacherEdit={isOpenTeacherEdit}
+            closeTeacherEdit={closeTeacherEdit}
+            id={id}
+          />
         )}
         {isOpenTeacherDelete && (
-          <TeacherDelete isOpenTeacherDelete={isOpenTeacherDelete} closeTeacherDelete={closeTeacherDelete} id={id} />
+          <TeacherDelete
+            checkReLoading={checkReLoading}
+            setCheckReLoading={setCheckReLoading}
+            isOpenTeacherDelete={isOpenTeacherDelete}
+            closeTeacherDelete={closeTeacherDelete}
+            id={id}
+          />
         )}
       </div>
     </div>

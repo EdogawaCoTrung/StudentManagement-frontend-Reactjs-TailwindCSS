@@ -24,7 +24,7 @@ export default function Teacher() {
   }
   useEffect(() => {
     fetchAllTeacher()
-  }, [checkReLoading])
+  }, [checkReLoading, isOpenOnlyAddTeacherModal])
   return (
     <div className="mx-14 mb-0 flex h-screen flex-col overflow-hidden p-0">
       <div className="mt-10 flex items-center justify-between">
@@ -46,7 +46,7 @@ export default function Teacher() {
         </div>
       </div>
       <div className="mt-10 h-screen">
-        <TeacherTable data={data}></TeacherTable>
+        <TeacherTable checkReLoading={checkReLoading} setCheckReLoading={setCheckReLoading} data={data}></TeacherTable>
       </div>
     </div>
   )

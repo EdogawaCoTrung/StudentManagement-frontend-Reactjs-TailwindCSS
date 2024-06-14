@@ -8,6 +8,14 @@ class GradeApi {
     const res = await httpClient.get("/grade/get-year")
     return res
   }
+  async createYear(data) {
+    const res = await httpClient.post("/grade/new-year", data)
+    return res
+  }
+  async changeTerm() {
+    const res = await httpClient.put("/grade/change-term")
+    return res
+  }
   //   async getAllStudentByClassId(id) {
   //     const res = await httpClient.get(`/class/get-student/${id}`)
   //     return res
