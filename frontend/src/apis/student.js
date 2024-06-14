@@ -93,6 +93,15 @@ class StudentApi {
       console.log(error)
     }
   }
+  async deleteStudentFromClass(studentId, classId) {
+    try {
+      const res = await httpClient.delete(`/summaries/delete-summaries/${studentId}/${classId}`)
+      console.log(res)
+      return res
+    } catch (error) {
+      console.log(error)
+    }
+  }
 }
 const studentApi = new StudentApi()
 export default studentApi

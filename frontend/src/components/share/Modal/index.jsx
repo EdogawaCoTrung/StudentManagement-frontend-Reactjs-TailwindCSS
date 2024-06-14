@@ -11,6 +11,7 @@ import { RiUserAddLine } from "react-icons/ri"
 // import { Input } from "@mui/material"
 export default function DialogView({ isOpen, closeModal, nameclass, classId, openModal, role }) {
   let [isOpenAddStudent, setIsOpenAddStudent] = useState(false)
+  const [checkReloading, setCheckReloading] = useState(false)
   function closeAddStudentModal() {
     setIsOpenAddStudent(false)
     openModal()
@@ -41,7 +42,7 @@ export default function DialogView({ isOpen, closeModal, nameclass, classId, ope
   useEffect(() => {
     console.log("CHAY VAO USEEFFECT")
     fetchAllStudentByClassId()
-  }, [isOpenAddStudent])
+  }, [isOpenAddStudent, checkReloading])
   const HandleSummariesClick = () => {
     navigate(`/List-summaries/${classId}`)
   }
@@ -95,7 +96,7 @@ export default function DialogView({ isOpen, closeModal, nameclass, classId, ope
                     {role == "admin" && (
                       <button
                         onClick={HandleAddStudent}
-                        className="bg-greenBtn flex h-fit w-fit items-center rounded-md px-2 py-[6px] font-bold text-white"
+                        className="flex h-fit w-fit items-center rounded-md bg-greenBtn px-2 py-[6px] font-bold text-white"
                       >
                         <RiUserAddLine className="mr-2" />
                         Thêm học sinh
@@ -109,7 +110,12 @@ export default function DialogView({ isOpen, closeModal, nameclass, classId, ope
                   </div>
                 </div>
                 <div className="h-full w-full overflow-y-auto">
-                  <StudentTable role={role} data={data}></StudentTable>
+                  <StudentTable
+                    checkReloading={checkReloading}
+                    setCheckReloading={setCheckReloading}
+                    role={role}
+                    data={data}
+                  ></StudentTable>
                 </div>
                 <div className="mt-4">
                   <button
