@@ -88,7 +88,7 @@ export default function TeacherDelete({ isOpenTeacherDelete, closeTeacherDelete,
             >
               <Dialog.Panel className="flex h-fit w-auto transform flex-col rounded-2xl bg-white p-6 text-left font-Manrope shadow-xl transition-all">
                 <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                  Thong tin giao vien
+                  Xóa giáo viên
                 </Dialog.Title>
                 <div className="flex items-center p-4">
                   <div className="flex h-fit w-auto transform flex-col rounded-2xl bg-white p-6 text-left font-Manrope shadow-xl transition-all">
@@ -121,7 +121,7 @@ export default function TeacherDelete({ isOpenTeacherDelete, closeTeacherDelete,
                           <p
                             className="pl-10"
                             style={{ fontSize: "18px", marginTop: "20px", marginLeft: "80px" }}
-                          >{`Giới tính: ${teacher.gender === "0" ? "Nam" : "Nữ"}`}</p>
+                          >{`Giới tính: ${teacher.gender === "1" ? "Nam" : "Nữ"}`}</p>
                         </div>
                         <p
                           className="pl-10"

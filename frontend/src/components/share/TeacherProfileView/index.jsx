@@ -83,7 +83,7 @@ export default function TeacherProfileView(idObject) {
                   <p
                     className="pl-10 pr-10"
                     style={{ fontSize: "18px", marginTop: "20px", marginLeft: "120px" }}
-                  >{`Giới tính: ${teacher.gender === "0" ? "Nam" : "Nữ"}`}</p>
+                  >{`Giới tính: ${teacher.gender === "1" ? "Nam" : "Nữ"}`}</p>
                 </div>
                 <p
                   className="pl-10"

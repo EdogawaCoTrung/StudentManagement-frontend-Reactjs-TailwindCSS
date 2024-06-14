@@ -81,7 +81,7 @@ export default function EditStudent({ isOpenEditStudent, closeEditStudent, id })
     if (student && user) {
       setName(student.studentname || "")
       setBirthDate(dayjs(student.birthDate) || "")
-      setGender(student.gender === 0 ? "Nam" : "Nữ")
+      setGender(student.gender === 1 ? "Nam" : "Nữ")
       setAddress(student.address || "")
     }
   }, [student, user])

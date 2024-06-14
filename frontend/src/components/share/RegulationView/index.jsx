@@ -92,42 +92,74 @@ export default function RegulationView() {
             noValidate
             autoComplete="off"
         >
-            <div className='flex h-fit w-auto transform flex-col rounded-2xl bg-white p-6 text-left font-Manrope shadow-xl transition-all'>
+            <div className='flex h-fit w-auto transform flex-col rounded-2xl bg-white p-4 text-left font-Manrope shadow-xl transition-all'>
                 <div className="flex items-center p-4">
-                    <div className="flex h-fit w-auto transform flex-col rounded-2xl bg-white p-6 text-left font-Manrope shadow-xl transition-all">
+                    <div className="flex h-fit w-auto transform flex-col rounded-2xl bg-white p-4 text-left font-Manrope shadow-xl transition-all">
                         <div className="flex flex-row">
                             <div className="flex flex-col">
-                                <p className="pl-10" style={{ fontSize: "18px", marginTop: "20px" }}>{`Năm: ${term}`}</p>
-                                <p className="pl-10" style={{ fontSize: "18px", marginTop: "20px" }}>{`Tuổi tối đa: ${maxage}`}</p>
+                                <p className="pl-10" style={{ fontSize: "18px", marginTop: "20px" }}>
+                                    <span><b>Năm:</b></span> {term}
+                                </p>
+                                <p className="pl-10" style={{ fontSize: "18px", marginTop: "20px" }}>
+                                    <span><b>Tuổi tối đa:</b></span> {maxage}
+                                </p>
                             </div>
                             <div className="flex flex-col"></div>
                             <div className="flex flex-col">
-                                <p className="pl-10 pr-10" style={{ fontSize: "18px", marginTop: "20px", marginLeft: "132px" }}>{`Học kỳ: ${typeTerm}`}</p>
-                                <p className="pl-10 pr-10" style={{ fontSize: "18px", marginTop: "20px", marginLeft: "132px" }}>{`Tuổi tối thiểu: ${minage}`}</p>                        
+                                <p className="pl-10 pr-10" style={{ fontSize: "18px", marginTop: "20px", marginLeft: "135px" }}>
+                                    <span><b>Học kỳ:</b></span> {typeTerm}
+                                </p>
+                                <p className="pl-10 pr-10" style={{ fontSize: "18px", marginTop: "20px", marginLeft: "134px" }}>
+                                    <span><b>Tuổi tối thiểu:</b></span> {minage}
+                                </p>                        
                             </div>
                         </div>
                         <div className="flex flex-row">
                             <div className="flex flex-col">
-                                <p className="pl-10" style={{ fontSize: "18px", marginTop: "20px" }}>{`Điểm giỏi: ${excellentCore}`}</p>
-                                <p className="pl-10" style={{ fontSize: "18px", marginTop: "20px" }}>{`Điểm khá: ${goodCore}`}</p>
-                                <p className="pl-10" style={{ fontSize: "18px", marginTop: "20px" }}>{`Điểm trung bình: ${averageCore}`}</p>
-                                <p className="pl-10" style={{ fontSize: "18px", marginTop: "20px" }}>{`Điểm yếu: ${badCore}`}</p>
+                                <p className="pl-10" style={{ fontSize: "18px", marginTop: "20px" }}>
+                                    <span><b>Điểm giỏi:</b></span> {excellentCore}
+                                </p>
+                                <p className="pl-10" style={{ fontSize: "18px", marginTop: "20px" }}>
+                                    <span><b>Điểm khá:</b></span> {goodCore}
+                                </p>
+                                <p className="pl-10" style={{ fontSize: "18px", marginTop: "20px" }}>
+                                    <span><b>Điểm trung bình:</b></span> {averageCore}
+                                </p>
+                                <p className="pl-10" style={{ fontSize: "18px", marginTop: "20px" }}>
+                                    <span><b>Điểm yếu:</b></span> {badCore}
+                                </p>
                             </div>
                             <div className="flex flex-col">
-                                <p className="pl-10" style={{ fontSize: "18px", marginLeft: "98px", marginTop: "20px" }}>{`Hạnh kiểm tốt: ${excellentDiscipline}`}</p>
-                                <p className="pl-10" style={{ fontSize: "18px", marginLeft: "98px", marginTop: "20px" }}>{`Hạnh kiểm khá:${goodDiscipline}`}</p>
-                                <p className="pl-10" style={{ fontSize: "18px", marginLeft: "98px", marginTop: "20px" }}>{`Hạnh kiểm trung bình:${averageDiscipline}`}</p>
-                                <p className="pl-10" style={{ fontSize: "18px", marginLeft: "98px", marginTop: "20px" }}>{`Hạnh kiểm yếu:${badDiscipline}`}</p>
+                                <p className="pl-10" style={{ fontSize: "18px", marginLeft: "96px", marginTop: "20px" }}>
+                                    <span><b>Hạnh kiểm tốt:</b></span> {excellentDiscipline}
+                                </p>
+                                <p className="pl-10" style={{ fontSize: "18px", marginLeft: "96px", marginTop: "20px" }}>
+                                    <span><b>Hạnh kiểm khá:</b></span> {goodDiscipline}
+                                </p>
+                                <p className="pl-10" style={{ fontSize: "18px", marginLeft: "96px", marginTop: "20px" }}>
+                                    <span><b>Hạnh kiểm trung bình:</b></span> {averageDiscipline}
+                                </p>
+                                <p className="pl-10" style={{ fontSize: "18px", marginLeft: "96px", marginTop: "20px" }}>
+                                    <span><b>Hạnh kiểm yếu:</b></span> {badDiscipline}
+                                </p>
                             </div>
                         </div>
                         <div className="flex flex-row">
                             <div className="flex flex-col">
-                                <p className="pl-10" style={{ fontSize: "18px", marginTop: "20px" }}>{`Số học sinh tối đa mỗi lớp: ${maxattendances}`}</p>
-                                <p className="pl-10" style={{ fontSize: "18px", marginTop: "20px" }}>{`Số lớp 12 tối đa: ${maxtwelfthclasses}`}</p>
+                                <p className="pl-10" style={{ fontSize: "18px", marginTop: "20px" }}>
+                                    <span><b>Số học sinh tối đa mỗi lớp:</b></span> {maxattendances}
+                                </p>
+                                <p className="pl-10" style={{ fontSize: "18px", marginTop: "20px" }}>
+                                    <span><b>Số lớp 12 tối đa:</b></span> {maxtwelfthclasses}
+                                </p>
                             </div>
                             <div className="flex flex-col">
-                                <p className="pl-10" style={{ fontSize: "18px", marginTop: "20px", marginLeft: "8px" }}>{`Số lớp 10 tối đa: ${maxtenthclasses}`}</p>
-                                <p className="pl-10" style={{ fontSize: "18px", marginTop: "20px", marginLeft: "8px" }}>{`Số lớp 11 tối đa: ${maxeleventhclasses}`}</p>
+                                <p className="pl-10" style={{ fontSize: "18px", marginTop: "20px", marginLeft: "2px" }}>
+                                    <span><b>Số lớp 10 tối đa:</b></span> {maxtenthclasses}
+                                </p>
+                                <p className="pl-10" style={{ fontSize: "18px", marginTop: "20px", marginLeft: "2px" }}>
+                                    <span><b>Số lớp 11 tối đa:</b></span> {maxeleventhclasses}
+                                </p>
                             </div>
                         </div>
                         <div className="p-4"></div>

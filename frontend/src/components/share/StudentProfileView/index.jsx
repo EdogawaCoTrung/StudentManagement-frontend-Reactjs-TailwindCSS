@@ -90,7 +90,7 @@ export default function StudentProfileView({ isOpenStudentProfileView, closeStud
             >
               <Dialog.Panel className="flex h-fit w-auto transform flex-col rounded-2xl bg-white p-6 text-left font-Manrope shadow-xl transition-all">
                 <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                  Thong tin hoc sinh
+                  Thông tin học sinh
                 </Dialog.Title>
                 <div className="flex items-center p-4">
                   <div className="flex h-fit w-auto transform flex-col rounded-2xl bg-white p-6 text-left font-Manrope shadow-xl transition-all">
@@ -124,8 +124,8 @@ export default function StudentProfileView({ isOpenStudentProfileView, closeStud
                         <div className="ml-40">
                           <p
                             className="pl-10"
-                            style={{ fontSize: "18px", marginTop: "18px" }}
-                          >{`Giới tính: ${student.gender === "0" ? "Nam" : "Nữ"}`}</p>
+                            style={{ fontSize: "18px", marginTop: "36px" }}
+                          >{`Giới tính: ${student.gender === "1" ? "Nam" : "Nữ"}`}</p>
                         </div>
                       </div>
                       <div>
