@@ -156,7 +156,7 @@ const OfficerTuitionTable = ({ data, checkReLoading, setCheckReLoading }) => {
   })
   return (
     <div className="relative z-10 mt-10 flex flex-col">
-      <div className="flex justify-between bg-bgSearch p-3">
+      <div className="flex justify-between bg-bgSearch mt-3 mb-3">
         <div className="animate-fade-right">
           <Paper component="form" sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: 400 }}>
             <IconButton sx={{ p: "10px" }} aria-label="menu">
@@ -214,7 +214,7 @@ const OfficerTuitionTable = ({ data, checkReLoading, setCheckReLoading }) => {
                 })
               }}
               sx={{ background: "white" }}
-              label={'"month"'}
+              label={'Month'}
               views={["month"]}
             />
           </LocalizationProvider>
