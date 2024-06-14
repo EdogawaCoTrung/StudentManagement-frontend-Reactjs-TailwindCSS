@@ -38,7 +38,7 @@ function CardClass({ nameclass, openModal, checkId, setCheckId }) {
       >
         <div className="flex flex-col">
           <p className="text-2xl">{nameclass}</p>
-          <p className="font-normal lowercase">Siso: 40</p>
+          <p className="font-normal lowercase">sĩ số: 40</p>
         </div>
       </Button>
       {/* <IconButton

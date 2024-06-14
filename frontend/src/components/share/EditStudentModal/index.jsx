@@ -125,7 +125,7 @@ export default function EditStudent ({ isOpenEditStudent, closeEditStudent, id }
                         >
                             <Dialog.Panel className="flex h-fit w-auto transform flex-col rounded-2xl bg-white p-6 text-left font-Manrope shadow-xl transition-all">
                                 <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                                    Sua thong tin hoc sinh
+                                    Chỉnh sửa thông tin học sinh
                                 </Dialog.Title>
                                 <div className="flex items-center p-4">
                                     <div className="flex h-fit w-auto transform flex-col rounded-2xl bg-white p-6 text-left font-Manrope shadow-xl transition-all">
@@ -187,7 +187,7 @@ export default function EditStudent ({ isOpenEditStudent, closeEditStudent, id }
                                                     value={grade}
                                                     onChange={(event) => setGrade(event.target.value)}
                                                     className="pl-10"
-                                                    style={{ fontSize: "18px", marginLeft: "160px"}}
+                                                    style={{ fontSize: "18px", marginRight: "20px"}}
                                                 />
                                                 </div>
                                                 <div>
