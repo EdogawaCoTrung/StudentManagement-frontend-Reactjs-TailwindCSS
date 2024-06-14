@@ -151,7 +151,7 @@ export default function StudentSidebar() {
               {student?.image != null ? (
                 <img className="mr-3 h-10 w-10 rounded-full object-cover" src={student.image}></img>
               ) : (
-                <Avatar src="/teacher.png" alt="Student" sx={{ height: 40, width: 40, marginRight: "12px" }} />
+                <Avatar src="/student.png" alt="Student" sx={{ height: 40, width: 40, marginRight: "12px" }} />
               )}
               <div className="flex flex-col font-Manrope">
                 <p className=" text-base font-semibold text-white">{decode.payload.username}</p>
