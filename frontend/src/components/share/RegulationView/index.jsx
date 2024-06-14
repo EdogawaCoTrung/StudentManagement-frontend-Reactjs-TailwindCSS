@@ -126,8 +126,8 @@ export default function RegulationView() {
                                 <p className="pl-10" style={{ fontSize: "18px", marginTop: "20px" }}>{`Số lớp 12 tối đa: ${maxtwelfthclasses}`}</p>
                             </div>
                             <div className="flex flex-col">
-                                <p className="pl-10" style={{ fontSize: "18px", marginTop: "20px", marginLeft: "6px" }}>{`Số lớp 10 tối đa: ${maxtenthclasses}`}</p>
-                                <p className="pl-10" style={{ fontSize: "18px", marginTop: "20px", marginLeft: "6px" }}>{`Số lớp 11 tối đa: ${maxeleventhclasses}`}</p>
+                                <p className="pl-10" style={{ fontSize: "18px", marginTop: "20px", marginLeft: "8px" }}>{`Số lớp 10 tối đa: ${maxtenthclasses}`}</p>
+                                <p className="pl-10" style={{ fontSize: "18px", marginTop: "20px", marginLeft: "8px" }}>{`Số lớp 11 tối đa: ${maxeleventhclasses}`}</p>
                             </div>
                         </div>
                         <div className="p-4"></div>

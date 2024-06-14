@@ -182,7 +182,7 @@ export default function OnlyAddStudentModal({ isOpenOnlyAddStudentModal, closeOn
                           label="Ngày sinh"
                           value={dateValue}
                           onChange={(newValue) => setDateValue(newValue)}
-                          defaultValue={dayjs("2022-04-17")}
+                          defaultValue={dayjs()}
                         />
                       </LocalizationProvider>
                       <TextField

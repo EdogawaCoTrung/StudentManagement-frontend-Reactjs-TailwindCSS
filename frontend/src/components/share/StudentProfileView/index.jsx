@@ -22,7 +22,8 @@ export default function StudentProfileView({ isOpenStudentProfileView, closeStud
     const [user, setUser] = React.useState({});
 
     async function getStudent() {
-        setStudent(await studentApi.getStudentById(id));
+        const res = await studentApi.getStudentById(id);
+        setStudent(res.DT);
         const classdata = await studentApi.getAllClassByStudentId(id);
         setClass(classdata.DT[0].class.classname);
         const gradeId = classdata.DT[0].class.gradeId;
@@ -47,9 +48,12 @@ export default function StudentProfileView({ isOpenStudentProfileView, closeStud
 
     React.useEffect(() => {
         if (student && student.userId) {
-            getUser(student.userId);
+            getUser();
         }
     }, [student]);
+
+    console.log("STUDENT", student);
+    console.log("USER", user);
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);

@@ -40,7 +40,8 @@ export default function EditStudent ({ isOpenEditStudent, closeEditStudent, id }
     const [gradeId, setGradeId] = React.useState(0)
 
     async function getStudent() {
-        setStudent(await studentApi.getStudentById(id))
+        const res = await studentApi.getStudentById(id);
+        setStudent(res.DT);
         const classdata = await studentApi.getAllClassByStudentId(id)
         setClassId(classdata.DT[0].class.id);
         setClass(classdata.DT[0].class.classname);

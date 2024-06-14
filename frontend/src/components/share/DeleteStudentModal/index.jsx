@@ -27,7 +27,8 @@ export default function DeleteStudent({ isOpenDeleteStudent, closeDeleteStudent,
     const [user, setUser] = React.useState({});
 
     async function getStudent() {
-        setStudent(await studentApi.getStudentById(id));
+        const res = await studentApi.getStudentById(id);
+        setStudent(res.DT);
         const classdata = await studentApi.getAllClassByStudentId(id);
         setClass(classdata.DT[0].class.classname);
         const gradeId = classdata.DT[0].class.gradeId;
