@@ -8,14 +8,14 @@ export const columnDef = [
   }),
   {
     accessorKey: "id",
-    header: "Id",
+    header: "ID",
   },
   {
     accessorKey: "studentname",
-    header: "Ho va ten",
+    header: "Họ và tên",
   },
   {
     accessorKey: "gender",
-    header: "Gioi tinh",
+    header: "Giới tính",
   },
 ]

@@ -13,19 +13,18 @@ class StudentApi {
     return res
   }
   async createStudent(data) {
-    console.log("api called");
+    console.log("api called")
     const res = await httpClient.post(`/student/create-student`, data)
     return res
   }
-  async updateStudent(studentId, classId, data) {
-    console.log(studentId, classId);
-    const res = await httpClient.put(`/student/update-student/${studentId}/${classId}`, data);
-    return res;
+  async updateStudent(id, data) {
+    const res = await httpClient.put(`/student/update-student/${id}`, data)
+    return res
   }
   async getStudentById(id) {
-    const res = await httpClient.get(`/student/${id}`);
-    console.log(res);
-    return res;
+    const res = await httpClient.get(`/student/${id}`)
+    console.log(res)
+    return res
   }
   //   async createClass(data) {
   //     const res = await httpClient.post("/class/create-class", data)

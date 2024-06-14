@@ -7,7 +7,7 @@ import {
 } from "@tanstack/react-table"
 import { createColumnHelper } from "@tanstack/react-table"
 import SwapVertIcon from "@mui/icons-material/SwapVert"
-import { IconButton } from "@mui/material"
+import { Avatar, IconButton } from "@mui/material"
 import FormatListBulletedRoundedIcon from "@mui/icons-material/FormatListBulletedRounded"
 import InfoRoundedIcon from "@mui/icons-material/InfoRounded"
 import PropTypes from "prop-types"
@@ -15,9 +15,7 @@ import { useNavigate } from "react-router-dom"
 import StudentProfileView from "../StudentProfileView"
 import React, { useMemo, useState } from "react"
 
-
 const RankingStudentTable = ({ data }) => {
-
   let [isOpenStudentProfileView, setOpenStudentProfileView] = useState(false)
   let [id, setId] = useState(0)
   function openStudentProfileView() {
@@ -42,12 +40,25 @@ const RankingStudentTable = ({ data }) => {
       }),
       columnHelper.accessor((row) => `${row.id}`, {
         id: "id",
-        header: "Id",
+        header: "ID",
       }),
       //<span>{info.cell.getValue().studentname}</span>
       columnHelper.accessor((row) => `${row.studentname}`, {
         id: "studentname",
-        header: "Ho va Ten",
+        header: "Họ và Tên",
+        cell: (info) => (
+          <div className="flex items-center align-middle">
+            {info.cell.row.original.image != null ? (
+              <img className="mr-3 h-10 w-10 rounded-full object-cover" src={info.cell.row.original.image}></img>
+            ) : (
+              <Avatar src="/student.png" alt="Student" sx={{ height: 40, width: 40, marginRight: "12px" }} />
+            )}
+            <div className="flex flex-col">
+              <span className="">{info.cell.row.original.studentname}</span>
+              <span className="text-xs text-neutral-400">{info.cell.row.original.email}</span>
+            </div>
+          </div>
+        ),
       }),
       columnHelper.accessor((row) => `${row.concludecore}`, {
         id: "gpa",
@@ -59,7 +70,7 @@ const RankingStudentTable = ({ data }) => {
       }),
       columnHelper.accessor("id", {
         id: "action",
-        header: "Thao tac",
+        header: "Thao tác",
         cell: (info) => (
           <strong>
             <IconButton
@@ -90,8 +101,8 @@ const RankingStudentTable = ({ data }) => {
               onClick={() => {
                 console.log(`View clicked on row with id: ${info.getValue()}`)
                 // Add your view logic here
-                setId(info.getValue());
-                openStudentProfileView();
+                setId(info.getValue())
+                openStudentProfileView()
               }}
             >
               <InfoRoundedIcon

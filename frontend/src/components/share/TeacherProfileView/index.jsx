@@ -65,7 +65,7 @@ export default function TeacherProfileView(idObject) {
               {user.image != null ? (
                 <img className="mr-3 h-36 w-36 rounded-full object-cover" src={user.image}></img>
               ) : (
-                <Avatar src="/teacher.png" alt="Student" sx={{ height: 40, width: 40, marginRight: "12px" }} />
+                <Avatar src="/teacher.png" alt="Student" sx={{ height: 140, width: 140, marginRight: "12px" }} />
               )}
               <div className="flex flex-col">
                 <h4 className="pl-10" style={{ fontSize: "28px", marginTop: "20px" }}>{`${teacher.teachername}`}</h4>

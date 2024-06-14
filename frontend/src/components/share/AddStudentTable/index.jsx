@@ -7,7 +7,7 @@ import {
 } from "@tanstack/react-table"
 import { createColumnHelper } from "@tanstack/react-table"
 import SwapVertIcon from "@mui/icons-material/SwapVert"
-import { Checkbox, IconButton } from "@mui/material"
+import { Avatar, Checkbox, IconButton } from "@mui/material"
 import InfoRoundedIcon from "@mui/icons-material/InfoRounded"
 import React, { useMemo, useState } from "react"
 import PropTypes from "prop-types"
@@ -17,7 +17,6 @@ import SearchIcon from "@mui/icons-material/Search"
 import StudentProfileView from "../StudentProfileView"
 
 const AddStudentTable = ({ HandleSetCheckValue, data }) => {
-
   let [id, setId] = useState(0)
   let [isOpenStudentProfileView, setOpenStudentProfileView] = useState(false)
   function openStudentProfileView() {
@@ -56,16 +55,29 @@ const AddStudentTable = ({ HandleSetCheckValue, data }) => {
       //<span>{info.cell.getValue().studentname}</span>
       columnHelper.accessor((row) => `${row.studentname}`, {
         id: "studentname",
-        header: "Ho va Ten",
+        header: "Họ và Tên",
+        cell: (info) => (
+          <div className="flex items-center align-middle">
+            {info.cell.row.original.image != null ? (
+              <img className="mr-3 h-10 w-10 rounded-full object-cover" src={info.cell.row.original.image}></img>
+            ) : (
+              <Avatar src="/student.png" alt="Student" sx={{ height: 40, width: 40, marginRight: "12px" }} />
+            )}
+            <div className="flex flex-col">
+              <span className="">{info.cell.row.original.studentname}</span>
+              <span className="text-xs text-neutral-400">{info.cell.row.original.email}</span>
+            </div>
+          </div>
+        ),
       }),
       columnHelper.accessor((row) => `${row.gender}`, {
         id: "gender",
-        header: "Gioi tinh",
+        header: "Giới tính",
         cell: (info) => <div>{info.getValue() === "1" ? <span>Nam</span> : <span>Nữ</span>}</div>,
       }),
       columnHelper.accessor("id", {
         id: "action",
-        header: "Thao tac",
+        header: "Thao tác",
         cell: (info) => (
           <strong>
             <IconButton
@@ -73,8 +85,8 @@ const AddStudentTable = ({ HandleSetCheckValue, data }) => {
               onClick={() => {
                 console.log(`View clicked on row with id: ${info.getValue()}`)
                 // Add your view logic here
-                setId(info.getValue());
-                openStudentProfileView();
+                setId(info.getValue())
+                openStudentProfileView()
               }}
             >
               <InfoRoundedIcon

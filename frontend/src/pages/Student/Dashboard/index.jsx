@@ -75,10 +75,10 @@ export default function StudentDashboard() {
             onChange={(newValue) => changeTerm(newValue.target.value)}
             id="outlined-select-concurrency"
             select
-            label="Term"
+            label="Semester"
             defaultValue="1"
             sx={{
-              width: "10vw",
+              width: "5vw",
               background: "white",
               marginRight: "12px",
             }}

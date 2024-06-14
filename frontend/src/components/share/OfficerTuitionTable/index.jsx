@@ -50,12 +50,12 @@ const OfficerTuitionTable = ({ data, checkReLoading, setCheckReLoading }) => {
     () => [
       columnHelper.accessor((row) => `${row.id}`, {
         id: "S.No",
-        header: "Id",
+        header: "ID",
       }),
       //<span>{info.cell.getValue().studentname}</span>
       columnHelper.accessor((row) => `${row.student.studentname}`, {
         id: "studentname",
-        header: "Ho va Ten",
+        header: "Họ và Tên",
         enableColumnFilter: true,
         filterFn: "includesString",
       }),
@@ -92,12 +92,12 @@ const OfficerTuitionTable = ({ data, checkReLoading, setCheckReLoading }) => {
       }),
       columnHelper.accessor((row) => `${row.closingdate}`, {
         id: "BillingDate",
-        header: "Payment_DL",
+        header: "Hạn nộp",
         cell: DateCell,
       }),
       columnHelper.accessor((row) => `${row.status}`, {
         id: "status",
-        header: "status",
+        header: "Trạng thái",
         cell: (info) => (
           <div className="flex w-fit flex-col">
             {info.row.original.status == 1 ? (

@@ -168,19 +168,23 @@ const Student = () => {
     () => [
       columnHelper.accessor((row) => `${row.id}`, {
         id: "S.No",
-        header: "Id",
+        header: "ID",
       }),
       //<span>{info.cell.getValue().studentname}</span>
       columnHelper.accessor((row) => `${row.studentname}`, {
         id: "studentname",
-        header: "Ho va Ten",
+        header: "Họ và Tên",
         enableColumnFilter: true,
         cell: (info) => (
           <div className="flex items-center align-middle">
             {info.cell.row.original.User.image != null ? (
               <img className="mr-3 h-10 w-10 rounded-full object-cover" src={info.cell.row.original.User.image}></img>
             ) : (
-              <Avatar src="/student.png" alt="Student" sx={{ height: 40, width: 40, marginRight: "12px" }} />
+              <Avatar
+                src="/student.png"
+                alt="Student"
+                sx={{ height: 40, width: 40, marginRight: "12px", border: "solid" }}
+              />
             )}
             <div className="flex flex-col">
               <span className="">{info.cell.row.original.studentname}</span>
@@ -208,11 +212,11 @@ const Student = () => {
       }),
       columnHelper.accessor((row) => `${row.classname}`, {
         id: "classname",
-        header: "Lop",
+        header: "Lớp",
       }),
       columnHelper.accessor((row) => `${row.gender}`, {
         id: "gender",
-        header: "Gioi tinh",
+        header: "Giới tính",
         cell: (info) => <div>{info.getValue() === "1" ? <span>Nam</span> : <span>Nữ</span>}</div>,
       }),
       columnHelper.accessor((row) => `${row.year}`, {
@@ -243,7 +247,7 @@ const Student = () => {
       }),
       columnHelper.accessor((row) => `${row.id}`, {
         id: "action",
-        header: "Thao tac",
+        header: "Thao tác",
         cell: (info) => (
           <strong>
             <IconButton
