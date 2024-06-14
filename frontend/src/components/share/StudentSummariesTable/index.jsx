@@ -92,13 +92,13 @@ export default function StudentSummariesTable() {
         >
           <GrLinkPrevious className="text-2xl text-white" />
         </button>
-        <p className="ml-6 animate-fade-down font-Manrope text-2xl font-bold text-gradeTitle">Điểm số</p>
+        <p className="ml-6 animate-fade-down font-Manrope text-2xl font- text-gradeTitle">Điểm số</p>
       </div>
       <div className="mt-10 flex items-center">
-        <p className="ml-6 animate-fade-up font-Manrope text-2xl font-semibold animate-delay-[500ms] ">
+        <p className="ml-6 animate-fade-up font-Manrope text-2xl font-semi animate-delay-[500ms] ">
           Lớp: {classname}
         </p>
-        <p className="ml-6 animate-fade-up font-Manrope text-2xl font-semibold animate-delay-[500ms] ">Học bạ</p>
+        <p className="ml-6 animate-fade-up font-Manrope text-2xl font-semi animate-delay-[500ms] ">Học bạ</p>
       </div>
       <div className="mt-10 h-96 overflow-auto">
         <table className="z-0 w-full border-collapse font-Manrope">
@@ -109,7 +109,7 @@ export default function StudentSummariesTable() {
                   {header.headers.map((column) => {
                     return (
                       <th
-                        className="text-1xl sticky border-b-2 pb-2 text-left font-semibold tracking-wide"
+                        className="text-1xl sticky border-b-2 pb-2 text-left font-semi tracking-wide"
                         key={column.id}
                         colSpan={column.colSpan}
                       >
