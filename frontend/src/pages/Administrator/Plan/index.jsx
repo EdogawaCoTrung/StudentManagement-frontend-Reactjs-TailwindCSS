@@ -111,8 +111,8 @@ export default function Tuition() {
               onClick={() => handleListTabClick(1)}
               className={
                 tabSelect == 1
-                  ? "group z-0 flex h-14 w-fit -translate-y-2 flex-row rounded-none bg-backgroundplus px-3 transition-all duration-300 focus:-translate-y-2"
-                  : "group z-0 flex h-14 w-fit flex-row rounded-none bg-gray-500 px-3 transition-all duration-300"
+                  ? "group z-0 flex h-10 w-fit -translate-y-2 flex-row rounded-none bg-backgroundplus px-3 transition-all duration-300 focus:-translate-y-2"
+                  : "group z-0 flex h-10 w-fit flex-row rounded-none bg-gray-500 px-3 transition-all duration-300"
               }
             >
               <div className="mt-2 flex flex-row items-center justify-center  align-top">
@@ -138,8 +138,8 @@ export default function Tuition() {
               onClick={() => handleListTabClick(2)}
               className={
                 tabSelect == 2
-                  ? "group z-0 flex h-14 w-fit -translate-y-2 flex-row rounded-none bg-backgroundplus px-3 transition-all duration-300 focus:-translate-y-2"
-                  : "group z-0 flex h-14 w-fit flex-row rounded-none bg-gray-500 px-3 transition-all duration-300"
+                  ? "group z-0 flex h-10 w-fit -translate-y-2 flex-row rounded-none bg-backgroundplus px-3 transition-all duration-300 focus:-translate-y-2"
+                  : "group z-0 flex h-10 w-fit flex-row rounded-none bg-gray-500 px-3 transition-all duration-300"
               }
             >
               <div className="mt-2 flex flex-row items-center justify-center  align-top">
