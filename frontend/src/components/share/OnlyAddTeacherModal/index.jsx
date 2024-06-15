@@ -85,6 +85,12 @@ export default function OnlyAddTeacherModal({
     console.log(res1)
     if (res1.EC === 0) {
       toast.success("Thêm giáo viên thành công!")
+      setAvatar(null)
+      setDateValue(dayjs())
+      setEmailValue("")
+      setGenderValue("Nam")
+      setNameValue("")
+      setPreview(null)
       closeOnlyAddTeachertModal()
     } else {
       toast.error(res1.EM)

@@ -65,6 +65,7 @@ export function useAuth() {
   }
 
   const logOut = useCallback(() => {
+    console.log("VAOLOGOUT")
     try {
       authApi.signOut()
     } catch (error) {

@@ -77,7 +77,10 @@ export default function DialogView({ isOpen, closeModal, nameclass, classId, ope
             >
               <Dialog.Panel className="flex h-modal w-modal transform flex-col rounded-2xl bg-white p-6 text-left font-Manrope shadow-xl transition-all">
                 <div className="mb-4 flex flex-row justify-between bg-white">
-                  <p className="font-Manrope text-2xl font-normal">Lớp {nameclass}</p>
+                  <div className="flex">
+                    <p className="mr-3 font-Manrope text-2xl font-normal">Lớp: {nameclass}</p>
+                    <p className="font-Manrope text-2xl font-normal">ClassId: {classId}</p>
+                  </div>
                   <div className="flex flex-row">
                     {/* <Input
                       placeholder="Search..."

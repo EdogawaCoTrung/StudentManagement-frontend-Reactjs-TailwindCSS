@@ -69,31 +69,23 @@ export default function TeacherProfileView(idObject) {
               )}
               <div className="flex flex-col">
                 <h4 className="pl-10" style={{ fontSize: "28px", marginTop: "20px" }}>{`${teacher.teachername}`}</h4>
-                <h3 className="pl-10" style={{ fontSize: "22px", marginTop: "20px" }}>{`${user.username}`}</h3>
               </div>
               <div></div>
             </div>
             <div>
-              <div>
-                <div className="flex flex-row">
+              <div className="flex justify-between">
+                <div className="mr-5 flex flex-col">
+                  <p style={{ fontSize: "18px", marginTop: "20px" }}>{`username: ${user.username}`}</p>
                   <p
-                    className="pl-10"
                     style={{ fontSize: "18px", marginTop: "20px" }}
                   >{`Ngày bắt đầu: ${formatDate(teacher.startDate)}`}</p>
-                  <p
-                    className="pl-10 pr-10"
-                    style={{ fontSize: "18px", marginTop: "20px", marginLeft: "120px" }}
-                  >{`Giới tính: ${teacher.gender === "1" ? "Nam" : "Nữ"}`}</p>
                 </div>
-                <p
-                  className="pl-10"
-                  style={{ fontSize: "18px", marginTop: "20px" }}
-                >{`Môn học phụ trách: ${subject.subjectname}`}</p>
-                <p
-                  className="pl-10"
-                  style={{ fontSize: "18px", marginTop: "20px" }}
-                >{`Trạng thái trong năm: ${teacher.statusinyear === 0 ? "Chưa hoàn thành" : "Đã hoàn thành"}`}</p>
-                <div className="p-4"></div>
+                <div className="flex flex-col">
+                  <p
+                    style={{ fontSize: "18px", marginTop: "20px" }}
+                  >{`Giới tính: ${teacher.gender === "1" ? "Nam" : "Nữ"}`}</p>
+                  <p style={{ fontSize: "18px", marginTop: "20px" }}>{`Môn học phụ trách: ${subject.subjectname}`}</p>
+                </div>
               </div>
             </div>
             <div></div>

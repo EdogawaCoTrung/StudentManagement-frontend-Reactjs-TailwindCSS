@@ -17,8 +17,13 @@ import LogoutIcon from "@mui/icons-material/Logout"
 import { useAuth } from "../../../hooks"
 import { accountApi } from "../../../apis"
 const defaultTheme = MainTheme
-
+import { useNavigate } from "react-router-dom"
 export default function StudentSidebar() {
+  const navigate = useNavigate()
+  let role = localStorage.getItem("role")
+  if (role != 4) {
+    navigate("/login")
+  }
   const { logOut } = useAuth()
   const [selectedIndex, setSelectedIndex] = useState(() => parseInt(localStorage.getItem("selectedIndex")) || 0)
   const userId = localStorage.getItem("userId")
@@ -158,7 +163,7 @@ export default function StudentSidebar() {
                 <p className="overflow-ellipsis  text-xs text-neutral-300">{decode.payload.email}</p>
               </div>
             </div>
-            <Link to={routes.Login} className="w-full mt-2 flex justify-center">
+            <Link to={routes.Login} className="mt-2 flex w-full justify-center">
               <Button
                 onClick={() => logOut()}
                 fontFamily="Manrope"

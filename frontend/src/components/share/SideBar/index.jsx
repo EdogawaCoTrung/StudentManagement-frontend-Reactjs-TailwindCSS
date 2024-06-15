@@ -19,9 +19,15 @@ import LogoutIcon from "@mui/icons-material/Logout"
 import { useAuth } from "../../../hooks"
 import { IoBookOutline } from "react-icons/io5"
 import { MdOutlineAssignmentInd } from "react-icons/md"
+import { toast } from "react-toastify"
 const defaultTheme = MainTheme
-
+import { useNavigate } from "react-router-dom"
 export default function Sidebar() {
+  const navigate = useNavigate()
+  let role = localStorage.getItem("role")
+  if (role != 1) {
+    navigate("/login")
+  }
   const { logOut } = useAuth()
   const [selectedIndex, setSelectedIndex] = useState(() => parseInt(localStorage.getItem("selectedIndex")) || 0)
   useEffect(() => {
@@ -203,7 +209,7 @@ export default function Sidebar() {
                 <p className="overflow-ellipsis  text-xs text-neutral-300">{decode.payload.email}</p>
               </div>
             </div>
-            <Link to={routes.Login} className="w-full mt-2 flex justify-center">
+            <Link to={routes.Login} className="mt-2 flex w-full justify-center">
               <Button
                 onClick={() => logOut()}
                 fontFamily="Manrope"

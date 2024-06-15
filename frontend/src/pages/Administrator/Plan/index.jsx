@@ -134,33 +134,6 @@ export default function Tuition() {
                 </p>
               </div>
             </Tab>
-            <Tab
-              onClick={() => handleListTabClick(2)}
-              className={
-                tabSelect == 2
-                  ? "group z-0 flex h-10 w-fit -translate-y-2 flex-row rounded-none bg-backgroundplus px-3 transition-all duration-300 focus:-translate-y-2"
-                  : "group z-0 flex h-10 w-fit flex-row rounded-none bg-gray-500 px-3 transition-all duration-300"
-              }
-            >
-              <div className="mt-2 flex flex-row items-center justify-center  align-top">
-                <SiGoogleclassroom
-                  className={
-                    tabSelect == 2
-                      ? "mr-1 text-base font-semibold text-white transition-none duration-0"
-                      : "mr-1 text-base font-semibold transition-none duration-0"
-                  }
-                />
-                <p
-                  className={
-                    tabSelect == 2
-                      ? "group-text font-Manrope text-base font-semibold text-white transition-none duration-0"
-                      : "group-text font-Manrope text-base font-semibold transition-none duration-0"
-                  }
-                >
-                  Lớp
-                </p>
-              </div>
-            </Tab>
           </Tab.List>
           <Tab.Panels>
             <Tab.Panel>
@@ -170,7 +143,6 @@ export default function Tuition() {
                 setCheckReLoading={setCheckReLoading}
               ></StudentTuitionTable>
             </Tab.Panel>
-            <Tab.Panel>Content 2</Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
       </div>

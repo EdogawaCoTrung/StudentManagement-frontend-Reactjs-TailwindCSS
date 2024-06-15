@@ -15,8 +15,13 @@ import { RiProfileLine } from "react-icons/ri"
 import { teacherApi } from "../../../apis"
 import { toast } from "react-toastify"
 const defaultTheme = MainTheme
-
+import { useNavigate } from "react-router-dom"
 export default function TeacherSidebar() {
+  const navigate = useNavigate()
+  let role = localStorage.getItem("role")
+  if (role != 2) {
+    navigate("/login")
+  }
   const { logOut } = useAuth()
   const [selectedIndex, setSelectedIndex] = useState(() => parseInt(localStorage.getItem("selectedIndex")) || 0)
   const [teacher, setTeacher] = useState("")
@@ -110,14 +115,13 @@ export default function TeacherSidebar() {
                 <p className="overflow-ellipsis  text-xs text-neutral-300">{decode.payload.email}</p>
               </div>
             </div>
-            <Link to={routes.Login} className="w-full mt-2 flex justify-center">
+            <Link to={routes.Login} className="mt-2 flex w-full justify-center">
               <Button
                 onClick={() => logOut()}
                 fontFamily="Manrope"
                 variant="contained"
                 color="secondary"
-                startIcon={<LogoutIcon />
-                }
+                startIcon={<LogoutIcon />}
               >
                 <Typography
                   component="div"

@@ -43,7 +43,7 @@ export default function AddDisciplineModal({
       }
       res = await summaryApi.createDisciplines(data)
       if (res.EC != 1) {
-        toast.success("Phân công thành công")
+        toast.success("Tạo thành công!")
         setCheckReLoading(!checkReLoading)
       } else if (res.EC == 1) {
         toast.error(res.EM)

@@ -14,8 +14,13 @@ import { useAuth } from "../../../hooks"
 import { RiProfileLine } from "react-icons/ri"
 import { MdChangeHistory } from "react-icons/md"
 const defaultTheme = MainTheme
-
+import { useNavigate } from "react-router-dom"
 export default function OfficerSidebar() {
+  const navigate = useNavigate()
+  let role = localStorage.getItem("role")
+  if (role != 3) {
+    navigate("/login")
+  }
   const { logOut } = useAuth()
   const [selectedIndex, setSelectedIndex] = useState(() => parseInt(localStorage.getItem("selectedIndex")) || 0)
   useEffect(() => {
