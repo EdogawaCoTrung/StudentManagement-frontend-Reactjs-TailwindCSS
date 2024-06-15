@@ -90,8 +90,14 @@ const Student = () => {
     let uniqueStudent = new Set()
     let uniqueClass = new Set()
     let res = await studentApi.getAllStudent()
+    console.log("UNIQUE", uniqueStudent, uniqueClass)
     res.DT.forEach((student) => {
-      if (student.year === 2023) {
+      console.log("CHECKFORECH", selectYear != "All", student.year, student.year === selectYear)
+      if (selectYear != "All" && student.year === selectYear) {
+        console.log("VAOIF", student.id)
+        uniqueStudent.add(student.studentname)
+        uniqueClass.add(student.classname)
+      } else if (selectYear == "All") {
         uniqueStudent.add(student.studentname)
         uniqueClass.add(student.classname)
       }
@@ -139,7 +145,7 @@ const Student = () => {
   }, [selectYear])
   useEffect(() => {
     fetchAllStudent()
-  }, [checkReload, isOpenOnlyAddStudentModal, isOpenEditStudent])
+  }, [checkReload, selectYear, isOpenOnlyAddStudentModal, isOpenEditStudent])
   const [columnFilters, setColumnFilters] = useState([])
   const searchInput = columnFilters.find((f) => f.id === "studentname")?.value || ""
   const filterGrade = columnFilters.find((f) => f.id === "gradename")?.value || []

@@ -75,10 +75,6 @@ export default function Summaries() {
         id: "behaviorpoint",
         header: "behaviorpoint",
       }),
-      columnHelper.accessor((row) => `${row.concludediscipline}`, {
-        id: "discipline",
-        header: "discipline",
-      }),
       columnHelper.accessor((row) => `${row.concludetitle}`, {
         id: "title",
         header: "title",

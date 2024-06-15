@@ -8,7 +8,7 @@ export default function SubjectModal({ isOpenSubjectModal, closeSubjectModal, id
   const [subjectInfo, setSubjectInfo] = useState(null)
   const getSubjectById = async () => {
     let res = await subjectApi.getSubjectById(id)
-    if (res.EC == 1) {
+    if (res.EC != 1) {
       setSubjectInfo(res.DT)
     }
   }
@@ -21,6 +21,12 @@ export default function SubjectModal({ isOpenSubjectModal, closeSubjectModal, id
       ...prevTuitionInfo,
       [name]: value,
     }))
+  }
+  const handleDelete = async (e) => {
+    let res = await subjectApi.deleteSubject(id)
+    if (res.EC != 1) {
+      toast.success("Xóa thành công")
+    } else toast.error(res.EM)
   }
   const handleSubmit = async (e) => {
     let res
@@ -145,10 +151,17 @@ export default function SubjectModal({ isOpenSubjectModal, closeSubjectModal, id
                 <div className="mt-4 flex justify-end">
                   <button
                     type="button"
-                    className="mr-10 inline-flex justify-center rounded-md border border-transparent bg-addBtn px-4 py-2 text-sm font-medium text-white hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    className="mr-10 inline-flex justify-center rounded-md border border-transparent bg-backgroundplus px-4 py-2 text-sm font-medium text-white hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                     onClick={handleSubmit}
                   >
                     Lưu
+                  </button>
+                  <button
+                    type="button"
+                    className="mr-10 inline-flex justify-center rounded-md border border-transparent bg-red-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    onClick={handleDelete}
+                  >
+                    Xóa
                   </button>
                   <button
                     type="button"

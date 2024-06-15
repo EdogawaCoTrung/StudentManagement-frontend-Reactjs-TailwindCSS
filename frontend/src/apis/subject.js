@@ -20,6 +20,10 @@ class SubjectApi {
     const res = await httpClient.put(`/subjects/update/${id}`, data)
     return res
   }
+  async deleteSubject(id) {
+    const res = await httpClient.put(`/subjects/delete/${id}`)
+    return res
+  }
   //   async createClass(data) {
   //     const res = await httpClient.post("/class/create-class", data)
   //     return res

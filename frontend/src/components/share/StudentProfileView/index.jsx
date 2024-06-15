@@ -109,53 +109,29 @@ export default function StudentProfileView({ isOpenStudentProfileView, closeStud
                           className="pl-10"
                           style={{ fontSize: "28px", marginTop: "20px" }}
                         >{`${student.studentname}`}</h4>
-                        <h3 className="pl-10" style={{ fontSize: "22px", marginTop: "20px" }}>
-                          {className}
-                        </h3>
                       </div>
                       <div></div>
                     </div>
                     <div>
-                      <div className="flex flex-row">
-                        <p
-                          className="pl-10"
-                          style={{ fontSize: "18px", marginTop: "40px" }}
-                        >{`Ngày sinh: ${formatDate(student.birthDate)}`}</p>
-                        <div className="ml-40">
+                      <div className="flex w-full justify-between">
+                        <div className="mr-5 flex flex-col">
                           <p
-                            className="pl-10"
-                            style={{ fontSize: "18px", marginTop: "36px" }}
-                          >{`Giới tính: ${student.gender === "1" ? "Nam" : "Nữ"}`}</p>
-                        </div>
-                      </div>
-                      <div>
-                        <div className="flex flex-row">
+                            style={{ fontSize: "18px", marginTop: "40px" }}
+                          >{`Ngày sinh: ${formatDate(student.birthDate)}`}</p>
                           <p
-                            className="pl-10"
                             style={{ fontSize: "18px", marginTop: "20px" }}
-                          >{`Ngày nhập học: ${formatDate(student.startDate)}`}</p>
-                          <p
-                            className="pl-10"
-                            style={{ fontSize: "18px", marginLeft: "160px", marginTop: "18px" }}
-                          >{`Khối: ${grade}`}</p>
+                          >{`Giới tính: ${student.gender === "1" ? "Nam" : "Nữ"}`}</p>
+                          <div className="flex flex-row">
+                            <p
+                              style={{ fontSize: "18px", marginTop: "20px" }}
+                            >{`Ngày nhập học: ${formatDate(student.startDate)}`}</p>
+                          </div>
                         </div>
-                        <p
-                          className="pl-10"
-                          style={{ fontSize: "18px", marginTop: "20px" }}
-                        >{`User name: ${user.username}`}</p>
-                        <p
-                          className="pl-10"
-                          style={{ fontSize: "18px", marginTop: "20px" }}
-                        >{`Email: ${user.email}`}</p>
-                        <p
-                          className="pl-10"
-                          style={{ fontSize: "18px", marginTop: "20px" }}
-                        >{`Địa chỉ: ${student.address}`}</p>
-                        <p
-                          className="pl-10"
-                          style={{ fontSize: "18px", marginTop: "20px" }}
-                        >{`Trạng thái trong năm: ${student.statusinyear === 0 ? "Chưa hoàn thành" : "Đã hoàn thành"}`}</p>
-                        <div className="p-4"></div>
+                        <div className="flex flex-col">
+                          <p style={{ fontSize: "18px", marginTop: "40px" }}>{`User name: ${user.username}`}</p>
+                          <p style={{ fontSize: "18px", marginTop: "20px" }}>{`Email: ${user.email}`}</p>
+                          <p style={{ fontSize: "18px", marginTop: "20px" }}>{`Địa chỉ: ${student.address}`}</p>
+                        </div>
                       </div>
                     </div>
                     <div></div>

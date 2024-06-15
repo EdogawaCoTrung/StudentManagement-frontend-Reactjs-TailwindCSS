@@ -9,6 +9,7 @@ import { createColumnHelper } from "@tanstack/react-table"
 import PropTypes from "prop-types"
 import React, { useMemo } from "react"
 export default function Overall({ listSubjectResult }) {
+  console.log("listSubjectResult", listSubjectResult)
   const columnHelper = createColumnHelper()
   const columnDef = useMemo(
     () => [
@@ -54,8 +55,7 @@ export default function Overall({ listSubjectResult }) {
   return (
     <div className="relative mb-10 mt-10 flex flex-col overflow-hidden bg-white p-0">
       <div className="mt-10 flex items-center">
-        <p className="ml-6 animate-fade-up font-Manrope text-2xl font-semibold animate-delay-[500ms] ">Lớp: 10</p>
-        <p className="ml-6 animate-fade-up font-Manrope text-2xl font-semibold animate-delay-[500ms] ">Học bạ</p>
+        <p className="animate-fade-up font-Manrope text-2xl font-semibold animate-delay-[500ms] ">Học bạ cả năm</p>
       </div>
       <div className="mt-3 overflow-auto">
         <table className="z-0 w-full border-collapse font-Manrope">
