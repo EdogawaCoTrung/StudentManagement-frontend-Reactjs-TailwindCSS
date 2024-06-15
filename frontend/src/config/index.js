@@ -1,7 +1,2 @@
-import route from "./route"
-
-const config = {
-  route,
-}
-
-export default config
+export { routes } from "./routes"
+export { queryKeys } from "./queryKeys"

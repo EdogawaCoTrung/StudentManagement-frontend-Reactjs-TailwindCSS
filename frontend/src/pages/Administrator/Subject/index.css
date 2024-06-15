@@ -1,0 +1,4 @@
+.my-class::after {
+  width: calc(100% - 30px);
+  height: calc(100% - 20px);
+}

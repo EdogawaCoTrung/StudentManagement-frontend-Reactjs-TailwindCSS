@@ -1,13 +1,38 @@
-import Sidebar from "../../share/Sidebar"
+import SideBar from "../../share/SideBar"
+import PropTypes from "prop-types"
+import CssBaseline from "@mui/material/CssBaseline"
+import Grid from "@mui/material/Grid"
+import PreLoader from "../PreLoading"
+import StudentSidebar from "../../share/StudentSidebar"
+import OfficerSidebar from "../../share/OfficerSidebar"
+import TeacherSidebar from "../../share/TeacherSidebar"
 export default function DefaultLayout({ children }) {
+  const role = localStorage.getItem("role")
+  console.log("ROLE", role)
   return (
-    <div>
-      <div className="">
-        <div className="flex w-[1150px] max-w-full p-1">
-          <Sidebar />
-          <div className="ml-6 flex-1">{children}</div>
-        </div>
-      </div>
+    <div className="relative m-0 overflow-auto p-0">
+      <PreLoader></PreLoader>
+      <Grid container component="main" sx={{ height: "100vh", transitionDelay: "10s", overflow: "auto" }}>
+        <CssBaseline />
+        <Grid item xs={false} sm={4} lg={2} sx={{ display: { xs: "none", sm: "block" } }}>
+          {role == 1 ? (
+            <SideBar />
+          ) : role == 4 ? (
+            <StudentSidebar />
+          ) : role == 3 ? (
+            <OfficerSidebar />
+          ) : (
+            <TeacherSidebar />
+          )}
+        </Grid>
+        <Grid sx={{ overflow: "auto", background: "#fafafa" }} item xs={12} sm={8} lg={10} elevation={6}>
+          {children}
+        </Grid>
+      </Grid>
     </div>
   )
+}
+
+DefaultLayout.propTypes = {
+  children: PropTypes.node.isRequired,
 }
