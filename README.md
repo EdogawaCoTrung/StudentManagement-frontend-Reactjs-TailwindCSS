@@ -59,16 +59,26 @@
  
    3. Admin view:
    
-       ![image](https://github.com/EdogawaCoTrung/HumanResourcesApplication_DoAn/assets/86793610/600ec7e7-ea02-4a9d-aa04-33c27a1bd1a7)
+       ![image](https://github.com/EdogawaCoTrung/StudentManagement-frontend-Reactjs-TailwindCSS/assets/112166397/7706b36d-53f0-4b4a-b86a-d90d51f0e6b4)
+
        
-   4. Employee view:
+   4. Student view:
    
-        ![image](https://github.com/EdogawaCoTrung/HumanResourcesApplication_DoAn/assets/86793610/10b83a84-3dd0-48bc-b857-ee9cfb84cae2)
+       ![image](https://github.com/EdogawaCoTrung/StudentManagement-frontend-Reactjs-TailwindCSS/assets/112166397/46cf5c3c-7ecf-4d96-af1a-d65851e3c459)
+
+   5. Teacher view:
+   
+       ![image](https://github.com/EdogawaCoTrung/StudentManagement-frontend-Reactjs-TailwindCSS/assets/112166397/7bbf3565-dad0-4b9e-a78d-01dec72e3671)
+
+
+   6. Officer view:
+   
+       ![image](https://github.com/EdogawaCoTrung/StudentManagement-frontend-Reactjs-TailwindCSS/assets/112166397/757126ba-207e-4bae-8540-6cfcd2c50a50)
 
    
    <h1 id="GetStarted">GetStarted🤖</h1>
    
-      * **`Employee Management`**: Easily manage employee information, including personal details, contact information, and employment history.
+   * **`Employee Management`**: Easily manage employee information, including personal details, contact information, and employment history.
    * **`Department Management`**: Organize employees by departments for better organization and tracking.
    * **`Leave Management`**: Keep track of employee leave requests, approvals, and balances.
    * **`Performance Tracking`**: Capture and analyze employee performance data for evaluation purposes.
