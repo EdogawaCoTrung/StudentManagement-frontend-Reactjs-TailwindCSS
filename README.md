@@ -52,15 +52,13 @@
    1. Clone the repository:
 
       `Frontend`
-
-           ```bash
+      
            git clone https://github.com/EdogawaCoTrung/StudentManagement-frontend-Reactjs-TailwindCSS.git
 
       **`Backend`**
+      
+            git clone https://github.com/Tam-Vu/StudentManagement-backend.git
 
-          ```bash
-              git clone https://github.com/Tam-Vu/StudentManagement-backend.git
-        
    3. Login:
    
        ![image](https://github.com/EdogawaCoTrung/StudentManagement-frontend-Reactjs-TailwindCSS/assets/112166397/261a767c-83c3-4992-bdac-c8a00d6599d8)
