@@ -177,7 +177,8 @@
     
    **`Regulations adjustment`**
    >Support creating school years, changing semesters, changing regulations including (age, behavior point, classification point, number of classes by grades).
-    ![image](https://github.com/EdogawaCoTrung/StudentManagement-frontend-Reactjs-TailwindCSS/assets/112166397/b7a18b2d-e532-4400-a01a-7bc135c0e771)
+
+   ![image](https://github.com/EdogawaCoTrung/StudentManagement-frontend-Reactjs-TailwindCSS/assets/112166397/b7a18b2d-e532-4400-a01a-7bc135c0e771)
 
 
    <h1 id="Contributors">Contributors🤝</h1>
